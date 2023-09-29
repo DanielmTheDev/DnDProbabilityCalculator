@@ -1,16 +1,12 @@
-﻿namespace DnDProbabilityCalculator;
+﻿using System.Text.Json;
+using DnDProbabilityCalculator.Core;
+
+namespace DnDProbabilityCalculator;
 
 public class Character
 {
-    public int Dexterity { get; set; }
-    public int Strength { get; set; }
-    public int Constitution { get; set; }
-    public int Intelligence { get; set; }
-    public int Wisdom { get; set; }
-    public int Charisma { get; set; }
+    public readonly Attributes Attributes = new();
 
-    public IEnumerable<Character> FromFile(string filePath)
-    {
-        throw new NotImplementedException();
-    }
+    public static IEnumerable<Character> FromJsonString(string jsonString)
+        => JsonSerializer.Deserialize<IEnumerable<Character>>(jsonString) ?? throw new FormatException(ErrorMessages.Wrong_File_Format);
 }
