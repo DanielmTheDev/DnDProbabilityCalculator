@@ -5,8 +5,10 @@ namespace DnDProbabilityCalculator;
 
 public class Character
 {
-    public readonly Attributes Attributes = new();
+    public string Name { get; set; } = string.Empty;
+    public Attributes Attributes { get; set; } = new();
 
     public static IEnumerable<Character> FromJsonString(string jsonString)
-        => JsonSerializer.Deserialize<IEnumerable<Character>>(jsonString) ?? throw new FormatException(ErrorMessages.Wrong_File_Format);
+        => JsonSerializer.Deserialize<IEnumerable<Character>>(jsonString, new JsonSerializerOptions(JsonSerializerDefaults.Web))
+           ?? throw new FormatException(ErrorMessages.Wrong_File_Format);
 }

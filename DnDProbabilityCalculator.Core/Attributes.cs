@@ -1,6 +1,6 @@
 ﻿namespace DnDProbabilityCalculator;
 
-public class Attributes
+public record Attributes
 {
     public int Dexterity { get; set; }
     public int Strength { get; set; }

@@ -9,8 +9,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Dumpify" Version="0.6.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
       <PackageReference Include="Spectre.Console" Version="0.47.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DnDProbabilityCalculator.Core\DnDProbabilityCalculator.Core.csproj" />
     </ItemGroup>
 
 </Project>
