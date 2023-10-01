@@ -8,7 +8,7 @@ public class PartyTests
     [TestMethod]
     public void FromJsonString_WithValidString_SerializesIntoParty()
     {
-        // Act
+        // Arrange and Act
         var party = Party.FromJsonString(GetValidJsonString());
 
         // Assert
@@ -29,6 +29,16 @@ public class PartyTests
         Assert.AreEqual(4, party.Characters[1].Attributes.Intelligence);
         Assert.AreEqual(5, party.Characters[1].Attributes.Wisdom);
         Assert.AreEqual(6, party.Characters[1].Attributes.Charisma);
+    }
+
+    public static void FromJsonString_Throws_WithInvalidJsonString()
+    {
+        // Arrange
+        const string jsonSting = "Some invalid json";
+
+        // Act and Assert
+        var message = Assert.ThrowsException<FormatException>(() => Party.FromJsonString(jsonSting)).Message;
+        Assert.IsTrue(message.Contains(ErrorMessages.Wrong_File_Format));
     }
 
     private static string GetValidJsonString()
