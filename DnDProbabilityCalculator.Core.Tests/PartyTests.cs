@@ -1,3 +1,5 @@
+using DnDProbabilityCalculator.Core.Adventuring;
+
 namespace DnDProbabilityCalculator.Core.Tests;
 
 [TestClass]

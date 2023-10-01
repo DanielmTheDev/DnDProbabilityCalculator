@@ -1,4 +1,4 @@
-﻿namespace DnDProbabilityCalculator;
+﻿namespace DnDProbabilityCalculator.Core.Adventuring;
 
 public class Character
 {

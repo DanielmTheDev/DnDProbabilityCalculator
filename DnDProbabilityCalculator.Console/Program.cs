@@ -5,6 +5,7 @@
 // var calculator = serviceProvider.GetService<ICalculator>();
 
 using DnDProbabilityCalculator.Core;
+using DnDProbabilityCalculator.Core.Adventuring;
 using Dumpify;
 
 var jsonString = File.ReadAllText(@"C:\Users\DanielMuckelbauer\AppData\Roaming\JetBrains\Rider2023.2\scratches\scratch.json");
