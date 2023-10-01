@@ -1,7 +1,4 @@
-﻿using System.Text.Json;
-using DnDProbabilityCalculator.Core;
-
-namespace DnDProbabilityCalculator;
+﻿namespace DnDProbabilityCalculator;
 
 public class Character
 {

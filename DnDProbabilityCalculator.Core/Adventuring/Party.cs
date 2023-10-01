@@ -4,9 +4,14 @@ namespace DnDProbabilityCalculator.Core;
 
 public class Party
 {
-    private static readonly JsonSerializerOptions JsonSerializerOptions = new(JsonSerializerDefaults.Web);
+    private static readonly JsonSerializerOptions JsonSerializerOptions = new()
+    {
+        PropertyNameCaseInsensitive = true
+    };
 
-    public static IEnumerable<Character> FromJsonString(string jsonString)
-        => JsonSerializer.Deserialize<IEnumerable<Character>>(jsonString, JsonSerializerOptions)
+    public IList<Character> Characters { get; set; } = new List<Character>();
+
+    public static Party FromJsonString(string jsonString)
+        => JsonSerializer.Deserialize<Party>(jsonString, JsonSerializerOptions)
            ?? throw new FormatException(ErrorMessages.Wrong_File_Format);
 }
