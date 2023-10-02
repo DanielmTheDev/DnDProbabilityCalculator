@@ -3,5 +3,5 @@
 public class Character
 {
     public string Name { get; set; } = string.Empty;
-    public Attributes Attributes { get; set; } = new();
+    public AbilityScores AbilityScores { get; set; } = new();
 }

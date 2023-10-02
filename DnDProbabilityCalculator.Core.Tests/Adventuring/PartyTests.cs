@@ -15,20 +15,20 @@ public class PartyTests
         Assert.AreEqual(2, party.Characters.Count);
 
         Assert.AreEqual("Durak", party.Characters[0].Name);
-        Assert.AreEqual(11, party.Characters[0].Attributes.Dexterity);
-        Assert.AreEqual(12, party.Characters[0].Attributes.Strength);
-        Assert.AreEqual(13, party.Characters[0].Attributes.Constitution);
-        Assert.AreEqual(14, party.Characters[0].Attributes.Intelligence);
-        Assert.AreEqual(12, party.Characters[0].Attributes.Wisdom);
-        Assert.AreEqual(14, party.Characters[0].Attributes.Charisma);
+        Assert.AreEqual(11, party.Characters[0].AbilityScores.Dexterity);
+        Assert.AreEqual(12, party.Characters[0].AbilityScores.Strength);
+        Assert.AreEqual(13, party.Characters[0].AbilityScores.Constitution);
+        Assert.AreEqual(14, party.Characters[0].AbilityScores.Intelligence);
+        Assert.AreEqual(12, party.Characters[0].AbilityScores.Wisdom);
+        Assert.AreEqual(14, party.Characters[0].AbilityScores.Charisma);
 
         Assert.AreEqual("Erethil", party.Characters[1].Name);
-        Assert.AreEqual(1, party.Characters[1].Attributes.Dexterity);
-        Assert.AreEqual(2, party.Characters[1].Attributes.Strength);
-        Assert.AreEqual(3, party.Characters[1].Attributes.Constitution);
-        Assert.AreEqual(4, party.Characters[1].Attributes.Intelligence);
-        Assert.AreEqual(5, party.Characters[1].Attributes.Wisdom);
-        Assert.AreEqual(6, party.Characters[1].Attributes.Charisma);
+        Assert.AreEqual(1, party.Characters[1].AbilityScores.Dexterity);
+        Assert.AreEqual(2, party.Characters[1].AbilityScores.Strength);
+        Assert.AreEqual(3, party.Characters[1].AbilityScores.Constitution);
+        Assert.AreEqual(4, party.Characters[1].AbilityScores.Intelligence);
+        Assert.AreEqual(5, party.Characters[1].AbilityScores.Wisdom);
+        Assert.AreEqual(6, party.Characters[1].AbilityScores.Charisma);
     }
 
     public static void FromJsonString_Throws_WithInvalidJsonString()
@@ -47,7 +47,7 @@ public class PartyTests
               "characters": [
                 {
                   "name": "Durak",
-                  "attributes": {
+                  "abilityScores": {
                     "dexterity": {
                       "value": 11
                     },
@@ -70,7 +70,7 @@ public class PartyTests
                 },
                 {
                   "name": "Erethil",
-                  "attributes": {
+                  "abilityScores": {
                     "dexterity": {
                       "value": 1
                     },
