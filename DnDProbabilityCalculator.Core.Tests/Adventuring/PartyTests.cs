@@ -1,6 +1,6 @@
 using DnDProbabilityCalculator.Core.Adventuring;
 
-namespace DnDProbabilityCalculator.Core.Tests;
+namespace DnDProbabilityCalculator.Core.Tests.Adventuring;
 
 [TestClass]
 public class PartyTests
@@ -48,23 +48,47 @@ public class PartyTests
                 {
                   "name": "Durak",
                   "attributes": {
-                    "dexterity": 11,
-                    "strength": 12,
-                    "constitution": 13,
-                    "intelligence": 14,
-                    "wisdom": 12,
-                    "charisma": 14
+                    "dexterity": {
+                      "value": 11
+                    },
+                    "strength": {
+                      "value": 12
+                    },
+                    "constitution": {
+                      "value": 13
+                    },
+                    "intelligence": {
+                      "value": 14
+                    },
+                    "wisdom": {
+                      "value": 12
+                    },
+                    "charisma": {
+                      "value": 14
+                    }
                   }
                 },
                 {
                   "name": "Erethil",
                   "attributes": {
-                    "dexterity": 1,
-                    "strength": 2,
-                    "constitution": 3,
-                    "intelligence": 4,
-                    "wisdom": 5,
-                    "charisma": 6
+                    "dexterity": {
+                      "value": 1
+                    },
+                    "strength": {
+                      "value": 2
+                    },
+                    "constitution": {
+                      "value": 3
+                    },
+                    "intelligence": {
+                      "value": 4
+                    },
+                    "wisdom": {
+                      "value": 5
+                    },
+                    "charisma": {
+                      "value": 6
+                    }
                   }
                 }
               ]
