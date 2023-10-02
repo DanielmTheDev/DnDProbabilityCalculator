@@ -4,7 +4,6 @@
 //
 // var calculator = serviceProvider.GetService<ICalculator>();
 
-using DnDProbabilityCalculator.Core;
 using DnDProbabilityCalculator.Core.Adventuring;
 using Dumpify;
 
