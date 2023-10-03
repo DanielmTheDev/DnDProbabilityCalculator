@@ -2,6 +2,8 @@
 
 public class Character
 {
-    public string Name { get; set; } = string.Empty;
-    public AbilityScores AbilityScores { get; set; } = new();
+    public string Name { get; init; } = string.Empty;
+    public AbilityScores AbilityScores { get; init; } = new();
+
+    // todo: saving throws
 }
