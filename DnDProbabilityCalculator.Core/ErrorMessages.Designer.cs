@@ -60,6 +60,15 @@ namespace DnDProbabilityCalculator.Core {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ability Score Value must be between 1 and 30.
+        /// </summary>
+        public static string Ability_Score_Out_Of_Range {
+            get {
+                return ResourceManager.GetString("Ability_Score_Out_Of_Range", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The provided File cannot be deserialized into a Character Collection.
         /// </summary>
         public static string Wrong_File_Format {

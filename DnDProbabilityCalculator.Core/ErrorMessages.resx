@@ -21,4 +21,7 @@
     <data name="Wrong_File_Format" xml:space="preserve">
         <value>The provided File cannot be deserialized into a Character Collection</value>
     </data>
+    <data name="Ability_Score_Out_Of_Range" xml:space="preserve">
+        <value>Ability Score Value must be between 1 and 30</value>
+    </data>
 </root>

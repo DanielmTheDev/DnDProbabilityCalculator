@@ -37,4 +37,24 @@ public class ActorTests
         Assert.AreEqual(AbilityType.Charisma, actor.AbilityScores.Charisma.Type);
         Assert.AreEqual(4, actor.ProficiencyBonus);
     }
+
+    [TestMethod]
+    [DataRow(-1)]
+    [DataRow(31)]
+    public void FluentBuilder_WithTooLowAbilityScore_ThrowsException(int abilityScore)
+    {
+        // Arrange Act Assert
+        var message = Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+            Actor
+                .New()
+                .WithStrength(abilityScore, true)
+                .WithDexterity(11)
+                .WithConstitution(10, true)
+                .WithWisdom(13)
+                .WithIntelligence(11)
+                .WithCharisma(10)
+                .WithProficiency(4)
+                .Build()).Message;
+        Assert.IsTrue(message.Contains(ErrorMessages.Ability_Score_Out_Of_Range));
+    }
 }
