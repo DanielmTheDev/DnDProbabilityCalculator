@@ -9,14 +9,15 @@ public class ActorTests
     public void FluentBuilder_WithValidValues_ReturnsFullyBuiltActor()
     {
         // Arrange and Act
-        Actor actor = Actor
+        var actor = Actor
             .New()
             .WithStrength(13, true)
             .WithDexterity(11)
             .WithConstitution(10, true)
             .WithWisdom(13)
             .WithIntelligence(11)
-            .WithCharisma(10);
+            .WithCharisma(10)
+            .Build();
 
         // Assert
         Assert.AreEqual(13, actor.AbilityScores.Strength);
