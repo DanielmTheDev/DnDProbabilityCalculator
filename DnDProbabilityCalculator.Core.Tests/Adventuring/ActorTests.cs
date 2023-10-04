@@ -17,6 +17,7 @@ public class ActorTests
             .WithWisdom(13)
             .WithIntelligence(11)
             .WithCharisma(10)
+            .WithProficiency(4)
             .Build();
 
         // Assert
@@ -28,5 +29,6 @@ public class ActorTests
         Assert.AreEqual(13, actor.AbilityScores.Wisdom);
         Assert.AreEqual(11, actor.AbilityScores.Intelligence);
         Assert.AreEqual(10, actor.AbilityScores.Charisma);
+        Assert.AreEqual(4, actor.ProficiencyBonus);
     }
 }
