@@ -9,7 +9,7 @@ public class WisdomStage : IWisdomStage
 
     public IIntelligenceStage WithWisdom(int value, bool isProficient = false)
     {
-        _actor.AbilityScores.Wisdom = new AbilityScore { Value = value, IsProficient = isProficient };
+        _actor.AbilityScores.Wisdom = new AbilityScore { Value = value, IsProficient = isProficient, Type = AbilityType.Wisdom };
         return new IntelligenceStage(_actor);
     }
 }
