@@ -21,6 +21,8 @@ public class PartyTests
         Assert.AreEqual(14, party.Characters[0].AbilityScores.Intelligence);
         Assert.AreEqual(12, party.Characters[0].AbilityScores.Wisdom);
         Assert.AreEqual(14, party.Characters[0].AbilityScores.Charisma);
+        Assert.IsTrue(party.Characters[0].AbilityScores.Strength.IsProficient);
+        Assert.IsTrue(party.Characters[0].AbilityScores.Dexterity.IsProficient);
 
         Assert.AreEqual("Erethil", party.Characters[1].Name);
         Assert.AreEqual(1, party.Characters[1].AbilityScores.Dexterity);
@@ -29,6 +31,8 @@ public class PartyTests
         Assert.AreEqual(4, party.Characters[1].AbilityScores.Intelligence);
         Assert.AreEqual(5, party.Characters[1].AbilityScores.Wisdom);
         Assert.AreEqual(6, party.Characters[1].AbilityScores.Charisma);
+        Assert.IsTrue(party.Characters[1].AbilityScores.Wisdom.IsProficient);
+        Assert.IsTrue(party.Characters[1].AbilityScores.Charisma.IsProficient);
     }
 
     public static void FromJsonString_Throws_WithInvalidJsonString()
@@ -49,10 +53,12 @@ public class PartyTests
                   "name": "Durak",
                   "abilityScores": {
                     "dexterity": {
-                      "value": 11
+                      "value": 11,
+                      "isProficient": true
                     },
                     "strength": {
-                      "value": 12
+                      "value": 12,
+                      "isProficient": true
                     },
                     "constitution": {
                       "value": 13
@@ -84,10 +90,12 @@ public class PartyTests
                       "value": 4
                     },
                     "wisdom": {
-                      "value": 5
+                      "value": 5,
+                      "isProficient": true
                     },
                     "charisma": {
-                      "value": 6
+                      "value": 6,
+                      "isProficient": true
                     }
                   }
                 }
