@@ -2,10 +2,10 @@
 
 public record AbilityScores
 {
-    public AbilityScore Dexterity { get; init; } = new();
-    public AbilityScore Strength { get; init; } = new();
-    public AbilityScore Constitution { get; init; } = new();
-    public AbilityScore Intelligence { get; init; } = new();
-    public AbilityScore Wisdom { get; init; } = new();
-    public AbilityScore Charisma { get; init; } = new();
+    public AbilityScore Dexterity { get; set; } = new();
+    public AbilityScore Strength { get; set; } = new();
+    public AbilityScore Constitution { get; set; } = new();
+    public AbilityScore Intelligence { get; set; } = new();
+    public AbilityScore Wisdom { get; set; } = new();
+    public AbilityScore Charisma { get; set; } = new();
 }
