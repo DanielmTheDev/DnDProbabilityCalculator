@@ -9,7 +9,7 @@ public class Party
         PropertyNameCaseInsensitive = true
     };
 
-    public IList<Character> Characters { get; set; } = new List<Character>();
+    public IList<Actor> Characters { get; set; } = new List<Actor>();
 
     public static Party FromJsonString(string jsonString)
         => JsonSerializer.Deserialize<Party>(jsonString, JsonSerializerOptions)
