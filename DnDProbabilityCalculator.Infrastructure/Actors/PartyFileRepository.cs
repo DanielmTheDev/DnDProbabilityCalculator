@@ -2,7 +2,7 @@
 
 namespace DnDProbabilityCalculator.Infrastructure.Actors;
 
-public class PartyRepository : IPartyRepository
+public class PartyFileRepository : IPartyRepository
 {
     public Party Get(string filePath)
         => throw new NotImplementedException();
