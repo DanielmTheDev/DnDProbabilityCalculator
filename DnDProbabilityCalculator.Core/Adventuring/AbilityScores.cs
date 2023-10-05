@@ -8,4 +8,10 @@ public record AbilityScores
     public AbilityScore Intelligence { get; set; } = new();
     public AbilityScore Wisdom { get; set; } = new();
     public AbilityScore Charisma { get; set; } = new();
+
+    public int GetModifierOf(AbilityType abilityType)
+        => AsCollection().Single(abilityScore => abilityScore.Type == abilityType).Modifier;
+
+    private IEnumerable<AbilityScore> AsCollection()
+        => new[] { Dexterity, Strength, Constitution, Intelligence, Wisdom, Charisma };
 }

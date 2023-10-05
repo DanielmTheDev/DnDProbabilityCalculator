@@ -64,7 +64,7 @@ public class ActorTests
     [TestMethod]
     [DataRow(AbilityType.Dexterity, 13, 0.4)]
     [DataRow(AbilityType.Charisma, 12, 0.45)]
-    [DataRow(AbilityType.Intelligence, 9, 0.25)]
+    [DataRow(AbilityType.Intelligence, 15, 0.25)]
     public void CalculateSavingThrowSuccessChance_WithoutProficiency_ReturnsChanceForSuccess(AbilityType abilityType, int dc, double expectedChance)
     {
         // Arrange

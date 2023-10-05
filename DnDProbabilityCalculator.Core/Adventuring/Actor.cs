@@ -11,4 +11,10 @@ public class Actor
     // todo add armor class and to-hit calculation
     public static IStrengthStage New()
         => new StrengthStage(new Actor());
+
+    public double CalculateSavingThrowSuccessChance(int dc, AbilityType abilityType)
+    {
+        var modifier = AbilityScores.GetModifierOf(abilityType);
+        return (21d + modifier - dc) / 20;
+    }
 }
