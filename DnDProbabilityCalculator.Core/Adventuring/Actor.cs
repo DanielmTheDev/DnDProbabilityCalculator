@@ -8,7 +8,7 @@ public class Actor
     public AbilityScores AbilityScores { get; init; } = new();
     public int ProficiencyBonus { get; set; }
 
-    // todo: saving throw probability (probably parameterized)
+    // todo add armor class and to-hit calculation
     public static IStrengthStage New()
         => new StrengthStage(new Actor());
 }
