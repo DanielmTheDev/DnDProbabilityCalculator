@@ -2,6 +2,6 @@
 
 public interface IPartyRepository
 {
-    Party Get(string path);
-    void Save(Party party, string filePath);
+    Party Get();
+    void Save(Party party);
 }
