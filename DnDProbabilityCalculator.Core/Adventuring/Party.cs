@@ -1,6 +1,4 @@
-﻿using System.Text.Json;
-
-namespace DnDProbabilityCalculator.Core.Adventuring;
+﻿namespace DnDProbabilityCalculator.Core.Adventuring;
 
 public class Party
 {
