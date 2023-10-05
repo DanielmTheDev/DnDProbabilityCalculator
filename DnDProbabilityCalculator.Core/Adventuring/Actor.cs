@@ -9,6 +9,7 @@ public class Actor
     public int ProficiencyBonus { get; set; }
 
     // todo add armor class and to-hit calculation
+    // todo add misc modifier somehow (+ something to modifier from e.g. aura)
     public static IStrengthStage New()
         => new StrengthStage(new Actor());
 
