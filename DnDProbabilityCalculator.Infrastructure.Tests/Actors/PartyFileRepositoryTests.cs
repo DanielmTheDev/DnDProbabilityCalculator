@@ -1,25 +1,33 @@
+using System.Text.Json;
 using DnDProbabilityCalculator.Core;
 using DnDProbabilityCalculator.Infrastructure.Actors;
+using DnDProbabilityCalculator.Infrastructure.FileSystem;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace DnDProbabilityCalculator.Infrastructure.Tests.Actors;
 
 [TestClass]
 public class PartyFileRepositoryTests
 {
-  private PartyFileRepository? _repository;
+    private PartyFileRepository _repository = null!;
+    private Mock<IFileAccessor> _fileAccessorMock = null!;
 
-  [TestInitialize]
-  public void Initialize()
-  {
-    _repository = new PartyFileRepository();
-  }
+    [TestInitialize]
+    public void Initialize()
+    {
+        _fileAccessorMock = new();
+        _repository = new(_fileAccessorMock.Object);
+    }
 
     [TestMethod]
     public void Get_WithValidFilePath_SerializesIntoParty()
     {
-        // Arrange and Act
-        var party = _repository!.Get(GetValidJsonString());
+        // Arrange
+        _fileAccessorMock.Setup(accessor => accessor.ReadAllText("file/path")).Returns(GetValidJsonString());
+
+        // Act
+        var party = _repository.Get("file/path");
 
         // Assert
         Assert.AreEqual(2, party.Characters.Count);
@@ -48,14 +56,23 @@ public class PartyFileRepositoryTests
     }
 
     [TestMethod]
-    public  void Get_WithInvalidFile_Throws()
+    public void Get_WithInvalidFile_ThrowsFileNotFoundException()
     {
         // Arrange
-        const string jsonSting = "Some invalid json";
+        _fileAccessorMock.Setup(accessor => accessor.ReadAllText(It.IsAny<string>())).Throws<FileNotFoundException>();
 
         // Act and Assert
-        var message = Assert.ThrowsException<FormatException>(() => _repository!.Get(jsonSting)).Message;
-        Assert.IsTrue(message.Contains(ErrorMessages.Wrong_File_Format));
+        Assert.ThrowsException<FileNotFoundException>(() => _repository.Get("file/path"));
+    }
+
+    [TestMethod]
+    public void Get_WithInvalidFileFormat_ThrowsJsonException()
+    {
+      // Arrange
+      _fileAccessorMock.Setup(accessor => accessor.ReadAllText(It.IsAny<string>())).Returns("Some invalid json");
+
+      // Act and Assert
+      Assert.ThrowsException<JsonException>(() => _repository.Get("file/path"));
     }
 
     private static string GetValidJsonString()
