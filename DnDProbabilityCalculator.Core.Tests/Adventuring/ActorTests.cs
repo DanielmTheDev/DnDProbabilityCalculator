@@ -29,18 +29,6 @@ public class ActorTests
         Assert.AreEqual(4, actor.ProficiencyBonus);
     }
 
-    private static Actor BuildValidActor()
-        => Actor
-            .New()
-            .WithStrength(13, true)
-            .WithDexterity(11)
-            .WithConstitution(10, true)
-            .WithWisdom(13)
-            .WithIntelligence(9)
-            .WithCharisma(10)
-            .WithProficiency(4)
-            .Build();
-
     [TestMethod]
     [DataRow(-1)]
     [DataRow(31)]
@@ -76,4 +64,16 @@ public class ActorTests
         // Assert
         Assert.AreEqual(expectedChance, successChance);
     }
+
+    private static Actor BuildValidActor()
+        => Actor
+            .New()
+            .WithStrength(13, true)
+            .WithDexterity(11)
+            .WithConstitution(10, true)
+            .WithWisdom(13)
+            .WithIntelligence(9)
+            .WithCharisma(10)
+            .WithProficiency(4)
+            .Build();
 }

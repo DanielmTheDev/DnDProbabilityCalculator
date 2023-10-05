@@ -23,6 +23,7 @@ public class PartyTests
         Assert.AreEqual(14, party.Characters[0].AbilityScores.Charisma);
         Assert.IsTrue(party.Characters[0].AbilityScores.Strength.IsProficient);
         Assert.IsTrue(party.Characters[0].AbilityScores.Dexterity.IsProficient);
+        Assert.AreEqual(3, party.Characters[0].ProficiencyBonus);
 
         Assert.AreEqual("Erethil", party.Characters[1].Name);
         Assert.AreEqual(1, party.Characters[1].AbilityScores.Dexterity);
@@ -33,6 +34,7 @@ public class PartyTests
         Assert.AreEqual(6, party.Characters[1].AbilityScores.Charisma);
         Assert.IsTrue(party.Characters[1].AbilityScores.Wisdom.IsProficient);
         Assert.IsTrue(party.Characters[1].AbilityScores.Charisma.IsProficient);
+        Assert.AreEqual(2, party.Characters[1].ProficiencyBonus);
     }
 
     public static void FromJsonString_Throws_WithInvalidJsonString()
@@ -51,6 +53,7 @@ public class PartyTests
               "characters": [
                 {
                   "name": "Durak",
+                  "proficiencyBonus": 3,
                   "abilityScores": {
                     "dexterity": {
                       "value": 11,
@@ -76,6 +79,7 @@ public class PartyTests
                 },
                 {
                   "name": "Erethil",
+                  "proficiencyBonus": 2,
                   "abilityScores": {
                     "dexterity": {
                       "value": 1
