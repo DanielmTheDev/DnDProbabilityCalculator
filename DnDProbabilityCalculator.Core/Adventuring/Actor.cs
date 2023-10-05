@@ -17,6 +17,9 @@ public class Actor
     {
         var abilityScore = AbilityScores.GetScoreOfType(abilityType);
         var proficiencyBonus = abilityScore.IsProficient ? ProficiencyBonus : 0;
-        return (21d + abilityScore.Modifier + proficiencyBonus - dc) / 20;
+        return CalculateSuccessChance(dc, abilityScore, proficiencyBonus);
     }
+
+    private static double CalculateSuccessChance(int dc, AbilityScore abilityScore, int proficiencyBonus)
+        => (21d + abilityScore.Modifier + proficiencyBonus - dc) / 20;
 }
