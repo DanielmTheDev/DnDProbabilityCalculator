@@ -65,6 +65,21 @@ public class ActorTests
         Assert.AreEqual(expectedChance, successChance);
     }
 
+    [TestMethod]
+    [DataRow(AbilityType.Strength, 16, 0.50)]
+    [DataRow(AbilityType.Constitution, 8, 0.85)]
+    public void CalculateSavingThrowSuccessChance_WithProficiency_ReturnsChanceForSuccess(AbilityType abilityType, int dc, double expectedChance)
+    {
+        // Arrange
+        var actor = BuildValidActor();
+
+        // Act
+        var successChance = actor.CalculateSavingThrowSuccessChance(dc, abilityType);
+
+        // Assert
+        Assert.AreEqual(expectedChance, successChance);
+    }
+
     private static Actor BuildValidActor()
         => Actor
             .New()

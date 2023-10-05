@@ -14,7 +14,8 @@ public class Actor
 
     public double CalculateSavingThrowSuccessChance(int dc, AbilityType abilityType)
     {
-        var modifier = AbilityScores.GetModifierOf(abilityType);
-        return (21d + modifier - dc) / 20;
+        var abilityScore = AbilityScores.GetScoreOfType(abilityType);
+        var proficiencyBonus = abilityScore.IsProficient ? ProficiencyBonus : 0;
+        return (21d + abilityScore.Modifier + proficiencyBonus - dc) / 20;
     }
 }

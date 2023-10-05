@@ -6,26 +6,27 @@ namespace DnDProbabilityCalculator.Core.Tests.Adventuring;
 public class AbilityScoresTests
 {
     [TestMethod]
-    [DataRow(AbilityType.Strength, 8, -1)]
-    [DataRow(AbilityType.Dexterity, 12, 1)]
-    public void GetModifierOf_WhenCalled_ReturnsMatchingModifier(AbilityType abilityType, int abilityScoreValue, int expectedModifier)
+    [DataRow(AbilityType.Strength)]
+    [DataRow(AbilityType.Dexterity)]
+    public void GetModifierOf_WhenCalled_ReturnsMatchingModifier(AbilityType abilityType)
     {
         // Arrange
         var abilityScores = new AbilityScores
         {
-            Strength = new AbilityScore { Value = abilityScoreValue, Type = AbilityType.Strength },
-            Dexterity = new AbilityScore { Value = abilityScoreValue, Type = AbilityType.Dexterity },
-            Constitution = new AbilityScore { Value = abilityScoreValue, Type = AbilityType.Constitution },
-            Wisdom = new AbilityScore { Value = abilityScoreValue, Type = AbilityType.Wisdom },
-            Intelligence = new AbilityScore { Value = abilityScoreValue, Type = AbilityType.Intelligence },
-            Charisma = new AbilityScore { Value = abilityScoreValue, Type = AbilityType.Charisma }
+            Strength = new AbilityScore { Value = 5, Type = AbilityType.Strength },
+            Dexterity = new AbilityScore { Value = 5, Type = AbilityType.Dexterity },
+            Constitution = new AbilityScore { Value = 5, Type = AbilityType.Constitution },
+            Wisdom = new AbilityScore { Value = 5, Type = AbilityType.Wisdom },
+            Intelligence = new AbilityScore { Value = 5, Type = AbilityType.Intelligence },
+            Charisma = new AbilityScore { Value = 5, Type = AbilityType.Charisma }
         };
 
         // Act
-        var realModifier = abilityScores.GetModifierOf(abilityType);
+        var realAbilityScore = abilityScores.GetScoreOfType(abilityType);
 
         // Assert
-        Assert.AreEqual(expectedModifier, realModifier);
+        var expectedAbilityScore = new AbilityScore { Value = 5, Type = abilityType };
+        Assert.AreEqual(expectedAbilityScore, realAbilityScore);
     }
 
     [TestMethod]
@@ -39,6 +40,6 @@ public class AbilityScoresTests
         };
 
         // Act and Assert
-        Assert.ThrowsException<InvalidOperationException>( () => abilityScores.GetModifierOf(AbilityType.Strength));
+        Assert.ThrowsException<InvalidOperationException>( () => abilityScores.GetScoreOfType(AbilityType.Strength));
     }
 }
