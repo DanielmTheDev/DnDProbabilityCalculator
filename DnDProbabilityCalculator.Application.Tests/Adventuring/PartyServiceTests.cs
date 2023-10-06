@@ -1,8 +1,9 @@
-﻿using DnDProbabilityCalculator.Core.Adventuring;
+﻿using DnDProbabilityCalculator.Application.Adventuring;
+using DnDProbabilityCalculator.Core.Adventuring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace DnDProbabilityCalculator.Application.Tests;
+namespace DnDProbabilityCalculator.Application.Tests.Adventuring;
 
 [TestClass]
 public class PartyServiceTests

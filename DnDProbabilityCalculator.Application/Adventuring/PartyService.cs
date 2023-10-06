@@ -1,14 +1,14 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring;
 
-namespace DnDProbabilityCalculator.Application;
+namespace DnDProbabilityCalculator.Application.Adventuring;
 
-public class PartyService
+public class PartyService : IPartyService
 {
     private readonly IPartyRepository _repository;
 
     public PartyService(IPartyRepository repository)
         => _repository = repository;
 
-    public Party Get()
+    public Core.Adventuring.Party Get()
         => _repository.Get();
 }
