@@ -1,4 +1,4 @@
-﻿using DnDProbabilityCalculator.Application.Adventuring;
+﻿using DnDProbabilityCalculator.Application.Probabilities;
 using DnDProbabilityCalculator.Console.Composition;
 using Dumpify;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +8,7 @@ var serviceProvider = new ServiceCollection()
     .RegisterServices()
     .BuildServiceProvider();
 
-var partyService = serviceProvider.GetService<IPartyService>()!;
+var partyService = serviceProvider.GetService<IProbabilityTableService>()!;
 
 var party = partyService.Get();
 party.Dump();

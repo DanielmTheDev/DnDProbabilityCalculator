@@ -1,4 +1,4 @@
-﻿using DnDProbabilityCalculator.Application.Adventuring;
+﻿using DnDProbabilityCalculator.Application.Probabilities;
 using DnDProbabilityCalculator.Core.Adventuring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -8,14 +8,14 @@ namespace DnDProbabilityCalculator.Application.Tests.Adventuring;
 [TestClass]
 public class PartyServiceTests
 {
-    private PartyService _partyService = null!;
+    private ProbabilityTableService _probabilityTableService = null!;
     private Mock<IPartyRepository> _repositoryMock = null!;
 
     [TestInitialize]
     public void Initialize()
     {
         _repositoryMock = new();
-        _partyService = new(_repositoryMock.Object);
+        _probabilityTableService = new(_repositoryMock.Object);
     }
 
     [TestMethod]
@@ -25,7 +25,7 @@ public class PartyServiceTests
         _repositoryMock.Setup(repository => repository.Get()).Returns(GetValidParty());
 
         // Act
-        var party = _partyService.Get();
+        var party = _probabilityTableService.Get();
 
         // Assert
         Assert.AreEqual(2, party.Characters.Count);

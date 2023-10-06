@@ -1,12 +1,12 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring;
 
-namespace DnDProbabilityCalculator.Application.Adventuring;
+namespace DnDProbabilityCalculator.Application.Probabilities;
 
-public class PartyService : IPartyService
+public class ProbabilityTableService : IProbabilityTableService
 {
     private readonly IPartyRepository _repository;
 
-    public PartyService(IPartyRepository repository)
+    public ProbabilityTableService(IPartyRepository repository)
         => _repository = repository;
 
     public Party Get()

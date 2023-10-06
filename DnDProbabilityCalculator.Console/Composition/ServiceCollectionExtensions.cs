@@ -1,4 +1,4 @@
-﻿using DnDProbabilityCalculator.Application.Adventuring;
+﻿using DnDProbabilityCalculator.Application.Probabilities;
 using DnDProbabilityCalculator.Core.Adventuring;
 using DnDProbabilityCalculator.Infrastructure.Actors;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;
@@ -21,7 +21,7 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection RegisterServices(this IServiceCollection serviceCollection)
         => serviceCollection
-            .AddScoped<IPartyService, PartyService>()
+            .AddScoped<IProbabilityTableService, ProbabilityTableService>()
             .AddScoped<IPartyRepository, PartyFileRepository>()
             .AddScoped<IFileAccessor, FileAccessor>();
 }
