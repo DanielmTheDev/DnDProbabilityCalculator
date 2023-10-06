@@ -10,5 +10,5 @@ var serviceProvider = new ServiceCollection()
 
 var partyService = serviceProvider.GetService<IProbabilityTableService>()!;
 
-var party = partyService.Get();
+var party = partyService.Get(10, 12, 14);
 party.Dump();

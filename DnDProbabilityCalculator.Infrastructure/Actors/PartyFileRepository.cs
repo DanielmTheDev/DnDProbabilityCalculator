@@ -23,6 +23,7 @@ public class PartyFileRepository : IPartyRepository
         _options = options.Value;
     }
 
+    // todo: on first time: read file and cache. next: get from cache
     public Party Get()
     {
         var jsonString = _fileAccessor.ReadAllText(_options.FilePath);

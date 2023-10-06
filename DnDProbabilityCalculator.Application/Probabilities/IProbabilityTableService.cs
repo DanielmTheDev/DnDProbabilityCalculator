@@ -1,8 +1,6 @@
-﻿using DnDProbabilityCalculator.Core.Adventuring;
-
-namespace DnDProbabilityCalculator.Application.Probabilities;
+﻿namespace DnDProbabilityCalculator.Application.Probabilities;
 
 public interface IProbabilityTableService
 {
-    Party Get();
+    ICollection<ProbabilityTable> Get(params int[] dcs);
 }

@@ -9,6 +9,8 @@ public class ProbabilityTableService : IProbabilityTableService
     public ProbabilityTableService(IPartyRepository repository)
         => _repository = repository;
 
-    public Party Get()
-        => _repository.Get();
+    public ICollection<ProbabilityTable> Get(params int[] ints)
+    {
+        throw new NotImplementedException();
+    }
 }

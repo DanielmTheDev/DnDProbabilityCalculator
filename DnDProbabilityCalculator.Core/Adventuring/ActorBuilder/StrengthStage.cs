@@ -9,7 +9,7 @@ public class StrengthStage : IStrengthStage
 
     public IDexterityStage WithStrength(int value, bool isProficient = false)
     {
-        _actor.AbilityScores.Strength = new AbilityScore { Value = value, IsProficient = isProficient, Type = AbilityType.Strength};
+        _actor.AbilityScores.Strength = new() { Value = value, IsProficient = isProficient, Type = AbilityType.Strength };
         return new DexterityStage(_actor);
     }
 }

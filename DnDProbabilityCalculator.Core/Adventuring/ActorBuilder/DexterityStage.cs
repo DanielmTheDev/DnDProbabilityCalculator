@@ -9,7 +9,7 @@ public class DexterityStage : IDexterityStage
 
     public IConstitutionStage WithDexterity(int value, bool isProficient = false)
     {
-        _actor.AbilityScores.Dexterity = new AbilityScore { Value = value, IsProficient = isProficient, Type = AbilityType.Dexterity};
+        _actor.AbilityScores.Dexterity = new() { Value = value, IsProficient = isProficient, Type = AbilityType.Dexterity};
         return new ConstitutionStage(_actor);
     }
 }

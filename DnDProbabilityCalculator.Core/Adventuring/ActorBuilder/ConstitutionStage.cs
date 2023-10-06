@@ -9,7 +9,7 @@ public class ConstitutionStage : IConstitutionStage
 
     public IWisdomStage WithConstitution(int value, bool isProficient = false)
     {
-        _actor.AbilityScores.Constitution = new AbilityScore { Value = value, IsProficient = isProficient, Type = AbilityType.Constitution };
+        _actor.AbilityScores.Constitution = new() { Value = value, IsProficient = isProficient, Type = AbilityType.Constitution };
         return new WisdomStage(_actor);
     }
 }

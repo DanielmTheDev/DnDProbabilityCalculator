@@ -12,6 +12,7 @@ public class ActorTests
         var actor = BuildValidActor();
 
         // Assert
+        Assert.AreEqual("Durak", actor.Name);
         Assert.AreEqual(13, actor.AbilityScores.Strength);
         Assert.AreEqual(AbilityType.Strength, actor.AbilityScores.Strength.Type);
         Assert.IsTrue(actor.AbilityScores.Strength.IsProficient);
@@ -38,6 +39,7 @@ public class ActorTests
         var message = Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
             Actor
                 .New()
+                .WithName("Durak")
                 .WithStrength(abilityScore, true)
                 .WithDexterity(11)
                 .WithConstitution(10, true)
@@ -83,6 +85,7 @@ public class ActorTests
     private static Actor BuildValidActor()
         => Actor
             .New()
+            .WithName("Durak")
             .WithStrength(13, true)
             .WithDexterity(11)
             .WithConstitution(10, true)
