@@ -6,4 +6,16 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DnDProbabilityCalculator.Application\DnDProbabilityCalculator.Application.csproj" />
+      <ProjectReference Include="..\DnDProbabilityCalculator.Core\DnDProbabilityCalculator.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
+      <PackageReference Include="Moq" Version="4.20.69" />
+      <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
+      <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+    </ItemGroup>
+
 </Project>
