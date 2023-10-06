@@ -1,0 +1,56 @@
+﻿{
+  "characters": [
+    {
+      "name": "Durak",
+      "proficiencyBonus": 3,
+      "abilityScores": {
+        "dexterity": {
+          "value": 11,
+          "isProficient": true
+        },
+        "strength": {
+          "value": 12,
+          "isProficient": true
+        },
+        "constitution": {
+          "value": 13
+        },
+        "intelligence": {
+          "value": 14
+        },
+        "wisdom": {
+          "value": 12
+        },
+        "charisma": {
+          "value": 14
+        }
+      }
+    },
+    {
+      "name": "Erethil",
+      "proficiencyBonus": 2,
+      "abilityScores": {
+        "dexterity": {
+          "value": 1
+        },
+        "strength": {
+          "value": 2
+        },
+        "constitution": {
+          "value": 3
+        },
+        "intelligence": {
+          "value": 4
+        },
+        "wisdom": {
+          "value": 5,
+          "isProficient": true
+        },
+        "charisma": {
+          "value": 6,
+          "isProficient": true
+        }
+      }
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 using DnDProbabilityCalculator.Core;
 using DnDProbabilityCalculator.Core.Adventuring;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;
+using DnDProbabilityCalculator.Infrastructure.Settings;
 using Microsoft.Extensions.Options;
 
 namespace DnDProbabilityCalculator.Infrastructure.Actors;

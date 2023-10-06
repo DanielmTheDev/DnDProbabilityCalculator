@@ -1,18 +1,14 @@
-﻿using DnDProbabilityCalculator.Console.Composition;
-using DnDProbabilityCalculator.Infrastructure.Actors;
+﻿using DnDProbabilityCalculator.Application.Adventuring;
+using DnDProbabilityCalculator.Console.Composition;
+using Dumpify;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 
-var services = new ServiceCollection();
-services.AddConfiguration();
+var serviceProvider = new ServiceCollection()
+    .AddConfiguration()
+    .RegisterServices()
+    .BuildServiceProvider();
 
-using var serviceProvider = services.BuildServiceProvider();
-var mySettings = serviceProvider.GetService<IOptions<FileRepositoryOptions>>()!.Value;
+var partyService = serviceProvider.GetService<IPartyService>()!;
 
-// ReSharper disable once LocalizableElement
-Console.WriteLine($"Setting1: {mySettings.FilePath}");
-
-return;
-
-// var party = Party.FromJsonString(jsonString);
-// party.Dump();
+var party = partyService.Get();
+party.Dump();

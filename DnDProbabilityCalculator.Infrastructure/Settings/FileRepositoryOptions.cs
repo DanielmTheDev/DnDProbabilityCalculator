@@ -1,4 +1,4 @@
-﻿namespace DnDProbabilityCalculator.Infrastructure.Actors;
+﻿namespace DnDProbabilityCalculator.Infrastructure.Settings;
 
 public class FileRepositoryOptions
 {

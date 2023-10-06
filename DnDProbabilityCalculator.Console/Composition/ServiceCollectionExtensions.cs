@@ -1,4 +1,8 @@
-﻿using DnDProbabilityCalculator.Infrastructure.Actors;
+﻿using DnDProbabilityCalculator.Application.Adventuring;
+using DnDProbabilityCalculator.Core.Adventuring;
+using DnDProbabilityCalculator.Infrastructure.Actors;
+using DnDProbabilityCalculator.Infrastructure.FileSystem;
+using DnDProbabilityCalculator.Infrastructure.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,7 +16,12 @@ public static class ServiceCollectionExtensions
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
         var configuration = builder.Build();
-        serviceCollection.Configure<FileRepositoryOptions>(configuration.GetSection("FileRepository"));
-        return serviceCollection;
+        return serviceCollection.Configure<FileRepositoryOptions>(configuration.GetSection(nameof(ApplicationSettings.FileRepository)));
     }
+
+    public static IServiceCollection RegisterServices(this IServiceCollection serviceCollection)
+        => serviceCollection
+            .AddScoped<IPartyService, PartyService>()
+            .AddScoped<IPartyRepository, PartyFileRepository>()
+            .AddScoped<IFileAccessor, FileAccessor>();
 }

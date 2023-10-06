@@ -1,6 +1,7 @@
 using System.Text.Json;
 using DnDProbabilityCalculator.Infrastructure.Actors;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;
+using DnDProbabilityCalculator.Infrastructure.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;

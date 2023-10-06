@@ -9,6 +9,6 @@ public class PartyService : IPartyService
     public PartyService(IPartyRepository repository)
         => _repository = repository;
 
-    public Core.Adventuring.Party Get()
+    public Party Get()
         => _repository.Get();
 }
