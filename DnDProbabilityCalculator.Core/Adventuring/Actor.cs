@@ -13,9 +13,26 @@ public class Actor
     public static INameStage New()
         => new NameStage(new());
 
-    public double CalculateSavingThrowSuccessChance(int dc, AbilityType abilityType)
+    public double DexteritySavingThrowSuccessChance(int dc)
+        => SavingThrowSuccessChance(dc, AbilityScores.Dexterity);
+
+    public double StrengthSavingThrowSuccessChance(int dc)
+        => SavingThrowSuccessChance(dc, AbilityScores.Strength);
+
+    public double ConstitutionSavingThrowSuccessChance(int dc)
+        => SavingThrowSuccessChance(dc, AbilityScores.Constitution);
+
+    public double IntelligenceSavingThrowSuccessChance(int dc)
+        => SavingThrowSuccessChance(dc, AbilityScores.Intelligence);
+
+    public double WisdomSavingThrowSuccessChance(int dc)
+        => SavingThrowSuccessChance(dc, AbilityScores.Wisdom);
+
+    public double CharismaSavingThrowSuccessChance(int dc)
+        => SavingThrowSuccessChance(dc, AbilityScores.Charisma);
+
+    private double SavingThrowSuccessChance(int dc, AbilityScore abilityScore)
     {
-        var abilityScore = AbilityScores.GetScoreOfType(abilityType);
         var proficiencyBonus = abilityScore.IsProficient ? ProficiencyBonus : 0;
         return CalculateSuccessChance(dc, abilityScore, proficiencyBonus);
     }

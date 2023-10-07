@@ -4,8 +4,6 @@ public record AbilityScore
 {
     private readonly int _value;
 
-    public AbilityType Type { get; set; }
-
     public int Value
     {
         get => _value;

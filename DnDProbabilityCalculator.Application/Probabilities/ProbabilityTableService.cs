@@ -18,12 +18,12 @@ public class ProbabilityTableService : IProbabilityTableService
             DCs = dcs.Select(dc => new DCProbability
             {
                 DC = dc,
-                StrengthProbability = actor.CalculateSavingThrowSuccessChance(dc, AbilityType.Strength),
-                DexterityProbability = actor.CalculateSavingThrowSuccessChance(dc, AbilityType.Dexterity),
-                ConstitutionProbability = actor.CalculateSavingThrowSuccessChance(dc, AbilityType.Constitution),
-                WisdomProbability = actor.CalculateSavingThrowSuccessChance(dc, AbilityType.Wisdom),
-                IntelligenceProbability = actor.CalculateSavingThrowSuccessChance(dc, AbilityType.Intelligence),
-                CharismaProbability = actor.CalculateSavingThrowSuccessChance(dc, AbilityType.Charisma)
+                StrengthProbability = actor.StrengthSavingThrowSuccessChance(dc),
+                DexterityProbability = actor.DexteritySavingThrowSuccessChance(dc),
+                ConstitutionProbability = actor.ConstitutionSavingThrowSuccessChance(dc),
+                WisdomProbability = actor.WisdomSavingThrowSuccessChance(dc),
+                IntelligenceProbability = actor.IntelligenceSavingThrowSuccessChance(dc),
+                CharismaProbability = actor.CharismaSavingThrowSuccessChance(dc)
             }).ToList()
         }).ToList();
     }

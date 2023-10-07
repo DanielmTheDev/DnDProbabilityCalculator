@@ -9,7 +9,7 @@ public class CharismaStage : ICharismaStage
 
     public IProficiencyStage WithCharisma(int value, bool isProficient = false)
     {
-        _actor.AbilityScores.Charisma = new() { Value = value, IsProficient = isProficient, Type = AbilityType.Charisma };
+        _actor.AbilityScores.Charisma = new() { Value = value, IsProficient = isProficient };
         return new ProficiencyStage(_actor);
     }
 }

@@ -14,19 +14,13 @@ public class ActorTests
         // Assert
         Assert.AreEqual("Durak", actor.Name);
         Assert.AreEqual(13, actor.AbilityScores.Strength);
-        Assert.AreEqual(AbilityType.Strength, actor.AbilityScores.Strength.Type);
         Assert.IsTrue(actor.AbilityScores.Strength.IsProficient);
         Assert.AreEqual(11, actor.AbilityScores.Dexterity);
-        Assert.AreEqual(AbilityType.Dexterity, actor.AbilityScores.Dexterity.Type);
         Assert.AreEqual(10, actor.AbilityScores.Constitution);
-        Assert.AreEqual(AbilityType.Constitution, actor.AbilityScores.Constitution.Type);
         Assert.IsTrue(actor.AbilityScores.Constitution.IsProficient);
         Assert.AreEqual(13, actor.AbilityScores.Wisdom);
-        Assert.AreEqual(AbilityType.Wisdom, actor.AbilityScores.Wisdom.Type);
         Assert.AreEqual(9, actor.AbilityScores.Intelligence);
-        Assert.AreEqual(AbilityType.Intelligence, actor.AbilityScores.Intelligence.Type);
         Assert.AreEqual(10, actor.AbilityScores.Charisma);
-        Assert.AreEqual(AbilityType.Charisma, actor.AbilityScores.Charisma.Type);
         Assert.AreEqual(4, actor.ProficiencyBonus);
     }
 
@@ -52,34 +46,35 @@ public class ActorTests
     }
 
     [TestMethod]
-    [DataRow(AbilityType.Dexterity, 13, 0.4)]
-    [DataRow(AbilityType.Charisma, 12, 0.45)]
-    [DataRow(AbilityType.Intelligence, 15, 0.25)]
-    public void CalculateSavingThrowSuccessChance_WithoutProficiency_ReturnsChanceForSuccess(AbilityType abilityType, int dc, double expectedChance)
+    public void CalculateSavingThrowSuccessChance_WithoutProficiency_ReturnsChanceForSuccess()
     {
         // Arrange
         var actor = BuildValidActor();
 
         // Act
-        var successChance = actor.CalculateSavingThrowSuccessChance(dc, abilityType);
+        var dexterityChance = actor.DexteritySavingThrowSuccessChance(13);
+        var charismaChance = actor.CharismaSavingThrowSuccessChance(13);
+        var intelligenceChance = actor.IntelligenceSavingThrowSuccessChance(13);
 
         // Assert
-        Assert.AreEqual(expectedChance, successChance);
+        Assert.AreEqual(0.4, dexterityChance);
+        Assert.AreEqual(0.4, charismaChance);
+        Assert.AreEqual(0.35, intelligenceChance);
     }
 
     [TestMethod]
-    [DataRow(AbilityType.Strength, 16, 0.50)]
-    [DataRow(AbilityType.Constitution, 8, 0.85)]
-    public void CalculateSavingThrowSuccessChance_WithProficiency_ReturnsChanceForSuccess(AbilityType abilityType, int dc, double expectedChance)
+    public void CalculateSavingThrowSuccessChance_WithProficiency_ReturnsChanceForSuccess()
     {
         // Arrange
         var actor = BuildValidActor();
 
         // Act
-        var successChance = actor.CalculateSavingThrowSuccessChance(dc, abilityType);
+        var strengthChance = actor.StrengthSavingThrowSuccessChance(16);
+        var constChance = actor.ConstitutionSavingThrowSuccessChance(16);
 
         // Assert
-        Assert.AreEqual(expectedChance, successChance);
+        Assert.AreEqual(0.5, strengthChance);
+        Assert.AreEqual(0.45, constChance);
     }
 
     private static Actor BuildValidActor()
