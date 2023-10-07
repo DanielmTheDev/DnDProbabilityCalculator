@@ -8,7 +8,7 @@ var serviceProvider = new ServiceCollection()
     .RegisterServices()
     .BuildServiceProvider();
 
-var partyService = serviceProvider.GetService<IProbabilityTableService>()!;
+var probabilityService = serviceProvider.GetService<IProbabilityTableService>()!;
 
-var party = partyService.Get(10, 12, 14);
-party.Dump();
+var probabilityTable = probabilityService.Get(10, 12, 14);
+probabilityTable.Dump();
