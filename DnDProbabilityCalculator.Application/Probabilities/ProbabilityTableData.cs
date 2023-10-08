@@ -3,22 +3,22 @@
 public record ProbabilityTableData
 {
     public required string ActorName { get; set; }
-    public required ICollection<int> DCs { get; set; }
-    public required IEnumerable<double> StrengthProbabilities { get; set; }
-    public required IEnumerable<double> DexterityProbabilities { get; set; }
-    public required IEnumerable<double> ConstitutionProbabilities { get; set; }
-    public required IEnumerable<double> WisdomProbabilities { get; set; }
-    public required IEnumerable<double> IntelligenceProbabilities { get; set; }
-    public required IEnumerable<double> CharismaProbabilities { get; set; }
+    public required List<int> DCs { get; set; }
+    public required List<string> StrengthRow { get; set; }
+    public required List<string> DexterityRow { get; set; }
+    public required List<string> ConstitutionRow { get; set; }
+    public required List<string> WisdomRow { get; set; }
+    public required List<string> IntelligenceRow { get; set; }
+    public required List<string> CharismaRow { get; set; }
 
-    public List<IEnumerable<double>> AggregatedProbabilities
+    public List<List<string>> AggregatedRow
         => new()
         {
-            StrengthProbabilities,
-            DexterityProbabilities,
-            ConstitutionProbabilities,
-            WisdomProbabilities,
-            IntelligenceProbabilities,
-            CharismaProbabilities
+            StrengthRow,
+            DexterityRow,
+            ConstitutionRow,
+            WisdomRow,
+            IntelligenceRow,
+            CharismaRow
         };
 }

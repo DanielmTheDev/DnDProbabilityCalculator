@@ -31,12 +31,12 @@ public class ProbabilityTableServiceTests
         Assert.AreEqual("Durak", tables.First().ActorName);
 
         CollectionAssert.AreEquivalent(new List<int> { 10, 12, 14 }, tables.First().DCs.ToList());
-        CollectionAssert.AreEquivalent(new List<double> { 0.55d, 0.45d, 0.35d }, tables.First().StrengthProbabilities.ToList());
-        CollectionAssert.AreEquivalent(new List<double> { 1.05d, 0.95d, 0.85d }, tables.First().DexterityProbabilities.ToList());
-        CollectionAssert.AreEquivalent(new List<double> { 0.65d, 0.55d, 0.45d }, tables.First().ConstitutionProbabilities.ToList());
-        CollectionAssert.AreEquivalent(new List<double> { 0.65d, 0.55d, 0.45d }, tables.First().WisdomProbabilities.ToList());
-        CollectionAssert.AreEquivalent(new List<double> { 0.7d, 0.6d, 0.5d }, tables.First().IntelligenceProbabilities.ToList());
-        CollectionAssert.AreEquivalent(new List<double> { 0.5d, 0.4d, 0.3d }, tables.First().CharismaProbabilities.ToList());
+        CollectionAssert.AreEquivalent(new List<string> { "Str", "0.55", "0.45", "0.35" }, tables.First().StrengthRow.ToList());
+        CollectionAssert.AreEquivalent(new List<string> { "Dex", "1.05", "0.95", "0.85" }, tables.First().DexterityRow.ToList());
+        CollectionAssert.AreEquivalent(new List<string> { "Con", "0.65", "0.55", "0.45" }, tables.First().ConstitutionRow.ToList());
+        CollectionAssert.AreEquivalent(new List<string> { "Wis", "0.65", "0.55", "0.45" }, tables.First().WisdomRow.ToList());
+        CollectionAssert.AreEquivalent(new List<string> { "Int", "0.7", "0.6", "0.5" }, tables.First().IntelligenceRow.ToList());
+        CollectionAssert.AreEquivalent(new List<string> { "Cha", "0.5", "0.4", "0.3" }, tables.First().CharismaRow.ToList());
     }
 
     private static Party GetValidParty()

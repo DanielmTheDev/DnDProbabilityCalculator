@@ -10,20 +10,22 @@ public class ProbabilityTableService : IProbabilityTableService
     public ProbabilityTableService(IPartyRepository repository)
         => _repository = repository;
 
-    public IList<ProbabilityTableData> Get(params int[] dcs)
+    public List<ProbabilityTableData> Get(params int[] dcs)
     {
         var party = _repository.Get();
         return party.Characters.Select(actor => new ProbabilityTableData
         {
             ActorName = actor.Name,
-            DCs = dcs,
-            CharismaProbabilities = dcs.Select(actor.CharismaSavingThrowSuccessChance).ToList(),
-            ConstitutionProbabilities = dcs.Select(actor.ConstitutionSavingThrowSuccessChance).ToList(),
-            DexterityProbabilities = dcs.Select(actor.DexteritySavingThrowSuccessChance).ToList(),
-            IntelligenceProbabilities = dcs.Select(actor.IntelligenceSavingThrowSuccessChance).ToList(),
-            StrengthProbabilities = dcs.Select(actor.StrengthSavingThrowSuccessChance).ToList(),
-            WisdomProbabilities = dcs.Select(actor.WisdomSavingThrowSuccessChance).ToList()
-
+            DCs = dcs.ToList(),
+            CharismaRow = CreateRow(dcs, "Cha", actor.CharismaSavingThrowSuccessChance),
+            ConstitutionRow = CreateRow(dcs, "Con", actor.ConstitutionSavingThrowSuccessChance),
+            DexterityRow = CreateRow(dcs, "Dex", actor.DexteritySavingThrowSuccessChance),
+            IntelligenceRow = CreateRow(dcs, "Int", actor.IntelligenceSavingThrowSuccessChance),
+            StrengthRow = CreateRow(dcs, "Str", actor.StrengthSavingThrowSuccessChance),
+            WisdomRow = CreateRow(dcs, "Wis", actor.WisdomSavingThrowSuccessChance),
         }).ToList();
     }
+
+    private static List<string> CreateRow(int[] dcs, string abilityScore, Func<int, double> successChanceMethod)
+        => new List<string> { abilityScore }.Concat(dcs.Select(dc => successChanceMethod(dc).ToString(CultureInfo.InvariantCulture))).ToList();
 }

@@ -2,5 +2,5 @@
 
 public interface IProbabilityTableService
 {
-    IList<ProbabilityTableData> Get(params int[] dcs);
+    List<ProbabilityTableData> Get(params int[] dcs);
 }
