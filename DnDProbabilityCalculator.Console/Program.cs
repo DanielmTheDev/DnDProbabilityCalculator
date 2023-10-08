@@ -1,6 +1,5 @@
 ﻿using DnDProbabilityCalculator.Application.Probabilities;
 using DnDProbabilityCalculator.Console.Composition;
-using Dumpify;
 using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
 
@@ -15,12 +14,13 @@ var dcs = new[] { 10, 12, 14 };
 
 var probabilityTables = probabilityService.Get(dcs);
 
-probabilityTables.ToList().ForEach(tableData =>
-{
-    var table = new Table();
-    tableData.DcProbabilities.ToList().ForEach(dcData =>
-    {
-          table.AddColumn(new(dcData.DC.ToString()));
-    });
-    AnsiConsole.Write(table);
-});
+// probabilityTables.ToList().ForEach(tableData =>
+// {
+//     var table = new Table();
+//     tableData.DcProbabilities.ToList().ForEach(dcData =>
+//     {
+//           table.AddColumn(new(dcData.DC.ToString()));
+//     });
+//
+//     AnsiConsole.Write(table);
+// });

@@ -30,29 +30,13 @@ public class ProbabilityTableServiceTests
         // Assert
         Assert.AreEqual("Durak", tables.First().ActorName);
 
-        Assert.AreEqual(10, tables.First().DcProbabilities[0].DC);
-        Assert.AreEqual(0.55d, tables.First().DcProbabilities[0].StrengthProbability);
-        Assert.AreEqual(1.05d, tables.First().DcProbabilities[0].DexterityProbability);
-        Assert.AreEqual(0.65, tables.First().DcProbabilities[0].ConstitutionProbability);
-        Assert.AreEqual(0.65d, tables.First().DcProbabilities[0].WisdomProbability);
-        Assert.AreEqual(0.7d, tables.First().DcProbabilities[0].IntelligenceProbability);
-        Assert.AreEqual(0.5d, tables.First().DcProbabilities[0].CharismaProbability);
-
-        Assert.AreEqual(12, tables.First().DcProbabilities[1].DC);
-        Assert.AreEqual(0.45d, tables.First().DcProbabilities[1].StrengthProbability);
-        Assert.AreEqual(0.95d, tables.First().DcProbabilities[1].DexterityProbability);
-        Assert.AreEqual(0.55, tables.First().DcProbabilities[1].ConstitutionProbability);
-        Assert.AreEqual(0.55d, tables.First().DcProbabilities[1].WisdomProbability);
-        Assert.AreEqual(0.6d, tables.First().DcProbabilities[1].IntelligenceProbability);
-        Assert.AreEqual(0.4d, tables.First().DcProbabilities[1].CharismaProbability);
-
-        Assert.AreEqual(14, tables.First().DcProbabilities[2].DC);
-        Assert.AreEqual(0.35d, tables.First().DcProbabilities[2].StrengthProbability);
-        Assert.AreEqual(0.85d, tables.First().DcProbabilities[2].DexterityProbability);
-        Assert.AreEqual(0.45, tables.First().DcProbabilities[2].ConstitutionProbability);
-        Assert.AreEqual(0.45d, tables.First().DcProbabilities[2].WisdomProbability);
-        Assert.AreEqual(0.5d, tables.First().DcProbabilities[2].IntelligenceProbability);
-        Assert.AreEqual(0.3d, tables.First().DcProbabilities[2].CharismaProbability);
+        CollectionAssert.AreEquivalent(new List<int> { 10, 12, 14 }, tables.First().DCs.ToList());
+        CollectionAssert.AreEquivalent(new List<double> { 0.55d, 0.45d, 0.35d }, tables.First().StrengthProbabilities.ToList());
+        CollectionAssert.AreEquivalent(new List<double> { 1.05d, 0.95d, 0.85d }, tables.First().DexterityProbabilities.ToList());
+        CollectionAssert.AreEquivalent(new List<double> { 0.65d, 0.55d, 0.45d }, tables.First().ConstitutionProbabilities.ToList());
+        CollectionAssert.AreEquivalent(new List<double> { 0.65d, 0.55d, 0.45d }, tables.First().WisdomProbabilities.ToList());
+        CollectionAssert.AreEquivalent(new List<double> { 0.7d, 0.6d, 0.5d }, tables.First().IntelligenceProbabilities.ToList());
+        CollectionAssert.AreEquivalent(new List<double> { 0.5d, 0.4d, 0.3d }, tables.First().CharismaProbabilities.ToList());
     }
 
     private static Party GetValidParty()

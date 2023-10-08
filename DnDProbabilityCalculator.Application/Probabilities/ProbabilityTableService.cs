@@ -1,4 +1,5 @@
-﻿using DnDProbabilityCalculator.Core.Adventuring;
+﻿using System.Globalization;
+using DnDProbabilityCalculator.Core.Adventuring;
 
 namespace DnDProbabilityCalculator.Application.Probabilities;
 
@@ -15,16 +16,14 @@ public class ProbabilityTableService : IProbabilityTableService
         return party.Characters.Select(actor => new ProbabilityTableData
         {
             ActorName = actor.Name,
-            DcProbabilities = dcs.Select(dc => new DCProbability
-            {
-                DC = dc,
-                StrengthProbability = actor.StrengthSavingThrowSuccessChance(dc),
-                DexterityProbability = actor.DexteritySavingThrowSuccessChance(dc),
-                ConstitutionProbability = actor.ConstitutionSavingThrowSuccessChance(dc),
-                WisdomProbability = actor.WisdomSavingThrowSuccessChance(dc),
-                IntelligenceProbability = actor.IntelligenceSavingThrowSuccessChance(dc),
-                CharismaProbability = actor.CharismaSavingThrowSuccessChance(dc)
-            }).ToList()
+            DCs = dcs,
+            CharismaProbabilities = dcs.Select(actor.CharismaSavingThrowSuccessChance).ToList(),
+            ConstitutionProbabilities = dcs.Select(actor.ConstitutionSavingThrowSuccessChance).ToList(),
+            DexterityProbabilities = dcs.Select(actor.DexteritySavingThrowSuccessChance).ToList(),
+            IntelligenceProbabilities = dcs.Select(actor.IntelligenceSavingThrowSuccessChance).ToList(),
+            StrengthProbabilities = dcs.Select(actor.StrengthSavingThrowSuccessChance).ToList(),
+            WisdomProbabilities = dcs.Select(actor.WisdomSavingThrowSuccessChance).ToList()
+
         }).ToList();
     }
 }
