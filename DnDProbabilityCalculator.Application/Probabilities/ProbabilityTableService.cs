@@ -15,7 +15,7 @@ public class ProbabilityTableService : IProbabilityTableService
         return party.Characters.Select(actor => new ProbabilityTable
         {
             ActorName = actor.Name,
-            DCs = dcs.Select(dc => new DCProbability
+            DcProbabilities = dcs.Select(dc => new DCProbability
             {
                 DC = dc,
                 StrengthProbability = actor.StrengthSavingThrowSuccessChance(dc),

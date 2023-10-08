@@ -11,4 +11,6 @@ var serviceProvider = new ServiceCollection()
 var probabilityService = serviceProvider.GetService<IProbabilityTableService>()!;
 
 var probabilityTable = probabilityService.Get(10, 12, 14);
+
+
 probabilityTable.Dump();

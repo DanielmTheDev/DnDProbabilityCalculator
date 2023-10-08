@@ -30,29 +30,29 @@ public class ProbabilityTableServiceTests
         // Assert
         Assert.AreEqual("Durak", tables.First().ActorName);
 
-        Assert.AreEqual(10, tables.First().DCs[0].DC);
-        Assert.AreEqual(0.55d, tables.First().DCs[0].StrengthProbability);
-        Assert.AreEqual(1.05d, tables.First().DCs[0].DexterityProbability);
-        Assert.AreEqual(0.65, tables.First().DCs[0].ConstitutionProbability);
-        Assert.AreEqual(0.65d, tables.First().DCs[0].WisdomProbability);
-        Assert.AreEqual(0.7d, tables.First().DCs[0].IntelligenceProbability);
-        Assert.AreEqual(0.5d, tables.First().DCs[0].CharismaProbability);
+        Assert.AreEqual(10, tables.First().DcProbabilities[0].DC);
+        Assert.AreEqual(0.55d, tables.First().DcProbabilities[0].StrengthProbability);
+        Assert.AreEqual(1.05d, tables.First().DcProbabilities[0].DexterityProbability);
+        Assert.AreEqual(0.65, tables.First().DcProbabilities[0].ConstitutionProbability);
+        Assert.AreEqual(0.65d, tables.First().DcProbabilities[0].WisdomProbability);
+        Assert.AreEqual(0.7d, tables.First().DcProbabilities[0].IntelligenceProbability);
+        Assert.AreEqual(0.5d, tables.First().DcProbabilities[0].CharismaProbability);
 
-        Assert.AreEqual(12, tables.First().DCs[1].DC);
-        Assert.AreEqual(0.45d, tables.First().DCs[1].StrengthProbability);
-        Assert.AreEqual(0.95d, tables.First().DCs[1].DexterityProbability);
-        Assert.AreEqual(0.55, tables.First().DCs[1].ConstitutionProbability);
-        Assert.AreEqual(0.55d, tables.First().DCs[1].WisdomProbability);
-        Assert.AreEqual(0.6d, tables.First().DCs[1].IntelligenceProbability);
-        Assert.AreEqual(0.4d, tables.First().DCs[1].CharismaProbability);
+        Assert.AreEqual(12, tables.First().DcProbabilities[1].DC);
+        Assert.AreEqual(0.45d, tables.First().DcProbabilities[1].StrengthProbability);
+        Assert.AreEqual(0.95d, tables.First().DcProbabilities[1].DexterityProbability);
+        Assert.AreEqual(0.55, tables.First().DcProbabilities[1].ConstitutionProbability);
+        Assert.AreEqual(0.55d, tables.First().DcProbabilities[1].WisdomProbability);
+        Assert.AreEqual(0.6d, tables.First().DcProbabilities[1].IntelligenceProbability);
+        Assert.AreEqual(0.4d, tables.First().DcProbabilities[1].CharismaProbability);
 
-        Assert.AreEqual(14, tables.First().DCs[2].DC);
-        Assert.AreEqual(0.35d, tables.First().DCs[2].StrengthProbability);
-        Assert.AreEqual(0.85d, tables.First().DCs[2].DexterityProbability);
-        Assert.AreEqual(0.45, tables.First().DCs[2].ConstitutionProbability);
-        Assert.AreEqual(0.45d, tables.First().DCs[2].WisdomProbability);
-        Assert.AreEqual(0.5d, tables.First().DCs[2].IntelligenceProbability);
-        Assert.AreEqual(0.3d, tables.First().DCs[2].CharismaProbability);
+        Assert.AreEqual(14, tables.First().DcProbabilities[2].DC);
+        Assert.AreEqual(0.35d, tables.First().DcProbabilities[2].StrengthProbability);
+        Assert.AreEqual(0.85d, tables.First().DcProbabilities[2].DexterityProbability);
+        Assert.AreEqual(0.45, tables.First().DcProbabilities[2].ConstitutionProbability);
+        Assert.AreEqual(0.45d, tables.First().DcProbabilities[2].WisdomProbability);
+        Assert.AreEqual(0.5d, tables.First().DcProbabilities[2].IntelligenceProbability);
+        Assert.AreEqual(0.3d, tables.First().DcProbabilities[2].CharismaProbability);
     }
 
     private static Party GetValidParty()
