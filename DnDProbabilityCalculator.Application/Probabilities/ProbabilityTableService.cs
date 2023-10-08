@@ -9,10 +9,10 @@ public class ProbabilityTableService : IProbabilityTableService
     public ProbabilityTableService(IPartyRepository repository)
         => _repository = repository;
 
-    public ICollection<ProbabilityTable> Get(params int[] dcs)
+    public IList<ProbabilityTableData> Get(params int[] dcs)
     {
         var party = _repository.Get();
-        return party.Characters.Select(actor => new ProbabilityTable
+        return party.Characters.Select(actor => new ProbabilityTableData
         {
             ActorName = actor.Name,
             DcProbabilities = dcs.Select(dc => new DCProbability
