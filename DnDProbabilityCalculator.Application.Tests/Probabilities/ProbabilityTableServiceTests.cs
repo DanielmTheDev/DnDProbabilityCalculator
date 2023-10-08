@@ -28,9 +28,7 @@ public class ProbabilityTableServiceTests
         var tables = _probabilityTableService.Get(10, 12, 14);
 
         // Assert
-        Assert.AreEqual("Durak", tables.First().ActorName);
-
-        CollectionAssert.AreEquivalent(new List<int> { 10, 12, 14 }, tables.First().DCs.ToList());
+        CollectionAssert.AreEquivalent(new List<string> { "Durak","10", "12", "14" }, tables.First().HeaderRow.ToList());
         CollectionAssert.AreEquivalent(new List<string> { "Str", "0.55", "0.45", "0.35" }, tables.First().StrengthRow.ToList());
         CollectionAssert.AreEquivalent(new List<string> { "Dex", "1.05", "0.95", "0.85" }, tables.First().DexterityRow.ToList());
         CollectionAssert.AreEquivalent(new List<string> { "Con", "0.65", "0.55", "0.45" }, tables.First().ConstitutionRow.ToList());

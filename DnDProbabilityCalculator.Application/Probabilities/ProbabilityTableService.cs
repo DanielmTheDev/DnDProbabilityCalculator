@@ -15,8 +15,7 @@ public class ProbabilityTableService : IProbabilityTableService
         var party = _repository.Get();
         return party.Characters.Select(actor => new ProbabilityTableData
         {
-            ActorName = actor.Name,
-            DCs = dcs.ToList(),
+            HeaderRow = new List<string>{ actor.Name }.Concat(dcs.Select(dc => dc.ToString())).ToList(),
             CharismaRow = CreateRow(dcs, "Cha", actor.CharismaSavingThrowSuccessChance),
             ConstitutionRow = CreateRow(dcs, "Con", actor.ConstitutionSavingThrowSuccessChance),
             DexterityRow = CreateRow(dcs, "Dex", actor.DexteritySavingThrowSuccessChance),

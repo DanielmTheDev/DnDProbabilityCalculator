@@ -2,8 +2,7 @@
 
 public record ProbabilityTableData
 {
-    public required string ActorName { get; set; }
-    public required List<int> DCs { get; set; }
+    public required List<string> HeaderRow { get; set; }
     public required List<string> StrengthRow { get; set; }
     public required List<string> DexterityRow { get; set; }
     public required List<string> ConstitutionRow { get; set; }
