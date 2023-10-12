@@ -29,7 +29,7 @@ public class ProbabilityTableServiceTests
 
         // Assert
         Assert.AreEqual("Durak", tables.First().Header);
-        CollectionAssert.AreEquivalent(new List<string> { string.Empty,"10", "12", "14" }, tables.First().DcRow.ToList());
+        CollectionAssert.AreEquivalent(new List<string> { "DC","10", "12", "14" }, tables.First().DcRow.ToList());
         CollectionAssert.AreEquivalent(new List<string> { "Str", "0.55", "0.45", "0.35" }, tables.First().StrengthRow.ToList());
         CollectionAssert.AreEquivalent(new List<string> { "Dex", "[green]1.05[/]", "[green]0.95[/]", "0.85" }, tables.First().DexterityRow.ToList());
         CollectionAssert.AreEquivalent(new List<string> { "Con", "0.65", "0.55", "0.45" }, tables.First().ConstitutionRow.ToList());

@@ -9,9 +9,7 @@ var serviceProvider = new ServiceCollection()
     .BuildServiceProvider();
 
 var probabilityService = serviceProvider.GetService<IProbabilityTableService>()!;
-
-var dcs = new[] { 10, 12, 14 };
-
+var dcs = Enumerable.Range(9, 7).ToArray();
 var allTableData = probabilityService.Get(dcs);
 
 var actorTables = allTableData.Select(tableData =>

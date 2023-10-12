@@ -32,7 +32,7 @@ public record ProbabilityTableData
         => new()
         {
             Header = actor.Name,
-            DcRow = new List<string> { string.Empty }.Concat(dcs.Select(dc => dc.ToString())).ToList(),
+            DcRow = new List<string> { "DC" }.Concat(dcs.Select(dc => dc.ToString())).ToList(),
             CharismaRow = CreateRow(dcs, "Cha", actor.CharismaSavingThrowSuccessChance),
             ConstitutionRow = CreateRow(dcs, "Con", actor.ConstitutionSavingThrowSuccessChance),
             DexterityRow = CreateRow(dcs, "Dex", actor.DexteritySavingThrowSuccessChance),
@@ -50,6 +50,7 @@ public record ProbabilityTableData
 
     private static string SuccessChangeToMarkedUp(double successChance)
     {
+        // todo: make this explicit. probably a probability value object that has a ToString() (maybe even converting it to %)
         var successChanceAsString = successChance.ToString(CultureInfo.InvariantCulture);
         return successChance switch
         {
