@@ -10,6 +10,7 @@ public class ProbabilityTableService : IProbabilityTableService
     public ProbabilityTableService(IPartyRepository repository)
         => _repository = repository;
 
+    // todo: move into row?
     public List<ProbabilityTableData> Get(params int[] dcs)
     {
         var party = _repository.Get();
@@ -25,6 +26,6 @@ public class ProbabilityTableService : IProbabilityTableService
         }).ToList();
     }
 
-    private static List<string> CreateRow(int[] dcs, string abilityScore, Func<int, double> successChanceMethod)
+    private static List<string> CreateRow(IEnumerable<int> dcs, string abilityScore, Func<int, double> successChanceMethod)
         => new List<string> { abilityScore }.Concat(dcs.Select(dc => successChanceMethod(dc).ToString(CultureInfo.InvariantCulture))).ToList();
 }

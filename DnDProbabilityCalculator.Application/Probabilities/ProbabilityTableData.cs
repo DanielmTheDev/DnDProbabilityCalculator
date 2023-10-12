@@ -10,7 +10,7 @@ public record ProbabilityTableData
     public required List<string> IntelligenceRow { get; set; }
     public required List<string> CharismaRow { get; set; }
 
-    public List<List<string>> AggregatedRow
+    public List<List<string>> AllRows
         => new()
         {
             StrengthRow,
