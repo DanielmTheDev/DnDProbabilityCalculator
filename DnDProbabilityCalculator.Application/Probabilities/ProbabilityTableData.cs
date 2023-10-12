@@ -5,7 +5,9 @@ namespace DnDProbabilityCalculator.Application.Probabilities;
 
 public record ProbabilityTableData
 {
-    private ProbabilityTableData() { }
+    private ProbabilityTableData()
+    {
+    }
 
     public required List<string> HeaderRow { get; set; }
     public required List<string> StrengthRow { get; set; }
@@ -39,5 +41,20 @@ public record ProbabilityTableData
         };
 
     private static List<string> CreateRow(IEnumerable<int> dcs, string abilityScore, Func<int, double> successChanceMethod)
-        => new List<string> { abilityScore }.Concat(dcs.Select(dc => successChanceMethod(dc).ToString(CultureInfo.InvariantCulture))).ToList();
+        => new List<string> { abilityScore }.Concat(dcs.Select(dc =>
+        {
+            var successChance = successChanceMethod(dc);
+            return SuccessChangeToMarkedUp(successChance);
+        })).ToList();
+
+    private static string SuccessChangeToMarkedUp(double successChance)
+    {
+        var successChanceAsString = successChance.ToString(CultureInfo.InvariantCulture);
+        return successChance switch
+        {
+            < 0.35 => $"[red]{successChanceAsString}[/]",
+            > 0.85 => $"[green]{successChanceAsString}[/]",
+            _ => successChanceAsString
+        };
+    }
 }

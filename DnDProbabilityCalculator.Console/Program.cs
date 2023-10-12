@@ -21,4 +21,3 @@ allTableData.ForEach(tableData =>
     tableData.AllRows.ForEach(row => table.AddRow(row.ToArray()));
     AnsiConsole.Write(table);
 });
-
