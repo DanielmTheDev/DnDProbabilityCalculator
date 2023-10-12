@@ -14,10 +14,14 @@ var dcs = new[] { 10, 12, 14 };
 
 var allTableData = probabilityService.Get(dcs);
 
-allTableData.ForEach(tableData =>
+var actorTables = allTableData.Select(tableData =>
 {
     var table = new Table();
-    table.AddColumns(tableData.HeaderRow.ToArray());
+    table.AddColumns(tableData.DcRow.ToArray());
     tableData.AllRows.ForEach(row => table.AddRow(row.ToArray()));
-    AnsiConsole.Write(table);
-});
+    return table;
+}).ToList();
+
+var completeTable = new Table();
+allTableData.ForEach(data => completeTable.AddColumn(data.Header));
+AnsiConsole.Write(completeTable.AddRow(actorTables));

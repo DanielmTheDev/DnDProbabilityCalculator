@@ -23,7 +23,8 @@ public class ProbabilityTableDataTests
         var tableData = ProbabilityTableData.FromActor(actor, new[]{10, 12, 14});
 
         // Assert
-        CollectionAssert.AreEquivalent(new List<string> { "Durak","10", "12", "14" }, tableData.HeaderRow.ToList());
+        Assert.AreEqual("Durak", tableData.Header);
+        CollectionAssert.AreEquivalent(new List<string> { string.Empty,"10", "12", "14" }, tableData.DcRow.ToList());
         CollectionAssert.AreEquivalent(new List<string> { "Str", "0.55", "0.45", "0.35" }, tableData.StrengthRow.ToList());
         CollectionAssert.AreEquivalent(new List<string> { "Dex", "[green]1.05[/]", "[green]0.95[/]", "0.85" }, tableData.DexterityRow.ToList());
         CollectionAssert.AreEquivalent(new List<string> { "Con", "0.65", "0.55", "0.45" }, tableData.ConstitutionRow.ToList());

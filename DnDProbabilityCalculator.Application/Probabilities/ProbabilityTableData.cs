@@ -8,8 +8,8 @@ public record ProbabilityTableData
     private ProbabilityTableData()
     {
     }
-
-    public required List<string> HeaderRow { get; set; }
+    public required string Header { get; set; }
+    public required List<string> DcRow { get; set; }
     public required List<string> StrengthRow { get; set; }
     public required List<string> DexterityRow { get; set; }
     public required List<string> ConstitutionRow { get; set; }
@@ -31,7 +31,8 @@ public record ProbabilityTableData
     public static ProbabilityTableData FromActor(Actor actor, int[] dcs)
         => new()
         {
-            HeaderRow = new List<string> { actor.Name }.Concat(dcs.Select(dc => dc.ToString())).ToList(),
+            Header = actor.Name,
+            DcRow = new List<string> { string.Empty }.Concat(dcs.Select(dc => dc.ToString())).ToList(),
             CharismaRow = CreateRow(dcs, "Cha", actor.CharismaSavingThrowSuccessChance),
             ConstitutionRow = CreateRow(dcs, "Con", actor.ConstitutionSavingThrowSuccessChance),
             DexterityRow = CreateRow(dcs, "Dex", actor.DexteritySavingThrowSuccessChance),
