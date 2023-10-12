@@ -1,7 +1,12 @@
-﻿namespace DnDProbabilityCalculator.Application.Probabilities;
+﻿using System.Globalization;
+using DnDProbabilityCalculator.Core.Adventuring;
+
+namespace DnDProbabilityCalculator.Application.Probabilities;
 
 public record ProbabilityTableData
 {
+    private ProbabilityTableData() { }
+
     public required List<string> HeaderRow { get; set; }
     public required List<string> StrengthRow { get; set; }
     public required List<string> DexterityRow { get; set; }
@@ -20,4 +25,19 @@ public record ProbabilityTableData
             IntelligenceRow,
             CharismaRow
         };
+
+    public static ProbabilityTableData FromActor(Actor actor, int[] dcs)
+        => new()
+        {
+            HeaderRow = new List<string> { actor.Name }.Concat(dcs.Select(dc => dc.ToString())).ToList(),
+            CharismaRow = CreateRow(dcs, "Cha", actor.CharismaSavingThrowSuccessChance),
+            ConstitutionRow = CreateRow(dcs, "Con", actor.ConstitutionSavingThrowSuccessChance),
+            DexterityRow = CreateRow(dcs, "Dex", actor.DexteritySavingThrowSuccessChance),
+            IntelligenceRow = CreateRow(dcs, "Int", actor.IntelligenceSavingThrowSuccessChance),
+            StrengthRow = CreateRow(dcs, "Str", actor.StrengthSavingThrowSuccessChance),
+            WisdomRow = CreateRow(dcs, "Wis", actor.WisdomSavingThrowSuccessChance),
+        };
+
+    private static List<string> CreateRow(IEnumerable<int> dcs, string abilityScore, Func<int, double> successChanceMethod)
+        => new List<string> { abilityScore }.Concat(dcs.Select(dc => successChanceMethod(dc).ToString(CultureInfo.InvariantCulture))).ToList();
 }
