@@ -50,7 +50,7 @@ public record ProbabilityTableData
 
     private static string SuccessChangeToMarkedUp(double successChance)
     {
-        // todo: make this explicit. probably a probability value object that has a ToString() (maybe even converting it to %)
+        // todo: make this explicit. probably a probability value object that has a ToString(). more colors too. (maybe even converting it to %)
         var successChanceAsString = successChance.ToString(CultureInfo.InvariantCulture);
         return successChance switch
         {

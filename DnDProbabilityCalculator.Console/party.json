@@ -2,27 +2,27 @@
   "characters": [
     {
       "name": "Durak",
-      "proficiencyBonus": 3,
+      "proficiencyBonus": 2,
       "abilityScores": {
         "dexterity": {
+          "value": 15
+        },
+        "strength": {
+          "value": 18
+        },
+        "constitution": {
+          "value": 14
+        },
+        "intelligence": {
+          "value": 10
+        },
+        "wisdom": {
           "value": 11,
           "isProficient": true
         },
-        "strength": {
-          "value": 12,
-          "isProficient": true
-        },
-        "constitution": {
-          "value": 13
-        },
-        "intelligence": {
-          "value": 14
-        },
-        "wisdom": {
-          "value": 12
-        },
         "charisma": {
-          "value": 14
+          "value": 16,
+          "isProficient": true
         }
       }
     },
@@ -31,23 +31,50 @@
       "proficiencyBonus": 2,
       "abilityScores": {
         "dexterity": {
-          "value": 1
+          "value": 18,
+          "isProficient": true
         },
         "strength": {
-          "value": 2
+          "value": 13,
+          "isProficient": true
         },
         "constitution": {
-          "value": 3
+          "value": 12
         },
         "intelligence": {
-          "value": 4
+          "value": 14
         },
         "wisdom": {
-          "value": 5,
+          "value": 17
+        },
+        "charisma": {
+          "value": 14
+        }
+      }
+    },
+    {
+      "name": "Gorak'Thor",
+      "proficiencyBonus": 2,
+      "abilityScores": {
+        "dexterity": {
+          "value": 14
+        },
+        "strength": {
+          "value": 13,
+          "isProficient": true
+        },
+        "constitution": {
+          "value": 18
+        },
+        "intelligence": {
+          "value": 15
+        },
+        "wisdom": {
+          "value": 16,
           "isProficient": true
         },
         "charisma": {
-          "value": 6,
+          "value": 12,
           "isProficient": true
         }
       }
