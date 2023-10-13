@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using DnDProbabilityCalculator.Core.Adventuring;
+﻿using DnDProbabilityCalculator.Core.Adventuring;
 
 namespace DnDProbabilityCalculator.Application.Probabilities;
 
@@ -42,21 +41,6 @@ public record ProbabilityTableData
         };
 
     private static List<string> CreateRow(IEnumerable<int> dcs, string abilityScore, Func<int, double> successChanceMethod)
-        => new List<string> { abilityScore }.Concat(dcs.Select(dc =>
-        {
-            var successChance = successChanceMethod(dc);
-            return SuccessChangeToMarkedUp(successChance);
-        })).ToList();
-
-    private static string SuccessChangeToMarkedUp(double successChance)
-    {
-        // todo: make this explicit. probably a probability value object that has a ToString(). more colors too. (maybe even converting it to %)
-        var successChanceAsString = successChance.ToString(CultureInfo.InvariantCulture);
-        return successChance switch
-        {
-            < 0.35 => $"[red]{successChanceAsString}[/]",
-            > 0.85 => $"[green]{successChanceAsString}[/]",
-            _ => successChanceAsString
-        };
-    }
+        => new List<string> { abilityScore }.Concat(dcs.Select(dc
+            => ((SuccessChanceViewModel)successChanceMethod(dc)).ToString())).ToList();
 }
