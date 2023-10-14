@@ -26,12 +26,12 @@ public class ProbabilityTableDataTests
         Assert.AreEqual("Durak", tableData.Header);
 
         new List<string> { "DC", "10", "12", "14" }.AssertElementsAreContainedIn(tableData.DcRow);
-        new List<string> { "Str", "55%", "45%", "35%" }.AssertElementsAreContainedIn(tableData.StrengthRow);
-        new List<string> { "Dex", "105%", "95%", "85%" }.AssertElementsAreContainedIn(tableData.DexterityRow);
-        new List<string> { "Con", "65%", "55%", "45%" }.AssertElementsAreContainedIn(tableData.ConstitutionRow);
-        new List<string> { "Wis", "65%", "55%", "45%" }.AssertElementsAreContainedIn(tableData.WisdomRow);
-        new List<string> { "Int", "70%", "60%", "50%" }.AssertElementsAreContainedIn(tableData.IntelligenceRow);
-        new List<string> { "Cha", "50%", "40%", "30%" }.AssertElementsAreContainedIn(tableData.CharismaRow);
+        new List<string> { "Str (10)", "55%", "45%", "35%" }.AssertElementsAreContainedIn(tableData.StrengthRow);
+        new List<string> { "Dex (12)", "105%", "95%", "85%" }.AssertElementsAreContainedIn(tableData.DexterityRow);
+        new List<string> { "Con (14)", "65%", "55%", "45%" }.AssertElementsAreContainedIn(tableData.ConstitutionRow);
+        new List<string> { "Wis (15)", "65%", "55%", "45%" }.AssertElementsAreContainedIn(tableData.WisdomRow);
+        new List<string> { "Int (16)", "70%", "60%", "50%" }.AssertElementsAreContainedIn(tableData.IntelligenceRow);
+        new List<string> { "Cha (8)", "50%", "40%", "30%" }.AssertElementsAreContainedIn(tableData.CharismaRow);
     }
 
 

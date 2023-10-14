@@ -32,12 +32,12 @@ public record ProbabilityTableData
         {
             Header = actor.Name,
             DcRow = new List<string> { "DC" }.Concat(dcs.Select(dc => dc.ToString())).ToList(),
-            CharismaRow = CreateRow(dcs, "Cha", actor.CharismaSavingThrowSuccessChance),
-            ConstitutionRow = CreateRow(dcs, "Con", actor.ConstitutionSavingThrowSuccessChance),
-            DexterityRow = CreateRow(dcs, "Dex", actor.DexteritySavingThrowSuccessChance),
-            IntelligenceRow = CreateRow(dcs, "Int", actor.IntelligenceSavingThrowSuccessChance),
-            StrengthRow = CreateRow(dcs, "Str", actor.StrengthSavingThrowSuccessChance),
-            WisdomRow = CreateRow(dcs, "Wis", actor.WisdomSavingThrowSuccessChance),
+            CharismaRow = CreateRow(dcs, $"Cha ({actor.AbilityScores.Charisma.Value})", actor.CharismaSavingThrowSuccessChance),
+            ConstitutionRow = CreateRow(dcs, $"Con ({actor.AbilityScores.Constitution.Value})", actor.ConstitutionSavingThrowSuccessChance),
+            DexterityRow = CreateRow(dcs, $"Dex ({actor.AbilityScores.Dexterity.Value})", actor.DexteritySavingThrowSuccessChance),
+            IntelligenceRow = CreateRow(dcs, $"Int ({actor.AbilityScores.Intelligence.Value})", actor.IntelligenceSavingThrowSuccessChance),
+            StrengthRow = CreateRow(dcs, $"Str ({actor.AbilityScores.Strength.Value})", actor.StrengthSavingThrowSuccessChance),
+            WisdomRow = CreateRow(dcs, $"Wis ({actor.AbilityScores.Wisdom.Value})", actor.WisdomSavingThrowSuccessChance),
         };
 
     private static List<string> CreateRow(IEnumerable<int> dcs, string abilityScore, Func<int, double> successChanceMethod)
