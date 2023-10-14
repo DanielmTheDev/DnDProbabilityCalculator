@@ -30,6 +30,7 @@ public record ProbabilityTableData
     public static ProbabilityTableData FromActor(Actor actor, int[] dcs)
         => new()
         {
+            // todo next: this CHA name and stuff should be part of the ability score. this is stupid!
             Header = actor.Name,
             DcRow = new List<string> { "DC" }.Concat(dcs.Select(dc => dc.ToString())).ToList(),
             CharismaRow = CreateRow(dcs, $"Cha ({actor.AbilityScores.Charisma.Value})", actor.CharismaSavingThrowSuccessChance),
