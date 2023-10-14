@@ -29,13 +29,13 @@ public class ProbabilityTableServiceTests
 
         // Assert
         Assert.AreEqual("Durak", tables.First().Header);
-        CollectionAssert.AreEquivalent(new List<string> { "DC","10", "12", "14" }, tables.First().DcRow.ToList());
-        CollectionAssert.AreEquivalent(new List<string> { "Str", "0.55", "0.45", "0.35" }, tables.First().StrengthRow.ToList());
-        CollectionAssert.AreEquivalent(new List<string> { "Dex", "[green]1.05[/]", "[green]0.95[/]", "0.85" }, tables.First().DexterityRow.ToList());
-        CollectionAssert.AreEquivalent(new List<string> { "Con", "0.65", "0.55", "0.45" }, tables.First().ConstitutionRow.ToList());
-        CollectionAssert.AreEquivalent(new List<string> { "Wis", "0.65", "0.55", "0.45" }, tables.First().WisdomRow.ToList());
-        CollectionAssert.AreEquivalent(new List<string> { "Int", "0.7", "0.6", "0.5" }, tables.First().IntelligenceRow.ToList());
-        CollectionAssert.AreEquivalent(new List<string> { "Cha", "0.5", "0.4", "[red]0.3[/]" }, tables.First().CharismaRow.ToList());
+        new List<string> { "DC", "10", "12", "14" }.AssertElementsAreContainedIn(tables.First().DcRow);
+        new List<string> { "Str", "55%", "45%", "35%" }.AssertElementsAreContainedIn(tables.First().StrengthRow);
+        new List<string> { "Dex", "105%", "95%", "85%" }.AssertElementsAreContainedIn(tables.First().DexterityRow);
+        new List<string> { "Con", "65%", "55%", "45%" }.AssertElementsAreContainedIn(tables.First().ConstitutionRow);
+        new List<string> { "Wis", "65%", "55%", "45%" }.AssertElementsAreContainedIn(tables.First().WisdomRow);
+        new List<string> { "Int", "70%", "60%", "50%" }.AssertElementsAreContainedIn(tables.First().IntelligenceRow);
+        new List<string> { "Cha", "50%", "40%", "30%" }.AssertElementsAreContainedIn(tables.First().CharismaRow);
     }
 
     private static Party GetValidParty()

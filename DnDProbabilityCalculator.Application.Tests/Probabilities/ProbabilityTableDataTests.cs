@@ -24,14 +24,16 @@ public class ProbabilityTableDataTests
 
         // Assert
         Assert.AreEqual("Durak", tableData.Header);
-        CollectionAssert.AreEquivalent(new List<string> { "DC","10", "12", "14" }, tableData.DcRow.ToList());
-        CollectionAssert.AreEquivalent(new List<string> { "Str", "0.55", "0.45", "0.35" }, tableData.StrengthRow.ToList());
-        CollectionAssert.AreEquivalent(new List<string> { "Dex", "[green]1.05[/]", "[green]0.95[/]", "0.85" }, tableData.DexterityRow.ToList());
-        CollectionAssert.AreEquivalent(new List<string> { "Con", "0.65", "0.55", "0.45" }, tableData.ConstitutionRow.ToList());
-        CollectionAssert.AreEquivalent(new List<string> { "Wis", "0.65", "0.55", "0.45" }, tableData.WisdomRow.ToList());
-        CollectionAssert.AreEquivalent(new List<string> { "Int", "0.7", "0.6", "0.5" }, tableData.IntelligenceRow.ToList());
-        CollectionAssert.AreEquivalent(new List<string> { "Cha", "0.5", "0.4", "[red]0.3[/]" }, tableData.CharismaRow.ToList());
+
+        new List<string> { "DC", "10", "12", "14" }.AssertElementsAreContainedIn(tableData.DcRow);
+        new List<string> { "Str", "55%", "45%", "35%" }.AssertElementsAreContainedIn(tableData.StrengthRow);
+        new List<string> { "Dex", "105%", "95%", "85%" }.AssertElementsAreContainedIn(tableData.DexterityRow);
+        new List<string> { "Con", "65%", "55%", "45%" }.AssertElementsAreContainedIn(tableData.ConstitutionRow);
+        new List<string> { "Wis", "65%", "55%", "45%" }.AssertElementsAreContainedIn(tableData.WisdomRow);
+        new List<string> { "Int", "70%", "60%", "50%" }.AssertElementsAreContainedIn(tableData.IntelligenceRow);
+        new List<string> { "Cha", "50%", "40%", "30%" }.AssertElementsAreContainedIn(tableData.CharismaRow);
     }
+
 
     private static Actor GetValidActor()
         => Actor.New()
