@@ -34,14 +34,14 @@ public class SuccessChanceViewModelTests
 
     [TestMethod]
     [DataRow(0.0d, "red")]
-    [DataRow(0.25d, "red")]
-    [DataRow(0.26d, "orange4_1")]
-    [DataRow(0.45d, "orange4_1")]
-    [DataRow(0.46d, "yellow")]
-    [DataRow(0.65d, "yellow")]
-    [DataRow(0.66d, "turquoise2")]
-    [DataRow(0.85d, "turquoise2")]
-    [DataRow(0.86d, "green")]
+    [DataRow(0.24d, "red")]
+    [DataRow(0.25d, "orange4_1")]
+    [DataRow(0.44d, "orange4_1")]
+    [DataRow(0.45d, "yellow")]
+    [DataRow(0.64d, "yellow")]
+    [DataRow(0.65d, "turquoise2")]
+    [DataRow(0.84d, "turquoise2")]
+    [DataRow(0.85d, "green")]
     [DataRow(double.MaxValue, "green")]
     public void ToString_WhenCalled_WrapsResultInColor(double chanceAsDouble, string expectedColor)
     {
@@ -55,4 +55,20 @@ public class SuccessChanceViewModelTests
         Assert.IsTrue(chanceAsString.Contains(expectedColor));
     }
 
+    [TestMethod]
+    [DataRow(0.0d, "0%")]
+    [DataRow(-0.5d, "-50%")]
+    [DataRow(0.512345d, "51%")]
+    [DataRow(1.2d, "120%")]
+    public void ToString_WhenCalled_ConvertsValueToPercentRepresentationWithoutDecimals(double chanceAsDouble, string expectedString)
+    {
+        // Arrange
+        var chance = new SuccessChanceViewModel(chanceAsDouble);
+
+        // Act
+        var chanceAsString = chance.ToString();
+
+        // Assert
+        Assert.IsTrue(chanceAsString.Contains(expectedString));
+    }
 }
