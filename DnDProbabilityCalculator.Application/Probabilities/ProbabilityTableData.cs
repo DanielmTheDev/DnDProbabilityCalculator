@@ -1,4 +1,5 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring;
+using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 
 namespace DnDProbabilityCalculator.Application.Probabilities;
 
@@ -7,6 +8,7 @@ public record ProbabilityTableData
     private ProbabilityTableData()
     {
     }
+
     public required string Header { get; set; }
     public required List<string> DcRow { get; set; }
     public required List<string> StrengthRow { get; set; }
@@ -30,18 +32,20 @@ public record ProbabilityTableData
     public static ProbabilityTableData FromActor(Actor actor, int[] dcs)
         => new()
         {
-            // todo next: this CHA name and stuff should be part of the ability score. this is stupid!
             Header = actor.Name,
             DcRow = new List<string> { "DC" }.Concat(dcs.Select(dc => dc.ToString())).ToList(),
-            CharismaRow = CreateRow(dcs, $"Cha ({actor.AbilityScores.Charisma.Value})", actor.CharismaSavingThrowSuccessChance),
-            ConstitutionRow = CreateRow(dcs, $"Con ({actor.AbilityScores.Constitution.Value})", actor.ConstitutionSavingThrowSuccessChance),
-            DexterityRow = CreateRow(dcs, $"Dex ({actor.AbilityScores.Dexterity.Value})", actor.DexteritySavingThrowSuccessChance),
-            IntelligenceRow = CreateRow(dcs, $"Int ({actor.AbilityScores.Intelligence.Value})", actor.IntelligenceSavingThrowSuccessChance),
-            StrengthRow = CreateRow(dcs, $"Str ({actor.AbilityScores.Strength.Value})", actor.StrengthSavingThrowSuccessChance),
-            WisdomRow = CreateRow(dcs, $"Wis ({actor.AbilityScores.Wisdom.Value})", actor.WisdomSavingThrowSuccessChance),
+            CharismaRow = CreateRow(actor.AbilityScores.Charisma, dcs, actor.CharismaSavingThrowSuccessChance),
+            ConstitutionRow = CreateRow(actor.AbilityScores.Constitution, dcs, actor.ConstitutionSavingThrowSuccessChance),
+            DexterityRow = CreateRow(actor.AbilityScores.Dexterity, dcs, actor.DexteritySavingThrowSuccessChance),
+            IntelligenceRow = CreateRow(actor.AbilityScores.Intelligence, dcs, actor.IntelligenceSavingThrowSuccessChance),
+            StrengthRow = CreateRow(actor.AbilityScores.Strength, dcs, actor.StrengthSavingThrowSuccessChance),
+            WisdomRow = CreateRow(actor.AbilityScores.Wisdom, dcs, actor.WisdomSavingThrowSuccessChance),
         };
 
-    private static List<string> CreateRow(IEnumerable<int> dcs, string abilityScore, Func<int, double> successChanceMethod)
-        => new List<string> { abilityScore }.Concat(dcs.Select(dc
+    private static List<string> CreateRow(AbilityScore abilityScore, IEnumerable<int> dcs, Func<int, double> successChanceMethod)
+    {
+        var firstCell = $"{abilityScore.Abbreviation} ({abilityScore.Value})";
+        return new List<string> { firstCell }.Concat(dcs.Select(dc
             => ((SuccessChanceViewModel)successChanceMethod(dc)).ToString())).ToList();
+    }
 }
