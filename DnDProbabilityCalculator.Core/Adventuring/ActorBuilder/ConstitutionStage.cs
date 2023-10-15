@@ -1,4 +1,6 @@
-﻿namespace DnDProbabilityCalculator.Core.Adventuring.ActorBuilder;
+﻿using DnDProbabilityCalculator.Core.Adventuring.Abilities;
+
+namespace DnDProbabilityCalculator.Core.Adventuring.ActorBuilder;
 
 public class ConstitutionStage : IConstitutionStage
 {
@@ -9,7 +11,7 @@ public class ConstitutionStage : IConstitutionStage
 
     public IWisdomStage WithConstitution(int value, bool isProficient = false)
     {
-        _actor.AbilityScores.Constitution = new() { Value = value, IsProficient = isProficient };
+        _actor.AbilityScores.Constitution = new Constitution { Value = value, IsProficient = isProficient };
         return new WisdomStage(_actor);
     }
 }

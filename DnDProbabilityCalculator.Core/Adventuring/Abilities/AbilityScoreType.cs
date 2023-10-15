@@ -1,4 +1,4 @@
-﻿namespace DnDProbabilityCalculator.Core.Adventuring;
+﻿namespace DnDProbabilityCalculator.Core.Adventuring.Abilities;
 
 public enum AbilityScoreType
 {

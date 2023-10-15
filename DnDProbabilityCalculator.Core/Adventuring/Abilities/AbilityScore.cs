@@ -1,6 +1,6 @@
-﻿namespace DnDProbabilityCalculator.Core.Adventuring;
+﻿namespace DnDProbabilityCalculator.Core.Adventuring.Abilities;
 
-public record AbilityScore
+public abstract record AbilityScore
 {
     private readonly int _value;
 
@@ -20,7 +20,7 @@ public record AbilityScore
 
     public bool IsProficient { get; init; }
     public int Modifier => (int)Math.Floor((Value - 10) / 2.0);
-    public AbilityScoreType Type { get; set; }
+    public abstract AbilityScoreType Type { get; }
     public static implicit operator int(AbilityScore attribute) => attribute.Value;
 
     public string Abbreviation => Type switch

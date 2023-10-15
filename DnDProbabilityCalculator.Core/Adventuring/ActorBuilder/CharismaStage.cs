@@ -1,4 +1,6 @@
-﻿namespace DnDProbabilityCalculator.Core.Adventuring.ActorBuilder;
+﻿using DnDProbabilityCalculator.Core.Adventuring.Abilities;
+
+namespace DnDProbabilityCalculator.Core.Adventuring.ActorBuilder;
 
 public class CharismaStage : ICharismaStage
 {
@@ -9,7 +11,7 @@ public class CharismaStage : ICharismaStage
 
     public IProficiencyStage WithCharisma(int value, bool isProficient = false)
     {
-        _actor.AbilityScores.Charisma = new() { Value = value, IsProficient = isProficient };
+        _actor.AbilityScores.Charisma = new Charisma { Value = value, IsProficient = isProficient };
         return new ProficiencyStage(_actor);
     }
 }

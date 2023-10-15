@@ -1,4 +1,6 @@
-﻿namespace DnDProbabilityCalculator.Core.Adventuring.ActorBuilder;
+﻿using DnDProbabilityCalculator.Core.Adventuring.Abilities;
+
+namespace DnDProbabilityCalculator.Core.Adventuring.ActorBuilder;
 
 public class IntelligenceStage : IIntelligenceStage
 {
@@ -9,7 +11,7 @@ public class IntelligenceStage : IIntelligenceStage
 
     public ICharismaStage WithIntelligence(int value, bool isProficient = false)
     {
-        _actor.AbilityScores.Intelligence = new() { Value = value, IsProficient = isProficient };
+        _actor.AbilityScores.Intelligence = new Intelligence { Value = value, IsProficient = isProficient };
         return new CharismaStage(_actor);
     }
 }

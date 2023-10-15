@@ -1,4 +1,6 @@
-﻿namespace DnDProbabilityCalculator.Core.Adventuring.ActorBuilder;
+﻿using DnDProbabilityCalculator.Core.Adventuring.Abilities;
+
+namespace DnDProbabilityCalculator.Core.Adventuring.ActorBuilder;
 
 public class DexterityStage : IDexterityStage
 {
@@ -9,7 +11,7 @@ public class DexterityStage : IDexterityStage
 
     public IConstitutionStage WithDexterity(int value, bool isProficient = false)
     {
-        _actor.AbilityScores.Dexterity = new() { Value = value, IsProficient = isProficient };
+        _actor.AbilityScores.Dexterity = new Dexterity { Value = value, IsProficient = isProficient };
         return new ConstitutionStage(_actor);
     }
 }

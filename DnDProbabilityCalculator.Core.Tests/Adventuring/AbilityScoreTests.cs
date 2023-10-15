@@ -1,4 +1,4 @@
-﻿using DnDProbabilityCalculator.Core.Adventuring;
+﻿using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 
 namespace DnDProbabilityCalculator.Core.Tests.Adventuring;
 
@@ -17,7 +17,7 @@ public class AbilityScoreTests
     public void Modifer_WhenCalled_IsCalculatedFromAbilityScore(int abilityScoreValue, int expectedModifier)
     {
         // Arrange
-        var abilityScore = new AbilityScore { Value = abilityScoreValue };
+        var abilityScore = new Dexterity { Value = abilityScoreValue };
 
         // Act
         var realModifier = abilityScore.Modifier;
@@ -34,7 +34,7 @@ public class AbilityScoreTests
     public void SetValue_WithInvalidAbilityScore_ThrowsOutOfRangeException(int abilityScoreValue)
     {
         // Arrange, Act and Assert
-        Assert.ThrowsException<ArgumentOutOfRangeException>(() => new AbilityScore { Value = abilityScoreValue });
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Dexterity { Value = abilityScoreValue });
     }
 
     [TestMethod]
@@ -47,12 +47,19 @@ public class AbilityScoreTests
     public void GetAbbreviation_WhenCalled_ReturnsAbbreviationOfType(string expectedAbbreviation, AbilityScoreType abilityScoreType)
     {
         // Arrange
-        var abilityScore = new AbilityScore { Value = 5, Type = abilityScoreType };
+        var dexterity = new Dexterity { Value = 5 };
+        var strength = new Strength { Value = 5 };
+        var constitution = new Constitution { Value = 5 };
+        var intelligence = new Intelligence { Value = 5 };
+        var wisdom = new Wisdom { Value = 5 };
+        var charisma = new Charisma { Value = 5 };
 
-        // Act
-        var abbreviation = abilityScore.Abbreviation;
-
-        // Assert
-        Assert.AreEqual(expectedAbbreviation, abbreviation);
+        // Act and Assert
+        Assert.AreEqual("Dex", dexterity.Abbreviation);
+        Assert.AreEqual("Str", strength.Abbreviation);
+        Assert.AreEqual("Con", constitution.Abbreviation);
+        Assert.AreEqual("Int", intelligence.Abbreviation);
+        Assert.AreEqual("Cha", charisma.Abbreviation);
+        Assert.AreEqual("Wis", wisdom.Abbreviation);
     }
 }
