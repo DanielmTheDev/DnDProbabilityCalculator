@@ -33,7 +33,7 @@ public record ProbabilityTableData
         => new()
         {
             Header = actor.Name,
-            DcRow = new List<string> { "DC" }.Concat(dcs.Select(dc => dc.ToString())).ToList(),
+            DcRow = new List<string> { "Ability/AC" }.Concat(dcs.Select(dc => dc.ToString())).ToList(),
             CharismaRow = CreateRow(actor.AbilityScores.Charisma, dcs, actor.CharismaSavingThrowSuccessChance),
             ConstitutionRow = CreateRow(actor.AbilityScores.Constitution, dcs, actor.ConstitutionSavingThrowSuccessChance),
             DexterityRow = CreateRow(actor.AbilityScores.Dexterity, dcs, actor.DexteritySavingThrowSuccessChance),

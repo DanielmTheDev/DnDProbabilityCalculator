@@ -10,7 +10,6 @@ public class ProbabilityTableDataTests
     [TestInitialize]
     public void Initialize()
     {
-
     }
 
     [TestMethod]
@@ -20,12 +19,12 @@ public class ProbabilityTableDataTests
         var actor = GetValidActor();
 
         // Act
-        var tableData = ProbabilityTableData.FromActor(actor, new[]{10, 12, 14});
+        var tableData = ProbabilityTableData.FromActor(actor, new[] { 10, 12, 14 });
 
         // Assert
         Assert.AreEqual("Durak", tableData.Header);
 
-        new List<string> { "DC", "10", "12", "14" }.AssertElementsAreContainedIn(tableData.DcRow);
+        new List<string> { "Ability/AC", "10", "12", "14" }.AssertElementsAreContainedIn(tableData.DcRow);
         new List<string> { "Str (10)", "55%", "45%", "35%" }.AssertElementsAreContainedIn(tableData.StrengthRow);
         new List<string> { "Dex (12)", "105%", "95%", "85%" }.AssertElementsAreContainedIn(tableData.DexterityRow);
         new List<string> { "Con (14)", "65%", "55%", "45%" }.AssertElementsAreContainedIn(tableData.ConstitutionRow);
