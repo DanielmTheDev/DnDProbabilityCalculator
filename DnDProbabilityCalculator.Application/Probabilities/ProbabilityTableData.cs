@@ -9,14 +9,14 @@ public record ProbabilityTableData
     {
     }
 
-    public required string Header { get; set; }
-    public required List<string> DcRow { get; set; }
-    public required List<string> StrengthRow { get; set; }
-    public required List<string> DexterityRow { get; set; }
-    public required List<string> ConstitutionRow { get; set; }
-    public required List<string> WisdomRow { get; set; }
-    public required List<string> IntelligenceRow { get; set; }
-    public required List<string> CharismaRow { get; set; }
+    public required string Header { get; init; }
+    public required List<string> DcRow { get; init; }
+    public required List<string> StrengthRow { get; init; }
+    public required List<string> DexterityRow { get; init; }
+    public required List<string> ConstitutionRow { get; init; }
+    public required List<string> WisdomRow { get; init; }
+    public required List<string> IntelligenceRow { get; init; }
+    public required List<string> CharismaRow { get; init; }
 
     public List<List<string>> AllRows
         => new()
