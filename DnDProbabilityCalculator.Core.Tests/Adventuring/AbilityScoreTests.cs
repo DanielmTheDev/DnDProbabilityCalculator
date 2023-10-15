@@ -25,4 +25,15 @@ public class AbilityScoreTests
         // Assert
         Assert.AreEqual(expectedModifier, realModifier);
     }
+
+    [TestMethod]
+    [DataRow(-1)]
+    [DataRow(0)]
+    [DataRow(31)]
+    [DataRow(int.MaxValue)]
+    public void SetValue_WithInvalidAbilityScore_ThrowsOutOfRangeException(int abilityScoreValue)
+    {
+        // Arrange, Act and Assert
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() => new AbilityScore { Value = abilityScoreValue });
+    }
 }
