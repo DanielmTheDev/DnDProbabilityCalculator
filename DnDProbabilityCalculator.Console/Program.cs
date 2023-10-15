@@ -10,7 +10,8 @@ var serviceProvider = new ServiceCollection()
 
 var probabilityService = serviceProvider.GetService<IProbabilityTableService>()!;
 var dcs = Enumerable.Range(9, 7).ToArray();
-var allTableData = probabilityService.Get(dcs);
+var attackModifiers = Enumerable.Range(9, 7).ToArray();
+var allTableData = probabilityService.Get(dcs, attackModifiers);
 
 var actorTables = allTableData.Select(tableData =>
 {

@@ -8,13 +8,13 @@ namespace DnDProbabilityCalculator.Application.Tests.Probabilities;
 public class ProbabilityTableDataTests
 {
     [TestMethod]
-    public void FromActor_WhenCalled_ReturnsProbabilityTableData()
+    public void FromActor_WhenCalled_ReturnsSavingThrowTableData()
     {
         // Arrange
         var actor = GetValidActor();
 
         // Act
-        var tableData = ProbabilityTableData.FromActor(actor, new[] { 10, 12, 14 });
+        var tableData = ProbabilityTableData.FromActor(actor, new[] { 10, 12, 14 }, new[] { -1, 0, 1 });
 
         // Assert
         Assert.AreEqual("Durak", tableData.Header);
@@ -26,6 +26,32 @@ public class ProbabilityTableDataTests
         new List<string> { "Int (16)", "70%", "60%", "50%" }.AssertElementsAreContainedIn(tableData.AbilityRows[3]);
         new List<string> { "Cha (8)", "50%", "40%", "30%" }.AssertElementsAreContainedIn(tableData.AbilityRows[4]);
         new List<string> { "Wis (15)", "65%", "55%", "45%" }.AssertElementsAreContainedIn(tableData.AbilityRows[5]);
+    }
+
+    [TestMethod]
+    public void FromActor_WhenCalled_ReturnsGetHitChanceTableData()
+    {
+        // Arrange
+        var actor = GetValidActor();
+
+        // Act
+        var tableData = ProbabilityTableData.FromActor(actor, new[] { 10, 12, 14 }, new[] { -1, 0, 1 });
+
+        // Assert
+        Assert.AreEqual("Durak", tableData.Header);
+        new List<string> { "#Attacks/Modifier", "-1", "0", "1" }.AssertElementsAreContainedIn(tableData.GetHitRows[0]);
+        new List<string> { "1", "80%", "85%", "90%" }.AssertElementsAreContainedIn(tableData.GetHitRows[1]);
+        // new List<string> { "2", "80%", "85%", "90%" }.AssertElementsAreContainedIn(tableData.GetHitRow[2]);
+    }
+
+    [TestMethod]
+    public void FromActor_WithDifferentNumberOfElementsInPassedCollections_ThrowsException()
+    {
+        // Arrange
+        var actor = GetValidActor();
+
+        // Act and Assert
+        Assert.ThrowsException<ArgumentException>(() => ProbabilityTableData.FromActor(actor, new[] { 1 }, new[] { 1, 2 }));
     }
 
 

@@ -10,12 +10,13 @@ public record ProbabilityTableData
     }
 
     public required string Header { get; init; }
-    public required List<IEnumerable<string>> AbilityRows { get; set; }
-
     public required IEnumerable<string> DcRow { get; set; }
+    public required List<IEnumerable<string>> AbilityRows { get; set; }
+    public required List<IEnumerable<string>> GetHitRows{ get; set; }
 
-    public static ProbabilityTableData FromActor(Actor actor, int[] dcs)
+    public static ProbabilityTableData FromActor(Actor actor, int[] dcs, int[] attackModifiers)
     {
+        ValidateSameNumberOfElements(dcs, attackModifiers);
         var dcRow = new List<string> { "Ability/AC" }.Concat(dcs.Select(dc => dc.ToString())).ToList();
         var abilityRows = Enum.GetValues<AbilityScoreType>()
             .Select(abilityScoreType => CreateRow(actor, abilityScoreType, dcs));
@@ -24,8 +25,17 @@ public record ProbabilityTableData
         {
             Header = actor.Name,
             DcRow = dcRow,
+            GetHitRows = new(),
             AbilityRows = abilityRows.ToList()
         };
+    }
+
+    private static void ValidateSameNumberOfElements(int[] dcs, int[] attackModifiers)
+    {
+        if (dcs.Length != attackModifiers.Length)
+        {
+            throw new ArgumentException("The number of dcs and attack modifiers must be the same.");
+        }
     }
 
     private static IEnumerable<string> CreateRow(Actor actor, AbilityScoreType abilityScoreType, IEnumerable<int> dcs)
