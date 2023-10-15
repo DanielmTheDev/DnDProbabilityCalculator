@@ -7,11 +7,6 @@ namespace DnDProbabilityCalculator.Application.Tests.Probabilities;
 [TestClass]
 public class ProbabilityTableDataTests
 {
-    [TestInitialize]
-    public void Initialize()
-    {
-    }
-
     [TestMethod]
     public void FromActor_WhenCalled_ReturnsProbabilityTableData()
     {
@@ -25,12 +20,12 @@ public class ProbabilityTableDataTests
         Assert.AreEqual("Durak", tableData.Header);
 
         new List<string> { "Ability/AC", "10", "12", "14" }.AssertElementsAreContainedIn(tableData.DcRow);
-        new List<string> { "Str (10)", "55%", "45%", "35%" }.AssertElementsAreContainedIn(tableData.StrengthRow);
-        new List<string> { "Dex (12)", "105%", "95%", "85%" }.AssertElementsAreContainedIn(tableData.DexterityRow);
-        new List<string> { "Con (14)", "65%", "55%", "45%" }.AssertElementsAreContainedIn(tableData.ConstitutionRow);
-        new List<string> { "Wis (15)", "65%", "55%", "45%" }.AssertElementsAreContainedIn(tableData.WisdomRow);
-        new List<string> { "Int (16)", "70%", "60%", "50%" }.AssertElementsAreContainedIn(tableData.IntelligenceRow);
-        new List<string> { "Cha (8)", "50%", "40%", "30%" }.AssertElementsAreContainedIn(tableData.CharismaRow);
+        new List<string> { "Dex (12)", "105%", "95%", "85%" }.AssertElementsAreContainedIn(tableData.AbilityRows[0]);
+        new List<string> { "Str (10)", "55%", "45%", "35%" }.AssertElementsAreContainedIn(tableData.AbilityRows[1]);
+        new List<string> { "Con (14)", "65%", "55%", "45%" }.AssertElementsAreContainedIn(tableData.AbilityRows[2]);
+        new List<string> { "Int (16)", "70%", "60%", "50%" }.AssertElementsAreContainedIn(tableData.AbilityRows[3]);
+        new List<string> { "Cha (8)", "50%", "40%", "30%" }.AssertElementsAreContainedIn(tableData.AbilityRows[4]);
+        new List<string> { "Wis (15)", "65%", "55%", "45%" }.AssertElementsAreContainedIn(tableData.AbilityRows[5]);
     }
 
 

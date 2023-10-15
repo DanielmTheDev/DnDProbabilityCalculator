@@ -9,4 +9,9 @@ public record AbilityScores
     public Wisdom Wisdom { get; set; } = new();
     public Charisma Charisma { get; set; } = new();
 
+    public AbilityScore Get(AbilityScoreType abilityScoreType)
+        => AllAbilityScores().Single(abilityScore => abilityScore.Type == abilityScoreType);
+
+    private IEnumerable<AbilityScore> AllAbilityScores()
+        => new List<AbilityScore> { Dexterity, Strength, Constitution, Intelligence, Wisdom, Charisma };
 }

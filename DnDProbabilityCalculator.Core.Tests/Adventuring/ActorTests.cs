@@ -1,4 +1,5 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring;
+using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 
 namespace DnDProbabilityCalculator.Core.Tests.Adventuring;
 
@@ -54,9 +55,9 @@ public class ActorTests
         var actor = BuildValidActor();
 
         // Act
-        var dexterityChance = actor.DexteritySavingThrowSuccessChance(13);
-        var charismaChance = actor.CharismaSavingThrowSuccessChance(13);
-        var intelligenceChance = actor.IntelligenceSavingThrowSuccessChance(13);
+        var dexterityChance = actor.SavingThrowSuccessChance(AbilityScoreType.Dexterity, 13);
+        var charismaChance = actor.SavingThrowSuccessChance(AbilityScoreType.Charisma, 13);
+        var intelligenceChance = actor.SavingThrowSuccessChance(AbilityScoreType.Intelligence, 13);
 
         // Assert
         Assert.AreEqual(0.4, dexterityChance);
@@ -71,8 +72,8 @@ public class ActorTests
         var actor = BuildValidActor();
 
         // Act
-        var strengthChance = actor.StrengthSavingThrowSuccessChance(16);
-        var constChance = actor.ConstitutionSavingThrowSuccessChance(16);
+        var strengthChance = actor.SavingThrowSuccessChance(AbilityScoreType.Strength, 16);
+        var constChance = actor.SavingThrowSuccessChance(AbilityScoreType.Constitution, 16);
 
         // Assert
         Assert.AreEqual(0.5, strengthChance);

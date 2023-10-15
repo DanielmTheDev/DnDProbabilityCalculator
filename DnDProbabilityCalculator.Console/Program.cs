@@ -16,7 +16,7 @@ var actorTables = allTableData.Select(tableData =>
 {
     var table = new Table();
     table.AddColumns(tableData.DcRow.ToArray());
-    tableData.AllRows.ForEach(row => table.AddRow(row.ToArray()));
+    tableData.AbilityRows.ForEach(row => table.AddRow(row.ToArray()));
     return table;
 }).ToList();
 
