@@ -84,7 +84,7 @@ public class ActorTests
     [DataRow(20, 2, 0.15)]
     [DataRow(12, 8, 0.85)]
     [DataRow(10, 0, 0.55)]
-    [DataRow(18, -2, 0.5)]
+    [DataRow(18, -2, 0.05)]
     public void GetHitChance_WithValidModifier_ReturnsChance(int ac, int modifier, double expectedChance)
     {
         // Arrange

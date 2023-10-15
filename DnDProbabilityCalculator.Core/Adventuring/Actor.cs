@@ -36,9 +36,7 @@ public class Actor
         => SavingThrowSuccessChance(dc, AbilityScores.Charisma);
 
     public double GetHitChance(int modifier)
-    {
-        throw new NotImplementedException();
-    }
+        => (21d + modifier - ArmorClass) / 20;
 
     private double SavingThrowSuccessChance(int dc, AbilityScore abilityScore)
     {
