@@ -5,20 +5,18 @@ namespace DnDProbabilityCalculator.Application.Probabilities;
 
 public record ProbabilityTableData
 {
-    private ProbabilityTableData()
-    {
-    }
+    private ProbabilityTableData() { }
 
     public required string Header { get; init; }
     public required IEnumerable<string> DcRow { get; set; }
-    public required List<IEnumerable<string>> AbilityRows { get; set; }
+    public required List<IEnumerable<string>> SavingThrowRows { get; set; }
     public required List<IEnumerable<string>> GetHitRows{ get; set; }
 
     public static ProbabilityTableData FromActor(Actor actor, int[] dcs, int[] attackModifiers)
     {
         ValidateSameNumberOfElements(dcs, attackModifiers);
         var dcRow = new List<string> { "Ability/AC" }.Concat(dcs.Select(dc => dc.ToString())).ToList();
-        var abilityRows = Enum.GetValues<AbilityScoreType>()
+        var savingThrowRows = Enum.GetValues<AbilityScoreType>()
             .Select(abilityScoreType => CreateRow(actor, abilityScoreType, dcs));
 
         return new()
@@ -26,7 +24,7 @@ public record ProbabilityTableData
             Header = actor.Name,
             DcRow = dcRow,
             GetHitRows = new(),
-            AbilityRows = abilityRows.ToList()
+            SavingThrowRows = savingThrowRows.ToList()
         };
     }
 
