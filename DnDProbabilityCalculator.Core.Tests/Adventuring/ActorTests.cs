@@ -21,6 +21,7 @@ public class ActorTests
         Assert.AreEqual(13, actor.AbilityScores.Wisdom);
         Assert.AreEqual(9, actor.AbilityScores.Intelligence);
         Assert.AreEqual(10, actor.AbilityScores.Charisma);
+        Assert.AreEqual(5, actor.ArmorClass);
         Assert.AreEqual(4, actor.ProficiencyBonus);
     }
 
@@ -41,6 +42,7 @@ public class ActorTests
                 .WithIntelligence(11)
                 .WithCharisma(10)
                 .WithProficiency(4)
+                .WithArmorClass(5)
                 .Build()).Message;
         Assert.IsTrue(message.Contains(ErrorMessages.Ability_Score_Out_Of_Range));
     }
@@ -77,6 +79,35 @@ public class ActorTests
         Assert.AreEqual(0.45, constChance);
     }
 
+    [TestMethod]
+    [DataRow(15, 5, 0.55)]
+    [DataRow(20, 2, 0.15)]
+    [DataRow(12, 8, 0.85)]
+    [DataRow(10, 0, 0.55)]
+    [DataRow(18, -2, 0.5)]
+    public void GetHitChance_WithValidModifier_ReturnsChance(int ac, int modifier, double expectedChance)
+    {
+        // Arrange
+        var actor = Actor
+            .New()
+            .WithName("Durak")
+            .WithStrength(13, true)
+            .WithDexterity(11)
+            .WithConstitution(10, true)
+            .WithWisdom(13)
+            .WithIntelligence(9)
+            .WithCharisma(10)
+            .WithProficiency(4)
+            .WithArmorClass(ac)
+            .Build();
+
+        // Act
+        var actualChance = actor.GetHitChance(modifier);
+
+        // Assert
+        Assert.AreEqual(expectedChance, actualChance);
+    }
+
     private static Actor BuildValidActor()
         => Actor
             .New()
@@ -88,5 +119,6 @@ public class ActorTests
             .WithIntelligence(9)
             .WithCharisma(10)
             .WithProficiency(4)
+            .WithArmorClass(5)
             .Build();
 }

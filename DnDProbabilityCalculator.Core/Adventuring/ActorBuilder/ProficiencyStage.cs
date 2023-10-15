@@ -7,9 +7,9 @@ public class ProficiencyStage : IProficiencyStage
     public ProficiencyStage(Actor actor)
         => _actor = actor;
 
-    public IBuildStage WithProficiency(int proficiency)
+    public IArmorClassStage WithProficiency(int proficiency)
     {
         _actor.ProficiencyBonus = proficiency;
-        return new BuildStage(_actor);
+        return new ArmorClassStage(_actor);
     }
 }

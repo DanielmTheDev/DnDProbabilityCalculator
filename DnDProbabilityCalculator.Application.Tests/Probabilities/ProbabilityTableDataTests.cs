@@ -45,5 +45,6 @@ public class ProbabilityTableDataTests
             .WithIntelligence(16)
             .WithCharisma(8)
             .WithProficiency(9)
+            .WithArmorClass(5)
             .Build();
 }

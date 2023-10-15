@@ -2,5 +2,5 @@
 
 public interface IProficiencyStage
 {
-    IBuildStage WithProficiency(int proficiency);
+    IArmorClassStage WithProficiency(int proficiency);
 }
