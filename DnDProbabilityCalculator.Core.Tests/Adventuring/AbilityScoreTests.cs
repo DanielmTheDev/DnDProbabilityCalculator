@@ -36,4 +36,23 @@ public class AbilityScoreTests
         // Arrange, Act and Assert
         Assert.ThrowsException<ArgumentOutOfRangeException>(() => new AbilityScore { Value = abilityScoreValue });
     }
+
+    [TestMethod]
+    [DataRow("Dex", AbilityScoreType.Dexterity)]
+    [DataRow("Str", AbilityScoreType.Strength)]
+    [DataRow("Con", AbilityScoreType.Constitution)]
+    [DataRow("Int", AbilityScoreType.Intelligence)]
+    [DataRow("Cha", AbilityScoreType.Charisma)]
+    [DataRow("Wis", AbilityScoreType.Wisdom)]
+    public void GetAbbreviation_WhenCalled_ReturnsAbbreviationOfType(string expectedAbbreviation, AbilityScoreType abilityScoreType)
+    {
+        // Arrange
+        var abilityScore = new AbilityScore { Value = 5, Type = abilityScoreType };
+
+        // Act
+        var abbreviation = abilityScore.Abbreviation;
+
+        // Assert
+        Assert.AreEqual(expectedAbbreviation, abbreviation);
+    }
 }

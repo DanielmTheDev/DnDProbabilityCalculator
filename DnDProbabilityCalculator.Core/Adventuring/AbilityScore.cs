@@ -20,6 +20,17 @@ public record AbilityScore
 
     public bool IsProficient { get; init; }
     public int Modifier => (int)Math.Floor((Value - 10) / 2.0);
-
+    public AbilityScoreType Type { get; set; }
     public static implicit operator int(AbilityScore attribute) => attribute.Value;
+
+    public string Abbreviation => Type switch
+    {
+        AbilityScoreType.Dexterity => "Dex",
+        AbilityScoreType.Strength => "Str",
+        AbilityScoreType.Constitution => "Con",
+        AbilityScoreType.Intelligence => "Int",
+        AbilityScoreType.Charisma => "Cha",
+        AbilityScoreType.Wisdom => "Wis",
+        _ => throw new ArgumentOutOfRangeException()
+    };
 }
