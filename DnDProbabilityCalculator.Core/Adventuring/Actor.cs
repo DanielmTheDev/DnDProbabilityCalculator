@@ -12,6 +12,7 @@ public class Actor
     // todo add armor class and to-hit calculation
     // todo add misc modifier somehow (+ something to modifier from e.g. aura)
     // todo connect to dnd beyond to get characters
+    // todo advantage/disadvantage (maybe when pressing A/D, tables change to reflect advantage/disadvantage)
     public static INameStage New()
         => new NameStage(new());
 
