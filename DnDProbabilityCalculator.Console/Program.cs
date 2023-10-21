@@ -8,21 +8,27 @@ var serviceProvider = new ServiceCollection()
     .RegisterServices()
     .BuildServiceProvider();
 
-var probabilityService = serviceProvider.GetService<IProbabilityTableService>()!;
+var probabilityTableService = serviceProvider.GetService<IProbabilityTableService>()!;
 var dcs = Enumerable.Range(9, 7).ToArray();
 var attackModifiers = Enumerable.Range(-1, 7).ToArray();
-var allTableData = probabilityService.Get(dcs, attackModifiers);
+var allActorTables = probabilityTableService.Get(dcs, attackModifiers);
 
-var actorTables = allTableData.Select(tableData =>
+var savingThrowTables = allActorTables.Select(actorTable =>
 {
     var table = new Table();
-    table.AddColumns(tableData.DcRow.ToArray());
-    tableData.SavingThrowRows.ForEach(row => table.AddRow(row.ToArray()));
-    table.AddRow(tableData.AttackModifierRow.ToArray());
-    tableData.GetHitRows.ForEach(row => table.AddRow(row.ToArray()));
+    table.AddColumns(actorTable.SavingThrowTable.Dcs.ToArray());
+    actorTable.SavingThrowTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
+    return table;
+}).ToList();
+
+var getHitTables = allActorTables.Select(actorTable =>
+{
+    var table = new Table();
+    table.AddColumns(actorTable.GetHitTable.AttackModifiers.ToArray());
+    actorTable.GetHitTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
     return table;
 }).ToList();
 
 var completeTable = new Table();
-allTableData.ForEach(data => completeTable.AddColumn(data.Header));
-AnsiConsole.Write(completeTable.AddRow(actorTables));
+allActorTables.ForEach(data => completeTable.AddColumn(data.ActorName));
+AnsiConsole.Write(completeTable.AddRow(savingThrowTables).AddRow(getHitTables));

@@ -14,10 +14,10 @@ public class ProbabilityTableDataTests
         var actor = GetValidActor();
 
         // Act
-        var tableData = ProbabilityTableData.FromActor(actor, new[] { 10, 12, 14 }, new[] { -1, 0, 1 });
+        var tableData = ProbabilityTable.FromActor(actor, new[] { 10, 12, 14 }, new[] { -1, 0, 1 });
 
         // Assert
-        Assert.AreEqual("Durak", tableData.Header);
+        Assert.AreEqual("Durak", tableData.ActorName);
 
         new List<string> { "Ability/AC", "10", "12", "14" }.AssertElementsAreContainedIn(tableData.DcRow);
         new List<string> { "Dex (12)", "105%", "95%", "85%" }.AssertElementsAreContainedIn(tableData.SavingThrowRows[0]);
@@ -35,10 +35,10 @@ public class ProbabilityTableDataTests
         var actor = GetValidActor();
 
         // Act
-        var tableData = ProbabilityTableData.FromActor(actor, new[] { 10, 12, 14 }, new[] { -1, 0, 1 });
+        var tableData = ProbabilityTable.FromActor(actor, new[] { 10, 12, 14 }, new[] { -1, 0, 1 });
 
         // Assert
-        Assert.AreEqual("Durak", tableData.Header);
+        Assert.AreEqual("Durak", tableData.ActorName);
         new List<string> { "#Attacks/Modifier", "-1", "0", "1" }.AssertElementsAreContainedIn(tableData.AttackModifierRow);
         new List<string> { "1", "75%", "80%", "85%" }.AssertElementsAreContainedIn(tableData.GetHitRows[0]);
     }
@@ -50,7 +50,7 @@ public class ProbabilityTableDataTests
         var actor = GetValidActor();
 
         // Act and Assert
-        Assert.ThrowsException<ArgumentException>(() => ProbabilityTableData.FromActor(actor, new[] { 1 }, new[] { 1, 2 }));
+        Assert.ThrowsException<ArgumentException>(() => ProbabilityTable.FromActor(actor, new[] { 1 }, new[] { 1, 2 }));
     }
 
 

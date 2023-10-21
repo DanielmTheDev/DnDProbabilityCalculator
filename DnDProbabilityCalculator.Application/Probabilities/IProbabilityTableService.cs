@@ -2,5 +2,5 @@
 
 public interface IProbabilityTableService
 {
-    List<ProbabilityTableData> Get(int[] dcs, int[] attackModifiers);
+    List<ProbabilityTable> Get(int[] dcs, int[] attackModifiers);
 }
