@@ -39,9 +39,8 @@ public class ProbabilityTableDataTests
 
         // Assert
         Assert.AreEqual("Durak", tableData.Header);
-        new List<string> { "#Attacks/Modifier", "-1", "0", "1" }.AssertElementsAreContainedIn(tableData.GetHitRows[0]);
-        new List<string> { "1", "80%", "85%", "90%" }.AssertElementsAreContainedIn(tableData.GetHitRows[1]);
-        // new List<string> { "2", "80%", "85%", "90%" }.AssertElementsAreContainedIn(tableData.GetHitRow[2]);
+        new List<string> { "#Attacks/Modifier", "-1", "0", "1" }.AssertElementsAreContainedIn(tableData.AttackModifierRow);
+        new List<string> { "1", "75%", "80%", "85%" }.AssertElementsAreContainedIn(tableData.GetHitRows[0]);
     }
 
     [TestMethod]

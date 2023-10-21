@@ -25,7 +25,7 @@ public class Actor
     }
 
     public double GetHitChance(int modifier)
-        => (21d + modifier - ArmorClass) / 20;
+        => (21d - (ArmorClass - modifier)) / 20;
 
     private static double CalculateSuccessChance(int dc, AbilityScore abilityScore, int proficiencyBonus)
         => (21d + abilityScore.Modifier + proficiencyBonus - dc) / 20;
