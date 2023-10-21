@@ -9,7 +9,7 @@ public record ProbabilityTableData
 
     public required string Header { get; init; }
     public required IEnumerable<string> DcRow { get; init; }
-    public required IEnumerable<string> AttackModifierRow { get; set; }
+    public required List<string> AttackModifierRow { get; set; }
     public required List<IEnumerable<string>> SavingThrowRows { get; init; }
     public required List<IEnumerable<string>> GetHitRows{ get; init; }
 
@@ -17,12 +17,12 @@ public record ProbabilityTableData
     public static ProbabilityTableData FromActor(Actor actor, int[] dcs, int[] attackModifiers)
     {
         ValidateSameNumberOfElements(dcs, attackModifiers);
+
         var dcRow = new List<string> { "Ability/AC" }.Concat(dcs.Select(dc => dc.ToString())).ToList();
-        var savingThrowRows = Enum.GetValues<AbilityScoreType>()
-            .Select(abilityScoreType => CreateRow(actor, abilityScoreType, dcs));
+        var savingThrowRows = Enum.GetValues<AbilityScoreType>().Select(abilityScoreType => CreateRow(actor, abilityScoreType, dcs));
+
         var attackModifierRow = new List<string> { "#Attacks/Modifier" }.Concat(attackModifiers.Select(modifier => modifier.ToString()));
-        var getHitRows = new List<string> { "1" }.Concat(attackModifiers
-            .Select(modifier => ((SuccessChanceViewModel)actor.GetHitChance(modifier)).ToString()));
+        var getHitRows = new List<string> { "1" }.Concat(attackModifiers.Select(modifier => ((SuccessChanceViewModel)actor.GetHitChance(modifier)).ToString()));
 
         return new()
         {

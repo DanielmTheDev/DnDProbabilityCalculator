@@ -10,7 +10,7 @@ var serviceProvider = new ServiceCollection()
 
 var probabilityService = serviceProvider.GetService<IProbabilityTableService>()!;
 var dcs = Enumerable.Range(9, 7).ToArray();
-var attackModifiers = Enumerable.Range(9, 7).ToArray();
+var attackModifiers = Enumerable.Range(-1, 7).ToArray();
 var allTableData = probabilityService.Get(dcs, attackModifiers);
 
 var actorTables = allTableData.Select(tableData =>
@@ -18,6 +18,8 @@ var actorTables = allTableData.Select(tableData =>
     var table = new Table();
     table.AddColumns(tableData.DcRow.ToArray());
     tableData.SavingThrowRows.ForEach(row => table.AddRow(row.ToArray()));
+    table.AddRow(tableData.AttackModifierRow.ToArray());
+    tableData.GetHitRows.ForEach(row => table.AddRow(row.ToArray()));
     return table;
 }).ToList();
 

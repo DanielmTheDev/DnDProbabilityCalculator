@@ -3,6 +3,7 @@
     {
       "name": "Durak",
       "proficiencyBonus": 2,
+      "armorClass": 20,
       "abilityScores": {
         "dexterity": {
           "value": 15
@@ -29,6 +30,7 @@
     {
       "name": "Erethil",
       "proficiencyBonus": 2,
+      "armorClass": 17,
       "abilityScores": {
         "dexterity": {
           "value": 18,
@@ -55,6 +57,7 @@
     {
       "name": "Gorak'Thor",
       "proficiencyBonus": 2,
+      "armorClass": 19,
       "abilityScores": {
         "dexterity": {
           "value": 14
