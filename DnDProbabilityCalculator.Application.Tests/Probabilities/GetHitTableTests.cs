@@ -5,16 +5,20 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace DnDProbabilityCalculator.Application.Tests.Probabilities;
 
 [TestClass]
-public class ProbabilityTableDataTests
+public class GetHitTableTests
 {
     [TestMethod]
-    public void FromActor_WithDifferentNumberOfElementsInPassedCollections_ThrowsException()
+    public void FromActor_WhenCalled_ReturnsGetHitChanceTable()
     {
         // Arrange
         var actor = GetValidActor();
 
-        // Act and Assert
-        Assert.ThrowsException<ArgumentException>(() => ProbabilityTable.FromActor(actor, new[] { 1 }, new[] { 1, 2 }));
+        // Act
+        var tableData = GetHitTable.FromActor(actor, new[] { -1, 0, 1 });
+
+        // Assert
+        new List<string> { "#Attacks/Modifier", "-1", "0", "1" }.AssertElementsAreContainedIn(tableData.AttackModifiers);
+        new List<string> { "1", "75%", "80%", "85%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
     }
 
     private static Actor GetValidActor()

@@ -12,7 +12,7 @@ public class SavingThrowTable
 
     public static SavingThrowTable FromActor(Actor actor, int[] dcs)
     {
-        var dcRow = new List<string> { "Ability/AC" }.Concat(dcs.Select(dc => dc.ToString())).ToList();
+        var dcRow = new List<string> { "Ability/DC" }.Concat(dcs.Select(dc => dc.ToString())).ToList();
         var probabilities = Enum.GetValues<AbilityScoreType>().Select(abilityScoreType => CreateRow(actor, abilityScoreType, dcs)).ToList();
 
         return new()
@@ -29,5 +29,4 @@ public class SavingThrowTable
         return new List<string> { firstCell }.Concat(dcs.Select(dc
             => ((SuccessChanceViewModel)actor.SavingThrowSuccessChance(abilityScoreType, dc)).ToString())).ToList();
     }
-
 }
