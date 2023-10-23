@@ -1,5 +1,6 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring;
 using DnDProbabilityCalculator.Core.Adventuring.Abilities;
+using DnDProbabilityCalculator.Core.Adventuring.Probabilities;
 
 namespace DnDProbabilityCalculator.Core.Tests.Adventuring;
 
@@ -109,8 +110,11 @@ public class ActorTests
         Assert.AreEqual(expectedChance, actualChance);
     }
 
-    private static Actor BuildValidActor()
-        => Actor
+    [TestMethod]
+    public void CalculateGetHit_WithPositiveAttackModifiers_ReturnsMultipleProbabilities()
+    {
+        // Arrange
+        var actor = Actor
             .New()
             .WithName("Durak")
             .WithStrength(13, true)
@@ -120,6 +124,35 @@ public class ActorTests
             .WithIntelligence(9)
             .WithCharisma(10)
             .WithProficiency(4)
-            .WithArmorClass(5)
+            .WithArmorClass(15)
             .Build();
+
+        // Act
+        var probabilities = actor.CalculateHitProbabilities(6, 2);
+
+        var expected = new List<AttackProbability>
+        {
+            new(0, 0.16),
+            new(1, 0.48),
+            new(2, 0.36)
+        };
+
+        // Assert
+        CollectionAssert.AreEquivalent(expected, probabilities);
+    }
+
+private static Actor BuildValidActor()
+    => Actor
+        .New()
+        .WithName("Durak")
+        .WithStrength(13, true)
+        .WithDexterity(11)
+        .WithConstitution(10, true)
+        .WithWisdom(13)
+        .WithIntelligence(9)
+        .WithCharisma(10)
+        .WithProficiency(4)
+        .WithArmorClass(5)
+        .Build();
+
 }
