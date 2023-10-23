@@ -1,4 +1,5 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring;
+using DnDProbabilityCalculator.Core.Adventuring.Probabilities;
 
 namespace DnDProbabilityCalculator.Application.Probabilities;
 
@@ -12,11 +13,12 @@ public class GetHitTable
     public static GetHitTable FromActor(Actor actor, int[] attackModifiers)
     {
         var attackModifierRow = new List<string> { "#Attacks/Modifier" }.Concat(attackModifiers.Select(modifier => modifier.ToString()));
-        var getHitRows = new List<string> { "1" }.Concat(attackModifiers.Select(modifier => ((SuccessChanceViewModel)actor.GetHitChance(modifier)).ToString()));
+
+        var attackRow = attackModifiers.Select(attackModifier => actor.CalculateGetHitProbabilities(attackModifier, 5)).ToList();
         return new()
         {
             AttackModifiers = attackModifierRow.ToList(),
-            Probabilities = new() { getHitRows }
+            Probabilities = null
         };
     }
 }

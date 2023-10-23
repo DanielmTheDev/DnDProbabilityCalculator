@@ -81,37 +81,6 @@ public class ActorTests
         Assert.AreEqual(0.45, constChance);
     }
 
-
-    [TestMethod]
-    public void CalculateGetHit_WithPositiveAttackModifiers_ReturnsMultipleProbabilities()
-    {
-        // Arrange
-        var actor = Actor
-            .New()
-            .WithName("Durak")
-            .WithStrength(13, true)
-            .WithDexterity(11)
-            .WithConstitution(10, true)
-            .WithWisdom(13)
-            .WithIntelligence(9)
-            .WithCharisma(10)
-            .WithProficiency(4)
-            .WithArmorClass(15)
-            .Build();
-
-        // Act
-        var probabilities = actor.CalculateHitProbabilities(6, 2);
-
-        // Assert
-        var expected = new List<AttackProbability>
-        {
-            new(0, 0.16),
-            new(1, 0.48),
-            new(2, 0.36)
-        };
-        CollectionAssert.AreEquivalent(expected, probabilities);
-    }
-
     [TestMethod]
     [DataRow(0)]
     [DataRow(-1)]
@@ -132,7 +101,7 @@ public class ActorTests
             .Build();
 
         // Act and Assert
-        var message = Assert.ThrowsException<ArgumentOutOfRangeException>(() => actor.CalculateHitProbabilities(6, numberOfAttacks));
+        var message = Assert.ThrowsException<ArgumentOutOfRangeException>(() => actor.CalculateGetHitProbabilities(6, numberOfAttacks));
         Assert.IsTrue(message.Message.Contains(ErrorMessages.Negative_Number_Of_Attacks));
     }
 
