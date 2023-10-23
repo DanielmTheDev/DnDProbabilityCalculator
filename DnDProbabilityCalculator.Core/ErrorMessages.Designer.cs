@@ -69,6 +69,15 @@ namespace DnDProbabilityCalculator.Core {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of attacks must be higher than zero.
+        /// </summary>
+        public static string Negative_Number_Of_Attacks {
+            get {
+                return ResourceManager.GetString("Negative_Number_Of_Attacks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The provided File cannot be deserialized into a Character Collection.
         /// </summary>
         public static string Wrong_File_Format {

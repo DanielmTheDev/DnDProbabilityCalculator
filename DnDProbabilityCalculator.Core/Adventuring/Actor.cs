@@ -26,6 +26,7 @@ public class Actor
 
     public List<AttackProbability> CalculateHitProbabilities(int attackModifier, int totalNumberOfAttacks)
     {
+        GuardNumberOfAttacks(totalNumberOfAttacks);
         var singleHitProbability = (21 - (ArmorClass - attackModifier)) / 20.0;
         return Enumerable.Range(0, totalNumberOfAttacks + 1)
             .Select(currentNumberOfAttacks => CreateAttackProbability(totalNumberOfAttacks, currentNumberOfAttacks, singleHitProbability)).ToList();
@@ -45,4 +46,12 @@ public class Actor
 
     private static double CalculateSavingThrowSuccessChance(int dc, AbilityScore abilityScore, int proficiencyBonus)
         => (21d + abilityScore.Modifier + proficiencyBonus - dc) / 20;
+
+    private static void GuardNumberOfAttacks(int totalNumberOfAttacks)
+    {
+        if (totalNumberOfAttacks < 1)
+        {
+            throw new ArgumentOutOfRangeException(nameof(totalNumberOfAttacks), ErrorMessages.Negative_Number_Of_Attacks);
+        }
+    }
 }

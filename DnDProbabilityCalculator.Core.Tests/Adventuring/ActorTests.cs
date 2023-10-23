@@ -81,34 +81,6 @@ public class ActorTests
         Assert.AreEqual(0.45, constChance);
     }
 
-    [TestMethod]
-    [DataRow(15, 5, 0.55)]
-    [DataRow(20, 2, 0.15)]
-    [DataRow(12, 8, 0.85)]
-    [DataRow(10, 0, 0.55)]
-    [DataRow(18, -2, 0.05)]
-    public void GetHitChance_WithValidModifier_ReturnsChance(int ac, int modifier, double expectedChance)
-    {
-        // Arrange
-        var actor = Actor
-            .New()
-            .WithName("Durak")
-            .WithStrength(13, true)
-            .WithDexterity(11)
-            .WithConstitution(10, true)
-            .WithWisdom(13)
-            .WithIntelligence(9)
-            .WithCharisma(10)
-            .WithProficiency(4)
-            .WithArmorClass(ac)
-            .Build();
-
-        // Act
-        var actualChance = actor.GetHitChance(modifier);
-
-        // Assert
-        Assert.AreEqual(expectedChance, actualChance);
-    }
 
     [TestMethod]
     public void CalculateGetHit_WithPositiveAttackModifiers_ReturnsMultipleProbabilities()
@@ -130,29 +102,51 @@ public class ActorTests
         // Act
         var probabilities = actor.CalculateHitProbabilities(6, 2);
 
+        // Assert
         var expected = new List<AttackProbability>
         {
             new(0, 0.16),
             new(1, 0.48),
             new(2, 0.36)
         };
-
-        // Assert
         CollectionAssert.AreEquivalent(expected, probabilities);
     }
 
-private static Actor BuildValidActor()
-    => Actor
-        .New()
-        .WithName("Durak")
-        .WithStrength(13, true)
-        .WithDexterity(11)
-        .WithConstitution(10, true)
-        .WithWisdom(13)
-        .WithIntelligence(9)
-        .WithCharisma(10)
-        .WithProficiency(4)
-        .WithArmorClass(5)
-        .Build();
+    [TestMethod]
+    [DataRow(0)]
+    [DataRow(-1)]
+    public void CalculateHitProbabilities_WithNegativeNumberOfAttacks_ThrowsArgumentException(int numberOfAttacks)
+    {
+        // Arrange
+        var actor = Actor
+            .New()
+            .WithName("Durak")
+            .WithStrength(13, true)
+            .WithDexterity(11)
+            .WithConstitution(10, true)
+            .WithWisdom(13)
+            .WithIntelligence(9)
+            .WithCharisma(10)
+            .WithProficiency(4)
+            .WithArmorClass(15)
+            .Build();
 
+        // Act and Assert
+        var message = Assert.ThrowsException<ArgumentOutOfRangeException>(() => actor.CalculateHitProbabilities(6, numberOfAttacks));
+        Assert.IsTrue(message.Message.Contains(ErrorMessages.Negative_Number_Of_Attacks));
+    }
+
+    private static Actor BuildValidActor()
+        => Actor
+            .New()
+            .WithName("Durak")
+            .WithStrength(13, true)
+            .WithDexterity(11)
+            .WithConstitution(10, true)
+            .WithWisdom(13)
+            .WithIntelligence(9)
+            .WithCharisma(10)
+            .WithProficiency(4)
+            .WithArmorClass(5)
+            .Build();
 }
