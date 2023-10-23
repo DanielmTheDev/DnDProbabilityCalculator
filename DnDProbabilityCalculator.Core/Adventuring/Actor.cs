@@ -1,6 +1,6 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 using DnDProbabilityCalculator.Core.Adventuring.ActorBuilder;
-using DnDProbabilityCalculator.Core.Adventuring.Probabilities;
+using DnDProbabilityCalculator.Core.Adventuring.Attack;
 
 namespace DnDProbabilityCalculator.Core.Adventuring;
 

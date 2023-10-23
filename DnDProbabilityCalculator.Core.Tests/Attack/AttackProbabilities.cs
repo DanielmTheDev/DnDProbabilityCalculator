@@ -1,5 +1,4 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring.Attack;
-using DnDProbabilityCalculator.Core.Adventuring.Probabilities;
 
 namespace DnDProbabilityCalculator.Core.Tests.Attack;
 

@@ -1,5 +1,4 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring;
-using DnDProbabilityCalculator.Core.Adventuring.Probabilities;
 
 namespace DnDProbabilityCalculator.Application.Probabilities;
 

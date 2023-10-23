@@ -1,6 +1,4 @@
-﻿using DnDProbabilityCalculator.Core.Adventuring.Attack;
-
-namespace DnDProbabilityCalculator.Core.Adventuring.Probabilities;
+﻿namespace DnDProbabilityCalculator.Core.Adventuring.Attack;
 
 public record AttackProbabilities
 {
