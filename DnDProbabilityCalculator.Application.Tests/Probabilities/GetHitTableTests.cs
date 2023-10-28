@@ -14,7 +14,7 @@ public class GetHitTableTests
         var actor = GetValidActor();
 
         // Act
-        var tableData = GetHitTable.FromActor(actor, new[] { -1, 0, 1 });
+        var tableData = GetHitTable.FromActor(actor, new[] { -1, 0, 1 }, TODO);
 
         // Assert
         new List<string> { "#Attacks/Modifier", "-1", "0", "1" }.AssertElementsAreContainedIn(tableData.AttackModifiers);

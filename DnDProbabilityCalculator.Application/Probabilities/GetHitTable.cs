@@ -11,13 +11,17 @@ public class GetHitTable
     {
     }
 
-    public static GetHitTable FromActor(Actor actor, int[] attackModifiers)
+    public static GetHitTable FromActor(Actor actor, int[] attackModifiers, int totalNumberOfAttacks)
     {
-        var attackModifierRow = new List<string> { "#Attacks/Modifier" }.Concat(attackModifiers.Select(modifier => modifier.ToString()));
-        var rows = Enumerable.Range(1, 3)
-            .Select(numberOfAttacks => new List<string> { $"{numberOfAttacks}" }.Concat(attackModifiers
-                .Select(attackModifier => actor.CalculateGetHitProbabilities(attackModifier, numberOfAttacks)
-                    .Probabilities.Aggregate("", (cell, probability) => cell + $"hits: {probability.NumberOfHits}: {probability.Probability:P2}\n")))).ToList();
+        var attackModifierRow = new List<string> { $"{totalNumberOfAttacks} Attacks/Mod" }.Concat(attackModifiers.Select(modifier => modifier.ToString()));
+
+        var rows = Enumerable.Range(1, totalNumberOfAttacks)
+            .Select(numberOfHits => new []{$"{numberOfHits} Hits"}.Concat(attackModifiers
+                .Select(attackModifier =>
+                {
+                    var probabilities = actor.CalculateGetHitProbabilities(attackModifier, totalNumberOfAttacks); // TODO: maybe change interface to also get changeForNumberOfHits => easier call
+                    return probabilities.Probabilities.Single(p => p.NumberOfHits == numberOfHits).Probability.ToString("P0");
+                }))).ToList();
 
         return new()
         {

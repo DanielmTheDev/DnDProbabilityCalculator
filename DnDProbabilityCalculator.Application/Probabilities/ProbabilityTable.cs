@@ -17,7 +17,7 @@ public record ProbabilityTable
         {
             ActorName = actor.Name,
             SavingThrowTable = SavingThrowTable.FromActor(actor, dcs),
-            GetHitTable = GetHitTable.FromActor(actor, attackModifiers)
+            GetHitTable = GetHitTable.FromActor(actor, attackModifiers, 3)
         };
     }
 
