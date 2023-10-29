@@ -9,9 +9,9 @@ public class ProbabilityTableService : IProbabilityTableService
     public ProbabilityTableService(IPartyRepository repository)
         => _repository = repository;
 
-    public List<ProbabilityTable> Get(int[] dcs, int[] attackModifiers)
+    public List<ProbabilityTable> Get(int[] dcs, int[] attackModifiers, int numberOfAttacks)
     {
         var party = _repository.Get();
-        return party.Characters.Select(actor => ProbabilityTable.FromActor(actor, dcs, attackModifiers)).ToList();
+        return party.Characters.Select(actor => ProbabilityTable.FromActor(actor, dcs, attackModifiers, numberOfAttacks)).ToList();
     }
 }

@@ -14,19 +14,15 @@ public class GetHitTable
     public static GetHitTable FromActor(Actor actor, int[] attackModifiers, int totalNumberOfAttacks)
     {
         var attackModifierRow = new List<string> { $"{totalNumberOfAttacks} Attacks/Mod" }.Concat(attackModifiers.Select(modifier => modifier.ToString()));
-
-        // var rows = Enumerable.Range(1, totalNumberOfAttacks)
-        //     .Select(numberOfHits => new []{$"{numberOfHits} Hits"}.Concat(attackModifiers
-        //         .Select(attackModifier =>
-        //         {
-        //             var probabilities = actor.GetHitProbability(attackModifier, totalNumberOfAttacks, numberOfHits); // TODO: maybe change interface to also get changeForNumberOfHits => easier call
-        //             return probabilities.Probabilities.Single(p => p.NumberOfHits == numberOfHits).Probability.ToString("P0");
-        //         }))).ToList();
+        var rows = Enumerable.Range(0, totalNumberOfAttacks + 1)
+            .Select(currentNumberOfHits => new [] { $"{currentNumberOfHits} Hits"}.Concat(attackModifiers
+                .Select(currentModifier => actor.GetHitProbability(currentModifier, totalNumberOfAttacks, currentNumberOfHits).ToString())))
+            .ToList();
 
         return new()
         {
             AttackModifiers = attackModifierRow.ToList(),
-            Probabilities = null
+            Probabilities = rows
         };
     }
 }

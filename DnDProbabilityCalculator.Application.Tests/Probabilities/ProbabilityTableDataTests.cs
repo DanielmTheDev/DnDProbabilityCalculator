@@ -14,7 +14,7 @@ public class ProbabilityTableDataTests
         var actor = GetValidActor();
 
         // Act and Assert
-        Assert.ThrowsException<ArgumentException>(() => ProbabilityTable.FromActor(actor, new[] { 1 }, new[] { 1, 2 }));
+        Assert.ThrowsException<ArgumentException>(() => ProbabilityTable.FromActor(actor, new[] { 1 }, new[] { 1, 2 }, 1));
     }
 
     private static Actor GetValidActor()

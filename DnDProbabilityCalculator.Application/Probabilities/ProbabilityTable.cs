@@ -10,14 +10,14 @@ public record ProbabilityTable
     public required SavingThrowTable SavingThrowTable { get; set; }
     public required GetHitTable GetHitTable { get; set; }
 
-    public static ProbabilityTable FromActor(Actor actor, int[] dcs, int[] attackModifiers)
+    public static ProbabilityTable FromActor(Actor actor, int[] dcs, int[] attackModifiers, int numberOfAttacks)
     {
         ValidateSameNumberOfElements(dcs, attackModifiers);
         return new()
         {
             ActorName = actor.Name,
             SavingThrowTable = SavingThrowTable.FromActor(actor, dcs),
-            GetHitTable = GetHitTable.FromActor(actor, attackModifiers, 3)
+            GetHitTable = GetHitTable.FromActor(actor, attackModifiers, numberOfAttacks) // todo here wrong
         };
     }
 

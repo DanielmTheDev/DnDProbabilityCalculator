@@ -11,7 +11,7 @@ var serviceProvider = new ServiceCollection()
 var probabilityTableService = serviceProvider.GetService<IProbabilityTableService>()!;
 var dcs = Enumerable.Range(9, 7).ToArray();
 var attackModifiers = Enumerable.Range(-1, 7).ToArray();
-var allActorTables = probabilityTableService.Get(dcs, attackModifiers);
+var allActorTables = probabilityTableService.Get(dcs, attackModifiers, 2);
 
 var savingThrowTables = allActorTables.Select(actorTable =>
 {
