@@ -7,8 +7,8 @@ public record ProbabilityTable
     private ProbabilityTable() { }
 
     public required string ActorName { get; init; }
-    public required SavingThrowTable SavingThrowTable { get; set; }
-    public required GetHitTable GetHitTable { get; set; }
+    public required SavingThrowTable SavingThrowTable { get; init; }
+    public required GetHitTable GetHitTable { get; init; }
 
     public static ProbabilityTable FromActor(Actor actor, int[] dcs, int[] attackModifiers, int numberOfAttacks)
     {
@@ -17,7 +17,7 @@ public record ProbabilityTable
         {
             ActorName = actor.Name,
             SavingThrowTable = SavingThrowTable.FromActor(actor, dcs),
-            GetHitTable = GetHitTable.FromActor(actor, attackModifiers, numberOfAttacks) // todo here wrong
+            GetHitTable = GetHitTable.FromActor(actor, attackModifiers, numberOfAttacks)
         };
     }
 
