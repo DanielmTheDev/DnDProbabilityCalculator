@@ -1,0 +1,6 @@
+@startuml
+class ServiceCollectionExtensions <<static>> {
+    + {static} AddConfiguration(serviceCollection:IServiceCollection) : IServiceCollection
+    + {static} RegisterServices(serviceCollection:IServiceCollection) : IServiceCollection
+}
+@enduml

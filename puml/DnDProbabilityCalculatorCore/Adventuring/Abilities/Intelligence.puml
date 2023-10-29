@@ -1,0 +1,6 @@
+@startuml
+class Intelligence <<record>> {
+}
+AbilityScore <|-- Intelligence
+Intelligence --> "Type" AbilityScoreType
+@enduml

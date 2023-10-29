@@ -1,0 +1,6 @@
+@startuml
+class Constitution <<record>> {
+}
+AbilityScore <|-- Constitution
+Constitution --> "Type" AbilityScoreType
+@enduml

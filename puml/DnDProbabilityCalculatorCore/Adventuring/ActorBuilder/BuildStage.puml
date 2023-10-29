@@ -1,0 +1,7 @@
+@startuml
+class BuildStage {
+    + BuildStage(actor:Actor)
+    + Build() : Actor
+}
+IBuildStage <|-- BuildStage
+@enduml

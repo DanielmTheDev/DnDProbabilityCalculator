@@ -1,0 +1,6 @@
+@startuml
+class GetHitProbability <<record>> {
+    + <<required>> NumberOfHits : int <<get>> <<init>>
+    + <<required>> Probability : double <<get>> <<init>>
+}
+@enduml

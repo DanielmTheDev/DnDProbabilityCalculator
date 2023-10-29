@@ -1,0 +1,7 @@
+@startuml
+class ConstitutionStage {
+    + ConstitutionStage(actor:Actor)
+    + WithConstitution(value:int, isProficient:bool) : IWisdomStage
+}
+IConstitutionStage <|-- ConstitutionStage
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class GetHitTable {
+    + {static} FromActor(actor:Actor, attackModifiers:int[], totalNumberOfAttacks:int) : GetHitTable
+}
+class "List`1"<T> {
+}
+GetHitTable --> "AttackModifiers<string>" "List`1"
+GetHitTable --> "Probabilities<IEnumerable<string>>" "List`1"
+@enduml

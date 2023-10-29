@@ -1,0 +1,6 @@
+@startuml
+class Charisma <<record>> {
+}
+AbilityScore <|-- Charisma
+Charisma --> "Type" AbilityScoreType
+@enduml

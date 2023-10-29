@@ -1,0 +1,7 @@
+@startuml
+class Party {
+}
+class "IList`1"<T> {
+}
+Party o-> "Characters<Actor>" "IList`1"
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+enum AbilityScoreType {
+    Dexterity,
+    Strength,
+    Constitution,
+    Intelligence,
+    Charisma,
+    Wisdom,
+}
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class AbilityScores <<record>> {
+    + Get(abilityScoreType:AbilityScoreType) : AbilityScore
+}
+AbilityScores o-> "Dexterity" Dexterity
+AbilityScores o-> "Strength" Strength
+AbilityScores o-> "Constitution" Constitution
+AbilityScores o-> "Intelligence" Intelligence
+AbilityScores o-> "Wisdom" Wisdom
+AbilityScores o-> "Charisma" Charisma
+@enduml

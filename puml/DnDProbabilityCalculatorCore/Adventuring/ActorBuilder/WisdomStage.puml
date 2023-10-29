@@ -1,0 +1,7 @@
+@startuml
+class WisdomStage {
+    + WisdomStage(actor:Actor)
+    + WithWisdom(value:int, isProficient:bool) : IIntelligenceStage
+}
+IWisdomStage <|-- WisdomStage
+@enduml

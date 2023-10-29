@@ -1,0 +1,7 @@
+@startuml
+class ProficiencyStage {
+    + ProficiencyStage(actor:Actor)
+    + WithProficiency(proficiency:int) : IArmorClassStage
+}
+IProficiencyStage <|-- ProficiencyStage
+@enduml

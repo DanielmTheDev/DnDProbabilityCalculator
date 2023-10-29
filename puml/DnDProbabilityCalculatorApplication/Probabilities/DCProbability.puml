@@ -1,0 +1,11 @@
+@startuml
+class DCProbability <<record>> {
+    + <<required>> DC : int <<get>> <<set>>
+    + <<required>> StrengthProbability : double <<get>> <<set>>
+    + <<required>> DexterityProbability : double <<get>> <<set>>
+    + <<required>> ConstitutionProbability : double <<get>> <<set>>
+    + <<required>> WisdomProbability : double <<get>> <<set>>
+    + <<required>> IntelligenceProbability : double <<get>> <<set>>
+    + <<required>> CharismaProbability : double <<get>> <<set>>
+}
+@enduml

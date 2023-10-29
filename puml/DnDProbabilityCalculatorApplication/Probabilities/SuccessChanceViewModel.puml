@@ -1,0 +1,6 @@
+@startuml
+class SuccessChanceViewModel <<record>> {
+    + Chance : double <<get>> <<init>>
+    + <<override>> ToString() : string
+}
+@enduml

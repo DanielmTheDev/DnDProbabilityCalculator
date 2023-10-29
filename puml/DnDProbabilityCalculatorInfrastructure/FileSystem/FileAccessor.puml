@@ -1,0 +1,6 @@
+@startuml
+class FileAccessor {
+    + ReadAllText(path:string) : string
+}
+IFileAccessor <|-- FileAccessor
+@enduml

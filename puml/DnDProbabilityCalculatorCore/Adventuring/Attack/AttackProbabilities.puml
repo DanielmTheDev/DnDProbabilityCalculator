@@ -1,0 +1,10 @@
+@startuml
+class AttackProbabilities <<record>> {
+    + <<required>> ArmorClass : int <<get>> <<set>>
+    + <<required>> AttackModifier : int <<get>> <<set>>
+    + {static} Create(attackModifier:int, totalNumberOfAttacks:int, armorClass:int) : AttackProbabilities
+}
+class "List`1"<T> {
+}
+AttackProbabilities --> "Probabilities<GetHitProbability>" "List`1"
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class DexterityStage {
+    + DexterityStage(actor:Actor)
+    + WithDexterity(value:int, isProficient:bool) : IConstitutionStage
+}
+IDexterityStage <|-- DexterityStage
+@enduml

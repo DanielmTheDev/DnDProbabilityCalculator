@@ -1,0 +1,11 @@
+@startuml
+class Actor {
+    + Name : string <<get>> <<set>>
+    + ProficiencyBonus : int <<get>> <<set>>
+    + ArmorClass : int <<get>> <<set>>
+    + {static} New() : INameStage
+    + SavingThrowSuccessChance(abilityScoreType:AbilityScoreType, dc:int) : double
+    + CalculateGetHitProbability(attackModifier:int, totalNumberOfAttacks:int, numberOfHits:int) : GetHitProbability
+}
+Actor o-> "AbilityScores" AbilityScores
+@enduml

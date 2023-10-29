@@ -1,0 +1,7 @@
+@startuml
+class ProbabilityTableService {
+    + ProbabilityTableService(repository:IPartyRepository)
+    + Get(dcs:int[], attackModifiers:int[]) : List<ProbabilityTable>
+}
+IProbabilityTableService <|-- ProbabilityTableService
+@enduml

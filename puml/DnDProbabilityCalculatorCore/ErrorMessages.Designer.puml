@@ -1,0 +1,7 @@
+@startuml
+class ErrorMessages {
+    + {static} Ability_Score_Out_Of_Range : string <<get>>
+    + {static} Negative_Number_Of_Attacks : string <<get>>
+    + {static} Wrong_File_Format : string <<get>>
+}
+@enduml

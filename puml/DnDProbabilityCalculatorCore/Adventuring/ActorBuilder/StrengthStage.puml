@@ -1,0 +1,7 @@
+@startuml
+class StrengthStage {
+    + StrengthStage(actor:Actor)
+    + WithStrength(value:int, isProficient:bool) : IDexterityStage
+}
+IStrengthStage <|-- StrengthStage
+@enduml

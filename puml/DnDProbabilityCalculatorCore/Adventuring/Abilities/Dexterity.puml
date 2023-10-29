@@ -1,0 +1,6 @@
+@startuml
+class Dexterity <<record>> {
+}
+AbilityScore <|-- Dexterity
+Dexterity --> "Type" AbilityScoreType
+@enduml

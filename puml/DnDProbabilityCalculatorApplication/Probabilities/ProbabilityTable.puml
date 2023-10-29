@@ -1,0 +1,8 @@
+@startuml
+class ProbabilityTable <<record>> {
+    + <<required>> ActorName : string <<get>> <<init>>
+    + {static} FromActor(actor:Actor, dcs:int[], attackModifiers:int[]) : ProbabilityTable
+}
+ProbabilityTable --> "SavingThrowTable" SavingThrowTable
+ProbabilityTable --> "GetHitTable" GetHitTable
+@enduml

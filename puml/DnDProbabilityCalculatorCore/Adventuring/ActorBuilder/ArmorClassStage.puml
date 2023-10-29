@@ -1,0 +1,7 @@
+@startuml
+class ArmorClassStage {
+    + ArmorClassStage(actor:Actor)
+    + WithArmorClass(armorClass:int) : IBuildStage
+}
+IArmorClassStage <|-- ArmorClassStage
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+class CharismaStage {
+    + CharismaStage(actor:Actor)
+    + WithCharisma(value:int, isProficient:bool) : IProficiencyStage
+}
+ICharismaStage <|-- CharismaStage
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+abstract class AbilityScore <<record>> {
+    + Value : int <<get>> <<init>>
+    + IsProficient : bool <<get>> <<init>>
+    + Modifier : int <<get>>
+    + Abbreviation : string <<get>>
+}
+AbilityScore --> "Type" AbilityScoreType
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class Strength <<record>> {
+}
+AbilityScore <|-- Strength
+Strength --> "Type" AbilityScoreType
+@enduml

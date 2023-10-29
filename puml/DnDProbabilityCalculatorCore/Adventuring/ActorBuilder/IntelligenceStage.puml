@@ -1,0 +1,7 @@
+@startuml
+class IntelligenceStage {
+    + IntelligenceStage(actor:Actor)
+    + WithIntelligence(value:int, isProficient:bool) : ICharismaStage
+}
+IIntelligenceStage <|-- IntelligenceStage
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class SavingThrowTable {
+    + {static} FromActor(actor:Actor, dcs:int[]) : SavingThrowTable
+}
+class "IEnumerable`1"<T> {
+}
+class "List`1"<T> {
+}
+SavingThrowTable --> "Dcs<string>" "IEnumerable`1"
+SavingThrowTable --> "Probabilities<IEnumerable<string>>" "List`1"
+@enduml

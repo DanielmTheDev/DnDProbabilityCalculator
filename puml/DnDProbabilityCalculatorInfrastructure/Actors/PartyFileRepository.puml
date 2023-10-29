@@ -1,0 +1,8 @@
+@startuml
+class PartyFileRepository {
+    + PartyFileRepository(fileAccessor:IFileAccessor, options:IOptions<FileRepositoryOptions>)
+    + Get() : Party
+    + Save(party:Party) : void
+}
+IPartyRepository <|-- PartyFileRepository
+@enduml

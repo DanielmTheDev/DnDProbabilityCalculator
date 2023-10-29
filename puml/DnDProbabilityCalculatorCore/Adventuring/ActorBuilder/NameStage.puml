@@ -1,0 +1,7 @@
+@startuml
+class NameStage {
+    + NameStage(actor:Actor)
+    + WithName(value:string) : IStrengthStage
+}
+INameStage <|-- NameStage
+@enduml

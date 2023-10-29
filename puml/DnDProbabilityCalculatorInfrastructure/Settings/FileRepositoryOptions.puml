@@ -1,0 +1,5 @@
+@startuml
+class FileRepositoryOptions {
+    + FilePath : string <<get>> <<set>>
+}
+@enduml
