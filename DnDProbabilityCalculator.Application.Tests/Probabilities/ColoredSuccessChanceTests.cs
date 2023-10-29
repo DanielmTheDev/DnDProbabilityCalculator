@@ -17,7 +17,7 @@ public class ColoredSuccessChanceTests
     [DataRow(0.85, "[red]85%[/]")]
     public void ToString_WithInvertedEnabled_WrapsPercentInInvertedColor(double value, string expectedString)
     {
-        Assert.AreEqual(expectedString, ((ColoredSuccessChance)value).WithInvertedColors().ToString());
+        Assert.AreEqual(expectedString, ColoredSuccessChance.FromProbability(value).WithInvertedColors().ToString());
     }
 
     [TestMethod]
@@ -31,6 +31,6 @@ public class ColoredSuccessChanceTests
     [DataRow(0.85, "[green]85%[/]")]
     public void ToString_WithInvertedDisabled_WrapsPercentInInvertedColor(double value, string expectedString)
     {
-        Assert.AreEqual(expectedString, ((ColoredSuccessChance)value).ToString());
+        Assert.AreEqual(expectedString, ColoredSuccessChance.FromProbability(value).ToString());
     }
 }

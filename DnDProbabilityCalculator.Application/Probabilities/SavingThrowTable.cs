@@ -8,7 +8,9 @@ public class SavingThrowTable
     public required IEnumerable<string> Dcs { get; init; }
     public required List<IEnumerable<string>> Probabilities { get; init; }
 
-    private SavingThrowTable() { }
+    private SavingThrowTable()
+    {
+    }
 
     public static SavingThrowTable FromActor(Actor actor, int[] dcs)
     {
@@ -26,7 +28,12 @@ public class SavingThrowTable
     {
         var abilityScore = actor.AbilityScores.Get(abilityScoreType);
         var firstCell = $"{abilityScore.Abbreviation} ({abilityScore.Value})";
-        return new List<string> { firstCell }.Concat(dcs.Select(dc
-            => ((ColoredSuccessChance)actor.SavingThrowSuccessChance(abilityScoreType, dc)).ToString())).ToList();
+        return new List<string> { firstCell }
+            .Concat(dcs.Select(
+                dc =>
+                {
+                    var probability = actor.SavingThrowSuccessChance(abilityScoreType, dc);
+                    return ColoredSuccessChance.FromProbability(probability).ToString();
+                }).ToList());
     }
 }

@@ -1,23 +1,25 @@
 ﻿namespace DnDProbabilityCalculator.Application.Probabilities;
 
-public record ColoredSuccessChance(double Chance)
+public record ColoredSuccessChance
 {
+    private readonly double _chance;
+
+    private ColoredSuccessChance(double chance)
+    {
+        _chance = chance;
+    }
+
+    public static ColoredSuccessChance FromProbability(double chance) => new(chance);
     private bool UseInvertedColorings { get; init; }
-
-    public static implicit operator ColoredSuccessChance(double value)
-        => new(value);
-
-    public static implicit operator double(ColoredSuccessChance value)
-        => value.Chance;
 
     public ColoredSuccessChance WithInvertedColors()
         => this with { UseInvertedColorings = true };
 
     public override string ToString()
     {
-        var successChanceAsString = Chance.ToString("P0");
+        var successChanceAsString = _chance.ToString("P0");
         return UseInvertedColorings
-            ? Chance switch
+            ? _chance switch
             {
                 < 0.25 => $"[green]{successChanceAsString}[/]",
                 < 0.45 => $"[turquoise2]{successChanceAsString}[/]",
@@ -25,7 +27,7 @@ public record ColoredSuccessChance(double Chance)
                 < 0.85 => $"[orange4_1]{successChanceAsString}[/]",
                 _ => $"[red]{successChanceAsString}[/]",
             }
-            : Chance switch
+            : _chance switch
             {
                 < 0.25 => $"[red]{successChanceAsString}[/]",
                 < 0.45 => $"[orange4_1]{successChanceAsString}[/]",
