@@ -1,26 +1,23 @@
 ﻿namespace DnDProbabilityCalculator.Core.Adventuring.Attack;
 
-public record AttackProbabilities
+public record GetHitProbability
 {
+    public required int NumberOfHits { get; init; }
     public required int ArmorClass { get; set; }
     public required int AttackModifier { get; set; }
-    public required List<AttackProbability> Probabilities { get; set; }
+    public required double Probability { get; init; }
 
-    public static AttackProbabilities Create(int attackModifier, int totalNumberOfAttacks, int armorClass)
+    public static GetHitProbability Create(int attackModifier, int armorClass, int totalNumberOfAttacks, int numberOfHits)
     {
         var singleHitProbability = (21 - (armorClass - attackModifier)) / 20.0;
-        var probabilities = Enumerable.Range(0, totalNumberOfAttacks + 1)
-            .Select(currentNumberOfAttacks => CreateAttackProbability(totalNumberOfAttacks, currentNumberOfAttacks, singleHitProbability)).ToList();
         return new()
         {
-            ArmorClass = armorClass,
             AttackModifier = attackModifier,
-            Probabilities = probabilities
+            ArmorClass = armorClass,
+            NumberOfHits = numberOfHits,
+            Probability = CalculateMultipleAttackProbability(totalNumberOfAttacks, numberOfHits, singleHitProbability)
         };
     }
-
-    private static AttackProbability CreateAttackProbability(int totalNumberOfAttacks, int currentNumberOfAttacks, double singleHitProbability)
-        => new(currentNumberOfAttacks, CalculateMultipleAttackProbability(totalNumberOfAttacks, currentNumberOfAttacks, singleHitProbability));
 
     private static double CalculateMultipleAttackProbability(int numberOfAttacks, int numberAttacks, double singleHitProbability)
         => Math.Round(BinomialCoefficient(numberOfAttacks, numberAttacks) * Math.Pow(singleHitProbability, numberAttacks) * Math.Pow(1 - singleHitProbability, numberOfAttacks - numberAttacks), 2);

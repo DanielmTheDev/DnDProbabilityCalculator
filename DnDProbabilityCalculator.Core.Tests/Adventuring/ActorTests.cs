@@ -100,7 +100,7 @@ public class ActorTests
             .Build();
 
         // Act and Assert
-        var message = Assert.ThrowsException<ArgumentOutOfRangeException>(() => actor.CalculateGetHitProbabilities(6, numberOfAttacks));
+        var message = Assert.ThrowsException<ArgumentOutOfRangeException>(() => actor.GetHitProbability(6, numberOfAttacks, 2));
         Assert.IsTrue(message.Message.Contains(ErrorMessages.Negative_Number_Of_Attacks));
     }
 

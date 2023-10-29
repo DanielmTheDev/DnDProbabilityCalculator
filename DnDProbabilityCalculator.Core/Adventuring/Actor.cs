@@ -21,10 +21,10 @@ public class Actor
         return CalculateSavingThrowSuccessChance(dc, abilityScore, proficiencyBonus);
     }
 
-    public AttackProbabilities CalculateGetHitProbabilities(int attackModifier, int totalNumberOfAttacks)
+    public GetHitProbability GetHitProbability(int attackModifier, int totalNumberOfAttacks, int numberOfHits)
     {
         GuardNumberOfAttacks(totalNumberOfAttacks);
-        return AttackProbabilities.Create(attackModifier, totalNumberOfAttacks, ArmorClass);
+        return Attack.GetHitProbability.Create(attackModifier, ArmorClass, totalNumberOfAttacks, numberOfHits);
     }
 
     private static double CalculateSavingThrowSuccessChance(int dc, AbilityScore abilityScore, int proficiencyBonus)
