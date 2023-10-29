@@ -27,6 +27,6 @@ public class SavingThrowTable
         var abilityScore = actor.AbilityScores.Get(abilityScoreType);
         var firstCell = $"{abilityScore.Abbreviation} ({abilityScore.Value})";
         return new List<string> { firstCell }.Concat(dcs.Select(dc
-            => ((SuccessChanceViewModel)actor.SavingThrowSuccessChance(abilityScoreType, dc)).ToString())).ToList();
+            => ((ColoredSuccessChance)actor.SavingThrowSuccessChance(abilityScoreType, dc)).ToString())).ToList();
     }
 }

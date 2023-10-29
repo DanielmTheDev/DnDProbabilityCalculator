@@ -10,7 +10,7 @@ public class SuccessChanceViewModelTests
     public void Implicitly_Converts_ValueToDouble()
     {
         // Arrange
-        var chance = new SuccessChanceViewModel(5.0);
+        var chance = new ColoredSuccessChance(5.0);
 
         // Act
         double chanceAsDouble = chance;
@@ -26,7 +26,7 @@ public class SuccessChanceViewModelTests
         const double chanceAsDouble = 0.5d;
 
         // Act
-        SuccessChanceViewModel chance = chanceAsDouble;
+        ColoredSuccessChance chance = chanceAsDouble;
 
         // Assert
         Assert.AreEqual(chanceAsDouble, chance.Chance);
@@ -46,7 +46,7 @@ public class SuccessChanceViewModelTests
     public void ToString_WhenCalled_WrapsResultInColor(double chanceAsDouble, string expectedColor)
     {
         // Arrange
-        var chance = new SuccessChanceViewModel(chanceAsDouble);
+        var chance = new ColoredSuccessChance(chanceAsDouble);
 
         // Act
         var chanceAsString = chance.ToString();
@@ -63,7 +63,7 @@ public class SuccessChanceViewModelTests
     public void ToString_WhenCalled_ConvertsValueToPercentRepresentationWithoutDecimals(double chanceAsDouble, string expectedString)
     {
         // Arrange
-        var chance = new SuccessChanceViewModel(chanceAsDouble);
+        var chance = new ColoredSuccessChance(chanceAsDouble);
 
         // Act
         var chanceAsString = chance.ToString();

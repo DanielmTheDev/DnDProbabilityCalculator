@@ -27,7 +27,4 @@ public record GetHitProbability
 
     private static double BinomialCoefficient(int n, int k)
         => Factorial(n) / (Factorial(k) * Factorial(n - k));
-
-    public override string ToString()
-        => Probability.ToString("P0");
 }

@@ -28,5 +28,11 @@ public class GetHitTable
 
     private static IEnumerable<string> CreateGetHitRow(Actor actor, IEnumerable<int> attackModifiers, int totalNumberOfAttacks, int currentNumberOfHits)
         => new[] { $"{currentNumberOfHits} Hits" }.Concat(attackModifiers
-            .Select(currentModifier => actor.GetHitProbability(currentModifier, totalNumberOfAttacks, currentNumberOfHits).ToString()));
+            .Select(currentModifier =>
+            {
+                var successChance = (ColoredSuccessChance)actor.GetHitProbability(currentModifier, totalNumberOfAttacks, currentNumberOfHits).Probability;
+                return currentNumberOfHits == 0
+                    ? successChance.ToString()
+                    : successChance.WithInvertedColors().ToString();
+            }));
 }
