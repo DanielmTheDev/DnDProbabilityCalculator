@@ -14,11 +14,9 @@ public class ConsoleRenderer : IConsoleRenderer
 
     public void Start()
     {
-        var dcs = Enumerable.Range(9, 7).ToArray();
-        var attackModifiers = Enumerable.Range(-1, 7).ToArray();
-        var numberOfAttacks = 2;
+        var inputVariables = CreateDefaultInputVariables();
 
-        var tableContext = _tableContextService.Get(dcs, attackModifiers, numberOfAttacks);
+        var tableContext = _tableContextService.Get(inputVariables.Dcs, inputVariables.AttackModifiers, inputVariables.NumberOfAttacks);
         var table = new Table();
         tableContext.ForEach(data => table.AddColumn(data.ActorName));
 
@@ -34,15 +32,15 @@ public class ConsoleRenderer : IConsoleRenderer
                     switch (key.Key)
                     {
                         case ConsoleKey.DownArrow:
-                            if (numberOfAttacks == 1)
+                            if (inputVariables.NumberOfAttacks == 1)
                                 break;
-                            numberOfAttacks--;
-                            var newTableContext = _tableContextService.Get(dcs, attackModifiers, numberOfAttacks);
+                            inputVariables = inputVariables with { NumberOfAttacks = inputVariables.NumberOfAttacks - 1 };
+                            var newTableContext = _tableContextService.Get(inputVariables.Dcs, inputVariables.AttackModifiers, inputVariables.NumberOfAttacks);
                             table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.UpArrow:
-                            numberOfAttacks++;
-                            newTableContext = _tableContextService.Get(dcs, attackModifiers, numberOfAttacks);
+                            inputVariables = inputVariables with { NumberOfAttacks = inputVariables.NumberOfAttacks +1 };
+                            newTableContext = _tableContextService.Get(inputVariables.Dcs, inputVariables.AttackModifiers, inputVariables.NumberOfAttacks);
                             table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.Q:
@@ -52,4 +50,12 @@ public class ConsoleRenderer : IConsoleRenderer
                 }
             });
     }
+
+    private InputVariables CreateDefaultInputVariables()
+        => new()
+        {
+            Dcs = Enumerable.Range(9, 7).ToArray(),
+            AttackModifiers = Enumerable.Range(-1, 7).ToArray(),
+            NumberOfAttacks = 2
+        };
 }
