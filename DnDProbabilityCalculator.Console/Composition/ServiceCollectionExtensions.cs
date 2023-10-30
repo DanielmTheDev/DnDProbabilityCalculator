@@ -1,4 +1,5 @@
 ﻿using DnDProbabilityCalculator.Application.Probabilities;
+using DnDProbabilityCalculator.Console.Console;
 using DnDProbabilityCalculator.Core.Adventuring;
 using DnDProbabilityCalculator.Infrastructure.Actors;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;
@@ -21,6 +22,7 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection RegisterServices(this IServiceCollection serviceCollection)
         => serviceCollection
+            .AddScoped<IConsoleRenderer, ConsoleRenderer>()
             .AddScoped<IProbabilityTableService, ProbabilityTableService>()
             .AddScoped<IPartyRepository, PartyFileRepository>()
             .AddScoped<IFileAccessor, FileAccessor>();
