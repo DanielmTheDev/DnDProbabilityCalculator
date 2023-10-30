@@ -20,13 +20,11 @@ public class ConsoleRenderer : IConsoleRenderer
         var allActorTables = _probabilityTableService.Get(dcs, attackModifiers, numberOfAttacks); // todo maybe distribute into two separate methods
 
         var savingThrowTables = CreateSavingThrowTables(allActorTables);
-
         var getHitTables = CreateGetHitTables(allActorTables);
 
         var completeTable = new Table();
         allActorTables.ForEach(data => completeTable.AddColumn(data.ActorName));
         completeTable.AddRow(savingThrowTables).AddRow(getHitTables);
-
 
         AnsiConsole.Live(completeTable)
             .Start(context =>
@@ -62,25 +60,21 @@ public class ConsoleRenderer : IConsoleRenderer
             });
     }
 
-    IEnumerable<Table> CreateGetHitTables(List<ProbabilityTable> probabilityTables)
-    {
-        return probabilityTables.Select(actorTable =>
+    private static IEnumerable<Table> CreateGetHitTables(IEnumerable<ProbabilityTable> allActorTables)
+        => allActorTables.Select(actorTable =>
         {
             var table = new Table();
             table.AddColumns(actorTable.GetHitTable.AttackModifiers.ToArray());
             actorTable.GetHitTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
             return table;
         }).ToList();
-    }
 
-    IEnumerable<Table> CreateSavingThrowTables(List<ProbabilityTable> list)
-    {
-        return list.Select(actorTable =>
+    private static IEnumerable<Table> CreateSavingThrowTables(IEnumerable<ProbabilityTable> allActorTables)
+        => allActorTables.Select(actorTable =>
         {
             var table = new Table();
             table.AddColumns(actorTable.SavingThrowTable.Dcs.ToArray());
             actorTable.SavingThrowTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
             return table;
         }).ToList();
-    }
 }
