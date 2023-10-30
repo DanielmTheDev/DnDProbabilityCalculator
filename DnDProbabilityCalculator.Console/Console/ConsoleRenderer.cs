@@ -17,14 +17,15 @@ public class ConsoleRenderer : IConsoleRenderer
         var dcs = Enumerable.Range(9, 7).ToArray();
         var attackModifiers = Enumerable.Range(-1, 7).ToArray();
         var numberOfAttacks = 2;
-        var tableContext = _tableContextContextService.Get(dcs, attackModifiers, numberOfAttacks); // todo maybe distribute into two separate methods
-        var completeTable = new Table();
-        tableContext.ForEach(data => completeTable.AddColumn(data.ActorName));
 
-        AnsiConsole.Live(completeTable)
+        var tableContext = _tableContextContextService.Get(dcs, attackModifiers, numberOfAttacks);
+        var table = new Table();
+        tableContext.ForEach(data => table.AddColumn(data.ActorName));
+
+        AnsiConsole.Live(table)
             .Start(context =>
             {
-                RerenderRows(completeTable, tableContext, context);
+                table.RerenderRows(tableContext, context);
                 context.Refresh();
                 var quit = false;
                 while (!quit)
@@ -37,12 +38,12 @@ public class ConsoleRenderer : IConsoleRenderer
                                 break;
                             numberOfAttacks--;
                             var newTableContext = _tableContextContextService.Get(dcs, attackModifiers, numberOfAttacks);
-                            RerenderRows(completeTable, newTableContext, context);
+                            table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.UpArrow:
                             numberOfAttacks++;
                             newTableContext = _tableContextContextService.Get(dcs, attackModifiers, numberOfAttacks);
-                            RerenderRows(completeTable, newTableContext, context);
+                            table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.Q:
                             quit = true;
@@ -51,30 +52,4 @@ public class ConsoleRenderer : IConsoleRenderer
                 }
             });
     }
-
-    private static void RerenderRows(Table theTable, List<ProbabilityTable> tableContext, LiveDisplayContext context)
-    {
-        theTable.Rows.Clear();
-        theTable.AddRow(CreateSavingThrowTables(tableContext));
-        theTable.AddRow(CreateGetHitTables(tableContext));
-        context.Refresh();
-    }
-
-    private static IEnumerable<Table> CreateGetHitTables(IEnumerable<ProbabilityTable> allActorTables)
-        => allActorTables.Select(actorTable =>
-        {
-            var table = new Table();
-            table.AddColumns(actorTable.GetHitTable.AttackModifiers.ToArray());
-            actorTable.GetHitTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
-            return table;
-        }).ToList();
-
-    private static IEnumerable<Table> CreateSavingThrowTables(IEnumerable<ProbabilityTable> allActorTables)
-        => allActorTables.Select(actorTable =>
-        {
-            var table = new Table();
-            table.AddColumns(actorTable.SavingThrowTable.Dcs.ToArray());
-            actorTable.SavingThrowTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
-            return table;
-        }).ToList();
 }
