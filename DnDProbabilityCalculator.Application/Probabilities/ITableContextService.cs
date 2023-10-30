@@ -1,6 +1,6 @@
 ﻿namespace DnDProbabilityCalculator.Application.Probabilities;
 
-public interface IProbabilityTableService
+public interface ITableContextService
 {
     List<ProbabilityTable> Get(int[] dcs, int[] attackModifiers, int numberOfAttacks);
 }

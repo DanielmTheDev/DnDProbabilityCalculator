@@ -5,11 +5,11 @@ namespace DnDProbabilityCalculator.Console.Console;
 
 public class ConsoleRenderer : IConsoleRenderer
 {
-    private readonly IProbabilityTableService _probabilityTableService;
+    private readonly ITableContextService _tableContextContextService;
 
-    public ConsoleRenderer(IProbabilityTableService probabilityTableService)
+    public ConsoleRenderer(ITableContextService tableContextContextService)
     {
-        _probabilityTableService = probabilityTableService;
+        _tableContextContextService = tableContextContextService;
     }
 
     public void Start()
@@ -17,18 +17,14 @@ public class ConsoleRenderer : IConsoleRenderer
         var dcs = Enumerable.Range(9, 7).ToArray();
         var attackModifiers = Enumerable.Range(-1, 7).ToArray();
         var numberOfAttacks = 2;
-        var allActorTables = _probabilityTableService.Get(dcs, attackModifiers, numberOfAttacks); // todo maybe distribute into two separate methods
-
-        var savingThrowTables = CreateSavingThrowTables(allActorTables);
-        var getHitTables = CreateGetHitTables(allActorTables);
-
+        var tableContext = _tableContextContextService.Get(dcs, attackModifiers, numberOfAttacks); // todo maybe distribute into two separate methods
         var completeTable = new Table();
-        allActorTables.ForEach(data => completeTable.AddColumn(data.ActorName));
-        completeTable.AddRow(savingThrowTables).AddRow(getHitTables);
+        tableContext.ForEach(data => completeTable.AddColumn(data.ActorName));
 
         AnsiConsole.Live(completeTable)
             .Start(context =>
             {
+                RerenderRows(completeTable, tableContext, context);
                 context.Refresh();
                 var quit = false;
                 while (!quit)
@@ -40,17 +36,13 @@ public class ConsoleRenderer : IConsoleRenderer
                             if (numberOfAttacks == 1)
                                 break;
                             numberOfAttacks--;
-                            allActorTables = _probabilityTableService.Get(dcs, attackModifiers, numberOfAttacks);
-                            completeTable.RemoveRow(completeTable.Rows.Count - 1);
-                            completeTable.AddRow(CreateGetHitTables(allActorTables));
-                            context.Refresh();
+                            var newTableContext = _tableContextContextService.Get(dcs, attackModifiers, numberOfAttacks);
+                            RerenderRows(completeTable, newTableContext, context);
                             break;
                         case ConsoleKey.UpArrow:
                             numberOfAttacks++;
-                            allActorTables = _probabilityTableService.Get(dcs, attackModifiers, numberOfAttacks);
-                            completeTable.RemoveRow(completeTable.Rows.Count - 1);
-                            completeTable.AddRow(CreateGetHitTables(allActorTables));
-                            context.Refresh();
+                            newTableContext = _tableContextContextService.Get(dcs, attackModifiers, numberOfAttacks);
+                            RerenderRows(completeTable, newTableContext, context);
                             break;
                         case ConsoleKey.Q:
                             quit = true;
@@ -58,6 +50,14 @@ public class ConsoleRenderer : IConsoleRenderer
                     }
                 }
             });
+    }
+
+    private static void RerenderRows(Table theTable, List<ProbabilityTable> tableContext, LiveDisplayContext context)
+    {
+        theTable.Rows.Clear();
+        theTable.AddRow(CreateSavingThrowTables(tableContext));
+        theTable.AddRow(CreateGetHitTables(tableContext));
+        context.Refresh();
     }
 
     private static IEnumerable<Table> CreateGetHitTables(IEnumerable<ProbabilityTable> allActorTables)

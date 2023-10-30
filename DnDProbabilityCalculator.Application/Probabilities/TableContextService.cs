@@ -2,11 +2,11 @@
 
 namespace DnDProbabilityCalculator.Application.Probabilities;
 
-public class ProbabilityTableService : IProbabilityTableService
+public class TableContextService : ITableContextService
 {
     private readonly IPartyRepository _repository;
 
-    public ProbabilityTableService(IPartyRepository repository)
+    public TableContextService(IPartyRepository repository)
         => _repository = repository;
 
     public List<ProbabilityTable> Get(int[] dcs, int[] attackModifiers, int numberOfAttacks)
