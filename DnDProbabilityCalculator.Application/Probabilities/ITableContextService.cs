@@ -2,5 +2,5 @@
 
 public interface ITableContextService
 {
-    List<ProbabilityTable> Get(int[] dcs, int[] attackModifiers, int numberOfAttacks);
+    List<ProbabilityTable> Get(InputVariables inputVariables);
 }

@@ -16,7 +16,7 @@ public class ConsoleRenderer : IConsoleRenderer
     {
         var inputVariables = CreateDefaultInputVariables();
 
-        var tableContext = _tableContextService.Get(inputVariables.Dcs, inputVariables.AttackModifiers, inputVariables.NumberOfAttacks);
+        var tableContext = _tableContextService.Get(inputVariables);
         var table = new Table();
         tableContext.ForEach(data => table.AddColumn(data.ActorName));
 
@@ -35,12 +35,12 @@ public class ConsoleRenderer : IConsoleRenderer
                             if (inputVariables.NumberOfAttacks == 1)
                                 break;
                             inputVariables = inputVariables with { NumberOfAttacks = inputVariables.NumberOfAttacks - 1 };
-                            var newTableContext = _tableContextService.Get(inputVariables.Dcs, inputVariables.AttackModifiers, inputVariables.NumberOfAttacks);
+                            var newTableContext = _tableContextService.Get(inputVariables);
                             table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.UpArrow:
                             inputVariables = inputVariables with { NumberOfAttacks = inputVariables.NumberOfAttacks +1 };
-                            newTableContext = _tableContextService.Get(inputVariables.Dcs, inputVariables.AttackModifiers, inputVariables.NumberOfAttacks);
+                            newTableContext = _tableContextService.Get(inputVariables);
                             table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.Q:

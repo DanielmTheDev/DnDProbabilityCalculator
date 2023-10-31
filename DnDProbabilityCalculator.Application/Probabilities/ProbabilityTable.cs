@@ -10,14 +10,14 @@ public record ProbabilityTable
     public required SavingThrowTable SavingThrowTable { get; init; }
     public required GetHitTable GetHitTable { get; init; }
 
-    public static ProbabilityTable FromActor(Actor actor, int[] dcs, int[] attackModifiers, int numberOfAttacks)
+    public static ProbabilityTable FromActor(Actor actor, InputVariables inputVariables)
     {
-        ValidateSameNumberOfElements(dcs, attackModifiers);
+        ValidateSameNumberOfElements(inputVariables.Dcs, inputVariables.AttackModifiers); // todo: valdation in inputVariables model
         return new()
         {
             ActorName = actor.Name,
-            SavingThrowTable = SavingThrowTable.FromActor(actor, dcs),
-            GetHitTable = GetHitTable.FromActor(actor, attackModifiers, numberOfAttacks)
+            SavingThrowTable = SavingThrowTable.FromActor(actor, inputVariables.Dcs),
+            GetHitTable = GetHitTable.FromActor(actor, inputVariables.AttackModifiers, inputVariables.NumberOfAttacks)
         };
     }
 

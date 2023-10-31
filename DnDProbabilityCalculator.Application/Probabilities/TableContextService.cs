@@ -9,9 +9,9 @@ public class TableContextService : ITableContextService
     public TableContextService(IPartyRepository repository)
         => _repository = repository;
 
-    public List<ProbabilityTable> Get(int[] dcs, int[] attackModifiers, int numberOfAttacks)
+    public List<ProbabilityTable> Get(InputVariables inputVariables)
     {
         var party = _repository.Get();
-        return party.Characters.Select(actor => ProbabilityTable.FromActor(actor, dcs, attackModifiers, numberOfAttacks)).ToList();
+        return party.Characters.Select(actor => ProbabilityTable.FromActor(actor, inputVariables)).ToList();
     }
 }

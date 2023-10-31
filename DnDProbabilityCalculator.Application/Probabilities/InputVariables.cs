@@ -1,4 +1,4 @@
-﻿namespace DnDProbabilityCalculator.Console.Console;
+﻿namespace DnDProbabilityCalculator.Application.Probabilities;
 
 public record InputVariables
 {
