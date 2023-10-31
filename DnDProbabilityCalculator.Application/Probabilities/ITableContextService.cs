@@ -2,5 +2,5 @@
 
 public interface ITableContextService
 {
-    List<ProbabilityTable> Get(InputVariables inputVariables);
+    List<TableContext> Get(InputVariables inputVariables);
 }

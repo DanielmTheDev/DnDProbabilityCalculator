@@ -5,7 +5,7 @@ namespace DnDProbabilityCalculator.Console.Console;
 
 public static class LiveTableExtensions
 {
-    public static void RerenderRows(this Table theTable, List<ProbabilityTable> tableContext, LiveDisplayContext context)
+    public static void RerenderRows(this Table theTable, List<TableContext> tableContext, LiveDisplayContext context)
     {
         theTable.Rows.Clear();
         theTable.AddRow(CreateSavingThrowTables(tableContext));
@@ -13,7 +13,7 @@ public static class LiveTableExtensions
         context.Refresh();
     }
 
-    private static IEnumerable<Table> CreateGetHitTables(IEnumerable<ProbabilityTable> allActorTables)
+    private static IEnumerable<Table> CreateGetHitTables(IEnumerable<TableContext> allActorTables)
         => allActorTables.Select(actorTable =>
         {
             var table = new Table();
@@ -22,7 +22,7 @@ public static class LiveTableExtensions
             return table;
         }).ToList();
 
-    private static IEnumerable<Table> CreateSavingThrowTables(IEnumerable<ProbabilityTable> allActorTables)
+    private static IEnumerable<Table> CreateSavingThrowTables(IEnumerable<TableContext> allActorTables)
         => allActorTables.Select(actorTable =>
         {
             var table = new Table();

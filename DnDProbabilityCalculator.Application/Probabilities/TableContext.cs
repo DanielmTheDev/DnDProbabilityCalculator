@@ -2,15 +2,15 @@
 
 namespace DnDProbabilityCalculator.Application.Probabilities;
 
-public record ProbabilityTable
+public record TableContext
 {
-    private ProbabilityTable() { }
+    private TableContext() { }
 
     public required string ActorName { get; init; }
     public required SavingThrowTable SavingThrowTable { get; init; }
     public required GetHitTable GetHitTable { get; init; }
 
-    public static ProbabilityTable FromActor(Actor actor, InputVariables inputVariables)
+    public static TableContext FromActor(Actor actor, InputVariables inputVariables)
     {
         return new()
         {

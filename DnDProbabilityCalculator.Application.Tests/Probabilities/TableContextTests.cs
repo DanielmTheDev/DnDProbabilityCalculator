@@ -3,6 +3,6 @@
 namespace DnDProbabilityCalculator.Application.Tests.Probabilities;
 
 [TestClass]
-public class ProbabilityTableDataTests
+public class TableContextTests
 {
 }
