@@ -12,20 +12,11 @@ public record ProbabilityTable
 
     public static ProbabilityTable FromActor(Actor actor, InputVariables inputVariables)
     {
-        ValidateSameNumberOfElements(inputVariables.Dcs, inputVariables.AttackModifiers); // todo: valdation in inputVariables model
         return new()
         {
             ActorName = actor.Name,
             SavingThrowTable = SavingThrowTable.FromActor(actor, inputVariables.Dcs),
             GetHitTable = GetHitTable.FromActor(actor, inputVariables.AttackModifiers, inputVariables.NumberOfAttacks)
         };
-    }
-
-    private static void ValidateSameNumberOfElements(int[] dcs, int[] attackModifiers)
-    {
-        if (dcs.Length != attackModifiers.Length)
-        {
-            throw new ArgumentException("The number of dcs and attack modifiers must be the same.");
-        }
     }
 }

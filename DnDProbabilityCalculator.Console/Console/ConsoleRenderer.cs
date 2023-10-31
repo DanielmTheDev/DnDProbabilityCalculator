@@ -34,12 +34,12 @@ public class ConsoleRenderer : IConsoleRenderer
                         case ConsoleKey.DownArrow:
                             if (inputVariables.NumberOfAttacks == 1)
                                 break;
-                            inputVariables = inputVariables with { NumberOfAttacks = inputVariables.NumberOfAttacks - 1 };
+                            inputVariables = new(inputVariables.Dcs, inputVariables.AttackModifiers, inputVariables.NumberOfAttacks - 1);
                             var newTableContext = _tableContextService.Get(inputVariables);
                             table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.UpArrow:
-                            inputVariables = inputVariables with { NumberOfAttacks = inputVariables.NumberOfAttacks +1 };
+                            inputVariables = new(inputVariables.Dcs, inputVariables.AttackModifiers, inputVariables.NumberOfAttacks + 1);
                             newTableContext = _tableContextService.Get(inputVariables);
                             table.RerenderRows(newTableContext, context);
                             break;
@@ -52,10 +52,5 @@ public class ConsoleRenderer : IConsoleRenderer
     }
 
     private InputVariables CreateDefaultInputVariables()
-        => new()
-        {
-            Dcs = Enumerable.Range(9, 7).ToArray(),
-            AttackModifiers = Enumerable.Range(-1, 7).ToArray(),
-            NumberOfAttacks = 2
-        };
+        => new(dcs: Enumerable.Range(9, 7).ToArray(), attackModifiers: Enumerable.Range(-1, 7).ToArray(), numberOfAttacks: 2);
 }
