@@ -32,28 +32,24 @@ public class ConsoleRenderer : IConsoleRenderer
                     switch (key.Key)
                     {
                         case ConsoleKey.DownArrow:
-                            if (inputVariables.NumberOfAttacks == 1)
-                                break;
-                            inputVariables = new(inputVariables.Dcs, inputVariables.AttackModifiers, inputVariables.NumberOfAttacks - 1);
+                            inputVariables = inputVariables.WithIncrementedNumberOfAttacks();
                             var newTableContext = _tableContextService.Get(inputVariables);
                             table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.UpArrow:
-                            inputVariables = new(inputVariables.Dcs, inputVariables.AttackModifiers, inputVariables.NumberOfAttacks + 1);
+                            if (inputVariables.NumberOfAttacks == 1)
+                                break;
+                            inputVariables = inputVariables.WithDecrementedNumberOfAttacks();
                             newTableContext = _tableContextService.Get(inputVariables);
                             table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.RightArrow:
-                            var increasedDcs = inputVariables.Dcs.Skip(1).Concat(new[] { inputVariables.Dcs.Last() + 1 });
-                            var increasedAttackModifiers = inputVariables.AttackModifiers.Skip(1).Concat(new[] { inputVariables.AttackModifiers.Last() + 1 });
-                            inputVariables = new(increasedDcs.ToArray(), increasedAttackModifiers.ToArray(), inputVariables.NumberOfAttacks);
+                            inputVariables = inputVariables.WithIncrementedDcsAndModifiers();
                             newTableContext = _tableContextService.Get(inputVariables);
                             table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.LeftArrow:
-                            var decreasedDcs = new[] { inputVariables.Dcs.Last() - 1 }.Concat(inputVariables.Dcs.Take(inputVariables.Dcs.Length - 1));
-                            var decreasedAttackModifiers = new[] { inputVariables.AttackModifiers.Last() - 1 }.Concat(inputVariables.AttackModifiers.Take(inputVariables.AttackModifiers.Length - 1));
-                            inputVariables = new(decreasedDcs.ToArray(), decreasedAttackModifiers.ToArray(), inputVariables.NumberOfAttacks);
+                            inputVariables = inputVariables.WithDecrementedDcsAndModifiers();
                             newTableContext = _tableContextService.Get(inputVariables);
                             table.RerenderRows(newTableContext, context);
                             break;
