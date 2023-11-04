@@ -14,17 +14,19 @@ public class Actor
     public static INameStage New()
         => new NameStage(new());
 
-    public double SavingThrowSuccessChance(AbilityScoreType abilityScoreType, int dc)
+    public double GetSavingThrowSuccessChance(AbilityScoreType abilityScoreType, int dc)
     {
         var abilityScore = AbilityScores.Get(abilityScoreType);
-        var proficiencyBonus = abilityScore.IsProficient ? ProficiencyBonus : 0;
+        var proficiencyBonus = abilityScore.IsProficient
+            ? ProficiencyBonus
+            : 0;
         return CalculateSavingThrowSuccessChance(dc, abilityScore, proficiencyBonus);
     }
 
-    public GetHitProbability GetHitProbability(int attackModifier, int totalNumberOfAttacks, int numberOfHits)
+    public ReceiveHitChance GetReceiveHitChance(int attackModifier, int totalNumberOfAttacks, int numberOfHits)
     {
         GuardNumberOfAttacks(totalNumberOfAttacks);
-        return Attack.GetHitProbability.Create(attackModifier, ArmorClass, totalNumberOfAttacks, numberOfHits);
+        return ReceiveHitChance.Create(attackModifier, ArmorClass, totalNumberOfAttacks, numberOfHits);
     }
 
     private static double CalculateSavingThrowSuccessChance(int dc, AbilityScore abilityScore, int proficiencyBonus)

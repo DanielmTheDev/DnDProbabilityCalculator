@@ -3,7 +3,7 @@
 namespace DnDProbabilityCalculator.Core.Tests.Attack;
 
 [TestClass]
-public class AttackProbabilitiesTests
+public class ReceiveHitChanceTests
 {
     [TestMethod]
     [DataRow(0, 0.16)]
@@ -12,7 +12,7 @@ public class AttackProbabilitiesTests
     public void Create_WithValidAttackModifiers_ReturnsProbability(int numberOfHits, double expectedChance)
     {
         // Act
-        var probability = GetHitProbability.Create(6, 15, 2, numberOfHits);
+        var probability = ReceiveHitChance.Create(6, 15, 2, numberOfHits);
 
         // Assert
         Assert.AreEqual(expectedChance, probability.Probability);
