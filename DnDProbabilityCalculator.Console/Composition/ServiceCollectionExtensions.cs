@@ -1,4 +1,4 @@
-﻿using DnDProbabilityCalculator.Application.Probabilities;
+﻿using DnDProbabilityCalculator.Application.Table;
 using DnDProbabilityCalculator.Console.Console;
 using DnDProbabilityCalculator.Core.Adventuring;
 using DnDProbabilityCalculator.Infrastructure.Actors;

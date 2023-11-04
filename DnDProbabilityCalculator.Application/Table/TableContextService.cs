@@ -1,6 +1,6 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring;
 
-namespace DnDProbabilityCalculator.Application.Probabilities;
+namespace DnDProbabilityCalculator.Application.Table;
 
 public class TableContextService : ITableContextService
 {

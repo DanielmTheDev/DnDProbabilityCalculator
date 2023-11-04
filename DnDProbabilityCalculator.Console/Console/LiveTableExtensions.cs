@@ -1,4 +1,4 @@
-﻿using DnDProbabilityCalculator.Application.Probabilities;
+﻿using DnDProbabilityCalculator.Application.Table;
 using Spectre.Console;
 
 namespace DnDProbabilityCalculator.Console.Console;

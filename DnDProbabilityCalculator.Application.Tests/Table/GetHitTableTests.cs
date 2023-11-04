@@ -1,8 +1,8 @@
-﻿using DnDProbabilityCalculator.Application.Probabilities;
+﻿using DnDProbabilityCalculator.Application.Table;
 using DnDProbabilityCalculator.Core.Adventuring;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DnDProbabilityCalculator.Application.Tests.Probabilities;
+namespace DnDProbabilityCalculator.Application.Tests.Table;
 
 [TestClass]
 public class GetHitTableTests

@@ -1,7 +1,7 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring;
 using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 
-namespace DnDProbabilityCalculator.Application.Probabilities;
+namespace DnDProbabilityCalculator.Application.Table;
 
 public class SavingThrowTable
 {
