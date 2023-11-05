@@ -15,14 +15,14 @@ public class ReceiveHitTable
     {
         var attackModifierRow = new List<string> { $"{totalNumberOfAttacks} Attacks/Mod" }.Concat(attackModifiers.Select(modifier => modifier.ToString()));
 
-        var rows = Enumerable.Range(0, totalNumberOfAttacks + 1)
+        var probabilityRows = Enumerable.Range(0, totalNumberOfAttacks + 1)
             .Select(currentNumberOfHits => CreateGetHitRow(actor, attackModifiers, totalNumberOfAttacks, currentNumberOfHits))
             .ToList();
 
         return new()
         {
             AttackModifiers = attackModifierRow.ToList(),
-            Probabilities = rows
+            Probabilities = probabilityRows
         };
     }
 
