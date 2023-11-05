@@ -1,13 +1,13 @@
 ﻿namespace DnDProbabilityCalculator.Core.Adventuring.Attack;
 
-public record ReceiveHitChance
+public record HitChance
 {
     public required int NumberOfHits { get; init; }
     public required int ArmorClass { get; set; }
     public required int AttackModifier { get; set; }
     public required double Probability { get; init; }
 
-    public static ReceiveHitChance Create(int attackModifier, int armorClass, int totalNumberOfAttacks, int numberOfHits)
+    public static HitChance Create(int attackModifier, int armorClass, int totalNumberOfAttacks, int numberOfHits)
     {
         var singleHitProbability = (21 - (armorClass - attackModifier)) / 20.0;
         return new()

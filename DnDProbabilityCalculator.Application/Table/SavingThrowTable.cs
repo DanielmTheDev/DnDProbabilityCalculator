@@ -32,7 +32,7 @@ public class SavingThrowTable
             .Concat(dcs.Select(
                 dc =>
                 {
-                    var probability = actor.GetSavingThrowSuccessChance(abilityScoreType, dc);
+                    var probability = actor.SavingThrowSuccessChance(abilityScoreType, dc);
                     return ColoredSuccessChance.FromProbability(probability).ToString();
                 }).ToList());
     }

@@ -15,7 +15,7 @@ public class Actor
     public static INameStage New()
         => new NameStage(new());
 
-    public double GetSavingThrowSuccessChance(AbilityScoreType abilityScoreType, int dc)
+    public double SavingThrowSuccessChance(AbilityScoreType abilityScoreType, int dc)
     {
         var abilityScore = AbilityScores.Get(abilityScoreType);
         var proficiencyBonus = abilityScore.IsProficient
@@ -24,10 +24,16 @@ public class Actor
         return CalculateSavingThrowSuccessChance(dc, abilityScore, proficiencyBonus);
     }
 
-    public ReceiveHitChance GetReceiveHitChance(int attackModifier, int totalNumberOfAttacks, int numberOfHits)
+    public double DeliverHitChance(int armorClass, int numberOfHits)
+    {
+        var attackModifier = ProficiencyBonus + AbilityScores.AsList().Single(score => score.Type == AttackAbility).Modifier;
+        return HitChance.Create(attackModifier, armorClass, NumberOfAttacks, numberOfHits);
+    }
+
+    public HitChance ReceiveHitChance(int attackModifier, int totalNumberOfAttacks, int numberOfHits)
     {
         GuardNumberOfAttacks(totalNumberOfAttacks);
-        return ReceiveHitChance.Create(attackModifier, ArmorClass, totalNumberOfAttacks, numberOfHits);
+        return HitChance.Create(attackModifier, ArmorClass, totalNumberOfAttacks, numberOfHits);
     }
 
     private static double CalculateSavingThrowSuccessChance(int dc, AbilityScore abilityScore, int proficiencyBonus)

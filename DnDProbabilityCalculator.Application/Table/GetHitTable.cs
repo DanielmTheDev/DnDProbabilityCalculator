@@ -30,7 +30,7 @@ public class GetHitTable
         => new[] { $"{currentNumberOfHits} Hits" }.Concat(attackModifiers
             .Select(currentModifier =>
             {
-                var probability = actor.GetReceiveHitChance(currentModifier, totalNumberOfAttacks, currentNumberOfHits).Probability;
+                var probability = actor.ReceiveHitChance(currentModifier, totalNumberOfAttacks, currentNumberOfHits).Probability;
                 var successChance = ColoredSuccessChance.FromProbability(probability);
                 return currentNumberOfHits == 0
                     ? successChance.ToString()

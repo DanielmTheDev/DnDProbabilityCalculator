@@ -58,9 +58,9 @@ public class ActorTests
         var actor = BuildValidActor();
 
         // Act
-        var dexterityChance = actor.GetSavingThrowSuccessChance(AbilityScoreType.Dexterity, 13);
-        var charismaChance = actor.GetSavingThrowSuccessChance(AbilityScoreType.Charisma, 13);
-        var intelligenceChance = actor.GetSavingThrowSuccessChance(AbilityScoreType.Intelligence, 13);
+        var dexterityChance = actor.SavingThrowSuccessChance(AbilityScoreType.Dexterity, 13);
+        var charismaChance = actor.SavingThrowSuccessChance(AbilityScoreType.Charisma, 13);
+        var intelligenceChance = actor.SavingThrowSuccessChance(AbilityScoreType.Intelligence, 13);
 
         // Assert
         Assert.AreEqual(0.4, dexterityChance);
@@ -75,8 +75,8 @@ public class ActorTests
         var actor = BuildValidActor();
 
         // Act
-        var strengthChance = actor.GetSavingThrowSuccessChance(AbilityScoreType.Strength, 16);
-        var constChance = actor.GetSavingThrowSuccessChance(AbilityScoreType.Constitution, 16);
+        var strengthChance = actor.SavingThrowSuccessChance(AbilityScoreType.Strength, 16);
+        var constChance = actor.SavingThrowSuccessChance(AbilityScoreType.Constitution, 16);
 
         // Assert
         Assert.AreEqual(0.5, strengthChance);
@@ -86,7 +86,7 @@ public class ActorTests
     [TestMethod]
     [DataRow(0)]
     [DataRow(-1)]
-    public void CalculateReceiveHitChance_WithNegativeNumberOfAttacks_ThrowsArgumentException(int numberOfAttacks)
+    public void ReceiveHitChance_WithNegativeNumberOfAttacks_ThrowsArgumentException(int numberOfAttacks)
     {
         // Arrange
         var actor = Actor
@@ -104,7 +104,7 @@ public class ActorTests
             .Build();
 
         // Act and Assert
-        var message = Assert.ThrowsException<ArgumentOutOfRangeException>(() => actor.GetReceiveHitChance(6, numberOfAttacks, 2));
+        var message = Assert.ThrowsException<ArgumentOutOfRangeException>(() => actor.ReceiveHitChance(6, numberOfAttacks, 2));
         Assert.IsTrue(message.Message.Contains(ErrorMessages.Negative_Number_Of_Attacks));
     }
 
@@ -117,20 +117,22 @@ public class ActorTests
         var actor = Actor
             .New()
             .WithName("Durak")
-            .WithStrength(13, true)
+            .WithStrength(16, true)
             .WithDexterity(11)
             .WithConstitution(10, true)
             .WithWisdom(13)
             .WithIntelligence(9)
             .WithCharisma(10)
-            .WithProficiency(4)
+            .WithProficiency(2)
             .WithArmorClass(15)
             .WithAttackAbility(AbilityScoreType.Strength)
             .Build();
 
-        // Act and Assert
-        var message = Assert.ThrowsException<ArgumentOutOfRangeException>(() => actor.GetReceiveHitChance(6, numberOfAttacks, 2));
-        Assert.IsTrue(message.Message.Contains(ErrorMessages.Negative_Number_Of_Attacks));
+        // Act
+        var chance = actor.DeliverHitChance(numberOfAttacks, 14);
+
+        // Assert
+        Assert.AreEqual(0.6, chance);
     }
 
     private static Actor BuildValidActor()
