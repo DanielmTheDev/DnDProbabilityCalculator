@@ -2,5 +2,5 @@
 
 public interface IArmorClassStage
 {
-    IBuildStage WithArmorClass(int armorClass);
+    IAttackAbilityStage WithArmorClass(int armorClass);
 }

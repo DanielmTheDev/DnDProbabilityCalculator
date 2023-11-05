@@ -10,6 +10,7 @@ public class Actor
     public AbilityScores AbilityScores { get; init; } = new();
     public int ProficiencyBonus { get; set; }
     public int ArmorClass { get; set; }
+    public AbilityScoreType AttackAbility { get; set; }
 
     public static INameStage New()
         => new NameStage(new());

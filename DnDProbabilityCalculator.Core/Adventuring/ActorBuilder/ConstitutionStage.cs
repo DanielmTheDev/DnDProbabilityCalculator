@@ -9,9 +9,9 @@ public class ConstitutionStage : IConstitutionStage
     public ConstitutionStage(Actor actor)
         => _actor = actor;
 
-    public IWisdomStage WithConstitution(int value, bool isProficient = false, bool isAttackAbility = false)
+    public IWisdomStage WithConstitution(int value, bool isProficient = false)
     {
-        _actor.AbilityScores.Constitution = new Constitution { Value = value, IsProficient = isProficient, IsAttackAbility = isAttackAbility };
+        _actor.AbilityScores.Constitution = new Constitution { Value = value, IsProficient = isProficient };
         return new WisdomStage(_actor);
     }
 }

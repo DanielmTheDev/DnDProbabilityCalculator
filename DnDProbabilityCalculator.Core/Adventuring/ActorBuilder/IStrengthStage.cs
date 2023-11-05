@@ -2,5 +2,5 @@
 
 public interface IStrengthStage
 {
-    IDexterityStage WithStrength(int value, bool isProficient = false, bool isAttackAbility = false);
+    IDexterityStage WithStrength(int value, bool isProficient = false);
 }

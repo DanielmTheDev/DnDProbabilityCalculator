@@ -9,9 +9,9 @@ public class IntelligenceStage : IIntelligenceStage
     public IntelligenceStage(Actor actor)
         => _actor = actor;
 
-    public ICharismaStage WithIntelligence(int value, bool isProficient = false, bool isAttackAbility = false)
+    public ICharismaStage WithIntelligence(int value, bool isProficient = false)
     {
-        _actor.AbilityScores.Intelligence = new Intelligence { Value = value, IsProficient = isProficient, IsAttackAbility = isAttackAbility };
+        _actor.AbilityScores.Intelligence = new Intelligence { Value = value, IsProficient = isProficient };
         return new CharismaStage(_actor);
     }
 }

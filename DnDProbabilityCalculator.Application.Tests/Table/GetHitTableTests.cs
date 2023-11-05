@@ -1,5 +1,6 @@
 ﻿using DnDProbabilityCalculator.Application.Table;
 using DnDProbabilityCalculator.Core.Adventuring;
+using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DnDProbabilityCalculator.Application.Tests.Table;
@@ -34,5 +35,6 @@ public class GetHitTableTests
             .WithCharisma(8)
             .WithProficiency(9)
             .WithArmorClass(5)
+            .WithAttackAbility(AbilityScoreType.Charisma)
             .Build();
 }

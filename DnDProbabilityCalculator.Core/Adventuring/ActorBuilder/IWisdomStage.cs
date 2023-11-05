@@ -2,5 +2,5 @@
 
 public interface IWisdomStage
 {
-    IIntelligenceStage WithWisdom(int value, bool isProficient = false, bool isAttackAbility = false);
+    IIntelligenceStage WithWisdom(int value, bool isProficient = false);
 }

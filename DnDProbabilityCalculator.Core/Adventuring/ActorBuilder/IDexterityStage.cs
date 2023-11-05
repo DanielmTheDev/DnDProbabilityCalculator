@@ -2,5 +2,5 @@
 
 public interface IDexterityStage
 {
-    IConstitutionStage WithDexterity(int value, bool isProficient = false, bool isAttackAbility = false);
+    IConstitutionStage WithDexterity(int value, bool isProficient = false);
 }

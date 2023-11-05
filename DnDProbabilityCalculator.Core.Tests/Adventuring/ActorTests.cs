@@ -24,33 +24,8 @@ public class ActorTests
         Assert.AreEqual(10, actor.AbilityScores.Charisma);
         Assert.AreEqual(5, actor.ArmorClass);
         Assert.AreEqual(4, actor.ProficiencyBonus);
-        Assert.IsTrue(actor.AbilityScores.Dexterity.IsAttackAbility);
-        Assert.IsFalse(actor.AbilityScores.Strength.IsAttackAbility);
-        Assert.IsFalse(actor.AbilityScores.Constitution.IsAttackAbility);
-        Assert.IsFalse(actor.AbilityScores.Wisdom.IsAttackAbility);
-        Assert.IsFalse(actor.AbilityScores.Intelligence.IsAttackAbility);
-        Assert.IsFalse(actor.AbilityScores.Charisma.IsAttackAbility);
-    }
 
-    [TestMethod]
-    public void FluentBuilder_WithMoreThanOneAttackAbility_Throws()
-    {
-        // Arrange Act Assert
-        var message = Assert.ThrowsException<InvalidOperationException>(() =>
-            Actor
-                .New()
-                .WithName("Durak")
-                .WithStrength(13, true, true)
-                .WithDexterity(11)
-                .WithConstitution(10, true, true)
-                .WithWisdom(13)
-                .WithIntelligence(11)
-                .WithCharisma(10)
-                .WithProficiency(4)
-                .WithArmorClass(5)
-                .Build())
-            .Message;
-        Assert.IsTrue(message.Contains(ErrorMessages.More_Than_One_Attack_Ability));
+        Assert.AreEqual(actor.AttackAbility, AbilityScoreType.Dexterity);
     }
 
     [TestMethod]
@@ -71,6 +46,7 @@ public class ActorTests
                 .WithCharisma(10)
                 .WithProficiency(4)
                 .WithArmorClass(5)
+                .WithAttackAbility(AbilityScoreType.Dexterity)
                 .Build()).Message;
         Assert.IsTrue(message.Contains(ErrorMessages.Ability_Score_Out_Of_Range));
     }
@@ -110,7 +86,7 @@ public class ActorTests
     [TestMethod]
     [DataRow(0)]
     [DataRow(-1)]
-    public void CalculateHitProbabilities_WithNegativeNumberOfAttacks_ThrowsArgumentException(int numberOfAttacks)
+    public void CalculateReceiveHitChance_WithNegativeNumberOfAttacks_ThrowsArgumentException(int numberOfAttacks)
     {
         // Arrange
         var actor = Actor
@@ -124,6 +100,32 @@ public class ActorTests
             .WithCharisma(10)
             .WithProficiency(4)
             .WithArmorClass(15)
+            .WithAttackAbility(AbilityScoreType.Dexterity)
+            .Build();
+
+        // Act and Assert
+        var message = Assert.ThrowsException<ArgumentOutOfRangeException>(() => actor.GetReceiveHitChance(6, numberOfAttacks, 2));
+        Assert.IsTrue(message.Message.Contains(ErrorMessages.Negative_Number_Of_Attacks));
+    }
+
+    [TestMethod]
+    [DataRow(1)]
+    [DataRow(2)]
+    public void CalculateDeliverHitChance_WhenCalled_ReturnsChanceForSuccess(int numberOfAttacks)
+    {
+        // Arrange
+        var actor = Actor
+            .New()
+            .WithName("Durak")
+            .WithStrength(13, true)
+            .WithDexterity(11)
+            .WithConstitution(10, true)
+            .WithWisdom(13)
+            .WithIntelligence(9)
+            .WithCharisma(10)
+            .WithProficiency(4)
+            .WithArmorClass(15)
+            .WithAttackAbility(AbilityScoreType.Strength)
             .Build();
 
         // Act and Assert
@@ -136,12 +138,13 @@ public class ActorTests
             .New()
             .WithName("Durak")
             .WithStrength(13, true)
-            .WithDexterity(11, false, true)
+            .WithDexterity(11)
             .WithConstitution(10, true)
             .WithWisdom(13)
             .WithIntelligence(9)
             .WithCharisma(10)
             .WithProficiency(4)
             .WithArmorClass(5)
+            .WithAttackAbility(AbilityScoreType.Dexterity)
             .Build();
 }

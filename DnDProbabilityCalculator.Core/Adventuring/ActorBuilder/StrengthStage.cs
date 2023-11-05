@@ -9,9 +9,9 @@ public class StrengthStage : IStrengthStage
     public StrengthStage(Actor actor)
         => _actor = actor;
 
-    public IDexterityStage WithStrength(int value, bool isProficient = false, bool isAttackAbility = false)
+    public IDexterityStage WithStrength(int value, bool isProficient = false)
     {
-        _actor.AbilityScores.Strength = new Strength { Value = value, IsProficient = isProficient, IsAttackAbility = isAttackAbility };
+        _actor.AbilityScores.Strength = new Strength { Value = value, IsProficient = isProficient };
         return new DexterityStage(_actor);
     }
 }
