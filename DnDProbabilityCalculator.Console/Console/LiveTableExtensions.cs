@@ -9,16 +9,16 @@ public static class LiveTableExtensions
     {
         theTable.Rows.Clear();
         theTable.AddRow(CreateSavingThrowTables(tableContext));
-        theTable.AddRow(CreateGetHitTables(tableContext));
+        theTable.AddRow(CreateReceiveHitTables(tableContext));
         context.Refresh();
     }
 
-    private static IEnumerable<Table> CreateGetHitTables(IEnumerable<TableContext> allActorTables)
+    private static IEnumerable<Table> CreateReceiveHitTables(IEnumerable<TableContext> allActorTables)
         => allActorTables.Select(actorTable =>
         {
             var table = new Table();
-            table.AddColumns(actorTable.GetHitTable.AttackModifiers.ToArray());
-            actorTable.GetHitTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
+            table.AddColumns(actorTable.ReceiveHitTable.AttackModifiers.ToArray());
+            actorTable.ReceiveHitTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
             return table;
         }).ToList();
 

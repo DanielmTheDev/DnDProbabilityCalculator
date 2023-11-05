@@ -2,16 +2,16 @@
 
 namespace DnDProbabilityCalculator.Application.Table;
 
-public class GetHitTable
+public class ReceiveHitTable
 {
     public required List<string> AttackModifiers { get; init; }
     public required List<IEnumerable<string>> Probabilities { get; init; }
 
-    private GetHitTable()
+    private ReceiveHitTable()
     {
     }
 
-    public static GetHitTable FromActor(Actor actor, int[] attackModifiers, int totalNumberOfAttacks)
+    public static ReceiveHitTable FromActor(Actor actor, int[] attackModifiers, int totalNumberOfAttacks)
     {
         var attackModifierRow = new List<string> { $"{totalNumberOfAttacks} Attacks/Mod" }.Concat(attackModifiers.Select(modifier => modifier.ToString()));
 

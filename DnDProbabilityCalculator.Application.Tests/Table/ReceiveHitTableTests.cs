@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace DnDProbabilityCalculator.Application.Tests.Table;
 
 [TestClass]
-public class GetHitTableTests
+public class ReceiveHitTableTests
 {
     [TestMethod]
     public void FromActor_WhenCalled_ReturnsGetHitChanceTable()
@@ -15,7 +15,7 @@ public class GetHitTableTests
         var actor = GetValidActor();
 
         // Act
-        var tableData = GetHitTable.FromActor(actor, new[] { -1, 0, 1 }, 2);
+        var tableData = ReceiveHitTable.FromActor(actor, new[] { -1, 0, 1 }, 2);
 
         // Assert
         new List<string> { "2 ","-1", "0", "1" }.AssertElementsAreContainedIn(tableData.AttackModifiers);
