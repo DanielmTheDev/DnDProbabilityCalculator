@@ -27,4 +27,7 @@
     <data name="Negative_Number_Of_Attacks" xml:space="preserve">
         <value>Number of attacks must be higher than zero</value>
     </data>
+    <data name="More_Than_One_Attack_Ability" xml:space="preserve">
+        <value>An actor can only have one Attack Ability</value>
+    </data>
 </root>

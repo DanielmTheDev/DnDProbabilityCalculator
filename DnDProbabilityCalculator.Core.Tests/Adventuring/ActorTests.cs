@@ -33,6 +33,27 @@ public class ActorTests
     }
 
     [TestMethod]
+    public void FluentBuilder_WithMoreThanOneAttackAbility_Throws()
+    {
+        // Arrange Act Assert
+        var message = Assert.ThrowsException<InvalidOperationException>(() =>
+            Actor
+                .New()
+                .WithName("Durak")
+                .WithStrength(13, true, true)
+                .WithDexterity(11)
+                .WithConstitution(10, true, true)
+                .WithWisdom(13)
+                .WithIntelligence(11)
+                .WithCharisma(10)
+                .WithProficiency(4)
+                .WithArmorClass(5)
+                .Build())
+            .Message;
+        Assert.IsTrue(message.Contains(ErrorMessages.More_Than_One_Attack_Ability));
+    }
+
+    [TestMethod]
     [DataRow(-1)]
     [DataRow(31)]
     public void FluentBuilder_WithTooLowAbilityScore_ThrowsException(int abilityScore)

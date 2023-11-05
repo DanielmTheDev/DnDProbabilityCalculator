@@ -69,6 +69,15 @@ namespace DnDProbabilityCalculator.Core {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An actor can only have one Attack Ability.
+        /// </summary>
+        public static string More_Than_One_Attack_Ability {
+            get {
+                return ResourceManager.GetString("More_Than_One_Attack_Ability", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of attacks must be higher than zero.
         /// </summary>
         public static string Negative_Number_Of_Attacks {

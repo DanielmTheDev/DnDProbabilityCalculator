@@ -14,4 +14,7 @@ public record AbilityScores
 
     private IEnumerable<AbilityScore> AllAbilityScores()
         => new List<AbilityScore> { Dexterity, Strength, Constitution, Intelligence, Wisdom, Charisma };
+
+    public IEnumerable<AbilityScore> AsList()
+        => new List<AbilityScore> { Dexterity, Strength, Constitution, Intelligence, Wisdom, Charisma };
 }
