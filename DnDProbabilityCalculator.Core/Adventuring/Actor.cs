@@ -10,6 +10,7 @@ public class Actor
     public AbilityScores AbilityScores { get; init; } = new();
     public int ProficiencyBonus { get; set; }
     public int ArmorClass { get; set; }
+    public int NumberOfAttacks { get; set; }
     public AbilityScoreType AttackAbility { get; set; }
 
     public static INameStage New()
@@ -24,7 +25,7 @@ public class Actor
         return CalculateSavingThrowSuccessChance(dc, abilityScore, proficiencyBonus);
     }
 
-    public double DeliverHitChance(int armorClass, int numberOfHits)
+    public HitChance DeliverHitChance(int armorClass, int numberOfHits)
     {
         var attackModifier = ProficiencyBonus + AbilityScores.AsList().Single(score => score.Type == AttackAbility).Modifier;
         return HitChance.Create(attackModifier, armorClass, NumberOfAttacks, numberOfHits);

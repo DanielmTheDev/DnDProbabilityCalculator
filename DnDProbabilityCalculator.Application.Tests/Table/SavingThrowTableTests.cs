@@ -38,6 +38,7 @@ public class SavingThrowTableTests
             .WithCharisma(8)
             .WithProficiency(9)
             .WithArmorClass(5)
+            .WithNumberOfAttacks(2)
             .WithAttackAbility(AbilityScoreType.Dexterity)
             .Build();
 }

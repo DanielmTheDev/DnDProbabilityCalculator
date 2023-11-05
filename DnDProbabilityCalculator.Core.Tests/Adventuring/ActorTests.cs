@@ -24,8 +24,8 @@ public class ActorTests
         Assert.AreEqual(10, actor.AbilityScores.Charisma);
         Assert.AreEqual(5, actor.ArmorClass);
         Assert.AreEqual(4, actor.ProficiencyBonus);
-
         Assert.AreEqual(actor.AttackAbility, AbilityScoreType.Dexterity);
+        Assert.AreEqual(actor.NumberOfAttacks, 2);
     }
 
     [TestMethod]
@@ -46,6 +46,7 @@ public class ActorTests
                 .WithCharisma(10)
                 .WithProficiency(4)
                 .WithArmorClass(5)
+                .WithNumberOfAttacks(2)
                 .WithAttackAbility(AbilityScoreType.Dexterity)
                 .Build()).Message;
         Assert.IsTrue(message.Contains(ErrorMessages.Ability_Score_Out_Of_Range));
@@ -100,6 +101,7 @@ public class ActorTests
             .WithCharisma(10)
             .WithProficiency(4)
             .WithArmorClass(15)
+            .WithNumberOfAttacks(2)
             .WithAttackAbility(AbilityScoreType.Dexterity)
             .Build();
 
@@ -125,6 +127,7 @@ public class ActorTests
             .WithCharisma(10)
             .WithProficiency(2)
             .WithArmorClass(15)
+            .WithNumberOfAttacks(2)
             .WithAttackAbility(AbilityScoreType.Strength)
             .Build();
 
@@ -132,7 +135,7 @@ public class ActorTests
         var chance = actor.DeliverHitChance(numberOfAttacks, 14);
 
         // Assert
-        Assert.AreEqual(0.6, chance);
+        Assert.AreEqual(0.6, chance.Probability);
     }
 
     private static Actor BuildValidActor()
@@ -147,6 +150,7 @@ public class ActorTests
             .WithCharisma(10)
             .WithProficiency(4)
             .WithArmorClass(5)
+            .WithNumberOfAttacks(2)
             .WithAttackAbility(AbilityScoreType.Dexterity)
             .Build();
 }
