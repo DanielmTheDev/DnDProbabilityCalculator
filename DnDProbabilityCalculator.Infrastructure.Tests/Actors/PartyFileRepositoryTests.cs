@@ -1,4 +1,5 @@
 using System.Text.Json;
+using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 using DnDProbabilityCalculator.Infrastructure.Actors;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;
 using DnDProbabilityCalculator.Infrastructure.Settings;
@@ -47,6 +48,9 @@ public class PartyFileRepositoryTests
         Assert.IsTrue(party.Characters[0].AbilityScores.Strength.IsProficient);
         Assert.IsTrue(party.Characters[0].AbilityScores.Dexterity.IsProficient);
         Assert.AreEqual(3, party.Characters[0].ProficiencyBonus);
+        Assert.AreEqual(14, party.Characters[0].ArmorClass);
+        Assert.AreEqual(2, party.Characters[0].NumberOfAttacks);
+        Assert.AreEqual(AbilityScoreType.Strength, party.Characters[0].AttackAbility);
 
         Assert.AreEqual("Erethil", party.Characters[1].Name);
         Assert.AreEqual(1, party.Characters[1].AbilityScores.Dexterity);
@@ -58,6 +62,9 @@ public class PartyFileRepositoryTests
         Assert.IsTrue(party.Characters[1].AbilityScores.Wisdom.IsProficient);
         Assert.IsTrue(party.Characters[1].AbilityScores.Charisma.IsProficient);
         Assert.AreEqual(2, party.Characters[1].ProficiencyBonus);
+        Assert.AreEqual(10, party.Characters[1].ArmorClass);
+        Assert.AreEqual(4, party.Characters[1].NumberOfAttacks);
+        Assert.AreEqual(AbilityScoreType.Dexterity, party.Characters[1].AttackAbility);
     }
 
     [TestMethod]
@@ -87,6 +94,9 @@ public class PartyFileRepositoryTests
                 {
                   "name": "Durak",
                   "proficiencyBonus": 3,
+                  "numberOfAttacks": 2,
+                  "armorClass": 14,
+                  "attackAbility": "Strength",
                   "abilityScores": {
                     "dexterity": {
                       "value": 11,
@@ -113,6 +123,9 @@ public class PartyFileRepositoryTests
                 {
                   "name": "Erethil",
                   "proficiencyBonus": 2,
+                  "numberOfAttacks": 4,
+                  "armorClass": 10,
+                  "attackAbility": "Dexterity",
                   "abilityScores": {
                     "dexterity": {
                       "value": 1

@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 using DnDProbabilityCalculator.Core;
 using DnDProbabilityCalculator.Core.Adventuring;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;
@@ -14,7 +15,8 @@ public class PartyFileRepository : IPartyRepository
 
     private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
-        PropertyNameCaseInsensitive = true
+        PropertyNameCaseInsensitive = true,
+        Converters = { new JsonStringEnumConverter() }
     };
 
     public PartyFileRepository(IFileAccessor fileAccessor, IOptions<FileRepositoryOptions> options)
