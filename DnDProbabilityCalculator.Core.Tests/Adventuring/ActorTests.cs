@@ -24,6 +24,12 @@ public class ActorTests
         Assert.AreEqual(10, actor.AbilityScores.Charisma);
         Assert.AreEqual(5, actor.ArmorClass);
         Assert.AreEqual(4, actor.ProficiencyBonus);
+        Assert.IsTrue(actor.AbilityScores.Dexterity.IsAttackAbility);
+        Assert.IsFalse(actor.AbilityScores.Strength.IsAttackAbility);
+        Assert.IsFalse(actor.AbilityScores.Constitution.IsAttackAbility);
+        Assert.IsFalse(actor.AbilityScores.Wisdom.IsAttackAbility);
+        Assert.IsFalse(actor.AbilityScores.Intelligence.IsAttackAbility);
+        Assert.IsFalse(actor.AbilityScores.Charisma.IsAttackAbility);
     }
 
     [TestMethod]
@@ -109,7 +115,7 @@ public class ActorTests
             .New()
             .WithName("Durak")
             .WithStrength(13, true)
-            .WithDexterity(11)
+            .WithDexterity(11, false, true)
             .WithConstitution(10, true)
             .WithWisdom(13)
             .WithIntelligence(9)

@@ -2,5 +2,5 @@
 
 public interface ICharismaStage
 {
-    IProficiencyStage WithCharisma(int value, bool isProficient = false);
+    IProficiencyStage WithCharisma(int value, bool isProficient = false, bool isAttackAbility = false);
 }

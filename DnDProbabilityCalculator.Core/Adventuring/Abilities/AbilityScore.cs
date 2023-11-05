@@ -19,6 +19,7 @@ public abstract record AbilityScore
     }
 
     public bool IsProficient { get; init; }
+    public bool IsAttackAbility { get; init; }
     public int Modifier => (int)Math.Floor((Value - 10) / 2.0);
     public abstract AbilityScoreType Type { get; }
     public static implicit operator int(AbilityScore attribute) => attribute.Value;

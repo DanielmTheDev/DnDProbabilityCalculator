@@ -2,5 +2,5 @@
 
 public interface IConstitutionStage
 {
-    IWisdomStage WithConstitution(int value, bool isProficient = false);
+    IWisdomStage WithConstitution(int value, bool isProficient = false, bool isAttackAbility = false);
 }

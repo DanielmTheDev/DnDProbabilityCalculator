@@ -2,5 +2,5 @@
 
 public interface IIntelligenceStage
 {
-    ICharismaStage WithIntelligence(int value, bool isProficient = false);
+    ICharismaStage WithIntelligence(int value, bool isProficient = false, bool isAttackAbility = false);
 }
