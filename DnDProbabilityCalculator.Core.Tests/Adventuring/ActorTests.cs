@@ -111,9 +111,9 @@ public class ActorTests
     }
 
     [TestMethod]
-    [DataRow(1)]
-    [DataRow(2)]
-    public void CalculateDeliverHitChance_WhenCalled_ReturnsChanceForSuccess(int numberOfAttacks)
+    [DataRow(1, 0.48)]
+    [DataRow(2, 0.36)]
+    public void CalculateDeliverHitChance_WhenCalled_ReturnsChanceForSuccess(int numberOfHits, double expectedProbability)
     {
         // Arrange
         var actor = Actor
@@ -132,10 +132,10 @@ public class ActorTests
             .Build();
 
         // Act
-        var chance = actor.DeliverHitChance(numberOfAttacks, 14);
+        var chance = actor.DeliverHitChance(14, numberOfHits);
 
         // Assert
-        Assert.AreEqual(0.6, chance.Probability);
+        Assert.AreEqual(expectedProbability, chance.Probability);
     }
 
     private static Actor BuildValidActor()
