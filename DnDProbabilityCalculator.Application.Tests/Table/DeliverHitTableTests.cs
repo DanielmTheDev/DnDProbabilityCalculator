@@ -15,13 +15,13 @@ public class DeliverHitTableTests
         var actor = GetValidActor();
 
         // Act
-        var tableData = DeliverHitTable.FromActor(actor, new[] { 10, 11, 12 }, 2);
+        var tableData = DeliverHitTable.FromActor(actor, new[] { 10, 11, 12 });
 
         // Assert
         new List<string> { "2 ","10", "11", "12" }.AssertElementsAreContainedIn(tableData.ArmorClasses);
-        new List<string> { "0", "6%", "4%", "2%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
-        new List<string> { "1", "38%", "32%", "26%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
-        new List<string> { "2", "56%", "64%", "72%" }.AssertElementsAreContainedIn(tableData.Probabilities[2]);
+        new List<string> { "0", "0%", "1%", "2%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
+        new List<string> { "1", "10%", "18%", "26%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
+        new List<string> { "2", "90%", "81%", "72%" }.AssertElementsAreContainedIn(tableData.Probabilities[2]);
     }
 
     private static Actor GetValidActor()

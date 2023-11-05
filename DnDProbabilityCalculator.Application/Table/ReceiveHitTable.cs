@@ -4,7 +4,7 @@ namespace DnDProbabilityCalculator.Application.Table;
 
 public class ReceiveHitTable
 {
-    public required List<string> AttackModifiers { get; init; }
+    public required IEnumerable<string> AttackModifiers { get; init; }
     public required List<IEnumerable<string>> Probabilities { get; init; }
 
     private ReceiveHitTable()
@@ -13,7 +13,7 @@ public class ReceiveHitTable
 
     public static ReceiveHitTable FromActor(Actor actor, int[] attackModifiers, int totalNumberOfAttacks)
     {
-        var attackModifierRow = new List<string> { $"{totalNumberOfAttacks} Attacks/Mod" }.Concat(attackModifiers.Select(modifier => modifier.ToString()));
+        var attackModifierRow = new List<string> { $"{totalNumberOfAttacks} Attacks/Mod" }.Concat(attackModifiers.Select(modifier => modifier.ToString())).ToList();
 
         var probabilityRows = Enumerable.Range(0, totalNumberOfAttacks + 1)
             .Select(currentNumberOfHits => CreateGetHitRow(actor, attackModifiers, totalNumberOfAttacks, currentNumberOfHits))
@@ -21,7 +21,7 @@ public class ReceiveHitTable
 
         return new()
         {
-            AttackModifiers = attackModifierRow.ToList(),
+            AttackModifiers = attackModifierRow,
             Probabilities = probabilityRows
         };
     }
