@@ -16,7 +16,7 @@ public class DeliverHitTable
         var armorClassesRow = new List<string> { $"{actor.NumberOfAttacks} Attacks/AC" }.Concat(armorClasses.Select(ac => ac.ToString()));
 
         var probabilityRows = Enumerable.Range(0, actor.NumberOfAttacks + 1)
-            .Select(currentNumberOfHits => CreateGetHitRow(actor, armorClasses, currentNumberOfHits))
+            .Select(currentNumberOfHits => CreateDeliverHitRow(actor, armorClasses, currentNumberOfHits))
             .ToList();
 
         return new()
@@ -26,7 +26,7 @@ public class DeliverHitTable
         };
     }
 
-    private static IEnumerable<string> CreateGetHitRow(Actor actor, IEnumerable<int> armorClasses, int currentNumberOfHits)
+    private static IEnumerable<string> CreateDeliverHitRow(Actor actor, IEnumerable<int> armorClasses, int currentNumberOfHits)
         => new[] { $"{currentNumberOfHits} Hits" }.Concat(armorClasses
             .Select(currentArmorClass =>
             {

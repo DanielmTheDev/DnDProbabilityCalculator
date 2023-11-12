@@ -44,12 +44,12 @@ public class ConsoleRenderer : IConsoleRenderer
                             table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.RightArrow:
-                            inputVariables = inputVariables.WithIncrementedDcsAndModifiers();
+                            inputVariables = inputVariables.WithIncrementedColumns();
                             newTableContext = _tableContextService.Get(inputVariables);
                             table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.LeftArrow:
-                            inputVariables = inputVariables.WithDecrementedDcsAndModifiers();
+                            inputVariables = inputVariables.WithDecrementedColumns();
                             newTableContext = _tableContextService.Get(inputVariables);
                             table.RerenderRows(newTableContext, context);
                             break;
@@ -62,5 +62,5 @@ public class ConsoleRenderer : IConsoleRenderer
     }
 
     private InputVariables CreateDefaultInputVariables()
-        => new(dcs: Enumerable.Range(9, 7).ToArray(), attackModifiers: Enumerable.Range(-1, 7).ToArray(), numberOfAttacks: 2);
+        => new(Enumerable.Range(9, 7).ToArray(), Enumerable.Range(-1, 7).ToArray(), Enumerable.Range(10, 7).ToArray(), numberOfAttacks: 2);
 }

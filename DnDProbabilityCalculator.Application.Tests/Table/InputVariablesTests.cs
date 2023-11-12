@@ -12,57 +12,63 @@ public class InputVariablesTests
     }
 
     [TestMethod]
-    public void Constructor_WithDifferentNumberOfDcsAndAttackModifiers_Throws()
+    [DataRow(new[] { 1, 2 }, new[] { 1, 2 }, new[] { 1 })]
+    [DataRow(new[] { 1 }, new[] { 1, 2 }, new[] { 1, 2 })]
+    [DataRow(new[] { 1, 2 }, new[] { 1 }, new[] { 1, 2 })]
+    public void Constructor_WithDifferentNumberOfElements_Throws(int[] dcs, int[] attackModifiers, int[] armorClasses)
     {
         // Arrange Act and Assert
-        Assert.ThrowsException<ArgumentException>(() => new InputVariables(new[] { 1 }, new[] { 1, 2 }, 3));
+        Assert.ThrowsException<ArgumentException>(() => new InputVariables(dcs, attackModifiers, armorClasses, 1));
     }
 
     [TestMethod]
     public void WithIncrementedNumberOfAttacks_WhenCalled_IncrementsOnlyNumberOfAttacks()
     {
         // Arrange
-        var originalInputVariables = new InputVariables(new[] { 1, 2 }, new[] { 1, 2 }, 3);
+        var originalInputVariables = new InputVariables(new[] { 1, 2 }, new[] { 1, 2 }, new[] { 1, 2 }, 3);
 
         // Act
         var actual = originalInputVariables.WithIncrementedNumberOfAttacks();
 
         // Assert
-        var expected = new InputVariables(new[] { 1, 2 }, new[] { 1, 2 }, 4);
+        var expected = new InputVariables(new[] { 1, 2 }, new[] { 1, 2 }, new[] { 1, 2 }, 4);
         Assert.AreEqual(expected.NumberOfAttacks, actual.NumberOfAttacks);
         CollectionAssert.AreEquivalent(expected.AttackModifiers, actual.AttackModifiers);
         CollectionAssert.AreEquivalent(expected.Dcs, actual.Dcs);
+        CollectionAssert.AreEquivalent(expected.ArmorClasses, actual.ArmorClasses);
     }
 
     [TestMethod]
     public void WithDecrementedNumberOfAttacks_WhenCalled_DecrementsOnlyNumberOfAttacks()
     {
         // Arrange
-        var originalInputVariables = new InputVariables(new[] { 1, 2 }, new[] { 1, 2 }, 3);
+        var originalInputVariables = new InputVariables(new[] { 1, 2 }, new[] { 1, 2 }, new[] { 1, 2 }, 3);
 
         // Act
         var actual = originalInputVariables.WithDecrementedNumberOfAttacks();
 
         // Assert
-        var expected = new InputVariables(new[] { 1, 2 }, new[] { 1, 2 }, 2);
+        var expected = new InputVariables(new[] { 1, 2 }, new[] { 1, 2 }, new[] { 1, 2 }, 2);
         Assert.AreEqual(expected.NumberOfAttacks, actual.NumberOfAttacks);
         CollectionAssert.AreEquivalent(expected.AttackModifiers, actual.AttackModifiers);
+        CollectionAssert.AreEquivalent(expected.ArmorClasses, actual.ArmorClasses);
         CollectionAssert.AreEquivalent(expected.Dcs, actual.Dcs);
     }
 
     [TestMethod]
-    public void WithDecrementedDcsAndModifiers_WhenCalled_ShiftsThemToTheLeft()
+    public void WithDecrementedColumns_WhenCalled_ShiftsThemToTheLeft()
     {
         // Arrange
-        var originalInputVariables = new InputVariables(new[] { 1, 2 }, new[] { 1, 2 }, 3);
+        var originalInputVariables = new InputVariables(new[] { 1, 2 }, new[] { 1, 2 }, new[] { 1, 2 }, 3);
 
         // Act
-        var actual = originalInputVariables.WithDecrementedDcsAndModifiers();
+        var actual = originalInputVariables.WithDecrementedColumns();
 
         // Assert
-        var expected = new InputVariables(new[] { 0, 1 }, new[] { 0, 1 }, 3);
+        var expected = new InputVariables(new[] { 0, 1 }, new[] { 0, 1 }, new[] { 0, 1 }, 3);
         Assert.AreEqual(expected.NumberOfAttacks, actual.NumberOfAttacks);
         CollectionAssert.AreEquivalent(expected.AttackModifiers, actual.AttackModifiers);
+        CollectionAssert.AreEquivalent(expected.ArmorClasses, actual.ArmorClasses);
         CollectionAssert.AreEquivalent(expected.Dcs, actual.Dcs);
     }
 
@@ -70,15 +76,16 @@ public class InputVariablesTests
     public void WithIncrementedDcsAndModifiers_WhenCalled_ShiftsThemToTheRight()
     {
         // Arrange
-        var originalInputVariables = new InputVariables(new[] { 1, 2 }, new[] { 1, 2 }, 3);
+        var originalInputVariables = new InputVariables(new[] { 1, 2 }, new[] { 1, 2 }, new[] { 1, 2 }, 3);
 
         // Act
-        var actual = originalInputVariables.WithIncrementedDcsAndModifiers();
+        var actual = originalInputVariables.WithIncrementedColumns();
 
         // Assert
-        var expected = new InputVariables(new[] { 2, 3 }, new[] { 2, 3 }, 3);
+        var expected = new InputVariables(new[] { 2, 3 }, new[] { 2, 3 },new[] { 2, 3 }, 3);
         Assert.AreEqual(expected.NumberOfAttacks, actual.NumberOfAttacks);
         CollectionAssert.AreEquivalent(expected.AttackModifiers, actual.AttackModifiers);
+        CollectionAssert.AreEquivalent(expected.ArmorClasses, actual.ArmorClasses);
         CollectionAssert.AreEquivalent(expected.Dcs, actual.Dcs);
     }
 }
