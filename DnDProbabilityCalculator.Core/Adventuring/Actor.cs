@@ -6,11 +6,12 @@ namespace DnDProbabilityCalculator.Core.Adventuring;
 public class Actor
 {
     public required string Name { get; init; } = string.Empty;
-    public required AbilityScores AbilityScores { get; init; }
     public required int ProficiencyBonus { get; init; }
     public required int ArmorClass { get; init; }
     public required int NumberOfAttacks { get; init; }
+    public required AbilityScores AbilityScores { get; init; }
     public required AbilityScoreType AttackAbility { get; init; }
+    public required WeaponDamage WeaponDamage { get; init; }
 
     public double SavingThrowSuccessChance(AbilityScoreType abilityScoreType, int dc)
     {

@@ -44,14 +44,22 @@ public class ActorTests
     public void ReceiveHitChance_WithNegativeNumberOfAttacks_ThrowsArgumentException(int numberOfAttacks)
     {
         // Arrange
-        var actor = new Actor()
+        var actor = new Actor
         {
             Name = "Durak",
             AbilityScores = new()
             {
                 Dexterity = 12,
-                Strength = new() { Value = 13, IsProficient = true },
-                Constitution = new() { Value = 10, IsProficient = true },
+                Strength = new()
+                {
+                    Value = 13,
+                    IsProficient = true
+                },
+                Constitution = new()
+                {
+                    Value = 10,
+                    IsProficient = true
+                },
                 Intelligence = 16,
                 Wisdom = 15,
                 Charisma = 8
@@ -59,7 +67,8 @@ public class ActorTests
             ProficiencyBonus = 4,
             ArmorClass = 15,
             NumberOfAttacks = 2,
-            AttackAbility = AbilityScoreType.Dexterity
+            AttackAbility = AbilityScoreType.Dexterity,
+            WeaponDamage = new(1, 6)
         };
 
 
@@ -74,7 +83,7 @@ public class ActorTests
     public void CalculateDeliverHitChance_WhenCalled_ReturnsChanceForSuccess(int numberOfHits, double expectedProbability)
     {
         // Arrange
-        var actor = new Actor()
+        var actor = new Actor
         {
             Name = "Durak",
             AbilityScores = new()
@@ -89,7 +98,8 @@ public class ActorTests
             ProficiencyBonus = 2,
             ArmorClass = 15,
             NumberOfAttacks = 2,
-            AttackAbility = AbilityScoreType.Strength
+            AttackAbility = AbilityScoreType.Strength,
+            WeaponDamage = new(1, 6)
         };
 
         // Act
@@ -115,6 +125,7 @@ public class ActorTests
             ProficiencyBonus = 4,
             ArmorClass = 5,
             NumberOfAttacks = 2,
-            AttackAbility = AbilityScoreType.Dexterity
+            AttackAbility = AbilityScoreType.Dexterity,
+            WeaponDamage = new(1, 6)
         };
 }
