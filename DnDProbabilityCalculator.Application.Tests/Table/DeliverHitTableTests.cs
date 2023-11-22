@@ -19,9 +19,8 @@ public class DeliverHitTableTests
 
         // Assert
         new List<string> { "2 ","10", "11", "12" }.AssertElementsAreContainedIn(tableData.ArmorClasses);
-        new List<string> { "0", "0%", "1%", "2%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
-        new List<string> { "1", "10%", "18%", "26%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
-        new List<string> { "2", "90%", "81%", "72%" }.AssertElementsAreContainedIn(tableData.Probabilities[2]);
+        new List<string> { "1", "10%", "18%", "26%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
+        new List<string> { "2", "90%", "81%", "72%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
     }
 
     private static Actor GetValidActor()

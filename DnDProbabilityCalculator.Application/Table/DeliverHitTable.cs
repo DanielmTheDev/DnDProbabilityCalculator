@@ -15,7 +15,7 @@ public class DeliverHitTable
     {
         var armorClassesRow = new List<string> { $"{actor.NumberOfAttacks} Attacks/AC" }.Concat(armorClasses.Select(ac => ac.ToString()));
 
-        var probabilityRows = Enumerable.Range(0, actor.NumberOfAttacks + 1)
+        var probabilityRows = Enumerable.Range(1, actor.NumberOfAttacks)
             .Select(currentNumberOfHits => CreateDeliverHitRow(actor, armorClasses, currentNumberOfHits))
             .ToList();
 
@@ -32,8 +32,6 @@ public class DeliverHitTable
             {
                 var probability = actor.DeliverHitChance(currentArmorClass, currentNumberOfHits).Probability;
                 var successChance = ColoredSuccessChance.FromProbability(probability);
-                return currentNumberOfHits == 0
-                    ? successChance.WithInvertedColors().ToString()
-                    : successChance.ToString();
+                return successChance.ToString();
             }));
 }

@@ -15,7 +15,7 @@ public class ReceiveHitTable
     {
         var attackModifierRow = new List<string> { $"{totalNumberOfAttacks} Attacks/Mod" }.Concat(attackModifiers.Select(modifier => modifier.ToString())).ToList();
 
-        var probabilityRows = Enumerable.Range(0, totalNumberOfAttacks + 1)
+        var probabilityRows = Enumerable.Range(1, totalNumberOfAttacks)
             .Select(currentNumberOfHits => CreateGetHitRow(actor, attackModifiers, totalNumberOfAttacks, currentNumberOfHits))
             .ToList();
 
@@ -32,8 +32,6 @@ public class ReceiveHitTable
             {
                 var probability = actor.ReceiveHitChance(currentModifier, totalNumberOfAttacks, currentNumberOfHits).Probability;
                 var successChance = ColoredSuccessChance.FromProbability(probability);
-                return currentNumberOfHits == 0
-                    ? successChance.ToString()
-                    : successChance.WithInvertedColors().ToString();
+                return successChance.WithInvertedColors().ToString();
             }));
 }
