@@ -34,6 +34,12 @@ public class Actor
         return HitChance.Create(attackModifier, ArmorClass, totalNumberOfAttacks, numberOfHits);
     }
 
+    public double AverageDamagePerHit()
+    {
+        var modifier = AbilityScores.AsList().Single(score => score.Type == AttackAbility).Modifier;
+        return (WeaponDamage.DiceSize + 1) / 2.0 * WeaponDamage.NumberOfDice + modifier;
+    }
+
     private static double CalculateSavingThrowSuccessChance(int dc, AbilityScore abilityScore, int proficiencyBonus)
         => (21d + abilityScore.Modifier + proficiencyBonus - dc) / 20;
 

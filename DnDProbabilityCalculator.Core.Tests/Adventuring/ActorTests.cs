@@ -7,6 +7,39 @@ namespace DnDProbabilityCalculator.Core.Tests.Adventuring;
 public class ActorTests
 {
     [TestMethod]
+    [DataRow(1, 6, 16, 6.5)]
+    [DataRow(2, 8, 14, 11)]
+    [DataRow(3, 10, 10, 16.5)]
+    [DataRow(1, 12, 6, 4.5)]
+    [DataRow(4, 4, 12, 11)]
+    [DataRow(1, 4, 10, 2.5)]
+    public void AverageDamage_WhenCalled_ReturnsDamage(int numberOfDice, int diceSize, int abilityScore, double expectedDamage)
+    {
+        // Arrange
+        var actor = new Actor
+        {
+            Name = "Durak",
+            AbilityScores = new()
+            {
+                Dexterity = 11,
+                Strength = abilityScore,
+                Constitution = 10,
+                Intelligence = 9,
+                Wisdom = 13,
+                Charisma = 10
+            },
+            ProficiencyBonus = 2,
+            ArmorClass = 15,
+            NumberOfAttacks = 2,
+            AttackAbility = AbilityScoreType.Strength,
+            WeaponDamage = new(numberOfDice, diceSize)
+        };
+
+        // Act and Assert
+        Assert.AreEqual(expectedDamage, actor.AverageDamagePerHit());
+    }
+
+    [TestMethod]
     public void CalculateSavingThrowSuccessChance_WithoutProficiency_ReturnsChanceForSuccess()
     {
         // Arrange
@@ -110,7 +143,7 @@ public class ActorTests
     }
 
     private static Actor BuildValidActor()
-    => new()
+        => new()
         {
             Name = "Durak",
             AbilityScores = new()
