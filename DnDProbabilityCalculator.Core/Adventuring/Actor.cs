@@ -1,20 +1,16 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring.Abilities;
-using DnDProbabilityCalculator.Core.Adventuring.ActorBuilder;
 using DnDProbabilityCalculator.Core.Adventuring.Attack;
 
 namespace DnDProbabilityCalculator.Core.Adventuring;
 
 public class Actor
 {
-    public string Name { get; set; } = string.Empty;
-    public AbilityScores AbilityScores { get; init; } = new();
-    public int ProficiencyBonus { get; set; }
-    public int ArmorClass { get; set; }
-    public int NumberOfAttacks { get; set; }
-    public AbilityScoreType AttackAbility { get; set; }
-
-    public static INameStage New()
-        => new NameStage(new());
+    public required string Name { get; set; } = string.Empty;
+    public required AbilityScores AbilityScores { get; init; }
+    public required int ProficiencyBonus { get; set; }
+    public required int ArmorClass { get; set; }
+    public required int NumberOfAttacks { get; set; }
+    public required AbilityScoreType AttackAbility { get; set; }
 
     public double SavingThrowSuccessChance(AbilityScoreType abilityScoreType, int dc)
     {

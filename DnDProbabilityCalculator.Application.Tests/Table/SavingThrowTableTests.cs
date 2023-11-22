@@ -28,17 +28,25 @@ public class SavingThrowTableTests
     }
 
     private static Actor GetValidActor()
-        => Actor.New()
-            .WithName("Durak")
-            .WithStrength(10)
-            .WithDexterity(12, true)
-            .WithConstitution(14)
-            .WithWisdom(15)
-            .WithIntelligence(16)
-            .WithCharisma(8)
-            .WithProficiency(9)
-            .WithArmorClass(5)
-            .WithNumberOfAttacks(2)
-            .WithAttackAbility(AbilityScoreType.Dexterity)
-            .Build();
+        => new()
+        {
+            Name = "Durak",
+            AbilityScores = new()
+            {
+                Dexterity = new()
+                {
+                    Value = 12,
+                    IsProficient = true
+                },
+                Strength = 10,
+                Constitution = 14,
+                Intelligence = 16,
+                Wisdom = 15,
+                Charisma = 8
+            },
+            ProficiencyBonus = 9,
+            ArmorClass = 5,
+            NumberOfAttacks = 2,
+            AttackAbility = AbilityScoreType.Dexterity
+        };
 }

@@ -7,52 +7,6 @@ namespace DnDProbabilityCalculator.Core.Tests.Adventuring;
 public class ActorTests
 {
     [TestMethod]
-    public void FluentBuilder_WithValidValues_ReturnsFullyBuiltActor()
-    {
-        // Arrange and Act
-        var actor = BuildValidActor();
-
-        // Assert
-        Assert.AreEqual("Durak", actor.Name);
-        Assert.AreEqual(13, actor.AbilityScores.Strength);
-        Assert.IsTrue(actor.AbilityScores.Strength.IsProficient);
-        Assert.AreEqual(11, actor.AbilityScores.Dexterity);
-        Assert.AreEqual(10, actor.AbilityScores.Constitution);
-        Assert.IsTrue(actor.AbilityScores.Constitution.IsProficient);
-        Assert.AreEqual(13, actor.AbilityScores.Wisdom);
-        Assert.AreEqual(9, actor.AbilityScores.Intelligence);
-        Assert.AreEqual(10, actor.AbilityScores.Charisma);
-        Assert.AreEqual(5, actor.ArmorClass);
-        Assert.AreEqual(4, actor.ProficiencyBonus);
-        Assert.AreEqual(actor.AttackAbility, AbilityScoreType.Dexterity);
-        Assert.AreEqual(actor.NumberOfAttacks, 2);
-    }
-
-    [TestMethod]
-    [DataRow(-1)]
-    [DataRow(31)]
-    public void FluentBuilder_WithTooLowAbilityScore_ThrowsException(int abilityScore)
-    {
-        // Arrange Act Assert
-        var message = Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
-            Actor
-                .New()
-                .WithName("Durak")
-                .WithStrength(abilityScore, true)
-                .WithDexterity(11)
-                .WithConstitution(10, true)
-                .WithWisdom(13)
-                .WithIntelligence(11)
-                .WithCharisma(10)
-                .WithProficiency(4)
-                .WithArmorClass(5)
-                .WithNumberOfAttacks(2)
-                .WithAttackAbility(AbilityScoreType.Dexterity)
-                .Build()).Message;
-        Assert.IsTrue(message.Contains(ErrorMessages.Ability_Score_Out_Of_Range));
-    }
-
-    [TestMethod]
     public void CalculateSavingThrowSuccessChance_WithoutProficiency_ReturnsChanceForSuccess()
     {
         // Arrange
@@ -90,20 +44,24 @@ public class ActorTests
     public void ReceiveHitChance_WithNegativeNumberOfAttacks_ThrowsArgumentException(int numberOfAttacks)
     {
         // Arrange
-        var actor = Actor
-            .New()
-            .WithName("Durak")
-            .WithStrength(13, true)
-            .WithDexterity(11)
-            .WithConstitution(10, true)
-            .WithWisdom(13)
-            .WithIntelligence(9)
-            .WithCharisma(10)
-            .WithProficiency(4)
-            .WithArmorClass(15)
-            .WithNumberOfAttacks(2)
-            .WithAttackAbility(AbilityScoreType.Dexterity)
-            .Build();
+        var actor = new Actor()
+        {
+            Name = "Durak",
+            AbilityScores = new()
+            {
+                Dexterity = 12,
+                Strength = new() { Value = 13, IsProficient = true },
+                Constitution = new() { Value = 10, IsProficient = true },
+                Intelligence = 16,
+                Wisdom = 15,
+                Charisma = 8
+            },
+            ProficiencyBonus = 4,
+            ArmorClass = 15,
+            NumberOfAttacks = 2,
+            AttackAbility = AbilityScoreType.Dexterity
+        };
+
 
         // Act and Assert
         var message = Assert.ThrowsException<ArgumentOutOfRangeException>(() => actor.ReceiveHitChance(6, numberOfAttacks, 2));
@@ -116,20 +74,23 @@ public class ActorTests
     public void CalculateDeliverHitChance_WhenCalled_ReturnsChanceForSuccess(int numberOfHits, double expectedProbability)
     {
         // Arrange
-        var actor = Actor
-            .New()
-            .WithName("Durak")
-            .WithStrength(16, true)
-            .WithDexterity(11)
-            .WithConstitution(10, true)
-            .WithWisdom(13)
-            .WithIntelligence(9)
-            .WithCharisma(10)
-            .WithProficiency(2)
-            .WithArmorClass(15)
-            .WithNumberOfAttacks(2)
-            .WithAttackAbility(AbilityScoreType.Strength)
-            .Build();
+        var actor = new Actor()
+        {
+            Name = "Durak",
+            AbilityScores = new()
+            {
+                Dexterity = 11,
+                Strength = new() { Value = 16, IsProficient = true },
+                Constitution = new() { Value = 10, IsProficient = true },
+                Intelligence = 9,
+                Wisdom = 13,
+                Charisma = 10
+            },
+            ProficiencyBonus = 2,
+            ArmorClass = 15,
+            NumberOfAttacks = 2,
+            AttackAbility = AbilityScoreType.Strength
+        };
 
         // Act
         var chance = actor.DeliverHitChance(14, numberOfHits);
@@ -139,18 +100,21 @@ public class ActorTests
     }
 
     private static Actor BuildValidActor()
-        => Actor
-            .New()
-            .WithName("Durak")
-            .WithStrength(13, true)
-            .WithDexterity(11)
-            .WithConstitution(10, true)
-            .WithWisdom(13)
-            .WithIntelligence(9)
-            .WithCharisma(10)
-            .WithProficiency(4)
-            .WithArmorClass(5)
-            .WithNumberOfAttacks(2)
-            .WithAttackAbility(AbilityScoreType.Dexterity)
-            .Build();
+    => new()
+        {
+            Name = "Durak",
+            AbilityScores = new()
+            {
+                Dexterity = 11,
+                Strength = new() { Value = 13, IsProficient = true },
+                Constitution = new() { Value = 10, IsProficient = true },
+                Intelligence = 9,
+                Wisdom = 13,
+                Charisma = 10
+            },
+            ProficiencyBonus = 4,
+            ArmorClass = 5,
+            NumberOfAttacks = 2,
+            AttackAbility = AbilityScoreType.Dexterity
+        };
 }

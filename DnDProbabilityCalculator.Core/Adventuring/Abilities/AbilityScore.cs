@@ -4,7 +4,7 @@ public abstract record AbilityScore
 {
     private readonly int _value;
 
-    public int Value
+    public required int Value
     {
         get => _value;
         init

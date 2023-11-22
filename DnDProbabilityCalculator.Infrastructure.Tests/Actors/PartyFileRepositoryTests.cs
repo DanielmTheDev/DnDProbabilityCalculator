@@ -39,12 +39,12 @@ public class PartyFileRepositoryTests
         Assert.AreEqual(2, party.Characters.Count);
 
         Assert.AreEqual("Durak", party.Characters[0].Name);
-        Assert.AreEqual(11, party.Characters[0].AbilityScores.Dexterity);
-        Assert.AreEqual(12, party.Characters[0].AbilityScores.Strength);
-        Assert.AreEqual(13, party.Characters[0].AbilityScores.Constitution);
-        Assert.AreEqual(14, party.Characters[0].AbilityScores.Intelligence);
-        Assert.AreEqual(12, party.Characters[0].AbilityScores.Wisdom);
-        Assert.AreEqual(14, party.Characters[0].AbilityScores.Charisma);
+        Assert.AreEqual(11, party.Characters[0].AbilityScores.Dexterity.Value);
+        Assert.AreEqual(12, party.Characters[0].AbilityScores.Strength.Value);
+        Assert.AreEqual(13, party.Characters[0].AbilityScores.Constitution.Value);
+        Assert.AreEqual(14, party.Characters[0].AbilityScores.Intelligence.Value);
+        Assert.AreEqual(12, party.Characters[0].AbilityScores.Wisdom.Value);
+        Assert.AreEqual(14, party.Characters[0].AbilityScores.Charisma.Value);
         Assert.IsTrue(party.Characters[0].AbilityScores.Strength.IsProficient);
         Assert.IsTrue(party.Characters[0].AbilityScores.Dexterity.IsProficient);
         Assert.AreEqual(3, party.Characters[0].ProficiencyBonus);
@@ -53,12 +53,12 @@ public class PartyFileRepositoryTests
         Assert.AreEqual(AbilityScoreType.Strength, party.Characters[0].AttackAbility);
 
         Assert.AreEqual("Erethil", party.Characters[1].Name);
-        Assert.AreEqual(1, party.Characters[1].AbilityScores.Dexterity);
-        Assert.AreEqual(2, party.Characters[1].AbilityScores.Strength);
-        Assert.AreEqual(3, party.Characters[1].AbilityScores.Constitution);
-        Assert.AreEqual(4, party.Characters[1].AbilityScores.Intelligence);
-        Assert.AreEqual(5, party.Characters[1].AbilityScores.Wisdom);
-        Assert.AreEqual(6, party.Characters[1].AbilityScores.Charisma);
+        Assert.AreEqual(1, party.Characters[1].AbilityScores.Dexterity.Value);
+        Assert.AreEqual(2, party.Characters[1].AbilityScores.Strength.Value);
+        Assert.AreEqual(3, party.Characters[1].AbilityScores.Constitution.Value);
+        Assert.AreEqual(4, party.Characters[1].AbilityScores.Intelligence.Value);
+        Assert.AreEqual(5, party.Characters[1].AbilityScores.Wisdom.Value);
+        Assert.AreEqual(6, party.Characters[1].AbilityScores.Charisma.Value);
         Assert.IsTrue(party.Characters[1].AbilityScores.Wisdom.IsProficient);
         Assert.IsTrue(party.Characters[1].AbilityScores.Charisma.IsProficient);
         Assert.AreEqual(2, party.Characters[1].ProficiencyBonus);
