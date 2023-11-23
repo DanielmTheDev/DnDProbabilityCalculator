@@ -23,7 +23,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection RegisterServices(this IServiceCollection serviceCollection)
         => serviceCollection
             .AddScoped<IConsoleRenderer, ConsoleRenderer>()
-            .AddScoped<ITableContextService, TableContextService>()
+            .AddScoped<ITableContextFactory, TableContextFactory>()
             .AddScoped<IPartyRepository, PartyFileRepository>()
             .AddScoped<IFileAccessor, FileAccessor>();
 }

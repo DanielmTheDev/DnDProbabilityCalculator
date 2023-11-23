@@ -9,6 +9,9 @@ public record TableContext
     }
 
     public required string ActorName { get; init; }
+    public required int ArmorClass { get; init; }
+    public required double DamagePerHit { get; init; }
+
     public required SavingThrowTable SavingThrowTable { get; init; }
     public required ReceiveHitTable ReceiveHitTable { get; init; }
     public required DeliverHitTable DeliverHitTable { get; init; }
@@ -18,9 +21,11 @@ public record TableContext
         return new()
         {
             ActorName = actor.Name,
+            ArmorClass = actor.ArmorClass,
+            DamagePerHit = actor.AverageDamagePerHit,
             SavingThrowTable = SavingThrowTable.FromActor(actor, inputVariables.Dcs),
             ReceiveHitTable = ReceiveHitTable.FromActor(actor, inputVariables.AttackModifiers, inputVariables.NumberOfAttacks),
-            DeliverHitTable = DeliverHitTable.FromActor(actor, inputVariables.ArmorClasses)
+            DeliverHitTable = DeliverHitTable.FromActor(actor, inputVariables.ArmorClasses),
         };
     }
 }

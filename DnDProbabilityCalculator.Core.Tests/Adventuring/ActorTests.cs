@@ -36,7 +36,7 @@ public class ActorTests
         };
 
         // Act and Assert
-        Assert.AreEqual(expectedDamage, actor.AverageDamagePerHit());
+        Assert.AreEqual(expectedDamage, actor.AverageDamagePerHit);
     }
 
     [TestMethod]

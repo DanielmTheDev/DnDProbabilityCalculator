@@ -6,6 +6,10 @@
       "armorClass": 20,
       "numberOfAttacks": 1,
       "attackAbility": "Strength",
+      "weaponDamage": {
+        "numberOfDice": 2,
+        "diceSize": 6
+      },
       "abilityScores": {
         "dexterity": {
           "value": 15
@@ -34,6 +38,10 @@
       "proficiencyBonus": 2,
       "armorClass": 17,
       "numberOfAttacks": 2,
+      "weaponDamage": {
+        "numberOfDice": 2,
+        "diceSize": 6
+      },
       "attackAbility": "Dexterity",
       "abilityScores": {
         "dexterity": {
@@ -64,6 +72,10 @@
       "armorClass": 19,
       "numberOfAttacks": 1,
       "attackAbility": "Strength",
+      "weaponDamage": {
+        "numberOfDice": 2,
+        "diceSize": 6
+      },
       "abilityScores": {
         "dexterity": {
           "value": 14

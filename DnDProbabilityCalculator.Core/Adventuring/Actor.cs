@@ -13,6 +13,15 @@ public class Actor
     public required AbilityScoreType AttackAbility { get; init; }
     public required WeaponDamage WeaponDamage { get; init; }
 
+    public double AverageDamagePerHit
+    {
+        get
+        {
+            var modifier = AbilityScores.AsList().Single(score => score.Type == AttackAbility).Modifier;
+            return (WeaponDamage.DiceSize + 1) / 2.0 * WeaponDamage.NumberOfDice + modifier;
+        }
+    }
+
     public double SavingThrowSuccessChance(AbilityScoreType abilityScoreType, int dc)
     {
         var abilityScore = AbilityScores.Get(abilityScoreType);
@@ -32,12 +41,6 @@ public class Actor
     {
         GuardNumberOfAttacks(totalNumberOfAttacks);
         return HitChance.Create(attackModifier, ArmorClass, totalNumberOfAttacks, numberOfHits);
-    }
-
-    public double AverageDamagePerHit()
-    {
-        var modifier = AbilityScores.AsList().Single(score => score.Type == AttackAbility).Modifier;
-        return (WeaponDamage.DiceSize + 1) / 2.0 * WeaponDamage.NumberOfDice + modifier;
     }
 
     private static double CalculateSavingThrowSuccessChance(int dc, AbilityScore abilityScore, int proficiencyBonus)

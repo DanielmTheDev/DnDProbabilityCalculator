@@ -1,46 +1,58 @@
-﻿using DnDProbabilityCalculator.Application.Table;
+﻿using System.Globalization;
+using DnDProbabilityCalculator.Application.Table;
 using Spectre.Console;
 
 namespace DnDProbabilityCalculator.Console.Console;
 
 public static class LiveTableExtensions
 {
-    public static void RerenderRows(this Table theTable, List<TableContext> tableContext, LiveDisplayContext context)
+    public static void RerenderRows(this Table theTable, List<TableContext> allTableContexts, LiveDisplayContext context)
     {
         theTable.Rows.Clear();
-        theTable.AddRow(CreateSavingThrowTables(tableContext));
-        theTable.AddRow(CreateReceiveHitTables(tableContext));
-        theTable.AddRow(CreateDeliverHitTables(tableContext));
+        theTable.AddRow(CreateGeneralInformatioRow(allTableContexts));
+        theTable.AddRow(CreateSavingThrowTables(allTableContexts));
+        theTable.AddRow(CreateReceiveHitTables(allTableContexts));
+        theTable.AddRow(CreateDeliverHitTables(allTableContexts));
         context.Refresh();
     }
 
-    private static IEnumerable<Table> CreateSavingThrowTables(IEnumerable<TableContext> allActorTables)
-        => allActorTables.Select(actorTable =>
+    private static IEnumerable<Table> CreateGeneralInformatioRow(IEnumerable<TableContext> allTableContexts)
+        => allTableContexts.Select(tableContext =>
         {
             var table = new Table();
             table.Expand();
-            table.AddColumns(actorTable.SavingThrowTable.Dcs.ToArray());
-            actorTable.SavingThrowTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
+            table.AddColumns("ArmorClass", "DamagePerHit");
+            table.AddRow(tableContext.ArmorClass.ToString(), tableContext.DamagePerHit.ToString(CultureInfo.CurrentCulture));
             return table;
-        }).ToList();
+        });
 
-    private static IEnumerable<Table> CreateReceiveHitTables(IEnumerable<TableContext> allActorTables)
-        => allActorTables.Select(actorTable =>
+    private static IEnumerable<Table> CreateSavingThrowTables(IEnumerable<TableContext> allTableContexts)
+        => allTableContexts.Select(tableContext =>
         {
             var table = new Table();
             table.Expand();
-            table.AddColumns(actorTable.ReceiveHitTable.AttackModifiers.ToArray());
-            actorTable.ReceiveHitTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
+            table.AddColumns(tableContext.SavingThrowTable.Dcs.ToArray());
+            tableContext.SavingThrowTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
             return table;
-        }).ToList();
+        });
 
-    private static IEnumerable<Table> CreateDeliverHitTables(IEnumerable<TableContext> allActorTables)
-        => allActorTables.Select(actorTable =>
+    private static IEnumerable<Table> CreateReceiveHitTables(IEnumerable<TableContext> allTableContexts)
+        => allTableContexts.Select(tableContext =>
         {
             var table = new Table();
             table.Expand();
-            table.AddColumns(actorTable.DeliverHitTable.ArmorClasses.ToArray());
-            actorTable.DeliverHitTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
+            table.AddColumns(tableContext.ReceiveHitTable.AttackModifiers.ToArray());
+            tableContext.ReceiveHitTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
             return table;
-        }).ToList();
+        });
+
+    private static IEnumerable<Table> CreateDeliverHitTables(IEnumerable<TableContext> allTableContexts)
+        => allTableContexts.Select(tableContext =>
+        {
+            var table = new Table();
+            table.Expand();
+            table.AddColumns(tableContext.DeliverHitTable.ArmorClasses.ToArray());
+            tableContext.DeliverHitTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
+            return table;
+        });
 }

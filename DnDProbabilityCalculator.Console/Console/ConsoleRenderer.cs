@@ -5,18 +5,18 @@ namespace DnDProbabilityCalculator.Console.Console;
 
 public class ConsoleRenderer : IConsoleRenderer
 {
-    private readonly ITableContextService _tableContextService;
+    private readonly ITableContextFactory _tableContextFactory;
 
-    public ConsoleRenderer(ITableContextService tableContextService)
+    public ConsoleRenderer(ITableContextFactory tableContextFactory)
     {
-        _tableContextService = tableContextService;
+        _tableContextFactory = tableContextFactory;
     }
 
     public void Start()
     {
         var inputVariables = CreateDefaultInputVariables();
 
-        var tableContext = _tableContextService.Get(inputVariables);
+        var tableContext = _tableContextFactory.Create(inputVariables);
         var table = new Table();
         tableContext.ForEach(data => table.AddColumn(data.ActorName));
 
@@ -33,24 +33,24 @@ public class ConsoleRenderer : IConsoleRenderer
                     {
                         case ConsoleKey.DownArrow:
                             inputVariables = inputVariables.WithIncrementedNumberOfAttacks();
-                            var newTableContext = _tableContextService.Get(inputVariables);
+                            var newTableContext = _tableContextFactory.Create(inputVariables);
                             table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.UpArrow:
                             if (inputVariables.NumberOfAttacks == 1)
                                 break;
                             inputVariables = inputVariables.WithDecrementedNumberOfAttacks();
-                            newTableContext = _tableContextService.Get(inputVariables);
+                            newTableContext = _tableContextFactory.Create(inputVariables);
                             table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.RightArrow:
                             inputVariables = inputVariables.WithIncrementedColumns();
-                            newTableContext = _tableContextService.Get(inputVariables);
+                            newTableContext = _tableContextFactory.Create(inputVariables);
                             table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.LeftArrow:
                             inputVariables = inputVariables.WithDecrementedColumns();
-                            newTableContext = _tableContextService.Get(inputVariables);
+                            newTableContext = _tableContextFactory.Create(inputVariables);
                             table.RerenderRows(newTableContext, context);
                             break;
                         case ConsoleKey.Q:
