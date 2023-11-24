@@ -19,7 +19,10 @@ public static class LiveTableExtensions
     private static IEnumerable<Table> CreateGeneralInformatioRow(IEnumerable<TableContext> allTableContexts)
         => allTableContexts.Select(tableContext =>
         {
-            var table = new Table();
+            var table = new Table
+            {
+                Title = new("General Information")
+            };
             table.Expand();
             table.AddColumns("ArmorClass", "DamagePerHit");
             table.AddRow(tableContext.GeneralActorInfo.ArmorClass.ToString(), tableContext.GeneralActorInfo.DamagePerHit.ToString(CultureInfo.CurrentCulture));
@@ -29,7 +32,10 @@ public static class LiveTableExtensions
     private static IEnumerable<Table> CreateSavingThrowTables(IEnumerable<TableContext> allTableContexts)
         => allTableContexts.Select(tableContext =>
         {
-            var table = new Table();
+            var table = new Table
+            {
+                Title = new("Saving Throws")
+            };
             table.Expand();
             table.AddColumns(tableContext.SavingThrowTable.Dcs.ToArray());
             tableContext.SavingThrowTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
@@ -39,7 +45,11 @@ public static class LiveTableExtensions
     private static IEnumerable<Table> CreateReceiveHitTables(IEnumerable<TableContext> allTableContexts)
         => allTableContexts.Select(tableContext =>
         {
-            var table = new Table();
+
+            var table = new Table
+            {
+                Title = new("Receive Hit")
+            };
             table.Expand();
             table.AddColumns(tableContext.ReceiveHitTable.AttackModifiers.ToArray());
             tableContext.ReceiveHitTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
@@ -49,7 +59,10 @@ public static class LiveTableExtensions
     private static IEnumerable<Table> CreateDeliverHitTables(IEnumerable<TableContext> allTableContexts)
         => allTableContexts.Select(tableContext =>
         {
-            var table = new Table();
+            var table = new Table
+            {
+                Title = new("Deliver Hit")
+            };
             table.Expand();
             table.AddColumns(tableContext.DeliverHitTable.ArmorClasses.ToArray());
             tableContext.DeliverHitTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));

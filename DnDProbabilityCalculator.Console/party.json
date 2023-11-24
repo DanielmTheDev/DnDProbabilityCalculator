@@ -41,7 +41,7 @@
       "armorClass": 17,
       "numberOfAttacks": 2,
       "weapon": {
-        "numberOfDice": 2,
+        "numberOfDice": 1,
         "diceSides": 6,
         "bonus": 1,
         "miscDamageBonus": 0
