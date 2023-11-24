@@ -11,14 +11,14 @@ public class Actor
     public required int NumberOfAttacks { get; init; }
     public required AbilityScores AbilityScores { get; init; }
     public required AbilityScoreType AttackAbility { get; init; }
-    public required WeaponDamage WeaponDamage { get; init; }
+    public required Weapon Weapon { get; init; }
 
     public double AverageDamagePerHit
     {
         get
         {
             var modifier = AbilityScores.AsList().Single(score => score.Type == AttackAbility).Modifier;
-            return (WeaponDamage.DiceSize + 1) / 2.0 * WeaponDamage.NumberOfDice + modifier;
+            return (Weapon.DiceSides + 1) / 2.0 * Weapon.NumberOfDice + modifier;
         }
     }
 

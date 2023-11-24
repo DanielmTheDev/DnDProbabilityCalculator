@@ -32,7 +32,7 @@ public class ActorTests
             ArmorClass = 15,
             NumberOfAttacks = 2,
             AttackAbility = AbilityScoreType.Strength,
-            WeaponDamage = new(numberOfDice, diceSize)
+            Weapon = new(numberOfDice, diceSize)
         };
 
         // Act and Assert
@@ -101,7 +101,7 @@ public class ActorTests
             ArmorClass = 15,
             NumberOfAttacks = 2,
             AttackAbility = AbilityScoreType.Dexterity,
-            WeaponDamage = new(1, 6)
+            Weapon = new(1, 6)
         };
 
 
@@ -132,7 +132,7 @@ public class ActorTests
             ArmorClass = 15,
             NumberOfAttacks = 2,
             AttackAbility = AbilityScoreType.Strength,
-            WeaponDamage = new(1, 6)
+            Weapon = new(1, 6)
         };
 
         // Act
@@ -159,6 +159,6 @@ public class ActorTests
             ArmorClass = 5,
             NumberOfAttacks = 2,
             AttackAbility = AbilityScoreType.Dexterity,
-            WeaponDamage = new(1, 6)
+            Weapon = new(1, 6)
         };
 }

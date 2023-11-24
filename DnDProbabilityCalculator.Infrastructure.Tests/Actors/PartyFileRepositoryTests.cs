@@ -50,8 +50,9 @@ public class PartyFileRepositoryTests
         Assert.AreEqual(3, party.Characters[0].ProficiencyBonus);
         Assert.AreEqual(14, party.Characters[0].ArmorClass);
         Assert.AreEqual(2, party.Characters[0].NumberOfAttacks);
-        Assert.AreEqual(2, party.Characters[0].WeaponDamage.NumberOfDice);
-        Assert.AreEqual(6, party.Characters[0].WeaponDamage.DiceSize);
+        Assert.AreEqual(2, party.Characters[0].Weapon.NumberOfDice);
+        Assert.AreEqual(6, party.Characters[0].Weapon.DiceSides);
+        Assert.AreEqual(2, party.Characters[0].Weapon.Bonus);
         Assert.AreEqual(AbilityScoreType.Strength, party.Characters[0].AttackAbility);
 
         Assert.AreEqual("Erethil", party.Characters[1].Name);
@@ -66,8 +67,9 @@ public class PartyFileRepositoryTests
         Assert.AreEqual(2, party.Characters[1].ProficiencyBonus);
         Assert.AreEqual(10, party.Characters[1].ArmorClass);
         Assert.AreEqual(4, party.Characters[1].NumberOfAttacks);
-        Assert.AreEqual(1, party.Characters[1].WeaponDamage.NumberOfDice);
-        Assert.AreEqual(12, party.Characters[1].WeaponDamage.DiceSize);
+        Assert.AreEqual(1, party.Characters[1].Weapon.NumberOfDice);
+        Assert.AreEqual(12, party.Characters[1].Weapon.DiceSides);
+        Assert.AreEqual(4, party.Characters[1].Weapon.Bonus);
         Assert.AreEqual(AbilityScoreType.Dexterity, party.Characters[1].AttackAbility);
     }
 
@@ -101,9 +103,10 @@ public class PartyFileRepositoryTests
                   "numberOfAttacks": 2,
                   "armorClass": 14,
                   "attackAbility": "Strength",
-                  "weaponDamage": {
+                  "weapon": {
                     "numberOfDice": 2,
-                    "diceSize": 6
+                    "diceSides": 6,
+                    "bonus": 2
                   },
                   "abilityScores": {
                     "dexterity": {
@@ -134,9 +137,10 @@ public class PartyFileRepositoryTests
                   "numberOfAttacks": 4,
                   "armorClass": 10,
                   "attackAbility": "Dexterity",
-                  "weaponDamage": {
+                  "weapon": {
                     "numberOfDice": 1,
-                    "diceSize": 12
+                    "diceSides": 12,
+                    "bonus": 4
                   },
                   "abilityScores": {
                     "dexterity": {

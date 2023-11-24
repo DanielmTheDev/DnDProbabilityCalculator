@@ -39,7 +39,7 @@ public class DeliverHitTableTests
             ProficiencyBonus = 9,
             ArmorClass = 5,
             NumberOfAttacks = 2,
-            WeaponDamage = new(10, 6),
+            Weapon = new(10, 6),
             AttackAbility = AbilityScoreType.Charisma
         };
 }
