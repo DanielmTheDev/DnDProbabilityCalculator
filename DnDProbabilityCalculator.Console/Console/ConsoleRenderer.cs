@@ -62,6 +62,6 @@ public class ConsoleRenderer : IConsoleRenderer
             });
     }
 
-    private InputVariables CreateDefaultInputVariables()
-        => new(Enumerable.Range(9, 7).ToArray(), Enumerable.Range(-1, 7).ToArray(), Enumerable.Range(10, 7).ToArray(), numberOfAttacks: 2);
+    private static InputVariables CreateDefaultInputVariables()
+        => new(Enumerable.Range(12, 7).ToArray(), Enumerable.Range(3, 7).ToArray(), Enumerable.Range(10, 7).ToArray(), 2);
 }
