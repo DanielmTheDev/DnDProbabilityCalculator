@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using DnDProbabilityCalculator.Application.Table;
+using DnDProbabilityCalculator.Application.Table.Context;
 using Spectre.Console;
 
 namespace DnDProbabilityCalculator.Console.Console;
@@ -22,7 +22,7 @@ public static class LiveTableExtensions
             var table = new Table();
             table.Expand();
             table.AddColumns("ArmorClass", "DamagePerHit");
-            table.AddRow(tableContext.ArmorClass.ToString(), tableContext.DamagePerHit.ToString(CultureInfo.CurrentCulture));
+            table.AddRow(tableContext.GeneralActorInfo.ArmorClass.ToString(), tableContext.GeneralActorInfo.DamagePerHit.ToString(CultureInfo.CurrentCulture));
             return table;
         });
 

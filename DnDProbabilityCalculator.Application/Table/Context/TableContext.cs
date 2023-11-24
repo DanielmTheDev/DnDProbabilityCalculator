@@ -1,6 +1,6 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring;
 
-namespace DnDProbabilityCalculator.Application.Table;
+namespace DnDProbabilityCalculator.Application.Table.Context;
 
 public record TableContext
 {
@@ -8,10 +8,7 @@ public record TableContext
     {
     }
 
-    public required string ActorName { get; init; }
-    public required int ArmorClass { get; init; }
-    public required double DamagePerHit { get; init; }
-
+    public required GeneralActorInfo GeneralActorInfo { get; set; }
     public required SavingThrowTable SavingThrowTable { get; init; }
     public required ReceiveHitTable ReceiveHitTable { get; init; }
     public required DeliverHitTable DeliverHitTable { get; init; }
@@ -20,9 +17,7 @@ public record TableContext
     {
         return new()
         {
-            ActorName = actor.Name,
-            ArmorClass = actor.ArmorClass,
-            DamagePerHit = actor.AverageDamagePerHit,
+            GeneralActorInfo = GeneralActorInfo.FromActor(actor),
             SavingThrowTable = SavingThrowTable.FromActor(actor, inputVariables.Dcs),
             ReceiveHitTable = ReceiveHitTable.FromActor(actor, inputVariables.AttackModifiers, inputVariables.NumberOfAttacks),
             DeliverHitTable = DeliverHitTable.FromActor(actor, inputVariables.ArmorClasses),

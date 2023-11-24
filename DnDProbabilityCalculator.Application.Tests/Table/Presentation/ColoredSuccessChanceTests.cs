@@ -1,7 +1,7 @@
-﻿using DnDProbabilityCalculator.Application.Table;
+﻿using DnDProbabilityCalculator.Application.Table.Presentation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DnDProbabilityCalculator.Application.Tests.Table;
+namespace DnDProbabilityCalculator.Application.Tests.Table.Presentation;
 
 [TestClass]
 public class ColoredSuccessChanceTests

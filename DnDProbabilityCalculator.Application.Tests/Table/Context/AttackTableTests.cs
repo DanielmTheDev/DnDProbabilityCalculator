@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DnDProbabilityCalculator.Application.Tests.Table;
+namespace DnDProbabilityCalculator.Application.Tests.Table.Context;
 
 [TestClass]
 public class AttackTableTests
@@ -9,7 +9,6 @@ public class AttackTableTests
     public void TestMethod()
     {
         // Arrange
-
 
         // Act
 

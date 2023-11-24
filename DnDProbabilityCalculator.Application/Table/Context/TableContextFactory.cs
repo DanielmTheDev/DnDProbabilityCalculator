@@ -1,6 +1,6 @@
-﻿using DnDProbabilityCalculator.Core.Adventuring;
+﻿using DnDProbabilityCalculator.Core;
 
-namespace DnDProbabilityCalculator.Application.Table;
+namespace DnDProbabilityCalculator.Application.Table.Context;
 
 public class TableContextFactory : ITableContextFactory
 {

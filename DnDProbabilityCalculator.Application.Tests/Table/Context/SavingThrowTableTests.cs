@@ -1,9 +1,9 @@
-﻿using DnDProbabilityCalculator.Application.Table;
+﻿using DnDProbabilityCalculator.Application.Table.Context;
 using DnDProbabilityCalculator.Core.Adventuring;
 using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DnDProbabilityCalculator.Application.Tests.Table;
+namespace DnDProbabilityCalculator.Application.Tests.Table.Context;
 
 [TestClass]
 public class SavingThrowTableTests
@@ -47,6 +47,7 @@ public class SavingThrowTableTests
             ProficiencyBonus = 9,
             ArmorClass = 5,
             NumberOfAttacks = 2,
+            WeaponDamage = new(10, 6),
             AttackAbility = AbilityScoreType.Dexterity
         };
 }

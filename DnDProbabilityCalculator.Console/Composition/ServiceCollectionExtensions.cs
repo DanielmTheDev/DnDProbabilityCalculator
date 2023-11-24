@@ -1,6 +1,6 @@
-﻿using DnDProbabilityCalculator.Application.Table;
+﻿using DnDProbabilityCalculator.Application.Table.Context;
 using DnDProbabilityCalculator.Console.Console;
-using DnDProbabilityCalculator.Core.Adventuring;
+using DnDProbabilityCalculator.Core;
 using DnDProbabilityCalculator.Infrastructure.Actors;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;
 using DnDProbabilityCalculator.Infrastructure.Settings;

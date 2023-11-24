@@ -1,4 +1,4 @@
-﻿namespace DnDProbabilityCalculator.Application.Table;
+﻿namespace DnDProbabilityCalculator.Application.Table.Context;
 
 public interface ITableContextFactory
 {

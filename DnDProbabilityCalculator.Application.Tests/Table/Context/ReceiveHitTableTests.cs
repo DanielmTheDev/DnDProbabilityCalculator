@@ -1,26 +1,26 @@
-﻿using DnDProbabilityCalculator.Application.Table;
+﻿using DnDProbabilityCalculator.Application.Table.Context;
 using DnDProbabilityCalculator.Core.Adventuring;
 using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DnDProbabilityCalculator.Application.Tests.Table;
+namespace DnDProbabilityCalculator.Application.Tests.Table.Context;
 
 [TestClass]
-public class DeliverHitTableTests
+public class ReceiveHitTableTests
 {
     [TestMethod]
-    public void FromActor_WhenCalled_ReturnsDeliverHitChanceTable()
+    public void FromActor_WhenCalled_ReturnsGetHitChanceTable()
     {
         // Arrange
         var actor = GetValidActor();
 
         // Act
-        var tableData = DeliverHitTable.FromActor(actor, new[] { 10, 11, 12 });
+        var tableData = ReceiveHitTable.FromActor(actor, new[] { -1, 0, 1 }, 2);
 
         // Assert
-        new List<string> { "2 ","10", "11", "12" }.AssertElementsAreContainedIn(tableData.ArmorClasses);
-        new List<string> { "1", "10%", "18%", "26%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
-        new List<string> { "2", "90%", "81%", "72%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
+        new List<string> { "2 ","-1", "0", "1" }.AssertElementsAreContainedIn(tableData.AttackModifiers);
+        new List<string> { "1", "38%", "32%", "26%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
+        new List<string> { "2", "56%", "64%", "72%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
     }
 
     private static Actor GetValidActor()
@@ -39,6 +39,7 @@ public class DeliverHitTableTests
             ProficiencyBonus = 9,
             ArmorClass = 5,
             NumberOfAttacks = 2,
+            WeaponDamage = new(10, 6),
             AttackAbility = AbilityScoreType.Charisma
         };
 }

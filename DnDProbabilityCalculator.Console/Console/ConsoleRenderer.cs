@@ -1,4 +1,5 @@
 ﻿using DnDProbabilityCalculator.Application.Table;
+using DnDProbabilityCalculator.Application.Table.Context;
 using Spectre.Console;
 
 namespace DnDProbabilityCalculator.Console.Console;
@@ -18,7 +19,7 @@ public class ConsoleRenderer : IConsoleRenderer
 
         var tableContext = _tableContextFactory.Create(inputVariables);
         var table = new Table();
-        tableContext.ForEach(data => table.AddColumn(data.ActorName));
+        tableContext.ForEach(data => table.AddColumn(data.GeneralActorInfo.ActorName));
 
         AnsiConsole.Live(table)
             .Start(context =>
