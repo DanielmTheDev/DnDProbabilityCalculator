@@ -7,13 +7,13 @@ namespace DnDProbabilityCalculator.Core.Tests.Adventuring;
 public class ActorTests
 {
     [TestMethod]
-    [DataRow(1, 6, 16, 6.5)]
-    [DataRow(2, 8, 14, 11)]
-    [DataRow(3, 10, 10, 16.5)]
-    [DataRow(1, 12, 6, 4.5)]
-    [DataRow(4, 4, 12, 11)]
-    [DataRow(1, 4, 10, 2.5)]
-    public void AverageDamage_WhenCalled_ReturnsDamage(int numberOfDice, int diceSize, int abilityScore, double expectedDamage)
+    [DataRow(1, 6, 16, 2, 8.5)]
+    [DataRow(2, 8, 14, 5, 16)]
+    [DataRow(3, 10, 10, 2, 18.5)]
+    [DataRow(1, 12, 6, 1, 5.5)]
+    [DataRow(4, 4, 12, 6, 17)]
+    [DataRow(1, 4, 10, 0, 2.5)]
+    public void AverageDamage_WhenCalled_ReturnsDamage(int numberOfDice, int diceSides, int abilityScore, int bonus, double expectedDamage)
     {
         // Arrange
         var actor = new Actor
@@ -32,7 +32,12 @@ public class ActorTests
             ArmorClass = 15,
             NumberOfAttacks = 2,
             AttackAbility = AbilityScoreType.Strength,
-            Weapon = new(numberOfDice, diceSize)
+            Weapon = new()
+            {
+                NumberOfDice = numberOfDice,
+                DiceSides = diceSides,
+                Bonus = bonus
+            }
         };
 
         // Act and Assert
@@ -101,7 +106,12 @@ public class ActorTests
             ArmorClass = 15,
             NumberOfAttacks = 2,
             AttackAbility = AbilityScoreType.Dexterity,
-            Weapon = new(1, 6)
+            Weapon = new()
+            {
+                NumberOfDice = 1,
+                DiceSides = 6,
+                Bonus = 0
+            }
         };
 
 
@@ -111,8 +121,8 @@ public class ActorTests
     }
 
     [TestMethod]
-    [DataRow(1, 0.48)]
-    [DataRow(2, 0.36)]
+    [DataRow(1, 0.42)]
+    [DataRow(2, 0.49)]
     public void CalculateDeliverHitChance_WhenCalled_ReturnsChanceForSuccess(int numberOfHits, double expectedProbability)
     {
         // Arrange
@@ -132,7 +142,12 @@ public class ActorTests
             ArmorClass = 15,
             NumberOfAttacks = 2,
             AttackAbility = AbilityScoreType.Strength,
-            Weapon = new(1, 6)
+            Weapon = new()
+            {
+                NumberOfDice = 1,
+                DiceSides = 6,
+                Bonus = 2
+            }
         };
 
         // Act
@@ -159,6 +174,11 @@ public class ActorTests
             ArmorClass = 5,
             NumberOfAttacks = 2,
             AttackAbility = AbilityScoreType.Dexterity,
-            Weapon = new(1, 6)
+            Weapon = new()
+            {
+                NumberOfDice = 10,
+                DiceSides = 6,
+                Bonus = 0
+            }
         };
 }

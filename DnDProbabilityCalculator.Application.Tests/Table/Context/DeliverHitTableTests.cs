@@ -19,8 +19,8 @@ public class DeliverHitTableTests
 
         // Assert
         new List<string> { "2 ","10", "11", "12" }.AssertElementsAreContainedIn(tableData.ArmorClasses);
-        new List<string> { "1", "10%", "18%", "26%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
-        new List<string> { "2", "90%", "81%", "72%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
+        new List<string> { "1", "-11%", "0%", "10%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
+        new List<string> { "2", "110%", "100%", "90%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
     }
 
     private static Actor GetValidActor()
@@ -39,7 +39,12 @@ public class DeliverHitTableTests
             ProficiencyBonus = 9,
             ArmorClass = 5,
             NumberOfAttacks = 2,
-            Weapon = new(10, 6),
+            Weapon = new()
+            {
+                NumberOfDice = 10,
+                DiceSides = 6,
+                Bonus = 2
+            },
             AttackAbility = AbilityScoreType.Charisma
         };
 }

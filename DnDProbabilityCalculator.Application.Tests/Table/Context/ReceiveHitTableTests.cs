@@ -39,7 +39,12 @@ public class ReceiveHitTableTests
             ProficiencyBonus = 9,
             ArmorClass = 5,
             NumberOfAttacks = 2,
-            Weapon = new(10, 6),
+            Weapon = new()
+            {
+                NumberOfDice = 10,
+                DiceSides = 6,
+                Bonus = 2
+            },
             AttackAbility = AbilityScoreType.Charisma
         };
 }

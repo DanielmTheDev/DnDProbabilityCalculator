@@ -1,6 +1,8 @@
 ﻿namespace DnDProbabilityCalculator.Core.Adventuring.Attack;
 
-public record Weapon(int NumberOfDice, int DiceSides)
+public record Weapon
 {
-    public int Bonus { get; set; }
+    public required int NumberOfDice { get; init; }
+    public required int DiceSides { get; init; }
+    public required int Bonus { get; init; }
 }

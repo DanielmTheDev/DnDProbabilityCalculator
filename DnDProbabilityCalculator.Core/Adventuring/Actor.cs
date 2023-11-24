@@ -17,8 +17,9 @@ public class Actor
     {
         get
         {
-            var modifier = AbilityScores.AsList().Single(score => score.Type == AttackAbility).Modifier;
-            return (Weapon.DiceSides + 1) / 2.0 * Weapon.NumberOfDice + modifier;
+            var abilityModifier = AbilityScores.AsList().Single(score => score.Type == AttackAbility).Modifier;
+            var weaponModifier = Weapon.Bonus;
+            return (Weapon.DiceSides + 1) / 2.0 * Weapon.NumberOfDice + abilityModifier + weaponModifier;
         }
     }
 
@@ -33,8 +34,10 @@ public class Actor
 
     public HitChance DeliverHitChance(int armorClass, int numberOfHits)
     {
-        var attackModifier = ProficiencyBonus + AbilityScores.AsList().Single(score => score.Type == AttackAbility).Modifier;
-        return HitChance.Create(attackModifier, armorClass, NumberOfAttacks, numberOfHits);
+        var abilityModifier = AbilityScores.AsList().Single(score => score.Type == AttackAbility).Modifier;
+        var weaponModifier = Weapon.Bonus;
+        var totalModifier = abilityModifier + weaponModifier + ProficiencyBonus;
+        return HitChance.Create(totalModifier, armorClass, NumberOfAttacks, numberOfHits);
     }
 
     public HitChance ReceiveHitChance(int attackModifier, int totalNumberOfAttacks, int numberOfHits)
