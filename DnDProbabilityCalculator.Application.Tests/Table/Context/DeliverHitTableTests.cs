@@ -9,7 +9,7 @@ namespace DnDProbabilityCalculator.Application.Tests.Table.Context;
 public class DeliverHitTableTests
 {
     [TestMethod]
-    public void FromActor_WhenCalled_ReturnsDeliverHitChanceTable()
+    public void FromActor_WhenCalled_ReturnsRoundedDeliverHitChanceTable()
     {
         // Arrange
         var actor = GetValidActor();
@@ -19,8 +19,8 @@ public class DeliverHitTableTests
 
         // Assert
         new List<string> { "2 ","10", "11", "12" }.AssertElementsAreContainedIn(tableData.ArmorClasses);
-        new List<string> { "1", "-11%", "0%", "10%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
-        new List<string> { "2", "110%", "100%", "90%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
+        new List<string> { "1", "0%", "0%", "10%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
+        new List<string> { "2", "100%", "100%", "90%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
     }
 
     private static Actor GetValidActor()
@@ -43,7 +43,8 @@ public class DeliverHitTableTests
             {
                 NumberOfDice = 10,
                 DiceSides = 6,
-                Bonus = 2
+                Bonus = 2,
+                MiscDamageBonus = 2
             },
             AttackAbility = AbilityScoreType.Charisma
         };

@@ -7,13 +7,13 @@ namespace DnDProbabilityCalculator.Core.Tests.Adventuring;
 public class ActorTests
 {
     [TestMethod]
-    [DataRow(1, 6, 16, 2, 8.5)]
-    [DataRow(2, 8, 14, 5, 16)]
-    [DataRow(3, 10, 10, 2, 18.5)]
-    [DataRow(1, 12, 6, 1, 5.5)]
-    [DataRow(4, 4, 12, 6, 17)]
-    [DataRow(1, 4, 10, 0, 2.5)]
-    public void AverageDamage_WhenCalled_ReturnsDamage(int numberOfDice, int diceSides, int abilityScore, int bonus, double expectedDamage)
+    [DataRow(1, 6, 16, 2, 1, 9.5)]
+    [DataRow(2, 8, 14, 5, 2, 18)]
+    [DataRow(3, 10, 10, 2, 3, 21.5)]
+    [DataRow(1, 12, 6, 1, 0, 5.5)]
+    [DataRow(4, 4, 12, 6, 1, 18)]
+    [DataRow(1, 4, 10, 0, 2, 4.5)]
+    public void AverageDamage_WhenCalled_ReturnsDamage(int numberOfDice, int diceSides, int abilityScore, int bonus, int miscDamageBonus, double expectedDamage)
     {
         // Arrange
         var actor = new Actor
@@ -36,7 +36,8 @@ public class ActorTests
             {
                 NumberOfDice = numberOfDice,
                 DiceSides = diceSides,
-                Bonus = bonus
+                Bonus = bonus,
+                MiscDamageBonus = miscDamageBonus
             }
         };
 
@@ -110,7 +111,8 @@ public class ActorTests
             {
                 NumberOfDice = 1,
                 DiceSides = 6,
-                Bonus = 0
+                Bonus = 0,
+                MiscDamageBonus = 0
             }
         };
 
@@ -146,7 +148,8 @@ public class ActorTests
             {
                 NumberOfDice = 1,
                 DiceSides = 6,
-                Bonus = 2
+                Bonus = 2,
+                MiscDamageBonus = 2
             }
         };
 
@@ -178,7 +181,8 @@ public class ActorTests
             {
                 NumberOfDice = 10,
                 DiceSides = 6,
-                Bonus = 0
+                Bonus = 0,
+                MiscDamageBonus = 2
             }
         };
 }

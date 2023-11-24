@@ -51,7 +51,8 @@ public class SavingThrowTableTests
             {
                 NumberOfDice = 10,
                 DiceSides = 6,
-                Bonus = 2
+                Bonus = 2,
+                MiscDamageBonus = 2
             },
             AttackAbility = AbilityScoreType.Dexterity
         };

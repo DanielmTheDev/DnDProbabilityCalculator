@@ -9,7 +9,8 @@
       "weapon": {
         "numberOfDice": 2,
         "diceSides": 6,
-        "bonus": 1
+        "bonus": 1,
+        "miscDamageBonus": 2
       },
       "abilityScores": {
         "dexterity": {
@@ -42,7 +43,8 @@
       "weapon": {
         "numberOfDice": 2,
         "diceSides": 6,
-        "bonus": 1
+        "bonus": 1,
+        "miscDamageBonus": 0
       },
       "attackAbility": "Dexterity",
       "abilityScores": {
@@ -77,7 +79,8 @@
       "weapon": {
         "numberOfDice": 2,
         "diceSides": 6,
-        "bonus": 0
+        "bonus": 0,
+        "miscDamageBonus": 0
       },
       "abilityScores": {
         "dexterity": {

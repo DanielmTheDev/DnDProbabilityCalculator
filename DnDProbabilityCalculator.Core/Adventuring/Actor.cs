@@ -19,7 +19,8 @@ public class Actor
         {
             var abilityModifier = AbilityScores.AsList().Single(score => score.Type == AttackAbility).Modifier;
             var weaponModifier = Weapon.Bonus;
-            return (Weapon.DiceSides + 1) / 2.0 * Weapon.NumberOfDice + abilityModifier + weaponModifier;
+            var miscDamageBonus = Weapon.MiscDamageBonus;
+            return (Weapon.DiceSides + 1) / 2.0 * Weapon.NumberOfDice + abilityModifier + weaponModifier + miscDamageBonus;
         }
     }
 

@@ -10,17 +10,21 @@ public record HitChance
     public static HitChance Create(int attackModifier, int armorClass, int totalNumberOfAttacks, int numberOfHits)
     {
         var singleHitProbability = (21 - (armorClass - attackModifier)) / 20.0;
+        var multipleHitsProbability = CalculateBoundedMultipleAttackProbability(totalNumberOfAttacks, numberOfHits, singleHitProbability);
         return new()
         {
             AttackModifier = attackModifier,
             ArmorClass = armorClass,
             NumberOfHits = numberOfHits,
-            Probability = CalculateMultipleAttackProbability(totalNumberOfAttacks, numberOfHits, singleHitProbability)
+            Probability = multipleHitsProbability
         };
     }
 
-    private static double CalculateMultipleAttackProbability(int numberOfAttacks, int numberAttacks, double singleHitProbability)
-        => Math.Round(BinomialCoefficient(numberOfAttacks, numberAttacks) * Math.Pow(singleHitProbability, numberAttacks) * Math.Pow(1 - singleHitProbability, numberOfAttacks - numberAttacks), 2);
+    private static double CalculateBoundedMultipleAttackProbability(int numberOfAttacks, int numberAttacks, double singleHitProbability)
+    {
+        var probability = Math.Round(BinomialCoefficient(numberOfAttacks, numberAttacks) * Math.Pow(singleHitProbability, numberAttacks) * Math.Pow(1 - singleHitProbability, numberOfAttacks - numberAttacks), 2);
+        return Math.Min(1, Math.Max(0, probability));
+    }
 
     private static double Factorial(int n)
         => Enumerable.Range(1, n).Aggregate(1.0, (acc, value) => acc * value);

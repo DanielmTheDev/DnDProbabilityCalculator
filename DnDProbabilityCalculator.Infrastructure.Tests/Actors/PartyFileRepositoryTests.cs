@@ -53,6 +53,7 @@ public class PartyFileRepositoryTests
         Assert.AreEqual(2, party.Characters[0].Weapon.NumberOfDice);
         Assert.AreEqual(6, party.Characters[0].Weapon.DiceSides);
         Assert.AreEqual(2, party.Characters[0].Weapon.Bonus);
+        Assert.AreEqual(2, party.Characters[0].Weapon.MiscDamageBonus);
         Assert.AreEqual(AbilityScoreType.Strength, party.Characters[0].AttackAbility);
 
         Assert.AreEqual("Erethil", party.Characters[1].Name);
@@ -70,6 +71,7 @@ public class PartyFileRepositoryTests
         Assert.AreEqual(1, party.Characters[1].Weapon.NumberOfDice);
         Assert.AreEqual(12, party.Characters[1].Weapon.DiceSides);
         Assert.AreEqual(4, party.Characters[1].Weapon.Bonus);
+        Assert.AreEqual(4, party.Characters[1].Weapon.MiscDamageBonus);
         Assert.AreEqual(AbilityScoreType.Dexterity, party.Characters[1].AttackAbility);
     }
 
@@ -106,7 +108,8 @@ public class PartyFileRepositoryTests
                   "weapon": {
                     "numberOfDice": 2,
                     "diceSides": 6,
-                    "bonus": 2
+                    "bonus": 2,
+                    "miscDamageBonus": 2
                   },
                   "abilityScores": {
                     "dexterity": {
@@ -140,7 +143,8 @@ public class PartyFileRepositoryTests
                   "weapon": {
                     "numberOfDice": 1,
                     "diceSides": 12,
-                    "bonus": 4
+                    "bonus": 4,
+                    "miscDamageBonus": 4
                   },
                   "abilityScores": {
                     "dexterity": {
