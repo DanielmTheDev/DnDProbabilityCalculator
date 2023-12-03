@@ -30,7 +30,8 @@ public class Actor
         var proficiencyBonus = abilityScore.IsProficient
             ? ProficiencyBonus
             : 0;
-        return CalculateSavingThrowSuccessChance(dc, abilityScore, proficiencyBonus);
+        var positiveModifer = proficiencyBonus + abilityScore.Modifier;
+        return Probability.Calculate(positiveModifer, dc, AdvantageType.None);
     }
 
     public HitChance DeliverHitChance(int armorClass, int numberOfHits)
@@ -46,9 +47,6 @@ public class Actor
         GuardNumberOfAttacks(totalNumberOfAttacks);
         return HitChance.Create(attackModifier, ArmorClass, totalNumberOfAttacks, numberOfHits);
     }
-
-    private static double CalculateSavingThrowSuccessChance(int dc, AbilityScore abilityScore, int proficiencyBonus)
-        => (21d + abilityScore.Modifier + proficiencyBonus - dc) / 20;
 
     private static void GuardNumberOfAttacks(int totalNumberOfAttacks)
     {
