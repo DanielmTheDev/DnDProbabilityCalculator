@@ -20,7 +20,7 @@ public class ConsoleRenderer : IConsoleRenderer
 
         var tableContext = _tableContextFactory.Create(inputVariables);
         var table = new Table();
-        tableContext.ForEach(data => table.AddColumn(data.GeneralActorInfo.ActorName));
+        tableContext.ForEach(data => table.AddColumn(data.GeneralTableInfo.ActorName));
 
         AnsiConsole.Live(table)
             .Start(context =>

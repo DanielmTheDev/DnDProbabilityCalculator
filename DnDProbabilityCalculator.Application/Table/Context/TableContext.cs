@@ -8,7 +8,7 @@ public record TableContext
     {
     }
 
-    public required GeneralActorInfo GeneralActorInfo { get; set; }
+    public required GeneralTableInfo GeneralTableInfo { get; set; }
     public required SavingThrowTable SavingThrowTable { get; init; }
     public required ReceiveHitTable ReceiveHitTable { get; init; }
     public required DeliverHitTable DeliverHitTable { get; init; }
@@ -17,7 +17,7 @@ public record TableContext
     {
         return new()
         {
-            GeneralActorInfo = GeneralActorInfo.FromActor(actor),
+            GeneralTableInfo = GeneralTableInfo.FromActor(actor, inputVariables),
             SavingThrowTable = SavingThrowTable.FromActor(actor, inputVariables),
             ReceiveHitTable = ReceiveHitTable.FromActor(actor, inputVariables),
             DeliverHitTable = DeliverHitTable.FromActor(actor, inputVariables)

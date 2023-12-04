@@ -24,8 +24,11 @@ public static class LiveTableExtensions
                 Title = new("General Information")
             };
             table.Expand();
-            table.AddColumns("Armor Class", "Damage per Hit");
-            table.AddRow(tableContext.GeneralActorInfo.ArmorClass.ToString(), tableContext.GeneralActorInfo.DamagePerHit.ToString(CultureInfo.CurrentCulture));
+            table.AddColumns("Armor Class", "Damage per Hit", "Advantage Type");
+            table.AddRow(
+                tableContext.GeneralTableInfo.ArmorClass.ToString(),
+                tableContext.GeneralTableInfo.DamagePerHit.ToString(CultureInfo.CurrentCulture),
+                tableContext.GeneralTableInfo.AdvantageType);
             return table;
         });
 
