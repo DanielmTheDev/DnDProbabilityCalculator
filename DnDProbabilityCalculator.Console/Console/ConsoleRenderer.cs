@@ -1,5 +1,6 @@
 ﻿using DnDProbabilityCalculator.Application.Table;
 using DnDProbabilityCalculator.Application.Table.Context;
+using DnDProbabilityCalculator.Core.Adventuring;
 using Spectre.Console;
 
 namespace DnDProbabilityCalculator.Console.Console;
@@ -34,25 +35,33 @@ public class ConsoleRenderer : IConsoleRenderer
                     {
                         case ConsoleKey.DownArrow:
                             inputVariables = inputVariables.WithIncrementedNumberOfAttacks();
-                            var newTableContext = _tableContextFactory.Create(inputVariables);
-                            table.RerenderRows(newTableContext, context);
+                            Rerender(inputVariables, table, context);
                             break;
                         case ConsoleKey.UpArrow:
                             if (inputVariables.NumberOfAttacks == 1)
                                 break;
                             inputVariables = inputVariables.WithDecrementedNumberOfAttacks();
-                            newTableContext = _tableContextFactory.Create(inputVariables);
-                            table.RerenderRows(newTableContext, context);
+                            Rerender(inputVariables, table, context);
                             break;
                         case ConsoleKey.RightArrow:
                             inputVariables = inputVariables.WithIncrementedColumns();
-                            newTableContext = _tableContextFactory.Create(inputVariables);
-                            table.RerenderRows(newTableContext, context);
+                            Rerender(inputVariables, table, context);
                             break;
                         case ConsoleKey.LeftArrow:
                             inputVariables = inputVariables.WithDecrementedColumns();
-                            newTableContext = _tableContextFactory.Create(inputVariables);
-                            table.RerenderRows(newTableContext, context);
+                            Rerender(inputVariables, table, context);
+                            break;
+                        case ConsoleKey.A:
+                            inputVariables = inputVariables.WithAdvantage();
+                            Rerender(inputVariables, table, context);
+                            break;
+                        case ConsoleKey.D:
+                            inputVariables = inputVariables.WithDisadvantage();
+                            Rerender(inputVariables, table, context);
+                            break;
+                        case ConsoleKey.S:
+                            inputVariables = inputVariables.WithNoAdvantage();
+                            Rerender(inputVariables, table, context);
                             break;
                         case ConsoleKey.Q:
                             quit = true;
@@ -62,6 +71,12 @@ public class ConsoleRenderer : IConsoleRenderer
             });
     }
 
+    private void Rerender(InputVariables inputVariables, Table table, LiveDisplayContext context)
+    {
+        var newTableContext = _tableContextFactory.Create(inputVariables);
+        table.RerenderRows(newTableContext, context);
+    }
+
     private static InputVariables CreateDefaultInputVariables()
-        => new(Enumerable.Range(12, 7).ToArray(), Enumerable.Range(3, 7).ToArray(), Enumerable.Range(10, 7).ToArray(), 2);
+        => new(Enumerable.Range(12, 7).ToArray(), Enumerable.Range(3, 7).ToArray(), Enumerable.Range(10, 7).ToArray(), 2, AdvantageType.None);
 }

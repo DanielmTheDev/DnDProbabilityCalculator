@@ -1,37 +1,50 @@
-﻿namespace DnDProbabilityCalculator.Application.Table;
+﻿using DnDProbabilityCalculator.Core.Adventuring;
+
+namespace DnDProbabilityCalculator.Application.Table;
 
 public record InputVariables
 {
     public int[] Dcs { get; }
     public int[] AttackModifiers { get; }
     public int[] ArmorClasses { get; }
-    public int NumberOfAttacks { get; }
+    public int NumberOfAttacks { get; private init; }
+    public AdvantageType AdvantageType { get; private init; }
 
-    public InputVariables(int[] dcs, int[] attackModifiers, int[] armorClasses, int numberOfAttacks)
+    public InputVariables(int[] dcs, int[] attackModifiers, int[] armorClasses, int numberOfAttacks, AdvantageType advantageType)
     {
         Dcs = dcs;
         AttackModifiers = attackModifiers;
         NumberOfAttacks = numberOfAttacks;
+        AdvantageType = advantageType;
         ArmorClasses = armorClasses;
         ValidateSameNumberOfElements();
     }
 
     public InputVariables WithIncrementedNumberOfAttacks()
-        => new(Dcs, AttackModifiers, ArmorClasses, NumberOfAttacks + 1);
+        => this with { NumberOfAttacks = NumberOfAttacks + 1 };
 
     public InputVariables WithDecrementedNumberOfAttacks()
-        => new(Dcs, AttackModifiers, ArmorClasses, NumberOfAttacks - 1);
+        => this with { NumberOfAttacks = NumberOfAttacks - 1 };
+
+    public InputVariables WithAdvantage()
+        => this with { AdvantageType = AdvantageType.Advantage };
+
+    public InputVariables WithDisadvantage()
+        => this with { AdvantageType = AdvantageType.Disadvantage };
+
+    public InputVariables WithNoAdvantage()
+        => this with { AdvantageType = AdvantageType.None };
 
     public InputVariables WithIncrementedColumns()
-        => new(IncrementedColumn(Dcs), IncrementedColumn(AttackModifiers), IncrementedColumn(ArmorClasses), NumberOfAttacks);
+        => new(IncrementedColumn(Dcs), IncrementedColumn(AttackModifiers), IncrementedColumn(ArmorClasses), NumberOfAttacks, AdvantageType);
 
     public InputVariables WithDecrementedColumns()
-        => new(DecrementedColumn(Dcs), DecrementedColumn(AttackModifiers), DecrementedColumn(ArmorClasses), NumberOfAttacks);
+        => new(DecrementedColumn(Dcs), DecrementedColumn(AttackModifiers), DecrementedColumn(ArmorClasses), NumberOfAttacks, AdvantageType);
 
-    private int[] DecrementedColumn(int[] values)
+    private static int[] DecrementedColumn(int[] values)
         => new[] { values.First() - 1 }.Concat(values.Take(values.Length - 1)).ToArray();
 
-    private int[] IncrementedColumn(int[] values)
+    private static int[] IncrementedColumn(int[] values)
         => values.Skip(1).Concat(new[] { values.Last() + 1 }).ToArray();
 
     private void ValidateSameNumberOfElements()

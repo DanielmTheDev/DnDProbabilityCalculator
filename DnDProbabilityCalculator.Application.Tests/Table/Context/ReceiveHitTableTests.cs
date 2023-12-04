@@ -15,7 +15,7 @@ public class ReceiveHitTableTests
         var actor = GetValidActor();
 
         // Act
-        var tableData = ReceiveHitTable.FromActor(actor, new[] { -1, 0, 1 }, 2);
+        var tableData = ReceiveHitTable.FromActor(actor, new(new[] { -1, 0, 1 }, new[] { -1, 0, 1 }, new[] { -1, 0, 1 }, 2, AdvantageType.None));
 
         // Assert
         new List<string> { "2 ","-1", "0", "1" }.AssertElementsAreContainedIn(tableData.AttackModifiers);

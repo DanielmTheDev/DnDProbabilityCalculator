@@ -15,7 +15,7 @@ public class SavingThrowTableTests
         var actor = GetValidActor();
 
         // Act
-        var tableData = SavingThrowTable.FromActor(actor, new[] { 10, 12, 14 });
+        var tableData = SavingThrowTable.FromActor(actor, new(new[] { 10, 12, 14 }, new[] { 10, 12, 14 }, new[] { 10, 12, 14 }, 1, AdvantageType.None));
 
         // Assert
         new List<string> { "Ability/DC", "10", "12", "14" }.AssertElementsAreContainedIn(tableData.Dcs);

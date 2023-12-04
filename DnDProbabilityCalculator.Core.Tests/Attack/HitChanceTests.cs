@@ -1,4 +1,5 @@
-﻿using DnDProbabilityCalculator.Core.Adventuring.Attack;
+﻿using DnDProbabilityCalculator.Core.Adventuring;
+using DnDProbabilityCalculator.Core.Adventuring.Attack;
 
 namespace DnDProbabilityCalculator.Core.Tests.Attack;
 
@@ -12,7 +13,7 @@ public class HitChanceTests
     public void Create_WithValidAttackModifiers_ReturnsProbability(int numberOfHits, double expectedChance)
     {
         // Act
-        var probability = HitChance.Create(6, 15, 2, numberOfHits);
+        var probability = HitChance.Create(6, 15, 2, numberOfHits, AdvantageType.None);
 
         // Assert
         Assert.AreEqual(expectedChance, probability.Probability);

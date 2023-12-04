@@ -12,12 +12,12 @@ public class DeliverHitTable
     {
     }
 
-    public static DeliverHitTable FromActor(Actor actor, int[] armorClasses)
+    public static DeliverHitTable FromActor(Actor actor, InputVariables inputVariables)
     {
-        var armorClassesRow = new List<string> { $"{actor.NumberOfAttacks} Attacks/AC" }.Concat(armorClasses.Select(ac => ac.ToString()));
+        var armorClassesRow = new List<string> { $"{actor.NumberOfAttacks} Attacks/AC" }.Concat(inputVariables.ArmorClasses.Select(ac => ac.ToString()));
 
         var probabilityRows = Enumerable.Range(1, actor.NumberOfAttacks)
-            .Select(currentNumberOfHits => CreateDeliverHitRow(actor, armorClasses, currentNumberOfHits))
+            .Select(currentNumberOfHits => CreateDeliverHitRow(actor, inputVariables, currentNumberOfHits))
             .ToList();
 
         return new()
@@ -27,11 +27,11 @@ public class DeliverHitTable
         };
     }
 
-    private static IEnumerable<string> CreateDeliverHitRow(Actor actor, IEnumerable<int> armorClasses, int currentNumberOfHits)
-        => new[] { $"{currentNumberOfHits} Hits" }.Concat(armorClasses
+    private static IEnumerable<string> CreateDeliverHitRow(Actor actor, InputVariables inputVariables, int currentNumberOfHits)
+        => new[] { $"{currentNumberOfHits} Hits" }.Concat(inputVariables.ArmorClasses
             .Select(currentArmorClass =>
             {
-                var probability = actor.DeliverHitChance(currentArmorClass, currentNumberOfHits).Probability;
+                var probability = actor.DeliverHitChance(currentArmorClass, currentNumberOfHits, inputVariables.AdvantageType).Probability;
                 var successChance = ColoredSuccessChance.FromProbability(probability);
                 return successChance.ToString();
             }));

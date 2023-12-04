@@ -52,9 +52,9 @@ public class ActorTests
         var actor = BuildValidActor();
 
         // Act
-        var dexterityChance = actor.SavingThrowSuccessChance(AbilityScoreType.Dexterity, 13);
-        var charismaChance = actor.SavingThrowSuccessChance(AbilityScoreType.Charisma, 13);
-        var intelligenceChance = actor.SavingThrowSuccessChance(AbilityScoreType.Intelligence, 13);
+        var dexterityChance = actor.SavingThrowSuccessChance(AbilityScoreType.Dexterity, 13, AdvantageType.None);
+        var charismaChance = actor.SavingThrowSuccessChance(AbilityScoreType.Charisma, 13, AdvantageType.None);
+        var intelligenceChance = actor.SavingThrowSuccessChance(AbilityScoreType.Intelligence, 13, AdvantageType.None);
 
         // Assert
         Assert.AreEqual(0.4, dexterityChance);
@@ -69,8 +69,8 @@ public class ActorTests
         var actor = BuildValidActor();
 
         // Act
-        var strengthChance = actor.SavingThrowSuccessChance(AbilityScoreType.Strength, 16);
-        var constChance = actor.SavingThrowSuccessChance(AbilityScoreType.Constitution, 16);
+        var strengthChance = actor.SavingThrowSuccessChance(AbilityScoreType.Strength, 16, AdvantageType.None);
+        var constChance = actor.SavingThrowSuccessChance(AbilityScoreType.Constitution, 16, AdvantageType.None);
 
         // Assert
         Assert.AreEqual(0.5, strengthChance);
@@ -118,7 +118,7 @@ public class ActorTests
 
 
         // Act and Assert
-        var message = Assert.ThrowsException<ArgumentOutOfRangeException>(() => actor.ReceiveHitChance(6, numberOfAttacks, 2));
+        var message = Assert.ThrowsException<ArgumentOutOfRangeException>(() => actor.ReceiveHitChance(6, numberOfAttacks, 2, AdvantageType.None));
         Assert.IsTrue(message.Message.Contains(ErrorMessages.Negative_Number_Of_Attacks));
     }
 
@@ -154,7 +154,7 @@ public class ActorTests
         };
 
         // Act
-        var chance = actor.DeliverHitChance(14, numberOfHits);
+        var chance = actor.DeliverHitChance(14, numberOfHits, AdvantageType.None);
 
         // Assert
         Assert.AreEqual(expectedProbability, chance.Probability);

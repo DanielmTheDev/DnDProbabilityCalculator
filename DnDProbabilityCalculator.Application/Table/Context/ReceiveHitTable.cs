@@ -12,12 +12,12 @@ public class ReceiveHitTable
     {
     }
 
-    public static ReceiveHitTable FromActor(Actor actor, int[] attackModifiers, int totalNumberOfAttacks)
+    public static ReceiveHitTable FromActor(Actor actor, InputVariables inputVariables)
     {
-        var attackModifierRow = new List<string> { $"{totalNumberOfAttacks} Attacks/Mod" }.Concat(attackModifiers.Select(modifier => modifier.ToString())).ToList();
+        var attackModifierRow = new List<string> { $"{inputVariables.NumberOfAttacks} Attacks/Mod" }.Concat(inputVariables.AttackModifiers.Select(modifier => modifier.ToString())).ToList();
 
-        var probabilityRows = Enumerable.Range(1, totalNumberOfAttacks)
-            .Select(currentNumberOfHits => CreateGetHitRow(actor, attackModifiers, totalNumberOfAttacks, currentNumberOfHits))
+        var probabilityRows = Enumerable.Range(1, inputVariables.NumberOfAttacks)
+            .Select(currentNumberOfHits => CreateGetHitRow(actor, inputVariables, currentNumberOfHits))
             .ToList();
 
         return new()
@@ -27,11 +27,11 @@ public class ReceiveHitTable
         };
     }
 
-    private static IEnumerable<string> CreateGetHitRow(Actor actor, IEnumerable<int> attackModifiers, int totalNumberOfAttacks, int currentNumberOfHits)
-        => new[] { $"{currentNumberOfHits} Hits" }.Concat(attackModifiers
+    private static IEnumerable<string> CreateGetHitRow(Actor actor, InputVariables inputVariables, int currentNumberOfHits)
+        => new[] { $"{currentNumberOfHits} Hits" }.Concat(inputVariables.AttackModifiers
             .Select(currentModifier =>
             {
-                var probability = actor.ReceiveHitChance(currentModifier, totalNumberOfAttacks, currentNumberOfHits).Probability;
+                var probability = actor.ReceiveHitChance(currentModifier, inputVariables.NumberOfAttacks, currentNumberOfHits, inputVariables.AdvantageType).Probability;
                 var successChance = ColoredSuccessChance.FromProbability(probability);
                 return successChance.WithInvertedColors().ToString();
             }));

@@ -13,10 +13,10 @@ public class SavingThrowTable
     {
     }
 
-    public static SavingThrowTable FromActor(Actor actor, int[] dcs)
+    public static SavingThrowTable FromActor(Actor actor, InputVariables inputVariables)
     {
-        var dcRow = new List<string> { "Ability/DC" }.Concat(dcs.Select(dc => dc.ToString())).ToList();
-        var probabilities = Enum.GetValues<AbilityScoreType>().Select(abilityScoreType => CreateRow(actor, abilityScoreType, dcs)).ToList();
+        var dcRow = new List<string> { "Ability/DC" }.Concat(inputVariables.Dcs.Select(dc => dc.ToString())).ToList();
+        var probabilities = Enum.GetValues<AbilityScoreType>().Select(abilityScoreType => CreateRow(actor, abilityScoreType, inputVariables)).ToList();
 
         return new()
         {
@@ -25,15 +25,15 @@ public class SavingThrowTable
         };
     }
 
-    private static IEnumerable<string> CreateRow(Actor actor, AbilityScoreType abilityScoreType, IEnumerable<int> dcs)
+    private static IEnumerable<string> CreateRow(Actor actor, AbilityScoreType abilityScoreType, InputVariables inputVariables)
     {
         var abilityScore = actor.AbilityScores.Get(abilityScoreType);
         var firstCell = $"{abilityScore.Abbreviation} ({abilityScore.Value})";
         return new List<string> { firstCell }
-            .Concat(dcs.Select(
+            .Concat(inputVariables.Dcs.Select(
                 dc =>
                 {
-                    var probability = actor.SavingThrowSuccessChance(abilityScoreType, dc);
+                    var probability = actor.SavingThrowSuccessChance(abilityScoreType, dc, inputVariables.AdvantageType);
                     return ColoredSuccessChance.FromProbability(probability).ToString();
                 }).ToList());
     }

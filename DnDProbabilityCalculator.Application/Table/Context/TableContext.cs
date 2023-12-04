@@ -18,9 +18,9 @@ public record TableContext
         return new()
         {
             GeneralActorInfo = GeneralActorInfo.FromActor(actor),
-            SavingThrowTable = SavingThrowTable.FromActor(actor, inputVariables.Dcs),
-            ReceiveHitTable = ReceiveHitTable.FromActor(actor, inputVariables.AttackModifiers, inputVariables.NumberOfAttacks),
-            DeliverHitTable = DeliverHitTable.FromActor(actor, inputVariables.ArmorClasses),
+            SavingThrowTable = SavingThrowTable.FromActor(actor, inputVariables),
+            ReceiveHitTable = ReceiveHitTable.FromActor(actor, inputVariables),
+            DeliverHitTable = DeliverHitTable.FromActor(actor, inputVariables)
         };
     }
 }
