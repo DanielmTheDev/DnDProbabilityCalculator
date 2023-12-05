@@ -1,4 +1,5 @@
 ﻿using DnDProbabilityCalculator.Application.Table.Context;
+using DnDProbabilityCalculator.Application.Table.Presentation;
 using DnDProbabilityCalculator.Core.Adventuring;
 using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -19,7 +20,7 @@ public class SavingThrowTableTests
 
         // Assert
         new List<string> { "Ability/DC", "10", "12", "14" }.AssertElementsAreContainedIn(tableData.Dcs);
-        new List<string> { "Dex (12)", "100%", "95%", "85%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
+        new List<string> { $"{"Dex".AsGreen()} (12)", "100%", "95%", "85%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
         new List<string> { "Str (10)", "55%", "45%", "35%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
         new List<string> { "Con (14)", "65%", "55%", "45%" }.AssertElementsAreContainedIn(tableData.Probabilities[2]);
         new List<string> { "Int (16)", "70%", "60%", "50%" }.AssertElementsAreContainedIn(tableData.Probabilities[3]);

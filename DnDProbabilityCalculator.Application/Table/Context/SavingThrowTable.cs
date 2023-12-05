@@ -28,7 +28,7 @@ public class SavingThrowTable
     private static IEnumerable<string> CreateRow(Actor actor, AbilityScoreType abilityScoreType, InputVariables inputVariables)
     {
         var abilityScore = actor.AbilityScores.Get(abilityScoreType);
-        var firstCell = $"{abilityScore.Abbreviation} ({abilityScore.Value})";
+        var firstCell = $"{ColoredAbbreviation(actor, abilityScore)} ({abilityScore.Value})";
         return new List<string> { firstCell }
             .Concat(inputVariables.Dcs.Select(
                 dc =>
@@ -37,4 +37,9 @@ public class SavingThrowTable
                     return ColoredSuccessChance.FromProbability(probability).ToString();
                 }).ToList());
     }
+
+    private static string ColoredAbbreviation(Actor actor, AbilityScore abilityScore)
+        => actor.AbilityScores.IsProficientAt(abilityScore.Type)
+            ? abilityScore.Abbreviation.AsGreen()
+            : abilityScore.Abbreviation;
 }

@@ -10,10 +10,10 @@ public record AbilityScores
     public required Charisma Charisma { get; init; }
 
     public AbilityScore Get(AbilityScoreType abilityScoreType)
-        => AllAbilityScores().Single(abilityScore => abilityScore.Type == abilityScoreType);
+        => AsList().Single(abilityScore => abilityScore.Type == abilityScoreType);
 
-    private IEnumerable<AbilityScore> AllAbilityScores()
-        => new List<AbilityScore> { Dexterity, Strength, Constitution, Intelligence, Wisdom, Charisma };
+    public bool IsProficientAt(AbilityScoreType abilityScoreType)
+        => AsList().Single(type => type.Type == abilityScoreType).IsProficient;
 
     public IEnumerable<AbilityScore> AsList()
         => new List<AbilityScore> { Dexterity, Strength, Constitution, Intelligence, Wisdom, Charisma };
