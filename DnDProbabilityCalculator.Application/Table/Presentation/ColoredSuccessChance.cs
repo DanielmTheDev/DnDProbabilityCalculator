@@ -21,19 +21,19 @@ public record ColoredSuccessChance
         return UseInvertedColorings
             ? _chance switch
             {
-                < 0.25 => $"[green]{successChanceAsString}[/]",
-                < 0.45 => $"[turquoise2]{successChanceAsString}[/]",
-                < 0.65 => $"[yellow]{successChanceAsString}[/]",
-                < 0.85 => $"[orange4_1]{successChanceAsString}[/]",
-                _ => $"[red]{successChanceAsString}[/]",
+                < 0.25 => successChanceAsString.AsGreen(),
+                < 0.45 => successChanceAsString.AsTurquoise2(),
+                < 0.65 => successChanceAsString.AsYellow(),
+                < 0.85 => successChanceAsString.AsOrange4_1(),
+                _ => successChanceAsString.AsRed()
             }
             : _chance switch
             {
-                < 0.25 => $"[red]{successChanceAsString}[/]",
-                < 0.45 => $"[orange4_1]{successChanceAsString}[/]",
-                < 0.65 => $"[yellow]{successChanceAsString}[/]",
-                < 0.85 => $"[turquoise2]{successChanceAsString}[/]",
-                _ => $"[green]{successChanceAsString}[/]",
+                < 0.25 => successChanceAsString.AsRed(),
+                < 0.45 => successChanceAsString.AsOrange4_1(),
+                < 0.65 => successChanceAsString.AsYellow(),
+                < 0.85 => successChanceAsString.AsTurquoise2(),
+                _ => successChanceAsString.AsGreen(),
             };
     }
 }
