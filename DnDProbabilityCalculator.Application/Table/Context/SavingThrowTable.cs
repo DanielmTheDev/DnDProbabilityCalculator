@@ -33,7 +33,7 @@ public class SavingThrowTable
             .Concat(inputVariables.Dcs.Select(
                 dc =>
                 {
-                    var probability = actor.SavingThrowSuccessChance(abilityScoreType, dc, inputVariables.AdvantageType);
+                    var probability = actor.SavingThrowSuccessChance(abilityScoreType, dc, inputVariables.Advantage);
                     return ColoredSuccessChance.FromProbability(probability).ToString();
                 }).ToList());
     }

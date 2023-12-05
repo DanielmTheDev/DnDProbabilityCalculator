@@ -8,14 +8,14 @@ public record InputVariables
     public int[] AttackModifiers { get; }
     public int[] ArmorClasses { get; }
     public int NumberOfAttacks { get; private init; }
-    public AdvantageType AdvantageType { get; private init; }
+    public AdvantageType Advantage { get; private init; }
 
-    public InputVariables(int[] dcs, int[] attackModifiers, int[] armorClasses, int numberOfAttacks, AdvantageType advantageType)
+    public InputVariables(int[] dcs, int[] attackModifiers, int[] armorClasses, int numberOfAttacks, AdvantageType advantage)
     {
         Dcs = dcs;
         AttackModifiers = attackModifiers;
         NumberOfAttacks = numberOfAttacks;
-        AdvantageType = advantageType;
+        Advantage = advantage;
         ArmorClasses = armorClasses;
         ValidateSameNumberOfElements();
     }
@@ -27,19 +27,19 @@ public record InputVariables
         => this with { NumberOfAttacks = NumberOfAttacks - 1 };
 
     public InputVariables WithAdvantage()
-        => this with { AdvantageType = AdvantageType.Advantage };
+        => this with { Advantage = AdvantageType.Advantage };
 
     public InputVariables WithDisadvantage()
-        => this with { AdvantageType = AdvantageType.Disadvantage };
+        => this with { Advantage = AdvantageType.Disadvantage };
 
     public InputVariables WithNoAdvantage()
-        => this with { AdvantageType = AdvantageType.None };
+        => this with { Advantage = AdvantageType.None };
 
     public InputVariables WithIncrementedColumns()
-        => new(IncrementedColumn(Dcs), IncrementedColumn(AttackModifiers), IncrementedColumn(ArmorClasses), NumberOfAttacks, AdvantageType);
+        => new(IncrementedColumn(Dcs), IncrementedColumn(AttackModifiers), IncrementedColumn(ArmorClasses), NumberOfAttacks, Advantage);
 
     public InputVariables WithDecrementedColumns()
-        => new(DecrementedColumn(Dcs), DecrementedColumn(AttackModifiers), DecrementedColumn(ArmorClasses), NumberOfAttacks, AdvantageType);
+        => new(DecrementedColumn(Dcs), DecrementedColumn(AttackModifiers), DecrementedColumn(ArmorClasses), NumberOfAttacks, Advantage);
 
     private static int[] DecrementedColumn(int[] values)
         => new[] { values.First() - 1 }.Concat(values.Take(values.Length - 1)).ToArray();

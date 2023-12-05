@@ -24,28 +24,28 @@ public class Actor
         }
     }
 
-    public double SavingThrowSuccessChance(AbilityScoreType abilityScoreType, int dc, AdvantageType advantageType)
+    public double SavingThrowSuccessChance(AbilityScoreType abilityScoreType, int dc, AdvantageType advantage)
     {
         var abilityScore = AbilityScores.Get(abilityScoreType);
         var proficiencyBonus = abilityScore.IsProficient
             ? ProficiencyBonus
             : 0;
         var positiveModifer = proficiencyBonus + abilityScore.Modifier;
-        return Probability.Calculate(positiveModifer, dc, advantageType);
+        return Probability.Calculate(positiveModifer, dc, advantage);
     }
 
-    public HitChance DeliverHitChance(int armorClass, int numberOfHits, AdvantageType advantageType)
+    public HitChance DeliverHitChance(int armorClass, int numberOfHits, AdvantageType advantage)
     {
         var abilityModifier = AbilityScores.AsList().Single(score => score.Type == AttackAbility).Modifier;
         var weaponModifier = Weapon.Bonus;
         var totalModifier = abilityModifier + weaponModifier + ProficiencyBonus;
-        return HitChance.Create(totalModifier, armorClass, NumberOfAttacks, numberOfHits, advantageType);
+        return HitChance.Create(totalModifier, armorClass, NumberOfAttacks, numberOfHits, advantage);
     }
 
-    public HitChance ReceiveHitChance(int attackModifier, int totalNumberOfAttacks, int numberOfHits, AdvantageType advantageType)
+    public HitChance ReceiveHitChance(int attackModifier, int totalNumberOfAttacks, int numberOfHits, AdvantageType advantage)
     {
         GuardNumberOfAttacks(totalNumberOfAttacks);
-        return HitChance.Create(attackModifier, ArmorClass, totalNumberOfAttacks, numberOfHits, advantageType);
+        return HitChance.Create(attackModifier, ArmorClass, totalNumberOfAttacks, numberOfHits, advantage);
     }
 
     private static void GuardNumberOfAttacks(int totalNumberOfAttacks)

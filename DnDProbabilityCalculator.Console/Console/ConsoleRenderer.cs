@@ -19,7 +19,7 @@ public class ConsoleRenderer : IConsoleRenderer
         var inputVariables = CreateDefaultInputVariables();
 
         var tableContext = _tableContextFactory.Create(inputVariables);
-        var table = new Table();
+        var table = new Table { Expand = true };
         tableContext.ForEach(data => table.AddColumn(data.GeneralTableInfo.ActorName));
 
         AnsiConsole.Live(table)

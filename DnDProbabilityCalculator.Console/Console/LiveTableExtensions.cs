@@ -28,7 +28,7 @@ public static class LiveTableExtensions
             table.AddRow(
                 tableContext.GeneralTableInfo.ArmorClass.ToString(),
                 tableContext.GeneralTableInfo.DamagePerHit.ToString(CultureInfo.CurrentCulture),
-                tableContext.GeneralTableInfo.AdvantageType);
+                tableContext.GeneralTableInfo.Advantage);
             return table;
         });
 

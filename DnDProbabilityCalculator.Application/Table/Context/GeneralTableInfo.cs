@@ -1,4 +1,5 @@
-﻿using DnDProbabilityCalculator.Core.Adventuring;
+﻿using DnDProbabilityCalculator.Application.Table.Presentation;
+using DnDProbabilityCalculator.Core.Adventuring;
 
 namespace DnDProbabilityCalculator.Application.Table.Context;
 
@@ -7,7 +8,7 @@ public class GeneralTableInfo
     public required string ActorName { get; init; }
     public required int ArmorClass { get; init; }
     public required double DamagePerHit { get; init; }
-    public required string AdvantageType { get; init; }
+    public required string Advantage { get; init; }
 
     public static GeneralTableInfo FromActor(Actor actor, InputVariables inputVariables)
         => new()
@@ -15,6 +16,17 @@ public class GeneralTableInfo
             ActorName = actor.Name,
             ArmorClass = actor.ArmorClass,
             DamagePerHit = actor.AverageDamagePerHit,
-            AdvantageType = inputVariables.AdvantageType.ToString()
+            Advantage = ColoredAdvantageType(inputVariables.Advantage)
         };
+
+    private static string ColoredAdvantageType(AdvantageType advantage)
+    {
+        return advantage switch
+        {
+            AdvantageType.None => advantage.ToString(),
+            AdvantageType.Advantage => advantage.ToString().AsGreen(),
+            AdvantageType.Disadvantage => advantage.ToString().AsRed(),
+            _ => throw new ArgumentOutOfRangeException(nameof(advantage), advantage, null)
+        };
+    }
 }

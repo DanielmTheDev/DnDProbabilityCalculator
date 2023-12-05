@@ -31,7 +31,7 @@ public class DeliverHitTable
         => new[] { $"{currentNumberOfHits} Hits" }.Concat(inputVariables.ArmorClasses
             .Select(currentArmorClass =>
             {
-                var probability = actor.DeliverHitChance(currentArmorClass, currentNumberOfHits, inputVariables.AdvantageType).Probability;
+                var probability = actor.DeliverHitChance(currentArmorClass, currentNumberOfHits, inputVariables.Advantage).Probability;
                 var successChance = ColoredSuccessChance.FromProbability(probability);
                 return successChance.ToString();
             }));

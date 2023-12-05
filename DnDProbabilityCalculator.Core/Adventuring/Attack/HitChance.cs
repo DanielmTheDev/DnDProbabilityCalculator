@@ -7,9 +7,9 @@ public record HitChance
     public required int AttackModifier { get; set; }
     public required double Probability { get; init; }
 
-    public static HitChance Create(int attackModifier, int armorClass, int totalNumberOfAttacks, int numberOfHits, AdvantageType advantageType)
+    public static HitChance Create(int attackModifier, int armorClass, int totalNumberOfAttacks, int numberOfHits, AdvantageType advantage)
     {
-        var singleHitProbability = Adventuring.Probability.Calculate(attackModifier, armorClass, advantageType);
+        var singleHitProbability = Adventuring.Probability.Calculate(attackModifier, armorClass, advantage);
         var multipleHitsProbability = CalculateBoundedMultipleAttackProbability(totalNumberOfAttacks, numberOfHits, singleHitProbability);
         return new()
         {
