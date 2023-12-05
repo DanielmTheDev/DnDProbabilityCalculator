@@ -28,7 +28,7 @@ public class DeliverHitTable
     }
 
     private static IEnumerable<string> CreateDeliverHitRow(Actor actor, InputVariables inputVariables, int currentNumberOfHits)
-        => new[] { $"{currentNumberOfHits} Hits" }.Concat(inputVariables.ArmorClasses
+        => new[] { $">= {currentNumberOfHits} Hits" }.Concat(inputVariables.ArmorClasses
             .Select(currentArmorClass =>
             {
                 var probability = actor.DeliverHitChance(currentArmorClass, currentNumberOfHits, inputVariables.Advantage).Probability;

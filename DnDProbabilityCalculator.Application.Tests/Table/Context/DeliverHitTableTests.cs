@@ -19,7 +19,7 @@ public class DeliverHitTableTests
 
         // Assert
         new List<string> { "2 ","10", "11", "12" }.AssertElementsAreContainedIn(tableData.ArmorClasses);
-        new List<string> { "1", "32%", "38%", "42%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
+        new List<string> { "1", "96%", "94%", "91%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
         new List<string> { "2", "64%", "56%", "49%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
     }
 
@@ -34,7 +34,7 @@ public class DeliverHitTableTests
 
         // Assert
         new List<string> { "2 ","10", "11", "12" }.AssertElementsAreContainedIn(tableData.ArmorClasses);
-        new List<string> { "1", "8%", "12%", "16%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
+        new List<string> { "1", "100%", "100%", "99%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
         new List<string> { "2", "92%", "88%", "83%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
     }
 
@@ -49,7 +49,7 @@ public class DeliverHitTableTests
 
         // Assert
         new List<string> { "2 ","10", "11", "12" }.AssertElementsAreContainedIn(tableData.ArmorClasses);
-        new List<string> { "1", "46%", "49%", "50%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
+        new List<string> { "1", "87%", "81%", "74%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
         new List<string> { "2", "41%", "32%", "24%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
     }
 

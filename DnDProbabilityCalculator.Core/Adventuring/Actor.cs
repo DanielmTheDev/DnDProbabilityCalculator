@@ -39,13 +39,13 @@ public class Actor
         var abilityModifier = AbilityScores.AsList().Single(score => score.Type == AttackAbility).Modifier;
         var weaponModifier = Weapon.Bonus;
         var totalModifier = abilityModifier + weaponModifier + ProficiencyBonus;
-        return HitChance.Create(totalModifier, armorClass, NumberOfAttacks, numberOfHits, advantage);
+        return HitChance.Calculate(totalModifier, armorClass, NumberOfAttacks, numberOfHits, advantage);
     }
 
     public HitChance ReceiveHitChance(int attackModifier, int totalNumberOfAttacks, int numberOfHits, AdvantageType advantage)
     {
         GuardNumberOfAttacks(totalNumberOfAttacks);
-        return HitChance.Create(attackModifier, ArmorClass, totalNumberOfAttacks, numberOfHits, advantage);
+        return HitChance.Calculate(attackModifier, ArmorClass, totalNumberOfAttacks, numberOfHits, advantage);
     }
 
     private static void GuardNumberOfAttacks(int totalNumberOfAttacks)

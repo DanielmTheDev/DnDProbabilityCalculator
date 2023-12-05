@@ -19,7 +19,7 @@ public class ReceiveHitTableTests
 
         // Assert
         new List<string> { "2 ","-1", "0", "1" }.AssertElementsAreContainedIn(tableData.AttackModifiers);
-        new List<string> { "1", "38%", "32%", "26%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
+        new List<string> { "1", "94%", "96%", "98%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
         new List<string> { "2", "56%", "64%", "72%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
     }
 

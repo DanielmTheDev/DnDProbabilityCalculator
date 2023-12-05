@@ -123,7 +123,7 @@ public class ActorTests
     }
 
     [TestMethod]
-    [DataRow(1, 0.42)]
+    [DataRow(1, 0.91)]
     [DataRow(2, 0.49)]
     public void CalculateDeliverHitChance_WhenCalled_ReturnsChanceForSuccess(int numberOfHits, double expectedProbability)
     {
@@ -157,7 +157,22 @@ public class ActorTests
         var chance = actor.DeliverHitChance(14, numberOfHits, AdvantageType.None);
 
         // Assert
-        Assert.AreEqual(expectedProbability, chance.Probability);
+        Assert.AreEqual(expectedProbability, chance.Probability, 0.01);
+    }
+
+    [TestMethod]
+    [DataRow(1, 0.91)]
+    [DataRow(2, 0.58)]
+    public void ReceiveHitChance_WhenCalled_ReturnsChanceForSuccess(int numberOfHits, double expectedProbability)
+    {
+        // Arrange
+        var actor = BuildValidActor();
+
+        // Act
+        var chance = actor.ReceiveHitChance(-5, 3, numberOfHits, AdvantageType.None);
+
+        // Assert
+        Assert.AreEqual(expectedProbability, chance.Probability, 0.01);
     }
 
     private static Actor BuildValidActor()
