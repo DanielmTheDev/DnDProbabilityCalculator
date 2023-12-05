@@ -10,10 +10,13 @@ public class GeneralTableInfo
     public required double DamagePerHit { get; init; }
     public required string Advantage { get; init; }
 
+    public required int AttackModifier { get; set; }
+
     public static GeneralTableInfo FromActor(Actor actor, InputVariables inputVariables)
         => new()
         {
             ActorName = actor.Name,
+            AttackModifier = actor.AttackModifier,
             ArmorClass = actor.ArmorClass,
             DamagePerHit = actor.AverageDamagePerHit,
             Advantage = ColoredAdvantageType(inputVariables.Advantage)

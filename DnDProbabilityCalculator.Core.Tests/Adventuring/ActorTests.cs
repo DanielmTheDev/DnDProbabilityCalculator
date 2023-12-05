@@ -175,6 +175,41 @@ public class ActorTests
         Assert.AreEqual(expectedProbability, chance.Probability, 0.01);
     }
 
+    public void AttackModifier_WhenCalled_ReturnsAttackModifier()
+    {
+        // Arrange
+        var actor = new Actor
+        {
+            Name = "Durak",
+            AbilityScores = new()
+            {
+                Dexterity = 12,
+                Strength = new() { Value = 16, IsProficient = true },
+                Constitution = new() { Value = 10, IsProficient = true },
+                Intelligence = 9,
+                Wisdom = 13,
+                Charisma = 10
+            },
+            ProficiencyBonus = 2,
+            ArmorClass = 15,
+            NumberOfAttacks = 2,
+            AttackAbility = AbilityScoreType.Strength,
+            Weapon = new()
+            {
+                NumberOfDice = 1,
+                DiceSides = 6,
+                Bonus = 2,
+                MiscDamageBonus = 2
+            }
+        };
+
+        // Act
+        var attackModifier = actor.AttackModifier;
+
+        // Assert
+        Assert.AreEqual(3, attackModifier);
+    }
+
     private static Actor BuildValidActor()
         => new()
         {
