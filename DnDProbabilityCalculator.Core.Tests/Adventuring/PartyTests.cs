@@ -1,7 +1,4 @@
 namespace DnDProbabilityCalculator.Core.Tests.Adventuring;
 
 [TestClass]
-public class PartyTests
-{
-
-}
+public class PartyTests;

@@ -8,10 +8,9 @@ using Microsoft.Extensions.Options;
 
 namespace DnDProbabilityCalculator.Infrastructure.Actors;
 
-public class PartyFileRepository : IPartyRepository
+public class PartyFileRepository(IFileAccessor fileAccessor, IOptions<FileRepositoryOptions> options) : IPartyRepository
 {
-    private readonly IFileAccessor _fileAccessor;
-    private readonly FileRepositoryOptions _options;
+    private readonly FileRepositoryOptions _options = options.Value;
 
     private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
@@ -19,15 +18,9 @@ public class PartyFileRepository : IPartyRepository
         Converters = { new JsonStringEnumConverter() }
     };
 
-    public PartyFileRepository(IFileAccessor fileAccessor, IOptions<FileRepositoryOptions> options)
-    {
-        _fileAccessor = fileAccessor;
-        _options = options.Value;
-    }
-
     public Party Get()
     {
-        var jsonString = _fileAccessor.ReadAllText(_options.FilePath);
+        var jsonString = fileAccessor.ReadAllText(_options.FilePath);
         return JsonSerializer.Deserialize<Party>(jsonString, JsonSerializerOptions)
                ?? throw new FormatException(ErrorMessages.Wrong_File_Format);
     }

@@ -3,6 +3,4 @@
 namespace DnDProbabilityCalculator.Application.Tests.Table.Context;
 
 [TestClass]
-public class TableContextTests
-{
-}
+public class TableContextTests;

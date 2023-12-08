@@ -5,20 +5,13 @@ using Spectre.Console;
 
 namespace DnDProbabilityCalculator.Console.Console;
 
-public class ConsoleRenderer : IConsoleRenderer
+public class ConsoleRenderer(ITableContextFactory tableContextFactory) : IConsoleRenderer
 {
-    private readonly ITableContextFactory _tableContextFactory;
-
-    public ConsoleRenderer(ITableContextFactory tableContextFactory)
-    {
-        _tableContextFactory = tableContextFactory;
-    }
-
     public void Start()
     {
         var inputVariables = CreateDefaultInputVariables();
 
-        var tableContext = _tableContextFactory.Create(inputVariables);
+        var tableContext = tableContextFactory.Create(inputVariables);
         var table = new Table { Expand = true };
         tableContext.ForEach(data => table.AddColumn(data.GeneralTableInfo.ActorName));
 
@@ -73,7 +66,7 @@ public class ConsoleRenderer : IConsoleRenderer
 
     private void Rerender(InputVariables inputVariables, Table table, LiveDisplayContext context)
     {
-        var newTableContext = _tableContextFactory.Create(inputVariables);
+        var newTableContext = tableContextFactory.Create(inputVariables);
         table.RerenderRows(newTableContext, context);
     }
 
