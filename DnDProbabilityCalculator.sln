@@ -22,7 +22,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDProbabilityCalculator.Co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Blazor", "Blazor", "{5537D204-195F-4BCE-A4BA-D446EFCE8CBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDProbabilityCalculator.Blazor", "DnDProbabilityCalculator.Blazor\DnDProbabilityCalculator.Blazor.csproj", "{D5D80A04-A8EA-4A0F-AB3A-4CB282DE34C6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDProbabilityCalculator.MudBlazor.Blazor", "DnDProbabilityCalculator.MudBlazor.Blazor\DnDProbabilityCalculator.MudBlazor.Blazor.csproj", "{D5D80A04-A8EA-4A0F-AB3A-4CB282DE34C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDProbabilityCalculator.Fluent.Blazor", "DnDProbabilityCalculator.Fluent.Blazor\DnDProbabilityCalculator.Fluent.Blazor.csproj", "{DCA08D1B-0E78-48BC-A9C8-DB64AB3C36EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{D5D80A04-A8EA-4A0F-AB3A-4CB282DE34C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5D80A04-A8EA-4A0F-AB3A-4CB282DE34C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5D80A04-A8EA-4A0F-AB3A-4CB282DE34C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCA08D1B-0E78-48BC-A9C8-DB64AB3C36EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCA08D1B-0E78-48BC-A9C8-DB64AB3C36EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCA08D1B-0E78-48BC-A9C8-DB64AB3C36EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCA08D1B-0E78-48BC-A9C8-DB64AB3C36EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2F280E5A-4925-4AC2-BD88-6BE4DE47CF91} = {7CDC4C13-EC2F-4D1B-88A2-28DC3D977C73}
@@ -72,5 +78,6 @@ Global
 		{D5D80A04-A8EA-4A0F-AB3A-4CB282DE34C6} = {5537D204-195F-4BCE-A4BA-D446EFCE8CBD}
 		{5AD6488F-43F5-4DF2-BF47-56312997BD4A} = {1A5938DF-F3CB-4B8D-BCD0-ADB5B4B274E6}
 		{5DF03379-84B8-4C0A-8943-438A87268939} = {1A5938DF-F3CB-4B8D-BCD0-ADB5B4B274E6}
+		{DCA08D1B-0E78-48BC-A9C8-DB64AB3C36EC} = {5537D204-195F-4BCE-A4BA-D446EFCE8CBD}
 	EndGlobalSection
 EndGlobal
