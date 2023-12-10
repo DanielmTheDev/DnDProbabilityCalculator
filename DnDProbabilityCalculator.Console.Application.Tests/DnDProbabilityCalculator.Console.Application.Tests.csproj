@@ -4,10 +4,11 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>DnDProbabilityCalculator.Application.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DnDProbabilityCalculator.Application\DnDProbabilityCalculator.Application.csproj" />
+      <ProjectReference Include="..\DnDProbabilityCalculator.Console.Application\DnDProbabilityCalculator.Console.Application.csproj" />
       <ProjectReference Include="..\DnDProbabilityCalculator.Core\DnDProbabilityCalculator.Core.csproj" />
     </ItemGroup>
 
