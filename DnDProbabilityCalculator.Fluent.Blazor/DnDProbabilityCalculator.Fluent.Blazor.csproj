@@ -12,4 +12,16 @@
         <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.*-* "/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DnDProbabilityCalculator.Blazor.Application\DnDProbabilityCalculator.Blazor.Application.csproj" />
+      <ProjectReference Include="..\DnDProbabilityCalculator.Core\DnDProbabilityCalculator.Core.csproj" />
+      <ProjectReference Include="..\DnDProbabilityCalculator.Infrastructure\DnDProbabilityCalculator.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="party.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

@@ -26,6 +26,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDProbabilityCalculator.Mu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDProbabilityCalculator.Fluent.Blazor", "DnDProbabilityCalculator.Fluent.Blazor\DnDProbabilityCalculator.Fluent.Blazor.csproj", "{DCA08D1B-0E78-48BC-A9C8-DB64AB3C36EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDProbabilityCalculator.Blazor.Application", "DnDProbabilityCalculator.Blazor.Application\DnDProbabilityCalculator.Blazor.Application.csproj", "{203E59F5-438D-431C-A5FE-6EC8FEF329A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{DCA08D1B-0E78-48BC-A9C8-DB64AB3C36EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCA08D1B-0E78-48BC-A9C8-DB64AB3C36EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCA08D1B-0E78-48BC-A9C8-DB64AB3C36EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{203E59F5-438D-431C-A5FE-6EC8FEF329A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{203E59F5-438D-431C-A5FE-6EC8FEF329A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{203E59F5-438D-431C-A5FE-6EC8FEF329A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{203E59F5-438D-431C-A5FE-6EC8FEF329A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2F280E5A-4925-4AC2-BD88-6BE4DE47CF91} = {7CDC4C13-EC2F-4D1B-88A2-28DC3D977C73}
@@ -79,5 +85,6 @@ Global
 		{5AD6488F-43F5-4DF2-BF47-56312997BD4A} = {1A5938DF-F3CB-4B8D-BCD0-ADB5B4B274E6}
 		{5DF03379-84B8-4C0A-8943-438A87268939} = {1A5938DF-F3CB-4B8D-BCD0-ADB5B4B274E6}
 		{DCA08D1B-0E78-48BC-A9C8-DB64AB3C36EC} = {5537D204-195F-4BCE-A4BA-D446EFCE8CBD}
+		{203E59F5-438D-431C-A5FE-6EC8FEF329A6} = {5537D204-195F-4BCE-A4BA-D446EFCE8CBD}
 	EndGlobalSection
 EndGlobal
