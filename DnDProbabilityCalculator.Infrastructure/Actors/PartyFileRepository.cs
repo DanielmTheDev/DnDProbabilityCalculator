@@ -24,9 +24,4 @@ public class PartyFileRepository(IFileAccessor fileAccessor, IOptions<FileReposi
         return JsonSerializer.Deserialize<Party>(jsonString, JsonSerializerOptions)
                ?? throw new FormatException(ErrorMessages.Wrong_File_Format);
     }
-
-    public void Save(Party party)
-    {
-        throw new NotImplementedException();
-    }
 }

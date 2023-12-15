@@ -14,7 +14,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddFluentUIComponents();
 
-builder.Services.AddTransient<IPartyRepository, PartyFileRepository>();
+builder.Services.AddTransient<IPartyRepository, PartyInlineRepository>();
 builder.Services.AddTransient<IPartyProvider, PartyProvider>();
 builder.Services.AddScoped<IFileAccessor, FileAccessor>();
 
