@@ -9,7 +9,6 @@ public class GeneralTableInfo
     public required int ArmorClass { get; init; }
     public required double DamagePerHit { get; init; }
     public required string Advantage { get; init; }
-
     public required int AttackModifier { get; set; }
 
     public static GeneralTableInfo FromActor(Actor actor, InputVariables inputVariables)

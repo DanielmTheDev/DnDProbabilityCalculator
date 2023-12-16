@@ -1,8 +1,17 @@
 ﻿@page "/"
+@using DnDProbabilityCalculator.Core.Adventuring.Abilities
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
-
-@PartyAsJson
-
+@if (_party.Characters.Any())
+{
+    @foreach (var character in _party.Characters)
+    {
+        @* <FluentDataGrid Items=@character.AbilityScores.AsList().AsQueryable() GridTemplateColumns="1fr 1fr 1fr 2fr" TGridItem=AbilityScore> *@
+        @*     <PropertyColumn Title="Date" Property="@(c => c!.Date)" Sortable="true" Align=Align.Start /> *@
+        @*     <PropertyColumn Title="Temp. (C)" Property="@(c => c!.TemperatureC)" Sortable="true" Align=Align.Center /> *@
+        @*     <PropertyColumn Title="Temp. (F)" Property="@(c => c!.TemperatureF)" Sortable="true" Align=Align.Center /> *@
+        @*     <PropertyColumn Title="Summary" Property="@(c => c!.Summary)" Sortable="true" Align=Align.End /> *@
+        @* </FluentDataGrid> *@
+    }
+}

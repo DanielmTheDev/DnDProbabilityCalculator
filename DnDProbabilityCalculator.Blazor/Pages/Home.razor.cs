@@ -9,7 +9,6 @@ public partial class Home
 {
     [Inject]
     private IPartyProvider PartyProvider { get; set; } = null!;
-
     private Party _party = new();
     private string PartyAsJson => JsonSerializer.Serialize(_party);
 

@@ -14,13 +14,11 @@ public record TableContext
     public required DeliverHitTable DeliverHitTable { get; init; }
 
     public static TableContext FromActor(Actor actor, InputVariables inputVariables)
-    {
-        return new()
+        => new()
         {
             GeneralTableInfo = GeneralTableInfo.FromActor(actor, inputVariables),
             SavingThrowTable = SavingThrowTable.FromActor(actor, inputVariables),
             ReceiveHitTable = ReceiveHitTable.FromActor(actor, inputVariables),
             DeliverHitTable = DeliverHitTable.FromActor(actor, inputVariables)
         };
-    }
 }
