@@ -16,7 +16,7 @@ public class SuccessProbabilityTests
     public void CalculateProbability_WhenCalled_ReturnsProbabilities(int positiveModifier, int negativeModifier, AdvantageType advantage, double expectedProbability)
     {
         // Act
-        var actualProbability = Probability.Calculate(positiveModifier, negativeModifier, advantage);
+        var actualProbability = SuccessProbability.Calculate(positiveModifier, negativeModifier, advantage);
 
         // Assert
         Assert.AreEqual(expectedProbability, actualProbability, 0.1);

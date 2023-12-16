@@ -1,8 +1,8 @@
 ﻿namespace DnDProbabilityCalculator.Core.Adventuring;
 
-public class Probability
+public class SuccessProbability
 {
-    private Probability()
+    private SuccessProbability()
     {
     }
 

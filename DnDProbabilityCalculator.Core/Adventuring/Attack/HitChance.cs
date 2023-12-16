@@ -9,7 +9,7 @@ public record HitChance
 
     public static HitChance Calculate(int attackModifier, int armorClass, int totalNumberOfAttacks, int numberOfHits, AdvantageType advantage)
     {
-        var singleHitProbability = Adventuring.Probability.Calculate(attackModifier, armorClass, advantage);
+        var singleHitProbability = Adventuring.SuccessProbability.Calculate(attackModifier, armorClass, advantage);
 
         var multipleHitsProbability = Enumerable.Range(numberOfHits, totalNumberOfAttacks - numberOfHits + 1)
             .Select(currentNumberOfHits => CalculateBoundedMultipleAttackProbability(totalNumberOfAttacks, currentNumberOfHits, singleHitProbability))

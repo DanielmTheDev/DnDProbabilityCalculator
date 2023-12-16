@@ -32,7 +32,7 @@ public class Actor
             ? ProficiencyBonus
             : 0;
         var positiveModifer = proficiencyBonus + abilityScore.Modifier;
-        return Probability.Calculate(positiveModifer, dc, advantage);
+        return SuccessProbability.Calculate(positiveModifer, dc, advantage);
     }
 
     public HitChance DeliverHitChance(int armorClass, int numberOfHits, AdvantageType advantage)
