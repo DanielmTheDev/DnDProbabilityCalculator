@@ -4,7 +4,7 @@ using Spectre.Console;
 
 namespace DnDProbabilityCalculator.Console.Console;
 
-public static class LiveTableExtensions
+public static class TableCreationExtensions
 {
     public static void RerenderRows(this Table theTable, List<TableContext> allTableContexts, LiveDisplayContext context)
     {
