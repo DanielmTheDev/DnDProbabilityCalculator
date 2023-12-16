@@ -8,11 +8,11 @@ namespace DnDProbabilityCalculator.Fluent.Blazor.Pages;
 public partial class Home
 {
     [Inject]
-    private  IPartyProvider partyProvider { get; set; }
+    private IPartyProvider PartyProvider { get; set; } = null!;
 
     private Party _party = new();
-    private string _partyAsJson => JsonSerializer.Serialize(_party);
+    private string PartyAsJson => JsonSerializer.Serialize(_party);
 
     protected override void OnInitialized()
-        => _party = partyProvider.Get();
+        => _party = PartyProvider.Get();
 }

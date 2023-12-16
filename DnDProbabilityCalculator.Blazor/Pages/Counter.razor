@@ -4,16 +4,16 @@
 
 <h1>Counter</h1>
 
-<p role="status">Current count: <FluentBadge Appearance="Appearance.Neutral">@currentCount</FluentBadge></p>
+<p role="status">Current count: <FluentBadge Appearance="Appearance.Neutral">@_currentCount</FluentBadge></p>
 
 <FluentButton Appearance="Appearance.Accent" @onclick="IncrementCount">Click me</FluentButton>
 
 @code {
-    private int currentCount = 0;
+    private int _currentCount;
 
     private void IncrementCount()
     {
-        currentCount++;
+        _currentCount++;
     }
 
 }

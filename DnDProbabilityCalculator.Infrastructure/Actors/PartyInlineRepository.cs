@@ -5,7 +5,7 @@ using DnDProbabilityCalculator.Core.Adventuring;
 
 namespace DnDProbabilityCalculator.Infrastructure.Actors;
 
-public class PartyInlineRepository() : IPartyRepository
+public class PartyInlineRepository : IPartyRepository
 {
   private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
@@ -14,11 +14,7 @@ public class PartyInlineRepository() : IPartyRepository
     };
 
     public Party Get()
-    {
-        var jsonString = GetStaticJsonString();
-        return JsonSerializer.Deserialize<Party>(jsonString, JsonSerializerOptions)!;
-
-    }
+      => JsonSerializer.Deserialize<Party>(GetStaticJsonString(), JsonSerializerOptions)!;
 
     private static string GetStaticJsonString()
       => """
