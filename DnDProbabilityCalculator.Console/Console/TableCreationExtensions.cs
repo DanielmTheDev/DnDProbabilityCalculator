@@ -1,5 +1,7 @@
 ﻿using System.Globalization;
 using DnDProbabilityCalculator.Application.Table.Context;
+using DnDProbabilityCalculator.Application.Table.Presentation;
+using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 using Spectre.Console;
 
 namespace DnDProbabilityCalculator.Console.Console;
@@ -41,8 +43,21 @@ public static class TableCreationExtensions
                 Title = new("Saving Throws")
             };
             table.Expand();
-            table.AddColumns(tableContext.SavingThrowTable.Dcs.ToArray());
-            tableContext.SavingThrowTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
+            List<string> columns = ["Ability/DC"];
+            columns.AddRange(tableContext.SavingThrowTable.Dcs.Select(dc => dc.ToString()));
+            table.AddColumns(columns.ToArray());
+            tableContext.SavingThrowTable.Probabilities
+                .Select(row =>
+                {
+                    var firstCell = row.IsProficient
+                        ? row.AbilityScoreType.Abbreviated().AsGreen()
+                        : row.AbilityScoreType.Abbreviated();
+                    firstCell = string.Concat(firstCell, $" ({row.AbilityScore})");
+                    var otherCells = row.Cells.Select(probability => ColoredSuccessChance.FromProbability(probability).ToString());
+                    return new[] { firstCell }.Concat(otherCells);
+                })
+                .ToList()
+                .ForEach(row => table.AddRow(row.ToArray()));
             return table;
         });
 

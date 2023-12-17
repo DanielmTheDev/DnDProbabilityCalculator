@@ -23,6 +23,7 @@ public abstract record AbilityScore
     public abstract AbilityScoreType Type { get; }
     public static implicit operator int(AbilityScore attribute) => attribute.Value;
 
+    // todo: maybe this can be removed then?
     public string Abbreviation => Type switch
     {
         AbilityScoreType.Dexterity => "Dex",
