@@ -43,18 +43,15 @@ public static class TableCreationExtensions
                 Title = new("Saving Throws")
             };
             table.Expand();
-            List<string> columns = ["Ability/DC"];
-            columns.AddRange(tableContext.SavingThrowTable.Dcs.Select(dc => dc.ToString()));
-            table.AddColumns(columns.ToArray());
+            table.AddColumns(["Ability/DC", .. tableContext.SavingThrowTable.Dcs.Select(dc => dc.ToString())]);
             tableContext.SavingThrowTable.Probabilities
                 .Select(row =>
                 {
-                    var firstCell = row.IsProficient
+                    var abilityScoreCell = row.IsProficient
                         ? row.AbilityScoreType.Abbreviated().AsGreen()
                         : row.AbilityScoreType.Abbreviated();
-                    firstCell = string.Concat(firstCell, $" ({row.AbilityScore})");
-                    var otherCells = row.Cells.Select(probability => ColoredSuccessChance.FromProbability(probability).ToString());
-                    return new[] { firstCell }.Concat(otherCells);
+                    abilityScoreCell = $"{abilityScoreCell} ({row.AbilityScore})";
+                    return (List<string>) [abilityScoreCell, ..row.Cells.Select(probability => ColoredSuccessChance.FromProbability(probability).ToString())];
                 })
                 .ToList()
                 .ForEach(row => table.AddRow(row.ToArray()));
@@ -64,7 +61,6 @@ public static class TableCreationExtensions
     private static IEnumerable<Table> CreateReceiveHitTables(IEnumerable<TableContext> allTableContexts)
         => allTableContexts.Select(tableContext =>
         {
-
             var table = new Table
             {
                 Title = new("Receive Hit")
