@@ -22,16 +22,4 @@ public abstract record AbilityScore
     public int Modifier => (int)Math.Floor((Value - 10) / 2.0);
     public abstract AbilityScoreType Type { get; }
     public static implicit operator int(AbilityScore attribute) => attribute.Value;
-
-    // todo: maybe this can be removed then?
-    public string Abbreviation => Type switch
-    {
-        AbilityScoreType.Dexterity => "Dex",
-        AbilityScoreType.Strength => "Str",
-        AbilityScoreType.Constitution => "Con",
-        AbilityScoreType.Intelligence => "Int",
-        AbilityScoreType.Charisma => "Cha",
-        AbilityScoreType.Wisdom => "Wis",
-        _ => throw new ArgumentOutOfRangeException()
-    };
 }
