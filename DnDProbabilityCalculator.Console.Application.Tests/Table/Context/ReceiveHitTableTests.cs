@@ -18,9 +18,12 @@ public class ReceiveHitTableTests
         var tableData = ReceiveHitTable.FromActor(actor, new(new[] { -1, 0, 1 }, new[] { -1, 0, 1 }, new[] { -1, 0, 1 }, 2, AdvantageType.None));
 
         // Assert
-        new List<string> { "2 ","-1", "0", "1" }.AssertElementsAreContainedIn(tableData.AttackModifiers);
-        new List<string> { "1", "94%", "96%", "98%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
-        new List<string> { "2", "56%", "64%", "72%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
+        Assert.AreEqual(2, tableData.TotalNumberOfAttacks);
+        CollectionAssert.AreEquivalent(new List<int> { -1, 0, 1 }, tableData.AttackModifiers);
+        Assert.AreEqual(1, tableData.Probabilities[0].NumberOfHits);
+        CollectionAssert.AreEquivalent(new List<double> { 0.94, 0.96, 0.98 }, tableData.Probabilities[0].Cells.Select(c => Math.Round(c, 2)).ToList());
+        Assert.AreEqual(2, tableData.Probabilities[1].NumberOfHits);
+        CollectionAssert.AreEquivalent(new List<double> { 0.56, 0.64, 0.72 }, tableData.Probabilities[1].Cells);
     }
 
     private static Actor GetValidActor()

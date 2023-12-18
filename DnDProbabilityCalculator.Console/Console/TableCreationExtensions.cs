@@ -68,7 +68,7 @@ public static class TableCreationExtensions
             table.Expand();
             table.AddColumns([$"{tableContext.DeliverHitTable.TotalNumberOfAttacks} Attacks/AC", ..tableContext.DeliverHitTable.ArmorClasses.Select(ac => ac.ToString())]);
             tableContext.DeliverHitTable.Probabilities
-                .Select(row => (List<string>)[$">= {row.NumberOfHits} Hits", ..row.Cells.Select(cell => ColoredSuccessChance.FromProbability(cell).ToString())])
+                .Select(row => (List<string>) [$">= {row.NumberOfHits} Hits", ..row.Cells.Select(cell => ColoredSuccessChance.FromProbability(cell).ToString())])
                 .ToList()
                 .ForEach(row => table.AddRow(row.ToArray()));
             return table;
@@ -82,8 +82,11 @@ public static class TableCreationExtensions
                 Title = new("Receive Hit")
             };
             table.Expand();
-            table.AddColumns(tableContext.ReceiveHitTable.AttackModifiers.ToArray());
-            tableContext.ReceiveHitTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
+            table.AddColumns([$"{tableContext.ReceiveHitTable.TotalNumberOfAttacks} Attacks/Mod", ..tableContext.ReceiveHitTable.AttackModifiers.Select(ac => ac.ToString())]);
+            tableContext.ReceiveHitTable.Probabilities
+                .Select(row => (List<string>) [$">= {row.NumberOfHits} Hits", ..row.Cells.Select(cell => ColoredSuccessChance.FromProbability(cell).WithInvertedColors().ToString())])
+                .ToList()
+                .ForEach(row => table.AddRow(row.ToArray()));
             return table;
         });
 }

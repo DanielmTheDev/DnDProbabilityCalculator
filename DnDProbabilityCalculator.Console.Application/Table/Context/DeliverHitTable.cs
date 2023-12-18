@@ -38,9 +38,3 @@ public class DeliverHitTable
         };
     }
 }
-
-public record DeliverHitTableRow
-{
-    public required int NumberOfHits { get; init; }
-    public required List<double> Cells { get; init; }
-}
