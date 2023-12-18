@@ -43,7 +43,7 @@ public static class TableCreationExtensions
                 Title = new("Saving Throws")
             };
             table.Expand();
-            table.AddColumns(["Ability/DC", .. tableContext.SavingThrowTable.Dcs.Select(dc => dc.ToString())]);
+            table.AddColumns(["Ability/DC", ..tableContext.SavingThrowTable.Dcs.Select(dc => dc.ToString())]);
             tableContext.SavingThrowTable.Probabilities
                 .Select(row =>
                 {
@@ -53,6 +53,22 @@ public static class TableCreationExtensions
                     abilityScoreCell = $"{abilityScoreCell} ({row.AbilityScore})";
                     return (List<string>) [abilityScoreCell, ..row.Cells.Select(probability => ColoredSuccessChance.FromProbability(probability).ToString())];
                 })
+                .ToList()
+                .ForEach(row => table.AddRow(row.ToArray()));
+            return table;
+        });
+
+    private static IEnumerable<Table> CreateDeliverHitTables(IEnumerable<TableContext> allTableContexts)
+        => allTableContexts.Select(tableContext =>
+        {
+            var table = new Table
+            {
+                Title = new("Deliver Hit")
+            };
+            table.Expand();
+            table.AddColumns([$"{tableContext.DeliverHitTable.TotalNumberOfAttacks} Attacks/AC", ..tableContext.DeliverHitTable.ArmorClasses.Select(ac => ac.ToString())]);
+            tableContext.DeliverHitTable.Probabilities
+                .Select(row => (List<string>)[$">= {row.NumberOfHits} Hits", ..row.Cells.Select(cell => ColoredSuccessChance.FromProbability(cell).ToString())])
                 .ToList()
                 .ForEach(row => table.AddRow(row.ToArray()));
             return table;
@@ -68,19 +84,6 @@ public static class TableCreationExtensions
             table.Expand();
             table.AddColumns(tableContext.ReceiveHitTable.AttackModifiers.ToArray());
             tableContext.ReceiveHitTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
-            return table;
-        });
-
-    private static IEnumerable<Table> CreateDeliverHitTables(IEnumerable<TableContext> allTableContexts)
-        => allTableContexts.Select(tableContext =>
-        {
-            var table = new Table
-            {
-                Title = new("Deliver Hit")
-            };
-            table.Expand();
-            table.AddColumns(tableContext.DeliverHitTable.ArmorClasses.ToArray());
-            tableContext.DeliverHitTable.Probabilities.ForEach(row => table.AddRow(row.ToArray()));
             return table;
         });
 }

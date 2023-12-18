@@ -18,9 +18,12 @@ public class DeliverHitTableTests
         var tableData = DeliverHitTable.FromActor(actor, new(new[] { 10, 11, 12 }, new[] { 10, 11, 12 }, new[] { 10, 11, 12 }, 2, AdvantageType.None));
 
         // Assert
-        new List<string> { "2 ","10", "11", "12" }.AssertElementsAreContainedIn(tableData.ArmorClasses);
-        new List<string> { "1", "96%", "94%", "91%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
-        new List<string> { "2", "64%", "56%", "49%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
+        Assert.AreEqual(2, tableData.TotalNumberOfAttacks);
+        CollectionAssert.AreEquivalent(new List<int> { 10, 11, 12 }, tableData.ArmorClasses);
+        Assert.AreEqual(1, tableData.Probabilities[0].NumberOfHits);
+        CollectionAssert.AreEquivalent(new List<double> { 0.96, 0.94, 0.91 }, tableData.Probabilities[0].Cells.Select(c => Math.Round(c, 2)).ToList());
+        Assert.AreEqual(2, tableData.Probabilities[1].NumberOfHits);
+        CollectionAssert.AreEquivalent(new List<double> { 0.64, 0.56, 0.49 }, tableData.Probabilities[1].Cells);
     }
 
     [TestMethod]
@@ -33,9 +36,12 @@ public class DeliverHitTableTests
         var tableData = DeliverHitTable.FromActor(actor, new(new[] { 10, 11, 12 }, new[] { 10, 11, 12 }, new[] { 10, 11, 12 }, 2, AdvantageType.Advantage));
 
         // Assert
-        new List<string> { "2 ","10", "11", "12" }.AssertElementsAreContainedIn(tableData.ArmorClasses);
-        new List<string> { "1", "100%", "100%", "99%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
-        new List<string> { "2", "92%", "88%", "83%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
+        Assert.AreEqual(2, tableData.TotalNumberOfAttacks);
+        CollectionAssert.AreEquivalent(new List<int> { 10, 11, 12 }, tableData.ArmorClasses);
+        Assert.AreEqual(1, tableData.Probabilities[0].NumberOfHits);
+        CollectionAssert.AreEquivalent(new List<double> { 1, 1, 0.99 }, tableData.Probabilities[0].Cells);
+        Assert.AreEqual(2, tableData.Probabilities[1].NumberOfHits);
+        CollectionAssert.AreEquivalent(new List<double> { 0.92, 0.88, 0.83 }, tableData.Probabilities[1].Cells);
     }
 
     [TestMethod]
@@ -48,9 +54,12 @@ public class DeliverHitTableTests
         var tableData = DeliverHitTable.FromActor(actor, new(new[] { 10, 11, 12 }, new[] { 10, 11, 12 }, new[] { 10, 11, 12 }, 2, AdvantageType.Disadvantage));
 
         // Assert
-        new List<string> { "2 ","10", "11", "12" }.AssertElementsAreContainedIn(tableData.ArmorClasses);
-        new List<string> { "1", "87%", "81%", "74%" }.AssertElementsAreContainedIn(tableData.Probabilities[0]);
-        new List<string> { "2", "41%", "32%", "24%" }.AssertElementsAreContainedIn(tableData.Probabilities[1]);
+        Assert.AreEqual(2, tableData.TotalNumberOfAttacks);
+        CollectionAssert.AreEquivalent(new List<int> { 10, 11, 12 }, tableData.ArmorClasses);
+        Assert.AreEqual(1, tableData.Probabilities[0].NumberOfHits);
+        CollectionAssert.AreEquivalent(new List<double> { 0.87, 0.81, 0.74 }, tableData.Probabilities[0].Cells);
+        Assert.AreEqual(2, tableData.Probabilities[1].NumberOfHits);
+        CollectionAssert.AreEquivalent(new List<double> { 0.41, 0.32, 0.24 }, tableData.Probabilities[1].Cells);
     }
 
     private static Actor GetValidActor()
