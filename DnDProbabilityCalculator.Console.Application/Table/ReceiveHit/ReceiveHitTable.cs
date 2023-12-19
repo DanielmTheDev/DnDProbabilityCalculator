@@ -1,6 +1,6 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring;
 
-namespace DnDProbabilityCalculator.Application.Table.Context;
+namespace DnDProbabilityCalculator.Application.Table.ReceiveHit;
 
 public class ReceiveHitTable
 {
@@ -37,10 +37,4 @@ public class ReceiveHitTable
             Cells = probabilities
         };
     }
-}
-
-public record ReceiveHitTableRow
-{
-    public required int NumberOfHits { get; init; }
-    public required List<double> Cells { get; init; }
 }

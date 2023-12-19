@@ -21,7 +21,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DnDProbabilityCalculator.Console.Application\DnDProbabilityCalculator.Console.Application.csproj" />
-      <ProjectReference Include="..\DnDProbabilityCalculator.Core.Tests\DnDProbabilityCalculator.Core.Tests.csproj" />
       <ProjectReference Include="..\DnDProbabilityCalculator.Core\DnDProbabilityCalculator.Core.csproj" />
       <ProjectReference Include="..\DnDProbabilityCalculator.Infrastructure\DnDProbabilityCalculator.Infrastructure.csproj" />
     </ItemGroup>
@@ -34,9 +33,6 @@
 
     <ItemGroup>
       <None Update="appsettings.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="party.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>

@@ -1,4 +1,4 @@
-﻿using DnDProbabilityCalculator.Application.Table.Context;
+﻿using DnDProbabilityCalculator.Application.Table;
 using DnDProbabilityCalculator.Console.Console;
 using DnDProbabilityCalculator.Core;
 using DnDProbabilityCalculator.Infrastructure.Actors;
@@ -24,6 +24,6 @@ public static class ServiceCollectionExtensions
         => serviceCollection
             .AddScoped<IConsoleRenderer, ConsoleRenderer>()
             .AddScoped<ITableContextFactory, TableContextFactory>()
-            .AddScoped<IPartyRepository, PartyFileRepository>()
+            .AddScoped<IPartyRepository, PartyInlineRepository>()
             .AddScoped<IFileAccessor, FileAccessor>();
 }

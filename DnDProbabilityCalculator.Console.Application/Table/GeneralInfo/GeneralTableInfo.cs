@@ -1,7 +1,6 @@
-﻿using DnDProbabilityCalculator.Application.Table.Presentation;
-using DnDProbabilityCalculator.Core.Adventuring;
+﻿using DnDProbabilityCalculator.Core.Adventuring;
 
-namespace DnDProbabilityCalculator.Application.Table.Context;
+namespace DnDProbabilityCalculator.Application.Table.GeneralInfo;
 
 public class GeneralTableInfo
 {
@@ -26,8 +25,8 @@ public class GeneralTableInfo
         return advantage switch
         {
             AdvantageType.None => advantage.ToString(),
-            AdvantageType.Advantage => advantage.ToString().AsGreen(),
-            AdvantageType.Disadvantage => advantage.ToString().AsRed(),
+            AdvantageType.Advantage => advantage.ToString(),
+            AdvantageType.Disadvantage => advantage.ToString(),
             _ => throw new ArgumentOutOfRangeException(nameof(advantage), advantage, null)
         };
     }

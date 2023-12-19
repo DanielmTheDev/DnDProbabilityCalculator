@@ -1,6 +1,10 @@
-﻿using DnDProbabilityCalculator.Core.Adventuring;
+﻿using DnDProbabilityCalculator.Application.Table.DeliverHit;
+using DnDProbabilityCalculator.Application.Table.GeneralInfo;
+using DnDProbabilityCalculator.Application.Table.ReceiveHit;
+using DnDProbabilityCalculator.Application.Table.SavingThrow;
+using DnDProbabilityCalculator.Core.Adventuring;
 
-namespace DnDProbabilityCalculator.Application.Table.Context;
+namespace DnDProbabilityCalculator.Application.Table;
 
 public record TableContext
 {

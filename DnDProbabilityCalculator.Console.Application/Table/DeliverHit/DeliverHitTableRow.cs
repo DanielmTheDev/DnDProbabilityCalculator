@@ -1,4 +1,4 @@
-﻿namespace DnDProbabilityCalculator.Application.Table.Context;
+﻿namespace DnDProbabilityCalculator.Application.Table.DeliverHit;
 
 public record DeliverHitTableRow
 {

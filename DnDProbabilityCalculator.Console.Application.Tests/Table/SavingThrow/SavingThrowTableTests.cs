@@ -1,10 +1,9 @@
-﻿using DnDProbabilityCalculator.Application.Table.Context;
-using DnDProbabilityCalculator.Application.Table.Presentation;
+﻿using DnDProbabilityCalculator.Application.Table.SavingThrow;
 using DnDProbabilityCalculator.Core.Adventuring;
 using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DnDProbabilityCalculator.Application.Tests.Table.Context;
+namespace DnDProbabilityCalculator.Application.Tests.Table.SavingThrow;
 
 [TestClass]
 public class SavingThrowTableTests

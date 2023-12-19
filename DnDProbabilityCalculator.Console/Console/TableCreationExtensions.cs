@@ -1,5 +1,5 @@
 ﻿using System.Globalization;
-using DnDProbabilityCalculator.Application.Table.Context;
+using DnDProbabilityCalculator.Application.Table;
 using DnDProbabilityCalculator.Application.Table.Presentation;
 using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 using Spectre.Console;

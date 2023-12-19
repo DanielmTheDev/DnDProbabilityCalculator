@@ -1,6 +1,6 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 
-namespace DnDProbabilityCalculator.Application.Table.Context;
+namespace DnDProbabilityCalculator.Application.Table.SavingThrow;
 
 public record SavingThrowTableRow
 {

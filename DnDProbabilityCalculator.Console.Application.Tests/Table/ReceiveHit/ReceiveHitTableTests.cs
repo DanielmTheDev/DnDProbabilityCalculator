@@ -1,9 +1,9 @@
-﻿using DnDProbabilityCalculator.Application.Table.Context;
+﻿using DnDProbabilityCalculator.Application.Table.ReceiveHit;
 using DnDProbabilityCalculator.Core.Adventuring;
 using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DnDProbabilityCalculator.Application.Tests.Table.Context;
+namespace DnDProbabilityCalculator.Application.Tests.Table.ReceiveHit;
 
 [TestClass]
 public class ReceiveHitTableTests

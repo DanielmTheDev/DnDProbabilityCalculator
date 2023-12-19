@@ -1,6 +1,6 @@
 ﻿using DnDProbabilityCalculator.Core;
 
-namespace DnDProbabilityCalculator.Application.Table.Context;
+namespace DnDProbabilityCalculator.Application.Table;
 
 public class TableContextFactory(IPartyRepository repository) : ITableContextFactory
 {

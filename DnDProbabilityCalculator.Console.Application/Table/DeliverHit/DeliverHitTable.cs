@@ -1,6 +1,6 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring;
 
-namespace DnDProbabilityCalculator.Application.Table.Context;
+namespace DnDProbabilityCalculator.Application.Table.DeliverHit;
 
 public class DeliverHitTable
 {

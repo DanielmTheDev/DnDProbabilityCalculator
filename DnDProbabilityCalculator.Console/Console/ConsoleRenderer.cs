@@ -1,5 +1,4 @@
 ﻿using DnDProbabilityCalculator.Application.Table;
-using DnDProbabilityCalculator.Application.Table.Context;
 using DnDProbabilityCalculator.Core.Adventuring;
 using Spectre.Console;
 
