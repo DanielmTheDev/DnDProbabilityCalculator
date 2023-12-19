@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using DnDProbabilityCalculator.Application.Table;
 using DnDProbabilityCalculator.Application.Table.Presentation;
+using DnDProbabilityCalculator.Core.Adventuring;
 using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 using Spectre.Console;
 
@@ -27,11 +28,19 @@ public static class TableCreationExtensions
             };
             table.Expand();
             table.AddColumns("Armor Class", "Attack Modifier", "Damage per Hit", "Advantage Type");
+            var coloredAdvantage = tableContext.GeneralTableInfo.Advantage switch
+            {
+                AdvantageType.None => AdvantageType.None.ToString(),
+                AdvantageType.Advantage => AdvantageType.Advantage.ToString().AsGreen(),
+                AdvantageType.Disadvantage => AdvantageType.Disadvantage.ToString().AsRed(),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
             table.AddRow(
                 tableContext.GeneralTableInfo.ArmorClass.ToString(),
                 tableContext.GeneralTableInfo.AttackModifier.ToString(),
                 tableContext.GeneralTableInfo.DamagePerHit.ToString(CultureInfo.CurrentCulture),
-                tableContext.GeneralTableInfo.Advantage);
+                coloredAdvantage);
             return table;
         });
 

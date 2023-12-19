@@ -7,7 +7,7 @@ public class GeneralTableInfo
     public required string ActorName { get; init; }
     public required int ArmorClass { get; init; }
     public required double DamagePerHit { get; init; }
-    public required string Advantage { get; init; }
+    public required AdvantageType Advantage { get; init; }
     public required int AttackModifier { get; set; }
 
     public static GeneralTableInfo FromActor(Actor actor, InputVariables inputVariables)
@@ -17,17 +17,6 @@ public class GeneralTableInfo
             AttackModifier = actor.AttackModifier,
             ArmorClass = actor.ArmorClass,
             DamagePerHit = actor.AverageDamagePerHit,
-            Advantage = ColoredAdvantageType(inputVariables.Advantage)
+            Advantage = inputVariables.Advantage
         };
-
-    private static string ColoredAdvantageType(AdvantageType advantage)
-    {
-        return advantage switch
-        {
-            AdvantageType.None => advantage.ToString(),
-            AdvantageType.Advantage => advantage.ToString(),
-            AdvantageType.Disadvantage => advantage.ToString(),
-            _ => throw new ArgumentOutOfRangeException(nameof(advantage), advantage, null)
-        };
-    }
 }
