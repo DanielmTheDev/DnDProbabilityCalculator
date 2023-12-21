@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 using DnDProbabilityCalculator.Application.Table;
-using DnDProbabilityCalculator.Blazor.Application;
+using DnDProbabilityCalculator.Core.Adventuring;
 using Microsoft.AspNetCore.Components;
 
 namespace DnDProbabilityCalculator.Blazor.Pages;
@@ -8,7 +8,7 @@ namespace DnDProbabilityCalculator.Blazor.Pages;
 public partial class Home
 {
     [Inject]
-    private ITableContextProvider TableContextProvider { get; set; } = null!;
+    private ITableContextFactory TableContextFactory { get; set; } = null!;
     private IEnumerable<TableContext> _tableContexts = new List<TableContext>();
     private string PartyAsJson => JsonSerializer.Serialize(_tableContexts, new JsonSerializerOptions
     {
@@ -16,5 +16,12 @@ public partial class Home
     });
 
     protected override void OnInitialized()
-        => _tableContexts = TableContextProvider.Get();
+    {
+        int[] dcs = { 5, 6, 7 };
+        int[] attackModifiers = { 5, 6, 7 };
+        int[] armorClasses = { 5, 6, 7 };
+        const int numberOfAttacks = 2;
+        var inputVariables = new InputVariables(dcs, attackModifiers, armorClasses, numberOfAttacks, AdvantageType.None);
+        _tableContexts =  TableContextFactory.Create(inputVariables);
+    }
 }

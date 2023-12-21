@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DnDProbabilityCalculator.Console.Application\DnDProbabilityCalculator.Console.Application.csproj" />
+      <ProjectReference Include="..\DnDProbabilityCalculator.Application\DnDProbabilityCalculator.Application.csproj" />
       <ProjectReference Include="..\DnDProbabilityCalculator.Core\DnDProbabilityCalculator.Core.csproj" />
     </ItemGroup>
 
