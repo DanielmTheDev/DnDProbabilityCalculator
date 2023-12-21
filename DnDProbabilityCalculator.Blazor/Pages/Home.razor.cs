@@ -1,17 +1,20 @@
 ﻿using System.Text.Json;
+using DnDProbabilityCalculator.Application.Table;
 using DnDProbabilityCalculator.Blazor.Application;
-using DnDProbabilityCalculator.Core.Adventuring;
 using Microsoft.AspNetCore.Components;
 
-namespace DnDProbabilityCalculator.Fluent.Blazor.Pages;
+namespace DnDProbabilityCalculator.Blazor.Pages;
 
 public partial class Home
 {
     [Inject]
-    private IPartyProvider PartyProvider { get; set; } = null!;
-    private Party _party = new();
-    private string PartyAsJson => JsonSerializer.Serialize(_party);
+    private ITableContextProvider TableContextProvider { get; set; } = null!;
+    private IEnumerable<TableContext> _tableContexts = new List<TableContext>();
+    private string PartyAsJson => JsonSerializer.Serialize(_tableContexts, new JsonSerializerOptions
+    {
+        WriteIndented = true
+    });
 
     protected override void OnInitialized()
-        => _party = PartyProvider.Get();
+        => _tableContexts = TableContextProvider.Get();
 }

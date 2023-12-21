@@ -1,9 +1,10 @@
+using DnDProbabilityCalculator.Application.Table;
 using DnDProbabilityCalculator.Blazor.Application;
 using DnDProbabilityCalculator.Core;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.FluentUI.AspNetCore.Components;
-using DnDProbabilityCalculator.Fluent.Blazor;
+using DnDProbabilityCalculator.Blazor;
 using DnDProbabilityCalculator.Infrastructure.Actors;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;
 
@@ -15,7 +16,8 @@ builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new(builder.HostE
 builder.Services.AddFluentUIComponents();
 
 builder.Services.AddTransient<IPartyRepository, PartyInlineRepository>();
-builder.Services.AddTransient<IPartyProvider, PartyProvider>();
+builder.Services.AddTransient<ITableContextProvider, TableContextProvider>();
+builder.Services.AddTransient<ITableContextFactory, TableContextFactory>();
 builder.Services.AddScoped<IFileAccessor, FileAccessor>();
 
 await builder.Build().RunAsync();

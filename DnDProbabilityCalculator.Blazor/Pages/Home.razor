@@ -3,15 +3,17 @@
 
 <PageTitle>Home</PageTitle>
 
-@if (_party.Characters.Any())
+@if (_tableContexts.Any())
 {
-    @foreach (var character in _party.Characters)
-    {
-        @* <FluentDataGrid Items=@character.AbilityScores.AsList().AsQueryable() GridTemplateColumns="1fr 1fr 1fr 2fr" TGridItem=AbilityScore> *@
-        @*     <PropertyColumn Title="Date" Property="@(c => c!.Date)" Sortable="true" Align=Align.Start /> *@
-        @*     <PropertyColumn Title="Temp. (C)" Property="@(c => c!.TemperatureC)" Sortable="true" Align=Align.Center /> *@
-        @*     <PropertyColumn Title="Temp. (F)" Property="@(c => c!.TemperatureF)" Sortable="true" Align=Align.Center /> *@
-        @*     <PropertyColumn Title="Summary" Property="@(c => c!.Summary)" Sortable="true" Align=Align.End /> *@
-        @* </FluentDataGrid> *@
-    }
+    @PartyAsJson
+
+    @* @foreach (var character in _tableContexts.Characters) *@
+    @* { *@
+    @*     <FluentDataGrid Items=@character.AbilityScores.AsList().AsQueryable() GridTemplateColumns="1fr 1fr 1fr 2fr" TGridItem=AbilityScore> *@
+    @*         <PropertyColumn Title="Date" Property="@(c => c!.Date)" Sortable="true" Align=Align.Start /> *@
+    @*         <PropertyColumn Title="Temp. (C)" Property="@(c => c!.TemperatureC)" Sortable="true" Align=Align.Center /> *@
+    @*         <PropertyColumn Title="Temp. (F)" Property="@(c => c!.TemperatureF)" Sortable="true" Align=Align.Center /> *@
+    @*         <PropertyColumn Title="Summary" Property="@(c => c!.Summary)" Sortable="true" Align=Align.End /> *@
+    @*     </FluentDataGrid> *@
+    @* } *@
 }
