@@ -8,7 +8,7 @@ public class SuccessProbability
 
     public static double Calculate(int positiveModifier, int negativeModifier, AdvantageType advantage)
     {
-        var probability = (21 - negativeModifier + positiveModifier) / 20.0;
+        var probability = Math.Round((21 - negativeModifier + positiveModifier) / 20.0, 2);
         var boundedProbability = Math.Min(1.0, Math.Max(0, probability));
         return AdjustForAdvantage(boundedProbability, advantage);
     }
