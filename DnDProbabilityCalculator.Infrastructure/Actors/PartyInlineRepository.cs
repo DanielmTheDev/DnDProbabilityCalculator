@@ -22,9 +22,9 @@ public class PartyInlineRepository : IPartyRepository
            "characters": [
              {
                "name": "Durak",
-               "proficiencyBonus": 2,
+               "proficiencyBonus": 3,
                "armorClass": 20,
-               "numberOfAttacks": 1,
+               "numberOfAttacks": 2,
                "attackAbility": "Strength",
                "weapon": {
                  "numberOfDice": 2,
@@ -57,9 +57,9 @@ public class PartyInlineRepository : IPartyRepository
              },
              {
                "name": "Erethil",
-               "proficiencyBonus": 2,
+               "proficiencyBonus": 3,
                "armorClass": 17,
-               "numberOfAttacks": 2,
+               "numberOfAttacks": 3,
                "weapon": {
                  "numberOfDice": 1,
                  "diceSides": 6,
@@ -92,8 +92,8 @@ public class PartyInlineRepository : IPartyRepository
              },
              {
                "name": "Gorak'Thor",
-               "proficiencyBonus": 2,
-               "armorClass": 19,
+               "proficiencyBonus": 3,
+               "armorClass": 20,
                "numberOfAttacks": 1,
                "attackAbility": "Strength",
                "weapon": {
