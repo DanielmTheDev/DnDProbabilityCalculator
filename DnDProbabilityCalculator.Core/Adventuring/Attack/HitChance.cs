@@ -11,9 +11,9 @@ public record HitChance
     {
         var singleHitProbability = SuccessProbability.Calculate(attackModifier, armorClass, advantage);
 
-        var multipleHitsProbability = Enumerable.Range(numberOfHits, totalNumberOfAttacks - numberOfHits + 1)
+        var multipleHitsProbability = Math.Round(Enumerable.Range(numberOfHits, totalNumberOfAttacks - numberOfHits + 1)
             .Select(currentNumberOfHits => CalculateBoundedMultipleAttackProbability(totalNumberOfAttacks, currentNumberOfHits, singleHitProbability))
-            .Aggregate(0.0, (acc, value) => acc + value);
+            .Aggregate(0.0, (acc, value) => acc + value), 2);
 
         return new()
         {
