@@ -10,10 +10,6 @@ public partial class Home
     [Inject]
     private ITableContextFactory TableContextFactory { get; set; } = null!;
     private IEnumerable<TableContext> _tableContexts = new List<TableContext>();
-    private string PartyAsJson => JsonSerializer.Serialize(_tableContexts, new JsonSerializerOptions
-    {
-        WriteIndented = true
-    });
 
     protected override void OnInitialized()
     {

@@ -1,19 +1,30 @@
 ﻿@page "/"
 @using DnDProbabilityCalculator.Core.Adventuring.Abilities
+@using DnDProbabilityCalculator.Application.Table.SavingThrow
 
 <PageTitle>Home</PageTitle>
 
 @if (_tableContexts.Any())
 {
-    @PartyAsJson
+    @foreach (var currentContext in _tableContexts)
+    {
+        <FluentCard>
+            <h3>@currentContext.GeneralTableInfo.ActorName</h3>
+            <p>AC: @currentContext.GeneralTableInfo.ArmorClass</p>
+            <p>AttackModifier: @currentContext.GeneralTableInfo.AttackModifier</p>
+            <p>Damage per Hit: @currentContext.GeneralTableInfo.DamagePerHit</p>
+        </FluentCard>
 
-    @* @foreach (var character in _tableContexts.Characters) *@
-    @* { *@
-    @*     <FluentDataGrid Items=@character.AbilityScores.AsList().AsQueryable() GridTemplateColumns="1fr 1fr 1fr 2fr" TGridItem=AbilityScore> *@
-    @*         <PropertyColumn Title="Date" Property="@(c => c!.Date)" Sortable="true" Align=Align.Start /> *@
-    @*         <PropertyColumn Title="Temp. (C)" Property="@(c => c!.TemperatureC)" Sortable="true" Align=Align.Center /> *@
-    @*         <PropertyColumn Title="Temp. (F)" Property="@(c => c!.TemperatureF)" Sortable="true" Align=Align.Center /> *@
-    @*         <PropertyColumn Title="Summary" Property="@(c => c!.Summary)" Sortable="true" Align=Align.End /> *@
-    @*     </FluentDataGrid> *@
-    @* } *@
+        <FluentDataGrid Items=@currentContext.SavingThrowTable.Probabilities.AsQueryable() TGridItem=SavingThrowTableRow>
+            <PropertyColumn Title="Ability/DC" Property="@(row => row!.AbilityScoreType.Abbreviated())" Sortable="true" Align=Align.Start />
+            @for (var i = 0; i < currentContext.SavingThrowTable.Dcs.Length; i++)
+            {
+                var localIndex = i;
+                <PropertyColumn Title="@currentContext.SavingThrowTable.Dcs[localIndex].ToString()"
+                                Property="@(row => row!.Cells[localIndex])"
+                                Sortable="true"
+                                Align=Align.Start />
+            }
+        </FluentDataGrid>
+    }
 }
