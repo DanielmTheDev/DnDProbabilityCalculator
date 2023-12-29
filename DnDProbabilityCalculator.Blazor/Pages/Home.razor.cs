@@ -1,5 +1,4 @@
 ﻿using DnDProbabilityCalculator.Application.Table;
-using DnDProbabilityCalculator.Core.Adventuring;
 using Microsoft.AspNetCore.Components;
 using Toolbelt.Blazor.HotKeys2;
 
@@ -15,41 +14,70 @@ public partial class Home : IDisposable
 
     private HotKeysContext? HotKeysContext { get; set; }
     private IEnumerable<TableContext> _tableContexts = new List<TableContext>();
+    private InputVariables _inputVariables = null!;
 
     protected override void OnInitialized()
     {
         HotKeysContext = HotKeys.CreateContext()
+            .Add(Code.A, EnableAdvantage, new() { Description = "Enable advantage" })
+            .Add(Code.D, EnableDisadvantage, new() { Description = "Enable Disadvantage" })
+            .Add(Code.S, EnableNoAdvantage, new() { Description = "EnableNoAdvantage" })
             .Add(Code.ArrowRight, IncreaseParamters, new() { Description = "Increase all input parameters (DCs, ACs, and Modifiers) by 1" })
             .Add(Code.ArrowLeft, DecreaseParamters, new() { Description = "Decrease all input parameters (DCs, ACs, and Modifiers) by 1" })
-            .Add(Code.ArrowUp, IncreaseAttacks, new() { Description = "Increase number of attacks by 1" })
-            .Add(Code.ArrowDown, DecreaseAttacks, new() { Description = "Decrease number of attacks by 1" });
+            .Add(Code.ArrowUp, DecreaseAttacks, new() { Description = "Increase number of attacks by 1" })
+            .Add(Code.ArrowDown, IncreaseAttacks, new() { Description = "Decrease number of attacks by 1" });
 
-        int[] dcs = { 5, 6, 7 };
-        int[] attackModifiers = { 5, 6, 7 };
-        int[] armorClasses = { 5, 6, 7 };
-        const int numberOfAttacks = 2;
-        var inputVariables = new InputVariables(dcs, attackModifiers, armorClasses, numberOfAttacks, AdvantageType.None);
-        _tableContexts = TableContextFactory.Create(inputVariables);
+        _inputVariables = InputVariables.CreateDefaultInputVariables();
+        _tableContexts = TableContextFactory.Create(_inputVariables);
+    }
+
+    private void EnableAdvantage()
+    {
+        _inputVariables = _inputVariables.WithAdvantage();
+        _tableContexts = TableContextFactory.Create(_inputVariables);
+        StateHasChanged();
+    }
+
+    private void EnableDisadvantage()
+    {
+        _inputVariables = _inputVariables.WithDisadvantage();
+        _tableContexts = TableContextFactory.Create(_inputVariables);
+        StateHasChanged();
+    }
+
+    private void EnableNoAdvantage()
+    {
+        _inputVariables = _inputVariables.WithNoAdvantage();
+        _tableContexts = TableContextFactory.Create(_inputVariables);
+        StateHasChanged();
     }
 
     private void DecreaseAttacks()
     {
-        throw new NotImplementedException();
+        _inputVariables = _inputVariables.WithDecrementedNumberOfAttacks();
+        _tableContexts = TableContextFactory.Create(_inputVariables);
+        StateHasChanged();
     }
 
     private void IncreaseAttacks()
     {
-        throw new NotImplementedException();
+        _inputVariables = _inputVariables.WithIncrementedNumberOfAttacks();
+        _tableContexts = TableContextFactory.Create(_inputVariables);
+        StateHasChanged();
     }
 
-    private void IncreaseParamters(HotKeyEntryByCode obj)
+    private void IncreaseParamters()
     {
-        Console.Out.WriteLine(obj.Code);
+        _inputVariables = _inputVariables.WithIncrementedColumns();
+        _tableContexts = TableContextFactory.Create(_inputVariables);
+        StateHasChanged();
     }
 
-    private void DecreaseParamters(HotKeyEntryByCode obj)
+    private void DecreaseParamters()
     {
-        throw new NotImplementedException();
+        _inputVariables = _inputVariables.WithDecrementedColumns();
+        _tableContexts = TableContextFactory.Create(_inputVariables);
+        StateHasChanged();
     }
 
     public void Dispose()

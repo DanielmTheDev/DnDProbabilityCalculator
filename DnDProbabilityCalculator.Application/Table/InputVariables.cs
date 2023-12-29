@@ -20,6 +20,9 @@ public record InputVariables
         ValidateSameNumberOfElements();
     }
 
+    public static InputVariables CreateDefaultInputVariables()
+        => new(Enumerable.Range(12, 7).ToArray(), Enumerable.Range(3, 7).ToArray(), Enumerable.Range(10, 7).ToArray(), 2, AdvantageType.None);
+
     public InputVariables WithIncrementedNumberOfAttacks()
         => this with { NumberOfAttacks = NumberOfAttacks + 1 };
 

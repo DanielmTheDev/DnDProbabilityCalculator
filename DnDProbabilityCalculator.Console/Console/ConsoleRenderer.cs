@@ -1,5 +1,4 @@
 ﻿using DnDProbabilityCalculator.Application.Table;
-using DnDProbabilityCalculator.Core.Adventuring;
 using Spectre.Console;
 
 namespace DnDProbabilityCalculator.Console.Console;
@@ -8,7 +7,7 @@ public class ConsoleRenderer(ITableContextFactory tableContextFactory) : IConsol
 {
     public void Start()
     {
-        var inputVariables = CreateDefaultInputVariables();
+        var inputVariables = InputVariables.CreateDefaultInputVariables();
 
         var tableContext = tableContextFactory.Create(inputVariables);
         var table = new Table { Expand = true };
@@ -68,7 +67,4 @@ public class ConsoleRenderer(ITableContextFactory tableContextFactory) : IConsol
         var newTableContext = tableContextFactory.Create(inputVariables);
         table.RerenderRows(newTableContext, context);
     }
-
-    private static InputVariables CreateDefaultInputVariables()
-        => new(Enumerable.Range(12, 7).ToArray(), Enumerable.Range(3, 7).ToArray(), Enumerable.Range(10, 7).ToArray(), 2, AdvantageType.None);
 }
