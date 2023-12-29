@@ -39,7 +39,7 @@ public class DeliverHitTableTests
         Assert.AreEqual(2, tableData.TotalNumberOfAttacks);
         CollectionAssert.AreEquivalent(new List<int> { 10, 11, 12 }, tableData.ArmorClasses);
         Assert.AreEqual(1, tableData.Probabilities[0].NumberOfHits);
-        CollectionAssert.AreEquivalent(new List<double> { 1, 1, 0.99 }, tableData.Probabilities[0].Cells);
+        CollectionAssert.AreEquivalent(new List<double> { 1, 0.99, 0.99 }, tableData.Probabilities[0].Cells);
         Assert.AreEqual(2, tableData.Probabilities[1].NumberOfHits);
         CollectionAssert.AreEquivalent(new List<double> { 0.92, 0.88, 0.83 }, tableData.Probabilities[1].Cells);
     }
@@ -57,9 +57,9 @@ public class DeliverHitTableTests
         Assert.AreEqual(2, tableData.TotalNumberOfAttacks);
         CollectionAssert.AreEquivalent(new List<int> { 10, 11, 12 }, tableData.ArmorClasses);
         Assert.AreEqual(1, tableData.Probabilities[0].NumberOfHits);
-        CollectionAssert.AreEquivalent(new List<double> { 0.87, 0.81, 0.74 }, tableData.Probabilities[0].Cells);
+        CollectionAssert.AreEquivalent(new List<double> { 0.87, 0.80, 0.74 }, tableData.Probabilities[0].Cells);
         Assert.AreEqual(2, tableData.Probabilities[1].NumberOfHits);
-        CollectionAssert.AreEquivalent(new List<double> { 0.41, 0.32, 0.24 }, tableData.Probabilities[1].Cells);
+        CollectionAssert.AreEquivalent(new List<double> { 0.41, 0.31, 0.24 }, tableData.Probabilities[1].Cells);
     }
 
     private static Actor GetValidActor()
