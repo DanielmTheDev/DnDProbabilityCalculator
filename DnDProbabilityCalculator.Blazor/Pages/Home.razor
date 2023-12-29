@@ -1,6 +1,8 @@
 ﻿@page "/"
 @using DnDProbabilityCalculator.Core.Adventuring.Abilities
 @using DnDProbabilityCalculator.Application.Table.SavingThrow
+@using DnDProbabilityCalculator.Application.Table.ReceiveHit
+@using DnDProbabilityCalculator.Application.Table.DeliverHit
 
 <PageTitle>Home</PageTitle>
 
@@ -15,15 +17,42 @@
             <p>Damage per Hit: @currentContext.GeneralTableInfo.DamagePerHit</p>
         </FluentCard>
 
+        <h4>Saving Throws</h4>
         <FluentDataGrid Items=@currentContext.SavingThrowTable.Probabilities.AsQueryable() TGridItem=SavingThrowTableRow>
-            <PropertyColumn Title="Ability/DC" Property="@(row => row!.AbilityScoreType.Abbreviated())" Sortable="true" Align=Align.Start />
+            <PropertyColumn Title="Ability/DC" Property="@(row => row!.AbilityScoreType.Abbreviated())" Sortable="true" Align=Align.Start/>
             @for (var i = 0; i < currentContext.SavingThrowTable.Dcs.Length; i++)
             {
                 var localIndex = i;
                 <PropertyColumn Title="@currentContext.SavingThrowTable.Dcs[localIndex].ToString()"
                                 Property="@(row => row!.Cells[localIndex])"
                                 Sortable="true"
-                                Align=Align.Start />
+                                Align=Align.Start/>
+            }
+        </FluentDataGrid>
+
+        <h4>Receive Hit</h4>
+        <FluentDataGrid Items=@currentContext.ReceiveHitTable.Probabilities.AsQueryable() TGridItem=ReceiveHitTableRow>
+            <PropertyColumn Title="@($"{currentContext.ReceiveHitTable.TotalNumberOfAttacks} Attacks/Mod")" Property="@(row => $" >= {row!.NumberOfHits}")" Sortable="true" Align=Align.Start/>
+            @for (var i = 0; i < currentContext.ReceiveHitTable.AttackModifiers.Count; i++)
+            {
+                var localIndex = i;
+                <PropertyColumn Title="@currentContext.ReceiveHitTable.AttackModifiers[localIndex].ToString()"
+                                Property="@(row => row!.Cells[localIndex])"
+                                Sortable="true"
+                                Align=Align.Start/>
+            }
+        </FluentDataGrid>
+
+        <h4>Deliver Hit</h4>
+        <FluentDataGrid Items=@currentContext.DeliverHitTable.Probabilities.AsQueryable() TGridItem=DeliverHitTableRow>
+            <PropertyColumn Title="@($"{currentContext.DeliverHitTable.TotalNumberOfAttacks} Attacks/Mod")" Property="@(row => $" >= {row!.NumberOfHits}")" Sortable="true" Align=Align.Start/>
+            @for (var i = 0; i < currentContext.DeliverHitTable.ArmorClasses.Count; i++)
+            {
+                var localIndex = i;
+                <PropertyColumn Title="@currentContext.DeliverHitTable.ArmorClasses[localIndex].ToString()"
+                                Property="@(row => row!.Cells[localIndex])"
+                                Sortable="true"
+                                Align=Align.Start/>
             }
         </FluentDataGrid>
     }

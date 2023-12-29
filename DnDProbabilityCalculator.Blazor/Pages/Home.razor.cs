@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using DnDProbabilityCalculator.Application.Table;
+﻿using DnDProbabilityCalculator.Application.Table;
 using DnDProbabilityCalculator.Core.Adventuring;
 using Microsoft.AspNetCore.Components;
 
