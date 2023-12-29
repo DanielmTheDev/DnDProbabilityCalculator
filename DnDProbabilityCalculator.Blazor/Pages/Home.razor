@@ -14,21 +14,22 @@
 
 @if (_tableContexts.Any())
 {
-    @foreach (var currentContext in _tableContexts)
-    {
-        <FluentStack HorizontalAlignment="HorizontalAlignment.Center">
-            <FluentCard Width="15%">
-                <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
-                    <h3>@currentContext.GeneralTableInfo.ActorName</h3>
-                    <p>AC: @currentContext.GeneralTableInfo.ArmorClass</p>
-                    <p>AttackModifier: @currentContext.GeneralTableInfo.AttackModifier</p>
-                    <p>Damage per Hit: @currentContext.GeneralTableInfo.DamagePerHit</p>
-                </FluentStack>
-            </FluentCard>
-        </FluentStack>
-
-        <FluentStack Orientation="Orientation.Horizontal">
+    <FluentStack Orientation="Orientation.Horizontal">
+        @foreach (var currentContext in _tableContexts)
+        {
             <FluentStack Orientation="Orientation.Vertical">
+                <FluentStack HorizontalAlignment="HorizontalAlignment.Center">
+                    <FluentCard Width="30%">
+                        <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
+                            <h3>@currentContext.GeneralTableInfo.ActorName</h3>
+                            <p>AC: @currentContext.GeneralTableInfo.ArmorClass</p>
+                            <p>AttackModifier: @currentContext.GeneralTableInfo.AttackModifier</p>
+                            <p>Damage per Hit: @currentContext.GeneralTableInfo.DamagePerHit</p>
+                        </FluentStack>
+                    </FluentCard>
+                </FluentStack>
+
+
                 <h4>Saving Throws</h4>
                 <FluentDataGrid Items=@currentContext.SavingThrowTable.Probabilities.AsQueryable() TGridItem=SavingThrowTableRow>
                     <PropertyColumn Title="ABS/DC" Property="@(row => row!.AbilityScoreType.Abbreviated())" Sortable="true" Align=Align.Start/>
@@ -41,9 +42,8 @@
                                         Align=Align.Start/>
                     }
                 </FluentDataGrid>
-            </FluentStack>
 
-            <FluentStack Orientation="Orientation.Vertical">
+
                 <h4>Receive Hit</h4>
                 <FluentDataGrid Items=@currentContext.ReceiveHitTable.Probabilities.AsQueryable() TGridItem=ReceiveHitTableRow>
                     <PropertyColumn Title="@($"{currentContext.ReceiveHitTable.TotalNumberOfAttacks} Atcks/Mod")" Property="@(row => $" >= {row!.NumberOfHits}")" Sortable="true" Align=Align.Start/>
@@ -56,9 +56,8 @@
                                         Align=Align.Start/>
                     }
                 </FluentDataGrid>
-            </FluentStack>
 
-            <FluentStack Orientation="Orientation.Vertical">
+
                 <h4>Deliver Hit</h4>
                 <FluentDataGrid Items=@currentContext.DeliverHitTable.Probabilities.AsQueryable() TGridItem=DeliverHitTableRow>
                     <PropertyColumn Title="@($"{currentContext.DeliverHitTable.TotalNumberOfAttacks} Atcks/Mod")" Property="@(row => $" >= {row!.NumberOfHits}")" Sortable="true" Align=Align.Start/>
@@ -72,6 +71,6 @@
                     }
                 </FluentDataGrid>
             </FluentStack>
-        </FluentStack>
-    }
+        }
+    </FluentStack>
 }
