@@ -6,6 +6,10 @@
 
 <PageTitle>Home</PageTitle>
 
+<FluentDesignTheme @bind-Mode="@Mode" OfficeColor="OfficeColor.Word" StorageName="theme"/>
+
+<FluentButton OnClick="@ToggleTheme" IconEnd="@(new Icons.Regular.Size24.DarkTheme())"></FluentButton>
+
 @if (_tableContexts.Any())
 {
     @foreach (var currentContext in _tableContexts)

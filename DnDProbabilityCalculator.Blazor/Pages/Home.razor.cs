@@ -1,5 +1,6 @@
 ﻿using DnDProbabilityCalculator.Application.Table;
 using Microsoft.AspNetCore.Components;
+using Microsoft.FluentUI.AspNetCore.Components;
 using Toolbelt.Blazor.HotKeys2;
 
 namespace DnDProbabilityCalculator.Blazor.Pages;
@@ -11,8 +12,8 @@ public partial class Home : IDisposable
 
     [Inject]
     private HotKeys HotKeys { get; set; } = null!;
-
     private HotKeysContext? HotKeysContext { get; set; }
+    private DesignThemeModes Mode { get; set; } = DesignThemeModes.Dark;
     private IEnumerable<TableContext> _tableContexts = new List<TableContext>();
     private InputVariables _inputVariables = null!;
 
@@ -30,6 +31,9 @@ public partial class Home : IDisposable
         _inputVariables = InputVariables.CreateDefaultInputVariables();
         _tableContexts = TableContextFactory.Create(_inputVariables);
     }
+
+    private void ToggleTheme()
+        => Mode = Mode == DesignThemeModes.Dark ? DesignThemeModes.Light : DesignThemeModes.Dark;
 
     private void EnableAdvantage()
     {
