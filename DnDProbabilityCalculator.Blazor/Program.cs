@@ -6,6 +6,7 @@ using Microsoft.FluentUI.AspNetCore.Components;
 using DnDProbabilityCalculator.Blazor;
 using DnDProbabilityCalculator.Infrastructure.Actors;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;
+using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -13,6 +14,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddFluentUIComponents();
+builder.Services.AddHotKeys2();
 
 builder.Services.AddTransient<IPartyRepository, PartyInlineRepository>();
 builder.Services.AddTransient<ITableContextFactory, TableContextFactory>();
