@@ -12,6 +12,7 @@ public partial class Home : IDisposable
 
     [Inject]
     private HotKeys HotKeys { get; set; } = null!;
+
     private HotKeysContext? HotKeysContext { get; set; }
     private DesignThemeModes Mode { get; set; } = DesignThemeModes.Dark;
     private IEnumerable<TableContext> _tableContexts = new List<TableContext>();
@@ -35,54 +36,33 @@ public partial class Home : IDisposable
     private void ToggleTheme()
         => Mode = Mode == DesignThemeModes.Dark ? DesignThemeModes.Light : DesignThemeModes.Dark;
 
-    private void EnableAdvantage()
+    private void UpdateTable(Func<InputVariables> updateFunction)
     {
-        _inputVariables = _inputVariables.WithAdvantage();
+        _inputVariables = updateFunction();
         _tableContexts = TableContextFactory.Create(_inputVariables);
         StateHasChanged();
     }
+
+    private void EnableAdvantage()
+        => UpdateTable(_inputVariables.WithAdvantage);
 
     private void EnableDisadvantage()
-    {
-        _inputVariables = _inputVariables.WithDisadvantage();
-        _tableContexts = TableContextFactory.Create(_inputVariables);
-        StateHasChanged();
-    }
+        => UpdateTable(_inputVariables.WithDisadvantage);
 
     private void EnableNoAdvantage()
-    {
-        _inputVariables = _inputVariables.WithNoAdvantage();
-        _tableContexts = TableContextFactory.Create(_inputVariables);
-        StateHasChanged();
-    }
+        => UpdateTable(_inputVariables.WithNoAdvantage);
 
     private void DecreaseAttacks()
-    {
-        _inputVariables = _inputVariables.WithDecrementedNumberOfAttacks();
-        _tableContexts = TableContextFactory.Create(_inputVariables);
-        StateHasChanged();
-    }
+        => UpdateTable(_inputVariables.WithDecrementedNumberOfAttacks);
 
     private void IncreaseAttacks()
-    {
-        _inputVariables = _inputVariables.WithIncrementedNumberOfAttacks();
-        _tableContexts = TableContextFactory.Create(_inputVariables);
-        StateHasChanged();
-    }
+        => UpdateTable(_inputVariables.WithIncrementedNumberOfAttacks);
 
     private void IncreaseParamters()
-    {
-        _inputVariables = _inputVariables.WithIncrementedColumns();
-        _tableContexts = TableContextFactory.Create(_inputVariables);
-        StateHasChanged();
-    }
+        => UpdateTable(_inputVariables.WithIncrementedColumns);
 
     private void DecreaseParamters()
-    {
-        _inputVariables = _inputVariables.WithDecrementedColumns();
-        _tableContexts = TableContextFactory.Create(_inputVariables);
-        StateHasChanged();
-    }
+        => UpdateTable(_inputVariables.WithDecrementedColumns);
 
     public void Dispose()
     {
