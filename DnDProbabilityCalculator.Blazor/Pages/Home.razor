@@ -31,7 +31,7 @@
 
 
                 <h4>Saving Throws</h4>
-                <FluentDataGrid Items=@currentContext.SavingThrowTable.Probabilities.AsQueryable() TGridItem=SavingThrowTableRow>
+                <FluentDataGrid Class="fluent-data-grid" Items=@currentContext.SavingThrowTable.Probabilities.AsQueryable() TGridItem=SavingThrowTableRow>
                     <PropertyColumn Title="ABS/DC" Property="@(row => row!.AbilityScoreType.Abbreviated())" Sortable="true" Align=Align.Start/>
                     @for (var i = 0; i < currentContext.SavingThrowTable.Dcs.Length; i++)
                     {
@@ -74,3 +74,9 @@
         }
     </FluentStack>
 }
+
+<style>
+    fluent-data-grid fluent-data-grid-row:nth-child(odd) {
+        background-color: var(--neutral-layer-1);
+    }
+</style>

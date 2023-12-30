@@ -33,15 +33,15 @@ public partial class Home : IDisposable
         _tableContexts = TableContextFactory.Create(_inputVariables);
     }
 
-    private void ToggleTheme()
-        => Mode = Mode == DesignThemeModes.Dark ? DesignThemeModes.Light : DesignThemeModes.Dark;
-
     private void UpdateTable(Func<InputVariables> updateFunction)
     {
         _inputVariables = updateFunction();
         _tableContexts = TableContextFactory.Create(_inputVariables);
         StateHasChanged();
     }
+
+    private void ToggleTheme()
+        => Mode = Mode == DesignThemeModes.Dark ? DesignThemeModes.Light : DesignThemeModes.Dark;
 
     private void EnableAdvantage()
         => UpdateTable(_inputVariables.WithAdvantage);
