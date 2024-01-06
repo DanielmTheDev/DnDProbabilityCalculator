@@ -37,7 +37,7 @@
                     {
                         var localIndex = i;
                         <PropertyColumn Title="@currentContext.SavingThrowTable.Dcs[localIndex].ToString()"
-                                        Property="@(row => row!.Cells[localIndex])"
+                                        Property="@(row => row!.Cells[localIndex].ToString("P0"))"
                                         Sortable="true"
                                         Align=Align.Start/>
                     }
@@ -50,10 +50,12 @@
                     @for (var i = 0; i < currentContext.ReceiveHitTable.AttackModifiers.Count; i++)
                     {
                         var localIndex = i;
-                        <PropertyColumn Title="@currentContext.ReceiveHitTable.AttackModifiers[localIndex].ToString()"
-                                        Property="@(row => row!.Cells[localIndex])"
-                                        Sortable="true"
-                                        Align=Align.Start/>
+                        <TemplateColumn Title="@currentContext.ReceiveHitTable.AttackModifiers[localIndex].ToString()" Align="Align.Start">
+                            @{
+                                var cell = (context as ReceiveHitTableRow).Cells[localIndex];
+                            }
+                            <span class="@(GetColorClass(cell))">@cell.ToString("P0")</span>
+                        </TemplateColumn>
                     }
                 </FluentDataGrid>
 
@@ -65,7 +67,7 @@
                     {
                         var localIndex = i;
                         <PropertyColumn Title="@currentContext.DeliverHitTable.ArmorClasses[localIndex].ToString()"
-                                        Property="@(row => row!.Cells[localIndex])"
+                                        Property="@(row => row!.Cells[localIndex].ToString("P0"))"
                                         Sortable="true"
                                         Align=Align.Start/>
                     }
@@ -74,3 +76,12 @@
         }
     </FluentStack>
 }
+
+<style>
+fluent-data-grid fluent-data-grid-row:nth-child(odd) {
+    background-color: var(--neutral-layer-1);
+}
+.red {
+    color: red;
+}
+</style>

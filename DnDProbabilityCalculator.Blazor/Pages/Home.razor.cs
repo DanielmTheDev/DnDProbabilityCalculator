@@ -69,4 +69,7 @@ public partial class Home : IDisposable
         GC.SuppressFinalize(this);
         HotKeysContext?.Dispose();
     }
+
+    private static string GetColorClass(double cell)
+        => cell < 0.25 ? "red" : "";
 }
