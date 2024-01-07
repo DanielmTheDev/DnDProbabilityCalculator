@@ -71,5 +71,12 @@ public partial class Home : IDisposable
     }
 
     private static string GetColorClass(double cell)
-        => cell < 0.25 ? "red" : "";
+        => cell switch
+        {
+            < 0.25 => "red",
+            < 0.45 => "orange",
+            < 0.65 => "yellow",
+            < 0.85 => "turquoise",
+            _ => "green",
+        };
 }

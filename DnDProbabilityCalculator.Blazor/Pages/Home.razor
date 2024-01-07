@@ -36,10 +36,12 @@
                     @for (var i = 0; i < currentContext.SavingThrowTable.Dcs.Length; i++)
                     {
                         var localIndex = i;
-                        <PropertyColumn Title="@currentContext.SavingThrowTable.Dcs[localIndex].ToString()"
-                                        Property="@(row => row!.Cells[localIndex].ToString("P0"))"
-                                        Sortable="true"
-                                        Align=Align.Start/>
+                        <TemplateColumn Title="@currentContext.SavingThrowTable.Dcs[localIndex].ToString()" Align="Align.Start">
+                            @{
+                                var cell = (context as SavingThrowTableRow).Cells[localIndex];
+                            }
+                            <span class="@(GetColorClass(cell))">@cell.ToString("P0")</span>
+                        </TemplateColumn>
                     }
                 </FluentDataGrid>
 
@@ -66,10 +68,12 @@
                     @for (var i = 0; i < currentContext.DeliverHitTable.ArmorClasses.Count; i++)
                     {
                         var localIndex = i;
-                        <PropertyColumn Title="@currentContext.DeliverHitTable.ArmorClasses[localIndex].ToString()"
-                                        Property="@(row => row!.Cells[localIndex].ToString("P0"))"
-                                        Sortable="true"
-                                        Align=Align.Start/>
+                        <TemplateColumn Title="@currentContext.DeliverHitTable.ArmorClasses[localIndex].ToString()" Align="Align.Start">
+                            @{
+                                var cell = (context as DeliverHitTableRow).Cells[localIndex];
+                            }
+                            <span class="@(GetColorClass(cell))">@cell.ToString("P0")</span>
+                        </TemplateColumn>
                     }
                 </FluentDataGrid>
             </FluentStack>
@@ -81,7 +85,24 @@
 fluent-data-grid fluent-data-grid-row:nth-child(odd) {
     background-color: var(--neutral-layer-1);
 }
+
 .red {
     color: red;
+}
+
+.green {
+    color: green;
+}
+
+.yellow {
+    color: yellow;
+}
+
+.orange {
+    color: orange;
+}
+
+.turquoise {
+    color: turquoise;
 }
 </style>
