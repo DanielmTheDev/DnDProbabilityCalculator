@@ -21,4 +21,10 @@
       <ProjectReference Include="..\DnDProbabilityCalculator.Infrastructure\DnDProbabilityCalculator.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="HotkeyHelp.razor.cs">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </Content>
+    </ItemGroup>
+
 </Project>
