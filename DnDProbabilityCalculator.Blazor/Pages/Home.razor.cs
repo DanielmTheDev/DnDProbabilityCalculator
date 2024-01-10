@@ -79,4 +79,14 @@ public partial class Home : IDisposable
             < 0.85 => "turquoise",
             _ => "green",
         };
+
+    private static string GetInvertedColorClass(double cell)
+        => cell switch
+        {
+            < 0.25 => "green",
+            < 0.45 => "turquoise",
+            < 0.65 => "yellow",
+            < 0.85 => "orange",
+            _ => "red",
+        };
 }

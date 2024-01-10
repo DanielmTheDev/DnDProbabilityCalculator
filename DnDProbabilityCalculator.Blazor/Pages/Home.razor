@@ -56,7 +56,7 @@
                             @{
                                 var cell = (context as ReceiveHitTableRow).Cells[localIndex];
                             }
-                            <span class="@(GetColorClass(cell))">@cell.ToString("P0")</span>
+                            <span class="@(GetInvertedColorClass(cell))">@cell.ToString("P0")</span>
                         </TemplateColumn>
                     }
                 </FluentDataGrid>
