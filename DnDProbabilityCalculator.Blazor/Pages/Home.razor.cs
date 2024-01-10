@@ -11,6 +11,9 @@ public partial class Home : IDisposable
     private ITableContextFactory TableContextFactory { get; set; } = null!;
 
     [Inject]
+    private IDialogService DialogService { get; set; } = null!;
+
+    [Inject]
     private HotKeys HotKeys { get; set; } = null!;
 
     private HotKeysContext? HotKeysContext { get; set; }
@@ -28,15 +31,27 @@ public partial class Home : IDisposable
             .Add(Code.ArrowLeft, DecreaseParamters, new() { Description = "Decrease all input parameters (DCs, ACs, and Modifiers) by 1" })
             .Add(Code.ArrowUp, DecreaseAttacks, new() { Description = "Increase number of attacks by 1" })
             .Add(Code.ArrowDown, IncreaseAttacks, new() { Description = "Decrease number of attacks by 1" })
-            .Add(Key.Question, ToggleShowHelp, new() { Description = "Show this help screen" });
+            .Add(Key.Question, async () => await ToggleShowHelp(), new() { Description = "Show this help screen" });
 
         _inputVariables = InputVariables.CreateDefaultInputVariables();
         _tableContexts = TableContextFactory.Create(_inputVariables);
     }
 
-    private void ToggleShowHelp()
+    private async Task ToggleShowHelp()
     {
-        throw new NotImplementedException();
+        DialogParameters parameters = new()
+        {
+            Title = $"Hello Daniel",
+            PrimaryAction = "Yes",
+            PrimaryActionEnabled = false,
+            SecondaryAction = "No",
+            Width = "500px",
+            TrapFocus = true,
+            Modal = true,
+            PreventScroll = true
+        };
+
+        var x = await DialogService.ShowDialogAsync<HotkeyHelp>(parameters);
     }
 
     private void UpdateTable(Func<InputVariables> updateFunction)
