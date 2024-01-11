@@ -10,6 +10,7 @@
 
 <FluentStack Orientation="Orientation.Horizontal" HorizontalAlignment="HorizontalAlignment.End">
     <FluentButton OnClick="@ToggleTheme" IconEnd="@(new Icons.Regular.Size24.DarkTheme())"></FluentButton>
+    <FluentButton OnClick="@ShowHelpDialog" IconEnd="@(new Icons.Filled.Size24.Keyboard())"></FluentButton>
 </FluentStack>
 
 @if (_tableContexts.Any())
