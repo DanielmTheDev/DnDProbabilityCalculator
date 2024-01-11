@@ -17,42 +17,42 @@ public partial class Home : IDisposable
     [Inject]
     private HotKeys HotKeys { get; set; } = null!;
 
-    private HotKeysContext? HotKeysContext { get; set; }
+    private HotKeysContext HotKeysContext { get; set; } = null!;
     private DesignThemeModes Mode { get; set; } = DesignThemeModes.Dark;
     private IEnumerable<TableContext> _tableContexts = new List<TableContext>();
     private InputVariables _inputVariables = null!;
 
     protected override void OnInitialized()
     {
-        HotKeysContext = HotKeys.CreateContext()
-            .Add(Code.A, EnableAdvantage, new() { Description = "Enable advantage" })
-            .Add(Code.D, EnableDisadvantage, new() { Description = "Enable Disadvantage" })
-            .Add(Code.S, EnableNoAdvantage, new() { Description = "EnableNoAdvantage" })
-            .Add(Code.ArrowRight, IncreaseParamters, new() { Description = "Increase all input parameters (DCs, ACs, and Modifiers) by 1" })
-            .Add(Code.ArrowLeft, DecreaseParamters, new() { Description = "Decrease all input parameters (DCs, ACs, and Modifiers) by 1" })
-            .Add(Code.ArrowUp, DecreaseAttacks, new() { Description = "Increase number of attacks by 1" })
-            .Add(Code.ArrowDown, IncreaseAttacks, new() { Description = "Decrease number of attacks by 1" })
-            .Add(Key.Question, async () => await ToggleShowHelp(), new() { Description = "Show this help screen" });
-
+        InitializeHotkeys();
         _inputVariables = InputVariables.CreateDefaultInputVariables();
         _tableContexts = TableContextFactory.Create(_inputVariables);
     }
 
-    private async Task ToggleShowHelp()
+    private void InitializeHotkeys()
+        => HotKeysContext = HotKeys.CreateContext()
+            .Add(Code.A, EnableAdvantage, new() { Description = "Enable Advantage" })
+            .Add(Code.D, EnableDisadvantage, new() { Description = "Enable Disadvantage" })
+            .Add(Code.S, EnableNoAdvantage, new() { Description = "Disable Advantage and Disadvantage" })
+            .Add(Code.ArrowRight, IncreaseParamters, new() { Description = "Increase all input parameters (DCs, ACs, and Modifiers) by 1" })
+            .Add(Code.ArrowLeft, DecreaseParamters, new() { Description = "Decrease all input parameters (DCs, ACs, and Modifiers) by 1" })
+            .Add(Code.ArrowUp, DecreaseAttacks, new() { Description = "Increase number of attacks by 1" })
+            .Add(Code.ArrowDown, IncreaseAttacks, new() { Description = "Decrease number of attacks by 1" })
+            .Add(Key.Question, async () => await ShowHelpDialog(), new() { Description = "Show this help screen" });
+
+    private async Task ShowHelpDialog()
     {
-        DialogParameters parameters = new()
+        var parameters = new DialogParameters
         {
-            Title = $"Hello Daniel",
-            PrimaryAction = "Yes",
-            PrimaryActionEnabled = false,
-            SecondaryAction = "No",
+            Title = "Controls",
             Width = "500px",
+            PrimaryAction = string.Empty,
+            SecondaryAction = string.Empty,
             TrapFocus = true,
-            Modal = true,
             PreventScroll = true
         };
 
-        var x = await DialogService.ShowDialogAsync<HotkeyHelp>(parameters);
+        await DialogService.ShowDialogAsync<HotkeyHelp>(HotKeysContext.Keys, parameters);
     }
 
     private void UpdateTable(Func<InputVariables> updateFunction)
@@ -89,7 +89,7 @@ public partial class Home : IDisposable
     public void Dispose()
     {
         GC.SuppressFinalize(this);
-        HotKeysContext?.Dispose();
+        HotKeysContext.Dispose();
     }
 
     private static string GetColorClass(double cell)

@@ -1,0 +1,9 @@
+﻿@using Toolbelt.Blazor.HotKeys2
+@implements IDialogContentComponent<List<HotKeyEntry>>
+
+@namespace DnDProbabilityCalculator.Blazor.Components
+
+@foreach (var key in Content)
+{
+    <p>@key</p>
+}

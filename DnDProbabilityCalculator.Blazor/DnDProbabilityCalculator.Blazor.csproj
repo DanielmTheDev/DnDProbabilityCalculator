@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="HotkeyHelp.razor.cs">
+      <Content Include="Components\HotkeyHelp.razor.cs">
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       </Content>
     </ItemGroup>
