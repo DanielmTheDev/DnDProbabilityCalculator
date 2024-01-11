@@ -1,4 +1,5 @@
 ﻿using DnDProbabilityCalculator.Application.Table;
+using DnDProbabilityCalculator.Blazor.Components;
 using Microsoft.AspNetCore.Components;
 using Microsoft.FluentUI.AspNetCore.Components;
 using Toolbelt.Blazor.HotKeys2;
