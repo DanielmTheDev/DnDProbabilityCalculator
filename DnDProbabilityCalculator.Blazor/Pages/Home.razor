@@ -14,10 +14,10 @@
 
 @if (_tableContexts.Any())
 {
-    <FluentStack Orientation="Orientation.Horizontal">
+    <FluentStack Orientation="Orientation.Horizontal" HorizontalAlignment="HorizontalAlignment.Center">
         @foreach (var currentContext in _tableContexts)
         {
-            <FluentStack Orientation="Orientation.Vertical">
+            <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
                 <FluentStack HorizontalAlignment="HorizontalAlignment.Center">
                     <FluentCard Width="30%">
                         <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
