@@ -7,9 +7,4 @@ public partial class HotkeyHelp
 {
     [Parameter]
     public List<HotKeyEntry> Content { get; set; } = [];
-
-    protected override void OnInitialized()
-    {
-        Console.Out.Write(Content);
-    }
 }

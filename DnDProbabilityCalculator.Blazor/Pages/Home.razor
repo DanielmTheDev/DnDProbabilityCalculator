@@ -46,7 +46,6 @@
                     }
                 </FluentDataGrid>
 
-
                 <h4>Receive Hit</h4>
                 <FluentDataGrid Items=@currentContext.ReceiveHitTable.Probabilities.AsQueryable() TGridItem=ReceiveHitTableRow>
                     <PropertyColumn Title="@($"{currentContext.ReceiveHitTable.TotalNumberOfAttacks} Atcks/Mod")" Property="@(row => $" >= {row!.NumberOfHits}")" Sortable="true" Align=Align.Start/>
@@ -61,7 +60,6 @@
                         </TemplateColumn>
                     }
                 </FluentDataGrid>
-
 
                 <h4>Deliver Hit</h4>
                 <FluentDataGrid Items=@currentContext.DeliverHitTable.Probabilities.AsQueryable() TGridItem=DeliverHitTableRow>
