@@ -21,7 +21,7 @@
             <FluentGridItem sm="12" md="6" lg="4">
                 <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
                     <FluentStack HorizontalAlignment="HorizontalAlignment.Center">
-                        <FluentCard Width="80%">
+                        <FluentCard Width="80%" Class="@GetAdvantageColorClass(currentContext.GeneralTableInfo.Advantage)">
                             <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
                                 <h3>@currentContext.GeneralTableInfo.ActorName</h3>
                                 <p>AC: @currentContext.GeneralTableInfo.ArmorClass</p>
@@ -105,6 +105,14 @@ fluent-data-grid fluent-data-grid-row:nth-child(odd) {
 
 .turquoise {
     color: turquoise;
+}
+
+.red-background {
+    background-color: red;
+}
+
+.green-background {
+    background-color: green;
 }
 
 .grid {

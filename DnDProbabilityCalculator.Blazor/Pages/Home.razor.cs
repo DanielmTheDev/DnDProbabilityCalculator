@@ -1,5 +1,6 @@
 ﻿using DnDProbabilityCalculator.Application.Table;
 using DnDProbabilityCalculator.Blazor.Components;
+using DnDProbabilityCalculator.Core.Adventuring;
 using Microsoft.AspNetCore.Components;
 using Microsoft.FluentUI.AspNetCore.Components;
 using Toolbelt.Blazor.HotKeys2;
@@ -110,5 +111,13 @@ public partial class Home : IDisposable
             < 0.65 => "yellow",
             < 0.85 => "orange",
             _ => "red",
+        };
+
+    private static string GetAdvantageColorClass(AdvantageType advantage)
+        => advantage switch
+        {
+            AdvantageType.Advantage => "green-background",
+            AdvantageType.Disadvantage => "red-background",
+            _ => string.Empty
         };
 }
