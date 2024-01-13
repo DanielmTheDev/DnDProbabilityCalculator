@@ -31,9 +31,9 @@
                         </FluentCard>
                     </FluentStack>
 
-                    <h4>Saving Throws</h4>
+                    <h4>Saving Throws ↓: # Ability Score | → DC</h4>
                     <FluentDataGrid Items=@currentContext.SavingThrowTable.Probabilities.AsQueryable() TGridItem=SavingThrowTableRow Class="probability-table">
-                        <PropertyColumn Title="ABS/DC" Property="@(row => row!.AbilityScoreType.Abbreviated())" Align=Align.Start/>
+                        <PropertyColumn Property="@(row => row!.AbilityScoreType.Abbreviated())" Align=Align.Start/>
                         @for (var i = 0; i < currentContext.SavingThrowTable.Dcs.Length; i++)
                         {
                             var localIndex = i;
@@ -46,9 +46,9 @@
                         }
                     </FluentDataGrid>
 
-                    <h4>Receive Hit</h4>
+                    <h4>Receive Hit ↓: # Attacks | → Modifier</h4>
                     <FluentDataGrid Items=@currentContext.ReceiveHitTable.Probabilities.AsQueryable() TGridItem=ReceiveHitTableRow Class="probability-table">
-                        <PropertyColumn Title="@($"{currentContext.ReceiveHitTable.TotalNumberOfAttacks} Atcks/Mod")" Property="@(row => $" >= {row!.NumberOfHits}")" Align=Align.Start/>
+                        <PropertyColumn Property="@(row => $" >= {row!.NumberOfHits}")" Align=Align.Start/>
                         @for (var i = 0; i < currentContext.ReceiveHitTable.AttackModifiers.Count; i++)
                         {
                             var localIndex = i;
@@ -61,9 +61,9 @@
                         }
                     </FluentDataGrid>
 
-                    <h4>Deliver Hit</h4>
+                    <h4>Deliver Hit ↓: # Attacks | → Modifier</h4>
                     <FluentDataGrid Items=@currentContext.DeliverHitTable.Probabilities.AsQueryable() TGridItem=DeliverHitTableRow Class="probability-table">
-                        <PropertyColumn Title="@($"{currentContext.DeliverHitTable.TotalNumberOfAttacks} Atcks/Mod")" Property="@(row => $" >= {row!.NumberOfHits}")" Align=Align.Start/>
+                        <PropertyColumn Property="@(row => $" >= {row!.NumberOfHits}")" Align=Align.Start/>
                         @for (var i = 0; i < currentContext.DeliverHitTable.ArmorClasses.Count; i++)
                         {
                             var localIndex = i;
@@ -78,7 +78,6 @@
                 </FluentStack>
             </FluentGridItem>
         }
-
     </FluentGrid>
 }
 
