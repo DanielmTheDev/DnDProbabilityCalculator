@@ -15,10 +15,10 @@
 
 @if (_tableContexts.Any())
 {
-    <FluentGrid Justify="JustifyContent.Center" Spacing="0">
+    <FluentGrid Class="no-margin" Justify="JustifyContent.SpaceEvenly" Spacing="3">
         @foreach (var currentContext in _tableContexts)
         {
-            <FluentGridItem lg="12">
+            <FluentGridItem sm="12" lg="6" xl="4">
                 <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
                     <FluentStack HorizontalAlignment="HorizontalAlignment.Center">
                         <FluentCard Width="30%">
@@ -107,4 +107,9 @@ fluent-data-grid fluent-data-grid-row:nth-child(odd) {
 .turquoise {
     color: turquoise;
 }
+
+.no-margin {
+    margin: 0 !important;
+}
+
 </style>
