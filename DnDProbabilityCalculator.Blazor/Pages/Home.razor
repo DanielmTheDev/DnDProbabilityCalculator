@@ -61,7 +61,7 @@
                         }
                     </FluentDataGrid>
 
-                    <h5>Deliver Hit ↓: # Attacks | → Modifier</h5>
+                    <h5>Deliver Hit ↓: # Attacks | → Armor Class</h5>
                     <FluentDataGrid Items=@currentContext.DeliverHitTable.Probabilities.AsQueryable() TGridItem=DeliverHitTableRow Class="probability-table">
                         <PropertyColumn Property="@(row => $" >= {row!.NumberOfHits}")" Align=Align.Start/>
                         @for (var i = 0; i < currentContext.DeliverHitTable.ArmorClasses.Count; i++)
