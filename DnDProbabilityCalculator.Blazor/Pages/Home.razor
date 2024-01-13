@@ -31,7 +31,7 @@
                         </FluentCard>
                     </FluentStack>
 
-                    <h4>Saving Throws ↓: # Ability Score | → DC</h4>
+                    <h5>Saving Throws ↓: # Ability Score | → DC</h5>
                     <FluentDataGrid Items=@currentContext.SavingThrowTable.Probabilities.AsQueryable() TGridItem=SavingThrowTableRow Class="probability-table">
                         <PropertyColumn Property="@(row => row!.AbilityScoreType.Abbreviated())" Align=Align.Start/>
                         @for (var i = 0; i < currentContext.SavingThrowTable.Dcs.Length; i++)
@@ -46,7 +46,7 @@
                         }
                     </FluentDataGrid>
 
-                    <h4>Receive Hit ↓: # Attacks | → Modifier</h4>
+                    <h5>Receive Hit ↓: # Attacks | → Modifier</h5>
                     <FluentDataGrid Items=@currentContext.ReceiveHitTable.Probabilities.AsQueryable() TGridItem=ReceiveHitTableRow Class="probability-table">
                         <PropertyColumn Property="@(row => $" >= {row!.NumberOfHits}")" Align=Align.Start/>
                         @for (var i = 0; i < currentContext.ReceiveHitTable.AttackModifiers.Count; i++)
@@ -61,7 +61,7 @@
                         }
                     </FluentDataGrid>
 
-                    <h4>Deliver Hit ↓: # Attacks | → Modifier</h4>
+                    <h5>Deliver Hit ↓: # Attacks | → Modifier</h5>
                     <FluentDataGrid Items=@currentContext.DeliverHitTable.Probabilities.AsQueryable() TGridItem=DeliverHitTableRow Class="probability-table">
                         <PropertyColumn Property="@(row => $" >= {row!.NumberOfHits}")" Align=Align.Start/>
                         @for (var i = 0; i < currentContext.DeliverHitTable.ArmorClasses.Count; i++)
