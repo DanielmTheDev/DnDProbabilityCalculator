@@ -15,69 +15,72 @@
 
 @if (_tableContexts.Any())
 {
-    <FluentStack Orientation="Orientation.Horizontal" HorizontalAlignment="HorizontalAlignment.Center">
+    <FluentGrid Justify="JustifyContent.Center" Spacing="0">
         @foreach (var currentContext in _tableContexts)
         {
-            <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
-                <FluentStack HorizontalAlignment="HorizontalAlignment.Center">
-                    <FluentCard Width="30%">
-                        <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
-                            <h3>@currentContext.GeneralTableInfo.ActorName</h3>
-                            <p>AC: @currentContext.GeneralTableInfo.ArmorClass</p>
-                            <p>AttackModifier: @currentContext.GeneralTableInfo.AttackModifier</p>
-                            <p>Damage per Hit: @currentContext.GeneralTableInfo.DamagePerHit</p>
-                        </FluentStack>
-                    </FluentCard>
+            <FluentGridItem lg="12">
+                <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
+                    <FluentStack HorizontalAlignment="HorizontalAlignment.Center">
+                        <FluentCard Width="30%">
+                            <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
+                                <h3>@currentContext.GeneralTableInfo.ActorName</h3>
+                                <p>AC: @currentContext.GeneralTableInfo.ArmorClass</p>
+                                <p>AttackModifier: @currentContext.GeneralTableInfo.AttackModifier</p>
+                                <p>Damage per Hit: @currentContext.GeneralTableInfo.DamagePerHit</p>
+                            </FluentStack>
+                        </FluentCard>
+                    </FluentStack>
+
+
+                    <h4>Saving Throws</h4>
+                    <FluentDataGrid Items=@currentContext.SavingThrowTable.Probabilities.AsQueryable() TGridItem=SavingThrowTableRow>
+                        <PropertyColumn Title="ABS/DC" Property="@(row => row!.AbilityScoreType.Abbreviated())" Align=Align.Start/>
+                        @for (var i = 0; i < currentContext.SavingThrowTable.Dcs.Length; i++)
+                        {
+                            var localIndex = i;
+                            <TemplateColumn Title="@currentContext.SavingThrowTable.Dcs[localIndex].ToString()" Align="Align.Start">
+                                @{
+                                    var cell = (context as SavingThrowTableRow).Cells[localIndex];
+                                }
+                                <span class="@(GetColorClass(cell))">@cell.ToString("P0")</span>
+                            </TemplateColumn>
+                        }
+                    </FluentDataGrid>
+
+                    <h4>Receive Hit</h4>
+                    <FluentDataGrid Items=@currentContext.ReceiveHitTable.Probabilities.AsQueryable() TGridItem=ReceiveHitTableRow>
+                        <PropertyColumn Title="@($"{currentContext.ReceiveHitTable.TotalNumberOfAttacks} Atcks/Mod")" Property="@(row => $" >= {row!.NumberOfHits}")" Align=Align.Start/>
+                        @for (var i = 0; i < currentContext.ReceiveHitTable.AttackModifiers.Count; i++)
+                        {
+                            var localIndex = i;
+                            <TemplateColumn Title="@currentContext.ReceiveHitTable.AttackModifiers[localIndex].ToString()" Align="Align.Start">
+                                @{
+                                    var cell = (context as ReceiveHitTableRow).Cells[localIndex];
+                                }
+                                <span class="@(GetInvertedColorClass(cell))">@cell.ToString("P0")</span>
+                            </TemplateColumn>
+                        }
+                    </FluentDataGrid>
+
+                    <h4>Deliver Hit</h4>
+                    <FluentDataGrid Items=@currentContext.DeliverHitTable.Probabilities.AsQueryable() TGridItem=DeliverHitTableRow>
+                        <PropertyColumn Title="@($"{currentContext.DeliverHitTable.TotalNumberOfAttacks} Atcks/Mod")" Property="@(row => $" >= {row!.NumberOfHits}")" Align=Align.Start/>
+                        @for (var i = 0; i < currentContext.DeliverHitTable.ArmorClasses.Count; i++)
+                        {
+                            var localIndex = i;
+                            <TemplateColumn Title="@currentContext.DeliverHitTable.ArmorClasses[localIndex].ToString()" Align="Align.Start">
+                                @{
+                                    var cell = (context as DeliverHitTableRow).Cells[localIndex];
+                                }
+                                <span class="@(GetColorClass(cell))">@cell.ToString("P0")</span>
+                            </TemplateColumn>
+                        }
+                    </FluentDataGrid>
                 </FluentStack>
-
-
-                <h4>Saving Throws</h4>
-                <FluentDataGrid Class="fluent-data-grid" Items=@currentContext.SavingThrowTable.Probabilities.AsQueryable() TGridItem=SavingThrowTableRow>
-                    <PropertyColumn Title="ABS/DC" Property="@(row => row!.AbilityScoreType.Abbreviated())" Sortable="true" Align=Align.Start/>
-                    @for (var i = 0; i < currentContext.SavingThrowTable.Dcs.Length; i++)
-                    {
-                        var localIndex = i;
-                        <TemplateColumn Title="@currentContext.SavingThrowTable.Dcs[localIndex].ToString()" Align="Align.Start">
-                            @{
-                                var cell = (context as SavingThrowTableRow).Cells[localIndex];
-                            }
-                            <span class="@(GetColorClass(cell))">@cell.ToString("P0")</span>
-                        </TemplateColumn>
-                    }
-                </FluentDataGrid>
-
-                <h4>Receive Hit</h4>
-                <FluentDataGrid Items=@currentContext.ReceiveHitTable.Probabilities.AsQueryable() TGridItem=ReceiveHitTableRow>
-                    <PropertyColumn Title="@($"{currentContext.ReceiveHitTable.TotalNumberOfAttacks} Atcks/Mod")" Property="@(row => $" >= {row!.NumberOfHits}")" Sortable="true" Align=Align.Start/>
-                    @for (var i = 0; i < currentContext.ReceiveHitTable.AttackModifiers.Count; i++)
-                    {
-                        var localIndex = i;
-                        <TemplateColumn Title="@currentContext.ReceiveHitTable.AttackModifiers[localIndex].ToString()" Align="Align.Start">
-                            @{
-                                var cell = (context as ReceiveHitTableRow).Cells[localIndex];
-                            }
-                            <span class="@(GetInvertedColorClass(cell))">@cell.ToString("P0")</span>
-                        </TemplateColumn>
-                    }
-                </FluentDataGrid>
-
-                <h4>Deliver Hit</h4>
-                <FluentDataGrid Items=@currentContext.DeliverHitTable.Probabilities.AsQueryable() TGridItem=DeliverHitTableRow>
-                    <PropertyColumn Title="@($"{currentContext.DeliverHitTable.TotalNumberOfAttacks} Atcks/Mod")" Property="@(row => $" >= {row!.NumberOfHits}")" Sortable="true" Align=Align.Start/>
-                    @for (var i = 0; i < currentContext.DeliverHitTable.ArmorClasses.Count; i++)
-                    {
-                        var localIndex = i;
-                        <TemplateColumn Title="@currentContext.DeliverHitTable.ArmorClasses[localIndex].ToString()" Align="Align.Start">
-                            @{
-                                var cell = (context as DeliverHitTableRow).Cells[localIndex];
-                            }
-                            <span class="@(GetColorClass(cell))">@cell.ToString("P0")</span>
-                        </TemplateColumn>
-                    }
-                </FluentDataGrid>
-            </FluentStack>
+            </FluentGridItem>
         }
-    </FluentStack>
+
+    </FluentGrid>
 }
 
 <style>
