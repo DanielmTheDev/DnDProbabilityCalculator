@@ -21,7 +21,7 @@ public record InputVariables
     }
 
     public static InputVariables CreateDefaultInputVariables()
-        => new(Enumerable.Range(12, 7).ToArray(), Enumerable.Range(3, 7).ToArray(), Enumerable.Range(10, 7).ToArray(), 2, AdvantageType.None);
+        => new(Enumerable.Range(12, 5).ToArray(), Enumerable.Range(3, 5).ToArray(), Enumerable.Range(10, 5).ToArray(), 2, AdvantageType.None);
 
     public InputVariables WithIncrementedNumberOfAttacks()
         => this with { NumberOfAttacks = NumberOfAttacks + 1 };

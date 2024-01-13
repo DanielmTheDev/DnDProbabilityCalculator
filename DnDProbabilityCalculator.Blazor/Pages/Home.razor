@@ -15,10 +15,10 @@
 
 @if (_tableContexts.Any())
 {
-    <FluentGrid Class="no-margin" Justify="JustifyContent.SpaceEvenly" Spacing="3">
+    <FluentGrid Class="grid" Justify="JustifyContent.SpaceEvenly" Spacing="3">
         @foreach (var currentContext in _tableContexts)
         {
-            <FluentGridItem sm="12" lg="6" xl="4">
+            <FluentGridItem sm="12" md="6" lg="4">
                 <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
                     <FluentStack HorizontalAlignment="HorizontalAlignment.Center">
                         <FluentCard Width="30%">
@@ -107,12 +107,13 @@ fluent-data-grid fluent-data-grid-row:nth-child(odd) {
     color: turquoise;
 }
 
-.no-margin {
+.grid {
+    width: 100% !important;
     margin: 0 !important;
 }
 
 .probability-table {
-    width: 90%;
+    width: 100% !important;
 }
 
 </style>
