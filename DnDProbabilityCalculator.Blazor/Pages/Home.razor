@@ -31,9 +31,8 @@
                         </FluentCard>
                     </FluentStack>
 
-
                     <h4>Saving Throws</h4>
-                    <FluentDataGrid Items=@currentContext.SavingThrowTable.Probabilities.AsQueryable() TGridItem=SavingThrowTableRow>
+                    <FluentDataGrid Items=@currentContext.SavingThrowTable.Probabilities.AsQueryable() TGridItem=SavingThrowTableRow Class="probability-table">
                         <PropertyColumn Title="ABS/DC" Property="@(row => row!.AbilityScoreType.Abbreviated())" Align=Align.Start/>
                         @for (var i = 0; i < currentContext.SavingThrowTable.Dcs.Length; i++)
                         {
@@ -48,7 +47,7 @@
                     </FluentDataGrid>
 
                     <h4>Receive Hit</h4>
-                    <FluentDataGrid Items=@currentContext.ReceiveHitTable.Probabilities.AsQueryable() TGridItem=ReceiveHitTableRow>
+                    <FluentDataGrid Items=@currentContext.ReceiveHitTable.Probabilities.AsQueryable() TGridItem=ReceiveHitTableRow Class="probability-table">
                         <PropertyColumn Title="@($"{currentContext.ReceiveHitTable.TotalNumberOfAttacks} Atcks/Mod")" Property="@(row => $" >= {row!.NumberOfHits}")" Align=Align.Start/>
                         @for (var i = 0; i < currentContext.ReceiveHitTable.AttackModifiers.Count; i++)
                         {
@@ -63,7 +62,7 @@
                     </FluentDataGrid>
 
                     <h4>Deliver Hit</h4>
-                    <FluentDataGrid Items=@currentContext.DeliverHitTable.Probabilities.AsQueryable() TGridItem=DeliverHitTableRow>
+                    <FluentDataGrid Items=@currentContext.DeliverHitTable.Probabilities.AsQueryable() TGridItem=DeliverHitTableRow Class="probability-table">
                         <PropertyColumn Title="@($"{currentContext.DeliverHitTable.TotalNumberOfAttacks} Atcks/Mod")" Property="@(row => $" >= {row!.NumberOfHits}")" Align=Align.Start/>
                         @for (var i = 0; i < currentContext.DeliverHitTable.ArmorClasses.Count; i++)
                         {
@@ -110,6 +109,10 @@ fluent-data-grid fluent-data-grid-row:nth-child(odd) {
 
 .no-margin {
     margin: 0 !important;
+}
+
+.probability-table {
+    width: 90%;
 }
 
 </style>
