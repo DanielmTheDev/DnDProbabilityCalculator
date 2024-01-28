@@ -2,7 +2,6 @@
 using DnDProbabilityCalculator.Blazor.Components;
 using DnDProbabilityCalculator.Core.Adventuring;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.FluentUI.AspNetCore.Components;
 using Toolbelt.Blazor.HotKeys2;
 
@@ -19,9 +18,6 @@ public partial class Home : IDisposable
     [Inject]
     private HotKeys HotKeys { get; set; } = null!;
 
-    [Inject]
-    private NavigationManager Navigation { get; set; } = null!;
-
     private HotKeysContext HotKeysContext { get; set; } = null!;
     private DesignThemeModes Mode { get; set; } = DesignThemeModes.Dark;
     private IEnumerable<TableContext> _tableContexts = new List<TableContext>();
@@ -33,12 +29,6 @@ public partial class Home : IDisposable
         _inputVariables = InputVariables.CreateDefaultInputVariables();
         _tableContexts = TableContextFactory.Create(_inputVariables);
     }
-
-    public void BeginLogOut()
-    {
-        Navigation.NavigateToLogout("authentication/logout");
-    }
-
 
     private void InitializeHotkeys()
         => HotKeysContext = HotKeys.CreateContext()

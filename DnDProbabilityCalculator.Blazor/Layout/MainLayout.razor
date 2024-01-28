@@ -1,7 +1,19 @@
 ﻿@inherits LayoutComponentBase
+
 <FluentLayout>
     <FluentHeader>
-        DnDProbabilityCalculator
+        <FluentStack Orientation="Orientation.Horizontal" VerticalAlignment="VerticalAlignment.Center" HorizontalGap="10">
+            <div class="home-link" @onclick="NavigateHome">DnDProbabilityCalculator</div>
+            <AuthorizeView>
+                <Authorized>
+                    <div class="auth-link" @onclick="BeginLogOut">Log out</div>
+                    <div>@context.User.Identity?.Name</div>
+                </Authorized>
+                <NotAuthorized>
+                    <div class="auth-link" @onclick="BeginLogIn">Log In</div>
+                </NotAuthorized>
+            </AuthorizeView>
+        </FluentStack>
     </FluentHeader>
     <FluentStack Class="main" Orientation="Orientation.Horizontal" Width="100%">
         <FluentBodyContent>
@@ -17,5 +29,15 @@
             </ErrorBoundary>
         </FluentBodyContent>
     </FluentStack>
-    <FluentDialogProvider />
+    <FluentDialogProvider/>
 </FluentLayout>
+
+<style>
+    .auth-link {
+        cursor: pointer;
+        margin-left: auto;
+    }
+    .home-link {
+        cursor: pointer;
+    }
+</style>
