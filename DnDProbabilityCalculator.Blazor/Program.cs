@@ -20,9 +20,7 @@ builder.Services.AddTransient<IPartyRepository, PartyInlineRepository>();
 builder.Services.AddTransient<ITableContextFactory, TableContextFactory>();
 builder.Services.AddScoped<IFileAccessor, FileAccessor>();
 
-builder.Services.AddHttpClient("B2CSandbox.ServerAPI", client => client.BaseAddress = new Uri("https://dnd-probability-calculator-functions.azurewebsites.net"));
-
-// Supply HttpClient instances that include access tokens when making requests to the server project
+builder.Services.AddHttpClient("B2CSandbox.ServerAPI", client => client.BaseAddress = new("https://dnd-probability-calculator-functions.azurewebsites.net"));
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("B2CSandbox.ServerAPI"));
 
 builder.Services.AddMsalAuthentication(options =>
