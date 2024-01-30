@@ -18,10 +18,14 @@ public partial class Home : IDisposable
     [Inject]
     private HotKeys HotKeys { get; set; } = null!;
 
+    [Inject]
+    private IHttpClientFactory ClientFactory { get; set; } = null!;
+
     private HotKeysContext HotKeysContext { get; set; } = null!;
     private DesignThemeModes Mode { get; set; } = DesignThemeModes.Dark;
     private IEnumerable<TableContext> _tableContexts = new List<TableContext>();
     private InputVariables _inputVariables = null!;
+    private string _result = "not received";
 
     protected override void OnInitialized()
     {
@@ -61,6 +65,12 @@ public partial class Home : IDisposable
         _inputVariables = updateFunction();
         _tableContexts = TableContextFactory.Create(_inputVariables);
         StateHasChanged();
+    }
+
+    private async Task Callback()
+    {
+        var client = ClientFactory.CreateClient("B2CSandbox.ServerAPI");
+        _result = await client.GetStringAsync("api/SaveParty");
     }
 
     private void ToggleTheme()

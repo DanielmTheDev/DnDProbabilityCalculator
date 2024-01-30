@@ -13,6 +13,9 @@
     <FluentButton OnClick="@ShowHelpDialog" IconEnd="@(new Icons.Filled.Size24.Keyboard())"></FluentButton>
 </FluentStack>
 
+<button @onclick="Callback">REquest</button>
+<p>@_result</p>
+
 @if (_tableContexts.Any())
 {
     <FluentGrid Class="grid" Justify="JustifyContent.SpaceEvenly" Spacing="3">
