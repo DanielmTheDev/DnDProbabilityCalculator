@@ -6,11 +6,11 @@
             <div class="home-link" @onclick="NavigateHome">DnDProbabilityCalculator</div>
             <AuthorizeView>
                 <Authorized>
-                    <div class="auth-link" @onclick="BeginLogOut">Log out</div>
+                    <a class="auth-link" @onclick="BeginLogOut">Log out</a>
                     <div>@context.User.Identity?.Name</div>
                 </Authorized>
                 <NotAuthorized>
-                    <div class="auth-link" @onclick="BeginLogIn">Log In</div>
+                    <a class="auth-link" @onclick="BeginLogIn">Log In</a>
                 </NotAuthorized>
             </AuthorizeView>
         </FluentStack>
@@ -36,6 +36,7 @@
     .auth-link {
         cursor: pointer;
         margin-left: auto;
+        color: var(--fill-color);
     }
     .home-link {
         cursor: pointer;
