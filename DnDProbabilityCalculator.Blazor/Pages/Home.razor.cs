@@ -2,7 +2,6 @@
 using DnDProbabilityCalculator.Blazor.Components;
 using DnDProbabilityCalculator.Core.Adventuring;
 using Microsoft.AspNetCore.Components;
-using Microsoft.FluentUI.AspNetCore.Components;
 using Toolbelt.Blazor.HotKeys2;
 
 namespace DnDProbabilityCalculator.Blazor.Pages;
@@ -13,16 +12,13 @@ public partial class Home : IDisposable
     private ITableContextFactory TableContextFactory { get; set; } = null!;
 
     [Inject]
-    private IDialogService DialogService { get; set; } = null!;
-
-    [Inject]
     private HotKeys HotKeys { get; set; } = null!;
 
     [Inject]
     private IHttpClientFactory ClientFactory { get; set; } = null!;
 
+    private ButtonBar _buttonBar = null!;
     private HotKeysContext HotKeysContext { get; set; } = null!;
-    private DesignThemeModes Mode { get; set; } = DesignThemeModes.Dark;
     private IEnumerable<TableContext> _tableContexts = new List<TableContext>();
     private InputVariables _inputVariables = null!;
     private string _result = "not received";
@@ -43,22 +39,7 @@ public partial class Home : IDisposable
             .Add(Code.ArrowLeft, DecreaseParamters, new() { Description = "Decrease all input parameters (DCs, ACs, and Modifiers) by 1" })
             .Add(Code.ArrowUp, DecreaseAttacks, new() { Description = "Increase number of attacks by 1" })
             .Add(Code.ArrowDown, IncreaseAttacks, new() { Description = "Decrease number of attacks by 1" })
-            .Add(Key.Question, async () => await ShowHelpDialog(), new() { Description = "Show this help screen" });
-
-    private async Task ShowHelpDialog()
-    {
-        var parameters = new DialogParameters
-        {
-            Title = "Controls",
-            Width = "500px",
-            PrimaryAction = string.Empty,
-            SecondaryAction = string.Empty,
-            TrapFocus = true,
-            PreventScroll = true
-        };
-
-        await DialogService.ShowDialogAsync<HotkeyHelp>(HotKeysContext.Keys, parameters);
-    }
+            .Add(Key.Question, async () => await _buttonBar.ShowHelpDialog(), new() { Description = "Show this help screen" });
 
     private void UpdateTable(Func<InputVariables> updateFunction)
     {
@@ -72,9 +53,6 @@ public partial class Home : IDisposable
         var client = ClientFactory.CreateClient("B2CSandbox.ServerAPI");
         _result = await client.GetStringAsync("api/SaveParty");
     }
-
-    private void ToggleTheme()
-        => Mode = Mode == DesignThemeModes.Dark ? DesignThemeModes.Light : DesignThemeModes.Dark;
 
     private void EnableAdvantage()
         => UpdateTable(_inputVariables.WithAdvantage);

@@ -1,19 +1,15 @@
 ﻿@page "/"
 @using DnDProbabilityCalculator.Core.Adventuring.Abilities
+@using DnDProbabilityCalculator.Blazor.Components
 @using DnDProbabilityCalculator.Application.Table.SavingThrow
 @using DnDProbabilityCalculator.Application.Table.ReceiveHit
 @using DnDProbabilityCalculator.Application.Table.DeliverHit
 
 <PageTitle>Home</PageTitle>
 
-<FluentDesignTheme @bind-Mode="@Mode" OfficeColor="OfficeColor.Word" StorageName="theme"/>
+<ButtonBar HotKeys="HotKeysContext.Keys" @ref="_buttonBar"></ButtonBar>
 
-<FluentStack Orientation="Orientation.Horizontal" HorizontalAlignment="HorizontalAlignment.End" VerticalAlignment="VerticalAlignment.Center">
-    <FluentButton OnClick="@ToggleTheme" IconEnd="@(new Icons.Regular.Size24.DarkTheme())"></FluentButton>
-    <FluentButton OnClick="@ShowHelpDialog" IconEnd="@(new Icons.Filled.Size24.Keyboard())"></FluentButton>
-</FluentStack>
-
-<button @onclick="Callback">REquest</button>
+<button @onclick="Callback">Request</button>
 <p>@_result</p>
 
 @if (_tableContexts.Any())

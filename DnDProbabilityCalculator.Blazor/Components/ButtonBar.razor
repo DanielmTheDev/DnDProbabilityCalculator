@@ -1,0 +1,7 @@
+﻿
+<FluentDesignTheme @bind-Mode="@Mode" OfficeColor="OfficeColor.Word" StorageName="theme"/>
+
+<FluentStack Orientation="Orientation.Horizontal" HorizontalAlignment="HorizontalAlignment.End" VerticalAlignment="VerticalAlignment.Center">
+    <FluentButton OnClick="@ToggleTheme" IconEnd="@(new Icons.Regular.Size24.DarkTheme())"></FluentButton>
+    <FluentButton OnClick="@ShowHelpDialog" IconEnd="@(new Icons.Filled.Size24.Keyboard())"></FluentButton>
+</FluentStack>
