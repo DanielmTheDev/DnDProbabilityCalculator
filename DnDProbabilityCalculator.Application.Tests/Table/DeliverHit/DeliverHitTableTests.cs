@@ -65,6 +65,7 @@ public class DeliverHitTableTests
     private static Actor GetValidActor()
         => new()
         {
+            Id = Guid.NewGuid().ToString(),
             Name = "Durak",
             AbilityScores = new()
             {

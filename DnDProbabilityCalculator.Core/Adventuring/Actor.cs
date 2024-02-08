@@ -5,6 +5,7 @@ namespace DnDProbabilityCalculator.Core.Adventuring;
 
 public class Actor
 {
+    public required string Id { get; init; }
     public required string Name { get; init; } = string.Empty;
     public required int ProficiencyBonus { get; init; }
     public required int ArmorClass { get; init; }

@@ -18,6 +18,7 @@ public class ActorTests
         // Arrange
         var actor = new Actor
         {
+            Id = Guid.NewGuid().ToString(),
             Name = "Durak",
             AbilityScores = new()
             {
@@ -85,6 +86,7 @@ public class ActorTests
         // Arrange
         var actor = new Actor
         {
+            Id = Guid.NewGuid().ToString(),
             Name = "Durak",
             AbilityScores = new()
             {
@@ -130,6 +132,7 @@ public class ActorTests
         // Arrange
         var actor = new Actor
         {
+            Id = Guid.NewGuid().ToString(),
             Name = "Durak",
             AbilityScores = new()
             {
@@ -180,6 +183,7 @@ public class ActorTests
         // Arrange
         var actor = new Actor
         {
+            Id = Guid.NewGuid().ToString(),
             Name = "Durak",
             AbilityScores = new()
             {
@@ -213,6 +217,7 @@ public class ActorTests
     private static Actor BuildValidActor()
         => new()
         {
+            Id = Guid.NewGuid().ToString(),
             Name = "Durak",
             AbilityScores = new()
             {

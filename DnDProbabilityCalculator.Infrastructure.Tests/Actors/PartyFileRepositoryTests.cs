@@ -37,8 +37,12 @@ public class PartyFileRepositoryTests
 
         // Assert
         Assert.AreEqual(2, party.Characters.Count);
+        Assert.AreEqual("a62cc70c-aad1-4869-8794-f260b51a6db6", party.UserId);
+        Assert.AreEqual("461c0718-c4da-44ff-8b18-b073c28400d4", party.Id);
+        Assert.AreEqual("Test Party", party.Name);
 
         Assert.AreEqual("Durak", party.Characters[0].Name);
+        Assert.AreEqual("970972f4-94f4-4f6e-9454-8fb2bd9294a9", party.Characters[0].Id);
         Assert.AreEqual(11, party.Characters[0].AbilityScores.Dexterity.Value);
         Assert.AreEqual(12, party.Characters[0].AbilityScores.Strength.Value);
         Assert.AreEqual(13, party.Characters[0].AbilityScores.Constitution.Value);
@@ -57,6 +61,7 @@ public class PartyFileRepositoryTests
         Assert.AreEqual(AbilityScoreType.Strength, party.Characters[0].AttackAbility);
 
         Assert.AreEqual("Erethil", party.Characters[1].Name);
+        Assert.AreEqual("970972f4-94f4-4f6e-9454-8fb2bd9294a8", party.Characters[1].Id);
         Assert.AreEqual(1, party.Characters[1].AbilityScores.Dexterity.Value);
         Assert.AreEqual(2, party.Characters[1].AbilityScores.Strength.Value);
         Assert.AreEqual(3, party.Characters[1].AbilityScores.Constitution.Value);
@@ -98,9 +103,13 @@ public class PartyFileRepositoryTests
     private static string GetValidJsonString()
         => """
             {
+              "id": "461c0718-c4da-44ff-8b18-b073c28400d4",
+              "name": "Test Party",
+              "userId": "a62cc70c-aad1-4869-8794-f260b51a6db6",
               "characters": [
                 {
                   "name": "Durak",
+                  "id": "970972f4-94f4-4f6e-9454-8fb2bd9294a9",
                   "proficiencyBonus": 3,
                   "numberOfAttacks": 2,
                   "armorClass": 14,
@@ -136,6 +145,7 @@ public class PartyFileRepositoryTests
                 },
                 {
                   "name": "Erethil",
+                  "id": "970972f4-94f4-4f6e-9454-8fb2bd9294a8",
                   "proficiencyBonus": 2,
                   "numberOfAttacks": 4,
                   "armorClass": 10,

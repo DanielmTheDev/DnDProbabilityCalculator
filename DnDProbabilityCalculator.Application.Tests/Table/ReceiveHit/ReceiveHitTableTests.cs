@@ -49,6 +49,7 @@ public class ReceiveHitTableTests
                 Bonus = 2,
                 MiscDamageBonus = 2
             },
-            AttackAbility = AbilityScoreType.Charisma
+            AttackAbility = AbilityScoreType.Charisma,
+            Id = Guid.NewGuid().ToString()
         };
 }

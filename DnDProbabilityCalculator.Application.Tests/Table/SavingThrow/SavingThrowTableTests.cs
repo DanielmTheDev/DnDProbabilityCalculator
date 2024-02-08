@@ -54,6 +54,7 @@ public class SavingThrowTableTests
                 Bonus = 2,
                 MiscDamageBonus = 2
             },
-            AttackAbility = AbilityScoreType.Dexterity
+            AttackAbility = AbilityScoreType.Dexterity,
+            Id = Guid.NewGuid().ToString()
         };
 }
