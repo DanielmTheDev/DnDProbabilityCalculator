@@ -24,4 +24,7 @@
     <ItemGroup>
         <Using Include="System.Threading.ExecutionContext" Alias="ExecutionContext"/>
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\DnDProbabilityCalculator.Core\DnDProbabilityCalculator.Core.csproj" />
+    </ItemGroup>
 </Project>

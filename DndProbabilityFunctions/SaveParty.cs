@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Net;
+﻿using System.Net;
+using DnDProbabilityCalculator.Core.Adventuring;
+using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
@@ -11,36 +12,56 @@ public class SaveParty(ILoggerFactory loggerFactory)
     private readonly ILogger _logger = loggerFactory.CreateLogger<SaveParty>();
 
     [Function("SaveParty")]
-    public static MultiResponse Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req, FunctionContext executionContext)
+    public PartyMultiResponse Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req, FunctionContext executionContext)
     {
-        var logger = executionContext.GetLogger("HttpExample");
-        logger.LogInformation("C# HTTP trigger function processed a request.");
+        _logger.LogInformation("C# HTTP trigger function processed a request.");
 
-        var message = "Welcome to Azure Functions!";
+        const string message = "Character Saved";
 
         var response = req.CreateResponse(HttpStatusCode.OK);
         response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
         response.WriteString(message);
 
-        // Return a response to both HTTP trigger and Azure Cosmos DB output binding.
-        return new MultiResponse()
+        return new()
         {
-            Document = new MyDocument
-            {
-                id = System.Guid.NewGuid().ToString(),
-                message = message
-            },
+            Party = CreateStaticParty(),
             HttpResponse = response
         };
-    }}
+    }
 
-public class MultiResponse
-{
-    [CosmosDBOutput("test-sandbox", "sandbox1", Connection = "CosmosDbConnection", CreateIfNotExists = true)]
-    public MyDocument Document { get; set; }
-    public HttpResponseData HttpResponse { get; set; }
-}
-public class MyDocument {
-    public string id { get; set; }
-    public string message { get; set; }
+    private static Party CreateStaticParty()
+        => new()
+        {
+            Id = Guid.NewGuid().ToString(),
+            Name = $"Party {new Random().Next()}",
+            UserId = Guid.NewGuid().ToString(),
+            Characters = new List<Actor>
+            {
+                new()
+                {
+                    Id = "char1",
+                    Name = "Char 1",
+                    ProficiencyBonus = 2,
+                    ArmorClass = 12,
+                    NumberOfAttacks = 1,
+                    AbilityScores = new()
+                    {
+                        Dexterity = new() { Value = 5 },
+                        Strength = new() { Value = 5 },
+                        Constitution = new() { Value = 7 },
+                        Intelligence = new() { Value = 9 },
+                        Wisdom = new() { Value = 11 },
+                        Charisma = new() { Value = 18 }
+                    },
+                    AttackAbility = AbilityScoreType.Strength,
+                    Weapon = new()
+                    {
+                        NumberOfDice = 1,
+                        DiceSides = 6,
+                        Bonus = 0,
+                        MiscDamageBonus = 0
+                    }
+                }
+            }
+        };
 }
