@@ -3,14 +3,16 @@
 <FluentLayout>
     <FluentHeader>
         <FluentStack Orientation="Orientation.Horizontal" VerticalAlignment="VerticalAlignment.Center" HorizontalGap="10">
-            <div class="home-link" @onclick="NavigateHome">DnDProbabilityCalculator</div>
+            <div class="link" @onclick="NavigateHome">DnDProbabilityCalculator</div>
             <AuthorizeView>
                 <Authorized>
-                    <a class="auth-link" @onclick="BeginLogOut">Log out</a>
+                    <div class="spacer"></div>
+                    <NavLink class="link" Href="/create-party">Create Party</NavLink>
+                    <a class="link" @onclick="BeginLogOut">Log out</a>
                     <div>@context.User.Identity?.Name</div>
                 </Authorized>
                 <NotAuthorized>
-                    <a class="auth-link" @onclick="BeginLogIn">Log In</a>
+                    <a class="link" @onclick="BeginLogIn">Log In</a>
                 </NotAuthorized>
             </AuthorizeView>
         </FluentStack>
@@ -33,12 +35,11 @@
 </FluentLayout>
 
 <style>
-    .auth-link {
+    .link {
         cursor: pointer;
-        margin-left: auto;
         color: var(--fill-color);
     }
-    .home-link {
-        cursor: pointer;
+    .spacer {
+        margin-left: auto;
     }
 </style>
