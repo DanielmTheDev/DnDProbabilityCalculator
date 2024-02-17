@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.FluentUI.AspNetCore.Components;
 using DnDProbabilityCalculator.Blazor;
+using DnDProbabilityCalculator.Blazor.Communication;
 using DnDProbabilityCalculator.Infrastructure.Actors;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;
 using Microsoft.AspNetCore.Components;
@@ -21,6 +22,7 @@ builder.Services.AddHotKeys2();
 builder.Services.AddTransient<IPartyRepository, PartyInlineRepository>();
 builder.Services.AddTransient<ITableContextFactory, TableContextFactory>();
 builder.Services.AddScoped<IFileAccessor, FileAccessor>();
+builder.Services.AddScoped<IPartySaver, PartySaver>();
 
 builder.Services.AddScoped<AuthorizationMessageHandler>(provider
     => new AuthorizationMessageHandler(provider.GetRequiredService<IAccessTokenProvider>(), provider.GetRequiredService<NavigationManager>())

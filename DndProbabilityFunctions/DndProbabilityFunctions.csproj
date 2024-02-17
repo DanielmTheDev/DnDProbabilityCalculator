@@ -26,5 +26,6 @@
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\DnDProbabilityCalculator.Core\DnDProbabilityCalculator.Core.csproj" />
+      <ProjectReference Include="..\DnDProbabilityCalculator.Shared\DnDProbabilityCalculator.Shared.csproj" />
     </ItemGroup>
 </Project>

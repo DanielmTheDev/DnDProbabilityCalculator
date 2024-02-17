@@ -1,4 +1,5 @@
 ﻿using DnDProbabilityCalculator.Application.Table;
+using DnDProbabilityCalculator.Blazor.Communication;
 using DnDProbabilityCalculator.Blazor.Components;
 using DnDProbabilityCalculator.Core.Adventuring;
 using Microsoft.AspNetCore.Components;
@@ -15,13 +16,13 @@ public partial class Home : IDisposable
     private HotKeys HotKeys { get; set; } = null!;
 
     [Inject]
-    private IHttpClientFactory ClientFactory { get; set; } = null!;
+    public IPartySaver PartySaver { get; set; } = null!;
 
     private ButtonBar _buttonBar = null!;
     private HotKeysContext HotKeysContext { get; set; } = null!;
     private IEnumerable<TableContext> _tableContexts = new List<TableContext>();
     private InputVariables _inputVariables = null!;
-    private string _result = "not received";
+    private string _result = "Nothing yet";
 
     protected override void OnInitialized()
     {
@@ -48,11 +49,8 @@ public partial class Home : IDisposable
         StateHasChanged();
     }
 
-    private async Task Callback()
-    {
-        var client = ClientFactory.CreateClient("B2CSandbox.ServerAPI");
-        _result = await client.GetStringAsync("api/SaveParty");
-    }
+    private async Task PostParty()
+        => _result = await PartySaver.Save();
 
     private void EnableAdvantage()
         => UpdateTable(_inputVariables.WithAdvantage);

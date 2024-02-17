@@ -19,8 +19,12 @@ public class PartyInlineRepository : IPartyRepository
     private static string GetStaticJsonString()
       => """
          {
+           "id": "a62cc70c-aad1-4869-8794-f260b51a6db6",
+           "userId": "a62cc70c-aad1-4869-8794-f260b51a6db7",
+           "name": "Test Party",
            "characters": [
              {
+               "id": "970972f4-94f4-4f6e-9454-8fb2bd9294a9",
                "name": "Durak",
                "proficiencyBonus": 3,
                "armorClass": 20,
@@ -57,6 +61,7 @@ public class PartyInlineRepository : IPartyRepository
              },
              {
                "name": "Erethil",
+               "id": "970972f4-94f4-4f6e-9454-8fb2bd9224a9",
                "proficiencyBonus": 3,
                "armorClass": 17,
                "numberOfAttacks": 3,
@@ -91,6 +96,7 @@ public class PartyInlineRepository : IPartyRepository
                }
              },
              {
+               "id": "970972f4-94f4-4f6e-9454-8fb2bd9294a8",
                "name": "Gorak'Thor",
                "proficiencyBonus": 3,
                "armorClass": 20,

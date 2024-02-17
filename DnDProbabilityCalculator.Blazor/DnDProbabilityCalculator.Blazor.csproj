@@ -20,6 +20,7 @@
       <ProjectReference Include="..\DnDProbabilityCalculator.Application\DnDProbabilityCalculator.Application.csproj" />
       <ProjectReference Include="..\DnDProbabilityCalculator.Core\DnDProbabilityCalculator.Core.csproj" />
       <ProjectReference Include="..\DnDProbabilityCalculator.Infrastructure\DnDProbabilityCalculator.Infrastructure.csproj" />
+      <ProjectReference Include="..\DnDProbabilityCalculator.Shared\DnDProbabilityCalculator.Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>

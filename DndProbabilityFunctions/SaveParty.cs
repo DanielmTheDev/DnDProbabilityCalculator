@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using DnDProbabilityCalculator.Core.Adventuring;
+using DnDProbabilityCalculator.Shared.Party;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
@@ -32,11 +33,10 @@ public class SaveParty(ILoggerFactory loggerFactory)
             };
         }
 
-        const string message = "Character Saved";
+        var dto = new SavePartyResponse("Success");
 
         var response = req.CreateResponse(HttpStatusCode.OK);
-        response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-        await response.WriteStringAsync(message);
+        await response.WriteAsJsonAsync(dto);
 
         return new()
         {
