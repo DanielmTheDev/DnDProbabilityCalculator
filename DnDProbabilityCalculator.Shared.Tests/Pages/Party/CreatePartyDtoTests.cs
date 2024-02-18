@@ -121,6 +121,42 @@ public class CreatePartyDtoTests
         Assert.IsTrue(result.Errors.Select(error => error.ErrorMessage).Contains("Charisma must be between 0 and 30"));
     }
 
+    [TestMethod]
+    [DataRow(-1)]
+    [DataRow(0)]
+    public void Validate_NonPositiveNumberOfDamageDice_IsInvalid(int diceNumber)
+    {
+        // Arrange
+        var model = GetValidParty();
+        model.Characters[0].NumberOfDamageDice = diceNumber;
+
+        // Act
+        var result = new CreatePartyDtoValidator().Validate(model);
+
+        // Assert
+        Assert.IsFalse(result.IsValid);
+        Assert.AreEqual("The number of damage dice must be at least 1", result.Errors[0].ErrorMessage);
+    }
+
+    [TestMethod]
+    [DataRow(-1)]
+    [DataRow(0)]
+    [DataRow(3)]
+    [DataRow(16)]
+    public void Validate_WithIncorrectDiceSides_IsInvalid(int diceSides)
+    {
+        // Arrange
+        var model = GetValidParty();
+        model.Characters[0].DiceSides = diceSides;
+
+        // Act
+        var result = new CreatePartyDtoValidator().Validate(model);
+
+        // Assert
+        Assert.IsFalse(result.IsValid);
+        Assert.AreEqual("The damage die number must be one of 4, 6, 8, 10, 12, 20", result.Errors[0].ErrorMessage);
+    }
+
     private static CreatePartyDto GetValidParty()
         => new()
         {
