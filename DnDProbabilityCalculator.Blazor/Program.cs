@@ -7,6 +7,8 @@ using DnDProbabilityCalculator.Blazor;
 using DnDProbabilityCalculator.Blazor.Communication;
 using DnDProbabilityCalculator.Infrastructure.Actors;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;
+using DnDProbabilityCalculator.Shared.Party;
+using FluentValidation;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
@@ -38,5 +40,7 @@ builder.Services.AddMsalAuthentication(options =>
     builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
     options.ProviderOptions.DefaultAccessTokenScopes.Add("https://dadamucki.onmicrosoft.com/a2cfc276-854c-44fc-b7aa-5706508ed32c/API.Access");
 });
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreatePartyDtoValidator>();
 
 await builder.Build().RunAsync();

@@ -1,2 +1,13 @@
 ﻿@page "/create-party"
-<h3>CreateParty</h3>
+
+<EditForm Model="@_party" OnValidSubmit="@SubmitValidForm">
+    <FluentValidationValidator />
+    <ValidationSummary />
+
+    <p>
+        <label>Name: </label>
+        <InputText @bind-Value="@_party.Name" />
+    </p>
+    <button type="submit">Save</button>
+</EditForm>
+
