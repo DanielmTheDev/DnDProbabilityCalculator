@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using DnDProbabilityCalculator.Shared.Party;
+﻿using DnDProbabilityCalculator.Shared.Party;
 
 namespace DnDProbabilityCalculator.Blazor.Tests.Pages.Party;
 
@@ -66,6 +65,35 @@ public class CreatePartyDtoTest
         Assert.AreEqual("The number of attacks must be at least 1", result.Errors[0].ErrorMessage);
     }
 
+    [TestMethod]
+    public void Validate_WithBelowTwoProficiencyBonus_IsInvalid()
+    {
+        // Arrange
+        var model = GetValidParty();
+        model.Characters[0].ProficiencyBonus = 1;
+
+        // Act
+        var result = new CreatePartyDtoValidator().Validate(model);
+
+        // Assert
+        Assert.IsFalse(result.IsValid);
+        Assert.AreEqual("Proficiency bonus must be at least 2", result.Errors[0].ErrorMessage);
+    }
+
+    [TestMethod]
+    public void Validate_WithNegativeArmorClass_IsInvalid()
+    {
+        // Arrange
+        var model = GetValidParty();
+        model.Characters[0].ArmorClass = -1;
+
+        // Act
+        var result = new CreatePartyDtoValidator().Validate(model);
+
+        // Assert
+        Assert.IsFalse(result.IsValid);
+        Assert.AreEqual("Armor class can't be negative", result.Errors[0].ErrorMessage);
+    }
 
     private static CreatePartyDto GetValidParty()
         => new()
