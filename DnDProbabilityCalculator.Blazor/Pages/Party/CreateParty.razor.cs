@@ -1,6 +1,8 @@
-﻿namespace DnDProbabilityCalculator.Blazor.Pages.Party;
+﻿using DnDProbabilityCalculator.Shared.Party;
+
+namespace DnDProbabilityCalculator.Blazor.Pages.Party;
 
 public partial class CreateParty
 {
-    private CreatePartyForm _form = new();
+    private CreatePartyDto _party = new();
 }

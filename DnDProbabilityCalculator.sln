@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDProbabilityCalculator.Sh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDProbabilityCalculator.Blazor.Tests", "DnDProbabilityCalculator.Blazor.Tests\DnDProbabilityCalculator.Blazor.Tests.csproj", "{ACDBD564-7932-4A99-9174-20CB521A5498}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnDProbabilityCalculator.Shared.Tests", "DnDProbabilityCalculator.Shared.Tests\DnDProbabilityCalculator.Shared.Tests.csproj", "{A69F9961-390C-45B2-917F-B8117ADEC25A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +94,10 @@ Global
 		{ACDBD564-7932-4A99-9174-20CB521A5498}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACDBD564-7932-4A99-9174-20CB521A5498}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACDBD564-7932-4A99-9174-20CB521A5498}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A69F9961-390C-45B2-917F-B8117ADEC25A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A69F9961-390C-45B2-917F-B8117ADEC25A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A69F9961-390C-45B2-917F-B8117ADEC25A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A69F9961-390C-45B2-917F-B8117ADEC25A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2F280E5A-4925-4AC2-BD88-6BE4DE47CF91} = {7CDC4C13-EC2F-4D1B-88A2-28DC3D977C73}
@@ -106,5 +112,6 @@ Global
 		{2C789F09-3709-4AB4-8759-BB49CDD38812} = {1BDC653F-94C4-4BBC-A721-C72731642C62}
 		{5C842BD2-40ED-4EA5-90E5-B84F598A6CE4} = {44CC84BD-B840-4A4F-AED6-EDAE9CEFAC89}
 		{ACDBD564-7932-4A99-9174-20CB521A5498} = {5537D204-195F-4BCE-A4BA-D446EFCE8CBD}
+		{A69F9961-390C-45B2-917F-B8117ADEC25A} = {44CC84BD-B840-4A4F-AED6-EDAE9CEFAC89}
 	EndGlobalSection
 EndGlobal

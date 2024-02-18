@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DnDProbabilityCalculator.Blazor.Pages.Party;
+namespace DnDProbabilityCalculator.Shared.Party;
 
-public class FormCharacter
+public class CreateCharacterDto
 {
     [Required]
     public string? Name { get; set; }
