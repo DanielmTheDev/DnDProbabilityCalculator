@@ -121,7 +121,6 @@ public class CreatePartyDtoTests
         Assert.IsTrue(result.Errors.Select(error => error.ErrorMessage).Contains("Charisma must be between 0 and 30"));
     }
 
-
     private static CreatePartyDto GetValidParty()
         => new()
         {
