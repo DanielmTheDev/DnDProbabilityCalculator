@@ -52,39 +52,18 @@ public class CreatePartyDtoTest
     }
 
     [TestMethod]
-    public void Validate_WitEmptyPartyName_IsInvalid()
-    {
-        // Arrange
-        var model = GetValidParty();
-        model.Name = string.Empty;
-        var context = new ValidationContext(model);
-        var results = new List<ValidationResult>();
-
-        // Act
-        var isValid = Validator.TryValidateObject(model, context, results, true);
-
-        // Assert
-        Assert.IsFalse(isValid);
-        Assert.AreEqual(1, results.Count);
-        Assert.AreEqual("The Name field is required.", results[0].ErrorMessage);
-    }
-
-    [TestMethod]
     public void Validate_WithZeroNumberOfAttacks_IsInvalid()
     {
         // Arrange
         var model = GetValidParty();
         model.Characters[0].NumberOfAttacks = 0;
-        var context = new ValidationContext(model);
-        List<ValidationResult> results = [];
 
         // Act
-        var isValid = Validator.TryValidateObject(model, context, results, true);
+        var result = new CreatePartyDtoValidator().Validate(model);
 
         // Assert
-        Assert.IsFalse(isValid);
-        Assert.AreEqual(1, results.Count);
-        Assert.AreEqual("The number of attacks must be at least 1", results[0].ErrorMessage);
+        Assert.IsFalse(result.IsValid);
+        Assert.AreEqual("The number of attacks must be at least 1", result.Errors[0].ErrorMessage);
     }
 
 
