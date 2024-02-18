@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace DnDProbabilityCalculator.Shared.Party;
+namespace DnDProbabilityCalculator.Shared.Party.Validation;
 
 public class CreatePartyDtoValidator : AbstractValidator<CreatePartyDto>
 {

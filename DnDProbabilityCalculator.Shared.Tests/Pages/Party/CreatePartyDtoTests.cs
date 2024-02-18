@@ -1,9 +1,10 @@
 ﻿using DnDProbabilityCalculator.Shared.Party;
+using DnDProbabilityCalculator.Shared.Party.Validation;
 
 namespace DnDProbabilityCalculator.Blazor.Tests.Pages.Party;
 
 [TestClass]
-public class CreatePartyDtoTest
+public class CreatePartyDtoTests
 {
     [TestMethod]
     public void Validate_WithValidParty_IsValid()
@@ -95,6 +96,32 @@ public class CreatePartyDtoTest
         Assert.AreEqual("Armor class can't be negative", result.Errors[0].ErrorMessage);
     }
 
+    [TestMethod]
+    public void Validate_WithNegativeAbilityScores_IsInvalid()
+    {
+        // Arrange
+        var model = GetValidParty();
+        model.Characters[0].Strength = -1;
+        model.Characters[0].Dexterity = -1;
+        model.Characters[0].Constitution = -1;
+        model.Characters[0].Intelligence = -1;
+        model.Characters[0].Wisdom = -1;
+        model.Characters[0].Charisma = -1;
+
+        // Act
+        var result = new CreatePartyDtoValidator().Validate(model);
+
+        // Assert
+        Assert.IsFalse(result.IsValid);
+        Assert.IsTrue(result.Errors.Select(error => error.ErrorMessage).Contains("Strength must be between 0 and 30"));
+        Assert.IsTrue(result.Errors.Select(error => error.ErrorMessage).Contains("Dexterity must be between 0 and 30"));
+        Assert.IsTrue(result.Errors.Select(error => error.ErrorMessage).Contains("Constitution must be between 0 and 30"));
+        Assert.IsTrue(result.Errors.Select(error => error.ErrorMessage).Contains("Intelligence must be between 0 and 30"));
+        Assert.IsTrue(result.Errors.Select(error => error.ErrorMessage).Contains("Wisdom must be between 0 and 30"));
+        Assert.IsTrue(result.Errors.Select(error => error.ErrorMessage).Contains("Charisma must be between 0 and 30"));
+    }
+
+
     private static CreatePartyDto GetValidParty()
         => new()
         {
@@ -103,10 +130,7 @@ public class CreatePartyDtoTest
             [
                 new()
                 {
-                    Name = "Character Name",
-                    ProficiencyBonus = 2,
-                    ArmorClass = 10,
-                    NumberOfAttacks = 1,
+                    Name = "Character Name"
                 }
             ]
         };
