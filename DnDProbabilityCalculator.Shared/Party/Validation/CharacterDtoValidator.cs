@@ -17,5 +17,7 @@ public class CharacterDtoValidator : AbstractValidator<CreateCharacterDto>
         RuleFor(character => character.Intelligence).InclusiveBetween(0, 30).WithMessage("Intelligence must be between 0 and 30");
         RuleFor(character => character.Wisdom).InclusiveBetween(0, 30).WithMessage("Wisdom must be between 0 and 30");
         RuleFor(character => character.Charisma).InclusiveBetween(0, 30).WithMessage("Charisma must be between 0 and 30");
+
+        RuleFor(character => character.NumberOfDamageDice).GreaterThan(0).WithMessage("The number of damage dice must be at least 1");
     }
 }
