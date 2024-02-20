@@ -4,6 +4,7 @@ namespace DnDProbabilityCalculator.Shared.Party.Validation;
 
 public class CharacterDtoValidator : AbstractValidator<CreateCharacterDto>
 {
+    private readonly int[] _allowedDiceSides = [4, 6, 8, 10, 12, 20];
     public CharacterDtoValidator()
     {
         RuleFor(character => character.Name).NotEmpty().WithMessage("Your character must have a name");
@@ -19,5 +20,6 @@ public class CharacterDtoValidator : AbstractValidator<CreateCharacterDto>
         RuleFor(character => character.Charisma).InclusiveBetween(0, 30).WithMessage("Charisma must be between 0 and 30");
 
         RuleFor(character => character.NumberOfDamageDice).GreaterThan(0).WithMessage("The number of damage dice must be at least 1");
+        RuleFor(character => character.DiceSides).Must(diceSides => _allowedDiceSides.Contains(diceSides)).WithMessage("The damage die number must be one of 4, 6, 8, 10, 12, 20");
     }
 }
