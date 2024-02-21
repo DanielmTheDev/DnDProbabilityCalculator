@@ -1,12 +1,26 @@
 ﻿@page "/create-party"
 
 <EditForm Model="@_party" OnValidSubmit="@SubmitValidForm">
-    <FluentValidationValidator />
-    <FluentValidationSummary />
+    <FluentValidationValidator/>
+    <FluentValidationSummary/>
 
-    <p>
-        <label>Name: </label>
-        <InputText @bind-Value="@_party.Name" />
-    </p>
+    <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Center">
+        <h4>Add Party</h4>
+        <FluentTextField @bind-Value="_party.Name" Placeholder="Name"/>
+        <FluentGrid Class="grid" Justify="JustifyContent.SpaceEvenly" Spacing="3">
+            @foreach (var character in _party.Characters)
+            {
+                <FluentGridItem lg="2">
+                    <FluentCard>
+                        <FluentStack Orientation="Orientation.Vertical">
+                            <h5>Add Character</h5>
+                            <FluentTextField @bind-Value="character.Name" Placeholder="Name" Style="width: 100%"/>
+                            <FluentNumberField @bind-Value="character.ArmorClass" Placeholder="Armor Class" Style="width: 100%"/>
+                        </FluentStack>
+                    </FluentCard>
+                </FluentGridItem>
+            }
+        </FluentGrid>
+    </FluentStack>
     <button type="submit">Save</button>
 </EditForm>
