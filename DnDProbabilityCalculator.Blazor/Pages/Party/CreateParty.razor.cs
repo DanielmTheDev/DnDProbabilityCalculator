@@ -1,4 +1,6 @@
-﻿using DnDProbabilityCalculator.Shared.Party;
+﻿using DnDProbabilityCalculator.Core.Adventuring.Abilities;
+using DnDProbabilityCalculator.Shared.Party;
+using Microsoft.FluentUI.AspNetCore.Components;
 
 namespace DnDProbabilityCalculator.Blazor.Pages.Party;
 
@@ -18,4 +20,11 @@ public partial class CreateParty
     {
         Console.Out.Write("Valid Submit");
     }
+
+    private IEnumerable<Option<AbilityScoreType>> GetAbilityTypeOptions()
+        => Enum.GetValues<AbilityScoreType>().Select(value => new Option<AbilityScoreType>
+        {
+            Value = value,
+            Text = value
+        });
 }

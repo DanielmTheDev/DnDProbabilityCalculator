@@ -1,4 +1,13 @@
 ﻿@page "/create-party"
+@using DnDProbabilityCalculator.Shared.Party
+@using DnDProbabilityCalculator.Core.Adventuring.Abilities
+
+@code {
+    private void ParseSelection(string selection, CreateCharacterDto character)
+    {
+        character.AttackAbility = Enum.Parse<AbilityScoreType>(selection);
+    }
+}
 
 <EditForm Model="@_party" OnValidSubmit="@SubmitValidForm">
     <FluentValidationValidator/>
@@ -6,7 +15,7 @@
 
     <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Center">
         <h4>Add Party</h4>
-        <FluentTextField @bind-Value="_party.Name" Placeholder="Name"/>
+        <FluentTextField Label="Party name" @bind-Value="_party.Name" Placeholder="Name"/>
         <FluentGrid Class="grid" Justify="JustifyContent.SpaceEvenly" Spacing="3">
             @foreach (var character in _party.Characters)
             {
@@ -14,8 +23,11 @@
                     <FluentCard>
                         <FluentStack Orientation="Orientation.Vertical">
                             <h5>Add Character</h5>
-                            <FluentTextField @bind-Value="character.Name" Placeholder="Name" Style="width: 100%"/>
-                            <FluentNumberField @bind-Value="character.ArmorClass" Placeholder="Armor Class" Style="width: 100%"/>
+                            <FluentTextField Label="Name" @bind-Value="character.Name" Placeholder="Name" Class="full-width" />
+                            <FluentNumberField Label="Proficiency Bonus" @bind-Value="character.ProficiencyBonus" Placeholder="Attack Modifier" Class="full-width"/>
+                            <FluentNumberField Label="Armor Class" @bind-Value="character.ArmorClass" Placeholder="Armor Class" Class="full-width"/>
+                            <FluentNumberField Label="Number of Attacks" @bind-Value="character.NumberOfAttacks" Placeholder="Attack Modifier" Class="full-width"/>
+                            <FluentSelect Label="Attack Ability" bind-SelectedOption="character.AttackAbility" OptionText="option => option.Value.ToString()" Items="@GetAbilityTypeOptions()" Class="full-width"/>
                         </FluentStack>
                     </FluentCard>
                 </FluentGridItem>
@@ -24,3 +36,9 @@
     </FluentStack>
     <button type="submit">Save</button>
 </EditForm>
+
+<style>
+    .full-width {
+        width: 100%;
+    }
+</style>
