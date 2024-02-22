@@ -1,3 +1,3 @@
 ﻿namespace DnDProbabilityCalculator.Shared.Party;
 
-public record SavePartyResponse(string Message);
+public record SavePartyResponse(string PartyId);

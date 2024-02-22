@@ -12,7 +12,7 @@ public class PartySaver(IHttpClientFactory clientFactory) : IPartySaver
         var client = clientFactory.CreateClient("B2CSandbox.ServerAPI");
         var result = await client.PostAsJsonAsync("api/SaveParty", CreateStaticParty());
         var parsedResult = await result.Content.ReadFromJsonAsync<SavePartyResponse>();
-        return parsedResult!.Message;
+        return parsedResult!.PartyId;
     }
 
     private static Party CreateStaticParty()

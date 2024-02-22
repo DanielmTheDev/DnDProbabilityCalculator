@@ -2,7 +2,7 @@
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 
-namespace DndProbabilityFunctions;
+namespace DndProbabilityFunctions.Parties;
 
 public class PartyMultiResponse
 {
