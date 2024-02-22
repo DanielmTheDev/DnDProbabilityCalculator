@@ -1,4 +1,5 @@
-﻿using DnDProbabilityCalculator.Core.Adventuring.Abilities;
+﻿using System.Text.Json;
+using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 using DnDProbabilityCalculator.Shared.Party;
 using Microsoft.FluentUI.AspNetCore.Components;
 
@@ -15,16 +16,16 @@ public partial class CreateParty
             _party.Characters.Add(new());
         }
     }
-
-    private static void SubmitValidForm()
-    {
-        Console.Out.Write("Valid Submit");
-    }
-
     private IEnumerable<Option<AbilityScoreType>> GetAbilityTypeOptions()
         => Enum.GetValues<AbilityScoreType>().Select(value => new Option<AbilityScoreType>
         {
             Value = value,
             Text = value
         });
+
+    private void Submit()
+    {
+        Console.Out.WriteLine(JsonSerializer.Serialize(_party));
+        Console.Out.Write("Invalid Submit");
+    }
 }

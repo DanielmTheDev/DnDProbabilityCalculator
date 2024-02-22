@@ -1,6 +1,6 @@
 ﻿@page "/create-party"
 
-<EditForm Model="@_party" OnValidSubmit="@SubmitValidForm">
+<EditForm Model="@_party" OnValidSubmit="@Submit">
     <FluentValidationValidator/>
     <FluentValidationSummary/>
 
@@ -73,14 +73,6 @@
 </EditForm>
 
 <style>
-    .full-width {
-        width: 100%;
-    }
-
-    .half-width {
-        width: 20%;
-    }
-
     .some-width {
         width: 90%;
     }
