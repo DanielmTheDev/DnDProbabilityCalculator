@@ -1,13 +1,4 @@
 ﻿@page "/create-party"
-@using DnDProbabilityCalculator.Shared.Party
-@using DnDProbabilityCalculator.Core.Adventuring.Abilities
-
-@code {
-    private void ParseSelection(string selection, CreateCharacterDto character)
-    {
-        character.AttackAbility = Enum.Parse<AbilityScoreType>(selection);
-    }
-}
 
 <EditForm Model="@_party" OnValidSubmit="@SubmitValidForm">
     <FluentValidationValidator/>
@@ -16,29 +7,63 @@
     <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Center">
         <h4>Add Party</h4>
         <FluentTextField Label="Party name" @bind-Value="_party.Name" Placeholder="Name"/>
-        <FluentGrid Class="grid" Justify="JustifyContent.SpaceEvenly" Spacing="3">
+        <FluentGrid Justify="JustifyContent.SpaceEvenly" Spacing="5">
             @foreach (var character in _party.Characters)
             {
-                <FluentGridItem lg="2">
+                <FluentGridItem lg="3">
                     <FluentCard>
-                        <FluentStack Orientation="Orientation.Vertical">
-                            <h5>Add Character</h5>
-                            <FluentTextField Label="Name" @bind-Value="character.Name" Placeholder="Name" Class="full-width" />
-                            <FluentNumberField Label="Proficiency Bonus" @bind-Value="character.ProficiencyBonus" Placeholder="Proficiency Bonus" Class="full-width"/>
-                            <FluentNumberField Label="Armor Class" @bind-Value="character.ArmorClass" Placeholder="Armor Class" Class="full-width"/>
-                            <FluentNumberField Label="Number of Attacks" @bind-Value="character.NumberOfAttacks" Placeholder="Number of Attacks" Class="full-width"/>
-                            <FluentNumberField Label="Number of Damage Dice" @bind-Value="character.NumberOfDamageDice" Placeholder="Number of Damage Dice" Class="full-width"/>
-                            <FluentNumberField Label="Damage Die Sides" @bind-Value="character.DiceSides" Placeholder="Damage Die Sides" Class="full-width"/>
-                            <FluentNumberField Label="Damage/Attack Bonus" @bind-Value="character.Bonus" Placeholder="Bonus" Class="full-width"/>
-                            <FluentNumberField Label="Misc Damage Bonus" @bind-Value="character.MiscDamageBonus" Placeholder="Misc Damage Bonus" Class="full-width"/>
-                            <FluentSelect Label="Attack Ability" bind-SelectedOption="character.AttackAbility" OptionText="option => option.Value.ToString()" Items="@GetAbilityTypeOptions()" Class="full-width"/>
-                            <FluentNumberField Label="Strength" @bind-Value="character.Strength" Placeholder="Strength" Class="full-width"/>
-                            <FluentNumberField Label="Dexterity" @bind-Value="character.Dexterity" Placeholder="Dexterity" Class="full-width"/>
-                            <FluentNumberField Label="Constitution" @bind-Value="character.Constitution" Placeholder="Constitution" Class="full-width"/>
-                            <FluentNumberField Label="Intelligence" @bind-Value="character.Intelligence" Placeholder="Intelligence" Class="full-width"/>
-                            <FluentNumberField Label="Wisdom" @bind-Value="character.Wisdom" Placeholder="Wisdom" Class="full-width"/>
-                            <FluentNumberField Label="Charisma" @bind-Value="character.Charisma" Placeholder="Charisma" Class="full-width"/>
-                        </FluentStack>
+                        <h5>Add Character</h5>
+                        <FluentGrid Justify="JustifyContent.SpaceAround" Spacing="2">
+                            <FluentGridItem lg="4">
+                                <FluentTextField Class="some-width" Label="Character name" @bind-Value="character.Name" Placeholder="Name"/>
+                            </FluentGridItem>
+
+                            <FluentGridItem lg="4">
+                                <FluentNumberField Class="some-width" Label="Armor Class" @bind-Value="character.ArmorClass" Placeholder="Armor Class"/>
+                            </FluentGridItem>
+                            <FluentGridItem lg="4">
+                                <FluentNumberField Class="some-width" Label="Proficiency Bonus" @bind-Value="character.ProficiencyBonus" Placeholder="Proficiency Bonus"/>
+                            </FluentGridItem>
+
+                            <FluentGridItem lg="4">
+                                <FluentNumberField Class="some-width" Label="Number of Attacks" @bind-Value="character.NumberOfAttacks" Placeholder="Number of Attacks"/>
+                            </FluentGridItem>
+                            <FluentGridItem lg="4">
+                                <FluentNumberField Class="some-width" Label="# of Damage Dice" @bind-Value="character.NumberOfDamageDice" Placeholder="Number of Damage Dice"/>
+                            </FluentGridItem>
+                            <FluentGridItem lg="4">
+                                <FluentNumberField Class="some-width" Label="Damage Die Sides" @bind-Value="character.DiceSides" Placeholder="Damage Die Sides"/>
+                            </FluentGridItem>
+
+                            <FluentGridItem lg="4">
+                                <FluentNumberField Class="some-width" Label="Damage/Attack Bonus" @bind-Value="character.Bonus" Placeholder="Bonus"/>
+                            </FluentGridItem>
+                            <FluentGridItem lg="4">
+                                <FluentNumberField Class="some-width" Label="Misc Damage Bonus" @bind-Value="character.MiscDamageBonus" Placeholder="Misc Damage Bonus"/>
+                            </FluentGridItem>
+                            <FluentGridItem lg="4">
+                                <FluentSelect Width="90%" Label="Attack Ability" bind-SelectedOption="character.AttackAbility" OptionText="option => option.Value.ToString()" Items="@GetAbilityTypeOptions()"/>
+                            </FluentGridItem>
+
+                            <FluentGridItem lg="4">
+                                <FluentNumberField Class="some-width" Label="Strength" @bind-Value="character.Strength" Placeholder="Strength"/>
+                            </FluentGridItem>
+                            <FluentGridItem lg="4">
+                                <FluentNumberField Class="some-width" Label="Dexterity" @bind-Value="character.Dexterity" Placeholder="Dexterity"/>
+                            </FluentGridItem>
+                            <FluentGridItem lg="4">
+                                <FluentNumberField Class="some-width"Label="Constitution" @bind-Value="character.Constitution" Placeholder="Constitution"/>
+                            </FluentGridItem>
+                            <FluentGridItem lg="4">
+                                <FluentNumberField Class="some-width" Label="Intelligence" @bind-Value="character.Intelligence" Placeholder="Intelligence"/>
+                            </FluentGridItem>
+                            <FluentGridItem lg="4">
+                                <FluentNumberField Class="some-width" Label="Wisdom" @bind-Value="character.Wisdom" Placeholder="Wisdom"/>
+                            </FluentGridItem>
+                            <FluentGridItem lg="4">
+                                <FluentNumberField Class="some-width" Label="Charisma" @bind-Value="character.Charisma" Placeholder="Charisma"/>
+                            </FluentGridItem>
+                        </FluentGrid>
                     </FluentCard>
                 </FluentGridItem>
             }
@@ -50,5 +75,13 @@
 <style>
     .full-width {
         width: 100%;
+    }
+
+    .half-width {
+        width: 20%;
+    }
+
+    .some-width {
+        width: 90%;
     }
 </style>
