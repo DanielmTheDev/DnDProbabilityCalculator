@@ -1,7 +1,8 @@
-﻿using DnDProbabilityCalculator.Shared.Party.Validation;
+﻿using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 using DnDProbabilityCalculator.Shared.PartyCreation;
+using DnDProbabilityCalculator.Shared.PartyCreation.Validation;
 
-namespace DnDProbabilityCalculator.Blazor.Tests.Pages.Party;
+namespace DnDProbabilityCalculator.Shared.Tests.Pages.Party;
 
 [TestClass]
 public class CreatePartyDtoTests
@@ -155,6 +156,59 @@ public class CreatePartyDtoTests
         // Assert
         Assert.IsFalse(result.IsValid);
         Assert.AreEqual("The damage die number must be one of 4, 6, 8, 10, 12, 20", result.Errors[0].ErrorMessage);
+    }
+
+    [TestMethod]
+    public void CreateParty_WhenCalled_CreatesCorrespondingParty()
+    {
+        // Arrange
+        var model = new CreatePartyDto
+        {
+            Name = "Testparty",
+            Characters =
+            [
+                new()
+                {
+                    Name = "TestCharacter",
+                    Strength = 10,
+                    Dexterity = 10,
+                    Constitution = 10,
+                    Intelligence = 10,
+                    Wisdom = 10,
+                    Charisma = 10,
+                    NumberOfAttacks = 1,
+                    ProficiencyBonus = 2,
+                    ArmorClass = 10,
+                    AttackAbility = AbilityScoreType.Strength,
+                    NumberOfDamageDice = 2,
+                    DiceSides = 6,
+                    Bonus = 1,
+                    MiscDamageBonus = 5,
+                }
+            ]
+        };
+
+        // Act
+        var result = model.ToParty("test");
+
+        // Assert
+        Assert.AreEqual("Testparty", result.Name);
+        Assert.AreEqual(1, result.Characters.Count);
+        Assert.AreEqual("TestCharacter", result.Characters[0].Name);
+        Assert.AreEqual(10, result.Characters[0].AbilityScores.Strength.Value);
+        Assert.AreEqual(10, result.Characters[0].AbilityScores.Dexterity.Value);
+        Assert.AreEqual(10, result.Characters[0].AbilityScores.Constitution.Value);
+        Assert.AreEqual(10, result.Characters[0].AbilityScores.Intelligence.Value);
+        Assert.AreEqual(10, result.Characters[0].AbilityScores.Wisdom.Value);
+        Assert.AreEqual(10, result.Characters[0].AbilityScores.Charisma.Value);
+        Assert.AreEqual(1, result.Characters[0].NumberOfAttacks);
+        Assert.AreEqual(2, result.Characters[0].ProficiencyBonus);
+        Assert.AreEqual(10, result.Characters[0].ArmorClass);
+        Assert.AreEqual(AbilityScoreType.Strength, result.Characters[0].AttackAbility);
+        Assert.AreEqual(2, result.Characters[0].Weapon.NumberOfDice);
+        Assert.AreEqual(6, result.Characters[0].Weapon.DiceSides);
+        Assert.AreEqual(1, result.Characters[0].Weapon.Bonus);
+        Assert.AreEqual(5, result.Characters[0].Weapon.MiscDamageBonus);
     }
 
     private static CreatePartyDto GetValidParty()

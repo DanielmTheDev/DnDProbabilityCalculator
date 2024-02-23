@@ -6,9 +6,9 @@ public class CreatePartyDto
 {
     public string? Name { get; set; }
 
-    public IList<CreateCharacterDto> Characters { get; set; } = [];
+    public List<CreateCharacterDto> Characters { get; set; } = [];
 
-    public Core.Adventuring.Party ToParty(string userId)
+    public Party ToParty(string userId)
         => new()
         {
             Id = Guid.NewGuid().ToString(),
@@ -20,7 +20,7 @@ public class CreatePartyDto
                 Name = character.Name!,
                 ProficiencyBonus = character.ProficiencyBonus,
                 ArmorClass = character.ArmorClass,
-                NumberOfAttacks = 0,
+                NumberOfAttacks = character.NumberOfAttacks,
                 AbilityScores = new()
                 {
                     Dexterity = character.Dexterity,

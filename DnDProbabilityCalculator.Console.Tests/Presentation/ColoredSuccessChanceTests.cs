@@ -1,6 +1,6 @@
-﻿using DnDProbabilityCalculator.Application.Table.Presentation;
+﻿using DnDProbabilityCalculator.Console.Presentation;
 
-namespace DnDProbabilityCalculator.Application.Tests.Table.Presentation;
+namespace DnDProbabilityCalculator.Console.Tests.Presentation;
 
 [TestClass]
 public class ColoredSuccessChanceTests

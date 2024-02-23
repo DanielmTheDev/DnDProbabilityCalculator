@@ -7,7 +7,7 @@ using DnDProbabilityCalculator.Blazor;
 using DnDProbabilityCalculator.Blazor.Communication;
 using DnDProbabilityCalculator.Infrastructure.Actors;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;
-using DnDProbabilityCalculator.Shared.Party.Validation;
+using DnDProbabilityCalculator.Shared.PartyCreation.Validation;
 using FluentValidation;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;

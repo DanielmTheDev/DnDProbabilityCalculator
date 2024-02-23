@@ -1,4 +1,4 @@
-﻿namespace DnDProbabilityCalculator.Application.Table.Presentation;
+﻿namespace DnDProbabilityCalculator.Console.Presentation;
 
 public record ColoredSuccessChance
 {
