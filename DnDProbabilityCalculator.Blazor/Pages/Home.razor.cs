@@ -1,5 +1,4 @@
 ﻿using DnDProbabilityCalculator.Application.Table;
-using DnDProbabilityCalculator.Blazor.Communication;
 using DnDProbabilityCalculator.Blazor.Components;
 using DnDProbabilityCalculator.Core.Adventuring;
 using Microsoft.AspNetCore.Components;
@@ -15,14 +14,10 @@ public partial class Home : IDisposable
     [Inject]
     private HotKeys HotKeys { get; set; } = null!;
 
-    [Inject]
-    public IPartySaver PartySaver { get; set; } = null!;
-
     private ButtonBar _buttonBar = null!;
     private HotKeysContext HotKeysContext { get; set; } = null!;
     private IEnumerable<TableContext> _tableContexts = new List<TableContext>();
     private InputVariables _inputVariables = null!;
-    private string _result = "Nothing yet";
 
     protected override void OnInitialized()
     {
@@ -48,9 +43,6 @@ public partial class Home : IDisposable
         _tableContexts = TableContextFactory.Create(_inputVariables);
         StateHasChanged();
     }
-
-    private async Task PostParty()
-        => _result = await PartySaver.Save();
 
     private void EnableAdvantage()
         => UpdateTable(_inputVariables.WithAdvantage);

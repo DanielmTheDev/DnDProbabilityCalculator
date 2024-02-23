@@ -1,6 +1,8 @@
-﻿namespace DnDProbabilityCalculator.Blazor.Communication;
+﻿using DnDProbabilityCalculator.Shared.PartyCreation;
+
+namespace DnDProbabilityCalculator.Blazor.Communication;
 
 public interface IPartySaver
 {
-    Task<string> Save();
+    Task<string> Save(CreatePartyDto party);
 }
