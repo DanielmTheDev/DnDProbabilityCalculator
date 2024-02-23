@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Json;
 using DnDProbabilityCalculator.Core.Adventuring;
 using DnDProbabilityCalculator.Core.Adventuring.Abilities;
-using DnDProbabilityCalculator.Shared.Party;
+using DnDProbabilityCalculator.Shared.PartyCreation;
 
 namespace DnDProbabilityCalculator.Blazor.Communication;
 

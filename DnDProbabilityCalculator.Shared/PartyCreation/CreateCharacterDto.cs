@@ -1,6 +1,6 @@
 ﻿using DnDProbabilityCalculator.Core.Adventuring.Abilities;
 
-namespace DnDProbabilityCalculator.Shared.Party;
+namespace DnDProbabilityCalculator.Shared.PartyCreation;
 
 public class CreateCharacterDto
 {

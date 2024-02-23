@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 using DnDProbabilityCalculator.Core.Adventuring.Abilities;
-using DnDProbabilityCalculator.Shared.Party;
+using DnDProbabilityCalculator.Shared.PartyCreation;
 using Microsoft.FluentUI.AspNetCore.Components;
 
 namespace DnDProbabilityCalculator.Blazor.Pages.Party;

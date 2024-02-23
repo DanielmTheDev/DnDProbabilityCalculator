@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using DnDProbabilityCalculator.Shared.PartyCreation;
+using FluentValidation;
 
 namespace DnDProbabilityCalculator.Shared.Party.Validation;
 

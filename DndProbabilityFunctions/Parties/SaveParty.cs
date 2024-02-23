@@ -1,8 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using DnDProbabilityCalculator.Core.Adventuring;
-using DnDProbabilityCalculator.Shared.Party;
+using DnDProbabilityCalculator.Shared.PartyCreation;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
@@ -34,7 +33,7 @@ public class SaveParty(ILoggerFactory loggerFactory)
                     HttpResponse = req.CreateResponse(HttpStatusCode.BadRequest)
                 };
             }
-            var partyEntity = CreateParty(partyDto, userId);
+            var partyEntity = partyDto.ToParty(userId);
 
             var dto = new SavePartyResponse(partyEntity.Id);
 
@@ -53,37 +52,4 @@ public class SaveParty(ILoggerFactory loggerFactory)
             throw;
         }
     }
-
-    private Party CreateParty(CreatePartyDto partyDto, string userId)
-        => new()
-        {
-            Id = Guid.NewGuid().ToString(),
-            Name = partyDto.Name!,
-            UserId = userId,
-            Characters = partyDto.Characters.Select(character => new Actor
-            {
-                Id = Guid.NewGuid().ToString(),
-                Name = character.Name!,
-                ProficiencyBonus = character.ProficiencyBonus,
-                ArmorClass = character.ArmorClass,
-                NumberOfAttacks = 0,
-                AbilityScores = new()
-                {
-                    Dexterity = character.Dexterity,
-                    Strength = character.Strength,
-                    Constitution = character.Constitution,
-                    Intelligence = character.Intelligence,
-                    Wisdom = character.Wisdom,
-                    Charisma = character.Charisma
-                },
-                AttackAbility = character.AttackAbility,
-                Weapon = new()
-                {
-                    NumberOfDice = character.NumberOfDamageDice,
-                    DiceSides = character.DiceSides,
-                    Bonus = character.Bonus,
-                    MiscDamageBonus = character.MiscDamageBonus
-                }
-            }).ToList()
-        };
 }

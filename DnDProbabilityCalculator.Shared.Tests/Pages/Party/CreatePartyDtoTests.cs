@@ -1,5 +1,5 @@
-﻿using DnDProbabilityCalculator.Shared.Party;
-using DnDProbabilityCalculator.Shared.Party.Validation;
+﻿using DnDProbabilityCalculator.Shared.Party.Validation;
+using DnDProbabilityCalculator.Shared.PartyCreation;
 
 namespace DnDProbabilityCalculator.Blazor.Tests.Pages.Party;
 
