@@ -10,6 +10,9 @@ public partial class CreateCharacterCard
     [Parameter]
     public CreateCharacterDto Character { get; set; } = null!;
 
+    [Parameter]
+    public EventCallback Remove { get; set; }
+
     private IEnumerable<Option<AbilityScoreType>> GetAbilityTypeOptions()
         => Enum.GetValues<AbilityScoreType>().Select(value => new Option<AbilityScoreType>
         {

@@ -1,5 +1,8 @@
 ﻿<FluentCard>
-    <h5>Add Character</h5>
+    <FluentStack VerticalAlignment="VerticalAlignment.Center">
+        <h5>Add Character</h5>
+        <FluentButton Class="remove-button" OnClick="@(async () => await Remove.InvokeAsync())" Appearance="Appearance.Lightweight" IconEnd="@(new Icons.Filled.Size12.Subtract())"/>
+    </FluentStack>
     <FluentGrid Justify="JustifyContent.SpaceAround" Spacing="2">
         <FluentGridItem lg="4">
             <FluentTextField Class="card-input" Label="Name" @bind-Value="Character.Name" Placeholder="Name"/>
@@ -56,5 +59,9 @@
 <style>
     .card-input {
         width: 90%;
+    }
+
+    .remove-button {
+        margin-left: auto
     }
 </style>
