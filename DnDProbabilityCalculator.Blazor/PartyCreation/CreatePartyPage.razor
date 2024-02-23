@@ -10,61 +10,8 @@
         <FluentGrid Justify="JustifyContent.SpaceEvenly" Spacing="5">
             @foreach (var character in _party.Characters)
             {
-                <FluentGridItem lg="3">
-                    <FluentCard>
-                        <h5>Add Character</h5>
-                        <FluentGrid Justify="JustifyContent.SpaceAround" Spacing="2">
-                            <FluentGridItem lg="4">
-                                <FluentTextField Class="some-width" Label="Character name" @bind-Value="character.Name" Placeholder="Name"/>
-                            </FluentGridItem>
-
-                            <FluentGridItem lg="4">
-                                <FluentNumberField Class="some-width" Label="Armor Class" @bind-Value="character.ArmorClass" Placeholder="Armor Class"/>
-                            </FluentGridItem>
-                            <FluentGridItem lg="4">
-                                <FluentNumberField Class="some-width" Label="Proficiency Bonus" @bind-Value="character.ProficiencyBonus" Placeholder="Proficiency Bonus"/>
-                            </FluentGridItem>
-
-                            <FluentGridItem lg="4">
-                                <FluentNumberField Class="some-width" Label="Number of Attacks" @bind-Value="character.NumberOfAttacks" Placeholder="Number of Attacks"/>
-                            </FluentGridItem>
-                            <FluentGridItem lg="4">
-                                <FluentNumberField Class="some-width" Label="# of Damage Dice" @bind-Value="character.NumberOfDamageDice" Placeholder="Number of Damage Dice"/>
-                            </FluentGridItem>
-                            <FluentGridItem lg="4">
-                                <FluentNumberField Class="some-width" Label="Damage Die Sides" @bind-Value="character.DiceSides" Placeholder="Damage Die Sides"/>
-                            </FluentGridItem>
-
-                            <FluentGridItem lg="4">
-                                <FluentNumberField Class="some-width" Label="Damage/Attack Bonus" @bind-Value="character.Bonus" Placeholder="Bonus"/>
-                            </FluentGridItem>
-                            <FluentGridItem lg="4">
-                                <FluentNumberField Class="some-width" Label="Misc Damage Bonus" @bind-Value="character.MiscDamageBonus" Placeholder="Misc Damage Bonus"/>
-                            </FluentGridItem>
-                            <FluentGridItem lg="4">
-                                <FluentSelect Width="90%" Label="Attack Ability" bind-SelectedOption="character.AttackAbility" OptionText="option => option.Value.ToString()" Items="@GetAbilityTypeOptions()"/>
-                            </FluentGridItem>
-
-                            <FluentGridItem lg="4">
-                                <FluentNumberField Class="some-width" Label="Strength" @bind-Value="character.Strength" Placeholder="Strength"/>
-                            </FluentGridItem>
-                            <FluentGridItem lg="4">
-                                <FluentNumberField Class="some-width" Label="Dexterity" @bind-Value="character.Dexterity" Placeholder="Dexterity"/>
-                            </FluentGridItem>
-                            <FluentGridItem lg="4">
-                                <FluentNumberField Class="some-width" Label="Constitution" @bind-Value="character.Constitution" Placeholder="Constitution"/>
-                            </FluentGridItem>
-                            <FluentGridItem lg="4">
-                                <FluentNumberField Class="some-width" Label="Intelligence" @bind-Value="character.Intelligence" Placeholder="Intelligence"/>
-                            </FluentGridItem>
-                            <FluentGridItem lg="4">
-                                <FluentNumberField Class="some-width" Label="Wisdom" @bind-Value="character.Wisdom" Placeholder="Wisdom"/>
-                            </FluentGridItem>
-                            <FluentGridItem lg="4">
-                                <FluentNumberField Class="some-width" Label="Charisma" @bind-Value="character.Charisma" Placeholder="Charisma"/>
-                            </FluentGridItem>
-                        </FluentGrid>
-                    </FluentCard>
+                <FluentGridItem lg="4">
+                    <CreateCharacterCard Character="character"></CreateCharacterCard>
                 </FluentGridItem>
             }
         </FluentGrid>
@@ -78,9 +25,6 @@
 <p>@_result</p>
 
 <style>
-    .some-width {
-        width: 90%;
-    }
     .divider {
         margin-top: 2rem;
         margin-bottom: 2rem;

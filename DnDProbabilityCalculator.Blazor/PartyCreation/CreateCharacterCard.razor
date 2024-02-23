@@ -1,0 +1,60 @@
+﻿<FluentCard>
+    <h5>Add Character</h5>
+    <FluentGrid Justify="JustifyContent.SpaceAround" Spacing="2">
+        <FluentGridItem lg="4">
+            <FluentTextField Class="card-input" Label="Character name" @bind-Value="Character.Name" Placeholder="Name"/>
+        </FluentGridItem>
+
+        <FluentGridItem lg="4">
+            <FluentNumberField Class="card-input" Label="Armor Class" @bind-Value="Character.ArmorClass" Placeholder="Armor Class"/>
+        </FluentGridItem>
+        <FluentGridItem lg="4">
+            <FluentNumberField Class="card-input" Label="Proficiency Bonus" @bind-Value="Character.ProficiencyBonus" Placeholder="Proficiency Bonus"/>
+        </FluentGridItem>
+
+        <FluentGridItem lg="4">
+            <FluentNumberField Class="card-input" Label="Number of Attacks" @bind-Value="Character.NumberOfAttacks" Placeholder="Number of Attacks"/>
+        </FluentGridItem>
+        <FluentGridItem lg="4">
+            <FluentNumberField Class="card-input" Label="# of Damage Dice" @bind-Value="Character.NumberOfDamageDice" Placeholder="Number of Damage Dice"/>
+        </FluentGridItem>
+        <FluentGridItem lg="4">
+            <FluentNumberField Class="card-input" Label="Damage Die Sides" @bind-Value="Character.DiceSides" Placeholder="Damage Die Sides"/>
+        </FluentGridItem>
+
+        <FluentGridItem lg="4">
+            <FluentNumberField Class="card-input" Label="Damage/Attack Bonus" @bind-Value="Character.Bonus" Placeholder="Bonus"/>
+        </FluentGridItem>
+        <FluentGridItem lg="4">
+            <FluentNumberField Class="card-input" Label="Misc Damage Bonus" @bind-Value="Character.MiscDamageBonus" Placeholder="Misc Damage Bonus"/>
+        </FluentGridItem>
+        <FluentGridItem lg="4">
+            <FluentSelect Width="90%" Label="Attack Ability" bind-SelectedOption="Character.AttackAbility" OptionText="option => option.Value.ToString()" Items="@GetAbilityTypeOptions()"/>
+        </FluentGridItem>
+
+        <FluentGridItem lg="4">
+            <FluentNumberField Class="card-input" Label="Strength" @bind-Value="Character.Strength" Placeholder="Strength"/>
+        </FluentGridItem>
+        <FluentGridItem lg="4">
+            <FluentNumberField Class="card-input" Label="Dexterity" @bind-Value="Character.Dexterity" Placeholder="Dexterity"/>
+        </FluentGridItem>
+        <FluentGridItem lg="4">
+            <FluentNumberField Class="card-input" Label="Constitution" @bind-Value="Character.Constitution" Placeholder="Constitution"/>
+        </FluentGridItem>
+        <FluentGridItem lg="4">
+            <FluentNumberField Class="card-input" Label="Intelligence" @bind-Value="Character.Intelligence" Placeholder="Intelligence"/>
+        </FluentGridItem>
+        <FluentGridItem lg="4">
+            <FluentNumberField Class="card-input" Label="Wisdom" @bind-Value="Character.Wisdom" Placeholder="Wisdom"/>
+        </FluentGridItem>
+        <FluentGridItem lg="4">
+            <FluentNumberField Class="card-input" Label="Charisma" @bind-Value="Character.Charisma" Placeholder="Charisma"/>
+        </FluentGridItem>
+    </FluentGrid>
+</FluentCard>
+
+<style>
+    .card-input {
+        width: 90%;
+    }
+</style>
