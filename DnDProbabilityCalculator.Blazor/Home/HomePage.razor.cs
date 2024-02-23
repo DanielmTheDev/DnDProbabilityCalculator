@@ -1,12 +1,11 @@
 ﻿using DnDProbabilityCalculator.Application.Table;
-using DnDProbabilityCalculator.Blazor.Components;
 using DnDProbabilityCalculator.Core.Adventuring;
 using Microsoft.AspNetCore.Components;
 using Toolbelt.Blazor.HotKeys2;
 
-namespace DnDProbabilityCalculator.Blazor.Pages;
+namespace DnDProbabilityCalculator.Blazor.Home;
 
-public partial class Home : IDisposable
+public partial class HomePage : IDisposable
 {
     [Inject]
     private ITableContextFactory TableContextFactory { get; set; } = null!;

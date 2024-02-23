@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using DnDProbabilityCalculator.Blazor.Components;
+using Microsoft.AspNetCore.Components;
 using Microsoft.FluentUI.AspNetCore.Components;
 using Toolbelt.Blazor.HotKeys2;
 
-namespace DnDProbabilityCalculator.Blazor.Components;
+namespace DnDProbabilityCalculator.Blazor.Home;
 
 public partial class ButtonBar
 {

@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Json;
 using DnDProbabilityCalculator.Shared.PartyCreation;
 
-namespace DnDProbabilityCalculator.Blazor.Communication;
+namespace DnDProbabilityCalculator.Blazor.PartyCreation;
 
 public class PartySaver(IHttpClientFactory clientFactory) : IPartySaver
 {

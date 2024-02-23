@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.FluentUI.AspNetCore.Components;
 using DnDProbabilityCalculator.Blazor;
-using DnDProbabilityCalculator.Blazor.Communication;
+using DnDProbabilityCalculator.Blazor.PartyCreation;
 using DnDProbabilityCalculator.Infrastructure.Actors;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;
 using DnDProbabilityCalculator.Shared.PartyCreation.Validation;
