@@ -7,18 +7,22 @@
     <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Center">
         <h4>Add Party</h4>
         <FluentTextField Label="Party name" @bind-Value="_party.Name" Placeholder="Name"/>
+        <FluentDivider Class="divider"></FluentDivider>
         <FluentGrid Justify="JustifyContent.SpaceEvenly" Spacing="5">
             @foreach (var character in _party.Characters)
             {
                 <FluentGridItem lg="4">
                     <CreateCharacterCard Character="character"></CreateCharacterCard>
                 </FluentGridItem>
+
             }
         </FluentGrid>
     </FluentStack>
     <FluentDivider Class="divider"></FluentDivider>
     <FluentStack Orientation="Orientation.Horizontal" HorizontalAlignment="HorizontalAlignment.Center">
+        <FluentButton Appearance="Appearance.Accent" IconEnd="@(new Icons.Filled.Size16.Subtract())" Title="Add"/>
         <FluentButton Type="ButtonType.Submit" Appearance="Appearance.Accent">Save</FluentButton>
+        <FluentButton Appearance="Appearance.Accent" IconEnd="@(new Icons.Regular.Size16.Add())" Title="Add"/>
     </FluentStack>
 </EditForm>
 
