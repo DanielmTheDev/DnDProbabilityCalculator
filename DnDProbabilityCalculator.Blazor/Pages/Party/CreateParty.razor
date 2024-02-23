@@ -52,7 +52,7 @@
                                 <FluentNumberField Class="some-width" Label="Dexterity" @bind-Value="character.Dexterity" Placeholder="Dexterity"/>
                             </FluentGridItem>
                             <FluentGridItem lg="4">
-                                <FluentNumberField Class="some-width"Label="Constitution" @bind-Value="character.Constitution" Placeholder="Constitution"/>
+                                <FluentNumberField Class="some-width" Label="Constitution" @bind-Value="character.Constitution" Placeholder="Constitution"/>
                             </FluentGridItem>
                             <FluentGridItem lg="4">
                                 <FluentNumberField Class="some-width" Label="Intelligence" @bind-Value="character.Intelligence" Placeholder="Intelligence"/>
@@ -69,7 +69,10 @@
             }
         </FluentGrid>
     </FluentStack>
-    <button type="submit">Save</button>
+    <FluentDivider Class="divider"></FluentDivider>
+    <FluentStack Orientation="Orientation.Horizontal" HorizontalAlignment="HorizontalAlignment.Center">
+        <FluentButton Type="ButtonType.Submit" Appearance="Appearance.Accent">Save</FluentButton>
+    </FluentStack>
 </EditForm>
 
 <p>@_result</p>
@@ -77,5 +80,9 @@
 <style>
     .some-width {
         width: 90%;
+    }
+    .divider {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
 </style>
