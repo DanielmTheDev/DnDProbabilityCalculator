@@ -11,6 +11,9 @@ public partial class CreateCharacterCard
     public CreateCharacterDto Character { get; set; } = null!;
 
     [Parameter]
+    public bool AreInputsDisabled { get; set; }
+
+    [Parameter]
     public EventCallback Remove { get; set; }
 
     private IEnumerable<Option<AbilityScoreType>> GetAbilityTypeOptions()

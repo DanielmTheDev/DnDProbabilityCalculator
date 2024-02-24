@@ -13,14 +13,14 @@
             @foreach (var character in _party.Characters)
             {
                 <FluentGridItem lg="4">
-                    <CreateCharacterCard Remove="() => _party.Characters.Remove(character)" Character="character"></CreateCharacterCard>
+                    <CreateCharacterCard AreInputsDisabled="_isFormDisabled" Remove="() => _party.Characters.Remove(character)" Character="character"></CreateCharacterCard>
                 </FluentGridItem>
             }
         </FluentGrid>
     </FluentStack>
     <FluentDivider Class="divider"></FluentDivider>
     <FluentStack Orientation="Orientation.Horizontal" HorizontalAlignment="HorizontalAlignment.Center">
-        <FluentButton Appearance="Appearance.Accent" Type="ButtonType.Submit">Save</FluentButton>
+        <FluentButton Disabled="_isFormDisabled" Appearance="Appearance.Accent" Type="ButtonType.Submit">Save</FluentButton>
     </FluentStack>
 </EditForm>
 

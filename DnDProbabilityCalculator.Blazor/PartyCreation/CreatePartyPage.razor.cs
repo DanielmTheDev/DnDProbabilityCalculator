@@ -9,6 +9,7 @@ public partial class CreatePartyPage
     public IPartySaver PartySaver { get; set; } = null!;
 
     private string _result = "Nothing yet";
+    private bool _isFormDisabled;
     private readonly CreatePartyDto _party = new();
 
     protected override void OnInitialized()
@@ -19,5 +20,9 @@ public partial class CreatePartyPage
         }
     }
     private async Task Submit()
-        => _result = await PartySaver.Save(_party);
+    {
+        _isFormDisabled = true;
+        _result = await PartySaver.Save(_party);
+        _isFormDisabled = false;
+    }
 }
