@@ -10,19 +10,13 @@ public partial class CreatePartyPage
 
     private string _result = "Nothing yet";
     private bool _isFormDisabled;
-    private readonly CreatePartyDto _party = new();
+    private CreatePartyDto _party = new() { Characters = [new()] };
 
-    protected override void OnInitialized()
-    {
-        if (_party.Characters.Count == 0)
-        {
-            _party.Characters.Add(new());
-        }
-    }
     private async Task Submit()
     {
         _isFormDisabled = true;
         _result = await PartySaver.Save(_party);
+        _party = new() { Characters = [new()] };
         _isFormDisabled = false;
     }
 }

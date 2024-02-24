@@ -16,7 +16,7 @@ public partial class CreateCharacterCard
     [Parameter]
     public EventCallback Remove { get; set; }
 
-    private IEnumerable<Option<AbilityScoreType>> GetAbilityTypeOptions()
+    private static IEnumerable<Option<AbilityScoreType>> GetAbilityTypeOptions()
         => Enum.GetValues<AbilityScoreType>().Select(value => new Option<AbilityScoreType>
         {
             Value = value,
