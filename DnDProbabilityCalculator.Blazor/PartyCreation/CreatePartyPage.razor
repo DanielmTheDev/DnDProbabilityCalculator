@@ -9,7 +9,7 @@
         <FluentTextField Label="Party name" @bind-Value="_party.Name" Placeholder="Name"/>
         <FluentDivider Class="divider"></FluentDivider>
         <FluentButton OnClick="@(() => _party.Characters.Add(new()))" Appearance="Appearance.Outline" IconEnd="@(new Icons.Filled.Size16.Add())"/>
-        <FluentGrid Justify="JustifyContent.SpaceEvenly" Spacing="5">
+        <FluentGrid Justify="JustifyContent.Center" Spacing="2">
             @foreach (var character in _party.Characters)
             {
                 <FluentGridItem lg="4">
