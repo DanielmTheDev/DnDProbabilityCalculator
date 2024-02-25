@@ -5,6 +5,8 @@ using DnDProbabilityCalculator.Shared.PartyCreation;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace DndProbabilityFunctions.Parties;
 
@@ -21,6 +23,7 @@ public class SaveParty(ILoggerFactory loggerFactory)
     [Function("SaveParty")]
     public async Task<PartyMultiResponse> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData req)
     {
+        Log.Information("This is a log message");
         try
         {
             var partyDto = await JsonSerializer.DeserializeAsync<CreatePartyDto>(req.Body, _jsonSerializerOptions);
