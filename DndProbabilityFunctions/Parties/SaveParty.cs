@@ -18,7 +18,7 @@ public class SaveParty
     };
 
     [Function("SaveParty")]
-    public async Task<PartyMultiResponse> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData req)
+    public async Task<PartyMultiResponse> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "parties")] HttpRequestData req)
     {
         try
         {

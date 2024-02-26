@@ -9,7 +9,7 @@ public class PartySaver(IHttpClientFactory clientFactory) : IPartySaver
     public async Task<Result<string>> Save(CreatePartyDto party)
     {
         var client = clientFactory.CreateClient("B2CSandbox.ServerAPI");
-        var result = await client.PostAsJsonAsync("api/SaveParty", party);
+        var result = await client.PostAsJsonAsync("api/parties", party);
         if (!result.IsSuccessStatusCode)
         {
             return Result.Fail("Creation of party failed");
