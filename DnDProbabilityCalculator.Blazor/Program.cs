@@ -32,7 +32,8 @@ builder.Services.AddScoped<AuthorizationMessageHandler>(provider
             scopes: ["https://dadamucki.onmicrosoft.com/a2cfc276-854c-44fc-b7aa-5706508ed32c/API.Access"]));
 
 builder.Services
-    .AddHttpClient("B2CSandbox.ServerAPI", client => client.BaseAddress = new("https://dnd-probability-calculator-functions.azurewebsites.net"))
+    // .AddHttpClient("B2CSandbox.ServerAPI", client => client.BaseAddress = new("https://dnd-probability-calculator-functions.azurewebsites.net"))
+    .AddHttpClient("B2CSandbox.ServerAPI", client => client.BaseAddress = new("http://localhost:7071")) // for local
     .AddHttpMessageHandler<AuthorizationMessageHandler>();
 
 builder.Services.AddMsalAuthentication(options =>
