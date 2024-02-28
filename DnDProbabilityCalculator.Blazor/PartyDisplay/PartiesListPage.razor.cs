@@ -11,9 +11,6 @@ public partial class PartiesListPage
     [Inject]
     public IPartyClient PartyClient { get; set; } = null!;
 
-    [Inject]
-    public NavigationManager NavigationManager { get; set; } = null!;
-
     protected override async Task OnInitializedAsync()
     {
         var result = await PartyClient.GetAll();
@@ -21,7 +18,4 @@ public partial class PartiesListPage
             ? result.Value
             : [];
     }
-
-    private void NavigateToParty(string partyId)
-        => NavigationManager.NavigateTo($"/party/{partyId}");
 }
