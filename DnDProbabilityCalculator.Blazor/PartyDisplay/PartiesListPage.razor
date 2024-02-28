@@ -1,4 +1,26 @@
 ﻿@page "/parties"
-@using System.Text.Json
 
-@JsonSerializer.Serialize(_parties, new JsonSerializerOptions { WriteIndented = true })
+<FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
+    <h1>Your Parties</h1>
+</FluentStack>
+<FluentDivider Style="margin: 1rem 0 5rem 0"></FluentDivider>
+
+<FluentStack Orientation="Orientation.Vertical" VerticalAlignment="VerticalAlignment.Center" HorizontalAlignment="HorizontalAlignment.Center">
+    <FluentGrid Style="width: 80%" Spacing="10" Justify="JustifyContent.Center">
+        @foreach (var party in _parties)
+        {
+            <FluentGridItem lg="3">
+                <FluentCard>
+                    <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Top">
+                        <h3>@party.Name</h3>
+
+                        @foreach (var character in party.Characters)
+                        {
+                            <p>@character.Name</p>
+                        }
+                    </FluentStack>
+                </FluentCard>
+            </FluentGridItem>
+        }
+    </FluentGrid>
+</FluentStack>
