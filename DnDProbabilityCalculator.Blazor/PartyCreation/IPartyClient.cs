@@ -1,4 +1,5 @@
-﻿using DnDProbabilityCalculator.Shared.PartyCreation;
+﻿using DnDProbabilityCalculator.Core.Adventuring;
+using DnDProbabilityCalculator.Shared.PartyCreation;
 using FluentResults;
 
 namespace DnDProbabilityCalculator.Blazor.PartyCreation;
@@ -6,4 +7,5 @@ namespace DnDProbabilityCalculator.Blazor.PartyCreation;
 public interface IPartyClient
 {
     Task<Result<string>> Save(CreatePartyDto party);
+    Task<Result<Party[]>> GetAll();
 }

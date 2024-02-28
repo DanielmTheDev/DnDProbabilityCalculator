@@ -1,2 +1,4 @@
 ﻿@page "/parties"
+@using System.Text.Json
 
+@JsonSerializer.Serialize(_parties, new JsonSerializerOptions { WriteIndented = true })
