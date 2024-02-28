@@ -10,7 +10,7 @@
         @foreach (var party in _parties)
         {
             <FluentGridItem lg="3">
-                <FluentCard>
+                <FluentCard @onclick="() => NavigateToParty(party.Id)" Style="cursor: pointer">
                     <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Top">
                         <h3>@party.Name</h3>
 
