@@ -17,7 +17,6 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddFluentUIComponents();
 builder.Services.AddHotKeys2();
 
@@ -26,10 +25,10 @@ builder.Services.AddTransient<ITableContextFactory, TableContextFactory>();
 builder.Services.AddScoped<IFileAccessor, FileAccessor>();
 builder.Services.AddScoped<IPartyClient, PartyClient>();
 
+const string defaultScope = "https://dadamucki.onmicrosoft.com/a2cfc276-854c-44fc-b7aa-5706508ed32c/API.Access";
 builder.Services.AddScoped<AuthorizationMessageHandler>(provider
     => new AuthorizationMessageHandler(provider.GetRequiredService<IAccessTokenProvider>(), provider.GetRequiredService<NavigationManager>())
-        .ConfigureHandler(authorizedUrls: ["https://dnd-probability-calculator-functions.azurewebsites.net"],
-            scopes: ["https://dadamucki.onmicrosoft.com/a2cfc276-854c-44fc-b7aa-5706508ed32c/API.Access"]));
+        .ConfigureHandler(authorizedUrls: ["https://dnd-probability-calculator-functions.azurewebsites.net"], scopes: [defaultScope]));
 
 builder.Services
     // .AddHttpClient<IPartyClient, PartyClient>(client => client.BaseAddress = new("https://dnd-probability-calculator-functions.azurewebsites.net")
@@ -39,7 +38,7 @@ builder.Services
 builder.Services.AddMsalAuthentication(options =>
 {
     builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
-    options.ProviderOptions.DefaultAccessTokenScopes.Add("https://dadamucki.onmicrosoft.com/a2cfc276-854c-44fc-b7aa-5706508ed32c/API.Access");
+    options.ProviderOptions.DefaultAccessTokenScopes.Add(defaultScope);
 });
 
 builder.Services.AddValidatorsFromAssemblyContaining<CreatePartyDtoValidator>();
