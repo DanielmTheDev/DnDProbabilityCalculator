@@ -11,14 +11,9 @@ public class PartyClient(HttpClient client, AuthenticationStateProvider authStat
     public async Task<Result<string>> Save(CreatePartyDto party)
     {
         var result = await client.PostAsJsonAsync("api/parties", party);
-        if (!result.IsSuccessStatusCode)
-        {
-            return Result.Fail("Creation of party failed");
-        }
-        var parsedResult = await result.Content.ReadFromJsonAsync<SavePartyResponse>();
-        return parsedResult is null
-            ? Result.Fail("Result could not be read")
-            : Result.Ok(parsedResult.PartyId);
+        return result.IsSuccessStatusCode
+            ? await ParseSaveResult(result)
+            : Result.Fail("Creation of party failed");
     }
 
     public async Task<Result<Party[]>> GetAll()
@@ -34,6 +29,14 @@ public class PartyClient(HttpClient client, AuthenticationStateProvider authStat
         {
             return Result.Fail("Error retrieving parties");
         }
+    }
+
+    private static async Task<Result<string>> ParseSaveResult(HttpResponseMessage result)
+    {
+        var parsedResult = await result.Content.ReadFromJsonAsync<SavePartyResponse>();
+        return parsedResult is null
+            ? Result.Fail("Result could not be read")
+            : Result.Ok(parsedResult.PartyId);
     }
 
     private async Task<Result<Party[]>> GetParties(AuthenticationState authState)
