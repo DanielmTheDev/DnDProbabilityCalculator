@@ -3,7 +3,7 @@ using FluentResults;
 
 namespace DnDProbabilityCalculator.Blazor.PartyCreation;
 
-public interface IPartySaver
+public interface IPartyClient
 {
     Task<Result<string>> Save(CreatePartyDto party);
 }

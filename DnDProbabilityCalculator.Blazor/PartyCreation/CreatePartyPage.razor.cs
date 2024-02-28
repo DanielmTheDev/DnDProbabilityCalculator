@@ -8,7 +8,7 @@ namespace DnDProbabilityCalculator.Blazor.PartyCreation;
 public partial class CreatePartyPage
 {
     [Inject]
-    public IPartySaver PartySaver { get; set; } = null!;
+    public IPartyClient PartyClient { get; set; } = null!;
 
     [Inject]
     public IToastService ToastService { get; set; } = null!;
@@ -19,7 +19,7 @@ public partial class CreatePartyPage
     private async Task Submit()
     {
         _isFormDisabled = true;
-        var result = await PartySaver.Save(_party);
+        var result = await PartyClient.Save(_party);
         if (result.IsSuccess)
         {
             ShowSuccessToast(_party.Name!);

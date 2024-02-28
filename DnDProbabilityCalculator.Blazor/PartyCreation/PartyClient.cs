@@ -4,7 +4,7 @@ using FluentResults;
 
 namespace DnDProbabilityCalculator.Blazor.PartyCreation;
 
-public class PartySaver(IHttpClientFactory clientFactory) : IPartySaver
+public class PartyClient(IHttpClientFactory clientFactory) : IPartyClient
 {
     public async Task<Result<string>> Save(CreatePartyDto party)
     {

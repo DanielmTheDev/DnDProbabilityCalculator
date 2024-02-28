@@ -56,7 +56,7 @@ public class SaveParty
     {
         var partyDto = await JsonSerializer.DeserializeAsync<CreatePartyDto>(req.Body, _jsonSerializerOptions);
         // var userId = req.Headers.SingleOrDefault(header => header.Key == "x-ms-client-principal-id").Value?.First();
-        const string userId = "e5efb91c-4cff-4047-aa78-5f3b636b84e9"; // for local
+        const string userId = "e5efb91c-4cff-4047-aa78-5f3b636b84e9"; // todo remove: for local
         return (partyDto, userId);
     }
 
