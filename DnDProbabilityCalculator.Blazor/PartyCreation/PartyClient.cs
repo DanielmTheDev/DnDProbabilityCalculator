@@ -31,6 +31,21 @@ public class PartyClient(HttpClient client, AuthenticationStateProvider authStat
         }
     }
 
+    public async Task<Result<Party>> Get(string partyId)
+    {
+        try
+        {
+            var result = await client.GetFromJsonAsync<Party>($"api/party/{partyId}");
+            return result is not null
+                ? Result.Ok(result)
+                : Result.Fail("Error retrieving party");
+        }
+        catch (Exception)
+        {
+            return Result.Fail("Error retrieving party");
+        }
+    }
+
     private static async Task<Result<string>> ParseSaveResult(HttpResponseMessage result)
     {
         var parsedResult = await result.Content.ReadFromJsonAsync<SavePartyResponse>();
