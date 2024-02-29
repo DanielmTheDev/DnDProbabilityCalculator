@@ -35,7 +35,7 @@ public class PartyClient(HttpClient client, AuthenticationStateProvider authStat
     {
         try
         {
-            var result = await client.GetFromJsonAsync<Party>($"api/party/{partyId}");
+            var result = await client.GetFromJsonAsync<Party>($"api/party-details/{partyId}");
             return result is not null
                 ? Result.Ok(result)
                 : Result.Fail("Error retrieving party");
