@@ -1,10 +1,10 @@
-﻿@page "/ProbabilityCalculator/{partyId}"
+﻿@page "/probability-calculator/{partyId}"
 @using System.Text.Json
 <h3>ProbabilityCalculator</h3>
 
 @if (_party is not null)
 {
-    JsonSerializer.Serialize(_party, new JsonSerializerOptions { WriteIndented = true });
+    @JsonSerializer.Serialize(_party, new JsonSerializerOptions { WriteIndented = true })
 }
 else
 {

@@ -12,5 +12,5 @@ public partial class PartyCard
     public NavigationManager NavigationManager { get; set; } = null!;
 
     private void NavigateToParty(string partyId)
-        => NavigationManager.NavigateTo($"/party/{partyId}");
+        => NavigationManager.NavigateTo($"/probability-calculator/{partyId}");
 }
