@@ -27,7 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="Home\HotkeyHelp.razor.cs">
+      <Content Include="PartyDisplay\HotkeyHelp.razor.cs">
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       </Content>
     </ItemGroup>

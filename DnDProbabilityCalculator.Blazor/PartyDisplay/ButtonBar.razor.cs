@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.FluentUI.AspNetCore.Components;
 using Toolbelt.Blazor.HotKeys2;
 
-namespace DnDProbabilityCalculator.Blazor.Home;
+namespace DnDProbabilityCalculator.Blazor.PartyDisplay;
 
 public partial class ButtonBar
 {

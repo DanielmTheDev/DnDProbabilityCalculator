@@ -1,14 +1,11 @@
-﻿using DnDProbabilityCalculator.Core;
+﻿using DnDProbabilityCalculator.Core.Adventuring;
 
 namespace DnDProbabilityCalculator.Application.Table;
 
-public class TableContextFactory(IPartyRepository repository) : ITableContextFactory
+public class TableContextFactory : ITableContextFactory
 {
-    public List<TableContext> Create(InputVariables inputVariables)
-    {
-        var party = repository.Get();
-        return party.Characters
+    public List<TableContext> Create(InputVariables inputVariables, Party party)
+        => party.Characters
             .Select(actor => TableContext.FromActor(actor, inputVariables))
             .ToList();
-    }
 }
