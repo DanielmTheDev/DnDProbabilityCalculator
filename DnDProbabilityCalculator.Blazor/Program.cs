@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.FluentUI.AspNetCore.Components;
 using DnDProbabilityCalculator.Blazor;
+using DnDProbabilityCalculator.Blazor.Configuration;
 using DnDProbabilityCalculator.Blazor.PartyCreation;
 using DnDProbabilityCalculator.Infrastructure.Actors;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;
@@ -25,20 +26,20 @@ builder.Services.AddTransient<ITableContextFactory, TableContextFactory>();
 builder.Services.AddScoped<IFileAccessor, FileAccessor>();
 builder.Services.AddScoped<IPartyClient, PartyClient>();
 
-const string defaultScope = "https://dadamucki.onmicrosoft.com/a2cfc276-854c-44fc-b7aa-5706508ed32c/API.Access";
+var apiConfig = builder.Configuration.GetSection("Api").Get<ApiSettings>()!;
+
 builder.Services.AddScoped<AuthorizationMessageHandler>(provider
     => new AuthorizationMessageHandler(provider.GetRequiredService<IAccessTokenProvider>(), provider.GetRequiredService<NavigationManager>())
-        .ConfigureHandler(authorizedUrls: ["https://dnd-probability-calculator-functions.azurewebsites.net"], scopes: [defaultScope]));
+        .ConfigureHandler(authorizedUrls: [apiConfig.BaseAddress], scopes: [apiConfig.Scope]));
 
 builder.Services
-    // .AddHttpClient<IPartyClient, PartyClient>(client => client.BaseAddress = new("https://dnd-probability-calculator-functions.azurewebsites.net")
-    .AddHttpClient<IPartyClient, PartyClient>(client => client.BaseAddress = new("http://localhost:7071")) // todo remove: for local
+    .AddHttpClient<IPartyClient, PartyClient>(client => client.BaseAddress = new(apiConfig.BaseAddress))
     .AddHttpMessageHandler<AuthorizationMessageHandler>();
 
 builder.Services.AddMsalAuthentication(options =>
 {
     builder.Configuration.Bind("AzureAdB2C", options.ProviderOptions.Authentication);
-    options.ProviderOptions.DefaultAccessTokenScopes.Add(defaultScope);
+    options.ProviderOptions.DefaultAccessTokenScopes.Add(apiConfig.Scope);
 });
 
 builder.Services.AddValidatorsFromAssemblyContaining<CreatePartyDtoValidator>();
