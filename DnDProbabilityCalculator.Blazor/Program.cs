@@ -12,6 +12,7 @@ using DnDProbabilityCalculator.Shared.PartyCreation.Validation;
 using FluentValidation;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Serilog;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -31,6 +32,13 @@ var apiConfig = builder.Configuration.GetSection("Api").Get<ApiSettings>()!;
 builder.Services.AddScoped<AuthorizationMessageHandler>(provider
     => new AuthorizationMessageHandler(provider.GetRequiredService<IAccessTokenProvider>(), provider.GetRequiredService<NavigationManager>())
         .ConfigureHandler(authorizedUrls: [apiConfig.BaseAddress], scopes: [apiConfig.Scope]));
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+
+builder.Services.AddLogging(lb => lb.AddSerilog());
 
 builder.Services
     .AddHttpClient<IPartyClient, PartyClient>(client => client.BaseAddress = new(apiConfig.BaseAddress))
