@@ -5,11 +5,11 @@ using DnDProbabilityCalculator.Core.Adventuring;
 using DnDProbabilityCalculator.Shared.PartyCreation;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
-using Serilog;
+using Microsoft.Extensions.Logging;
 
 namespace DndProbabilityFunctions.Parties;
 
-public class SaveParty
+public class SaveParty(ILogger<SaveParty> logger)
 {
     private readonly JsonSerializerOptions _jsonSerializerOptions = new()
     {
@@ -35,7 +35,7 @@ public class SaveParty
 
             var partyEntity = partyDto.ToParty(userId);
 
-            Log.Debug("Attempting to save party with id {PartyId} for user {UserId}", partyEntity.Id, partyEntity.UserId);
+            logger.LogDebug("Attempting to save party with id {PartyId} for user {UserId}", partyEntity.Id, partyEntity.UserId);
 
             var response = await CreateResponse(req, partyEntity);
 
@@ -47,7 +47,7 @@ public class SaveParty
         }
         catch (Exception e)
         {
-            Log.Error(e, "Exception occured in function");
+            logger.LogError(e, "Exception occured in function");
             throw;
         }
     }

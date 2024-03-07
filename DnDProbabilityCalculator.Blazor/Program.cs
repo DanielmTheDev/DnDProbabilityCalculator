@@ -1,18 +1,19 @@
 using DnDProbabilityCalculator.Application.Table;
-using DnDProbabilityCalculator.Core;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.FluentUI.AspNetCore.Components;
 using DnDProbabilityCalculator.Blazor;
 using DnDProbabilityCalculator.Blazor.Configuration;
 using DnDProbabilityCalculator.Blazor.PartyCreation;
+using DnDProbabilityCalculator.Core;
 using DnDProbabilityCalculator.Infrastructure.Actors;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;
 using DnDProbabilityCalculator.Shared.PartyCreation.Validation;
 using FluentValidation;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.FluentUI.AspNetCore.Components;
 using Serilog;
+using Serilog.Events;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -34,7 +35,7 @@ builder.Services.AddScoped<AuthorizationMessageHandler>(provider
         .ConfigureHandler(authorizedUrls: [apiConfig.BaseAddress], scopes: [apiConfig.Scope]));
 
 Log.Logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
+    .WriteTo.BrowserConsole(LogEventLevel.Debug)
     .Enrich.FromLogContext()
     .CreateLogger();
 
