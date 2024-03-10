@@ -1,4 +1,4 @@
-﻿<FluentCard @onclick="() => NavigateToParty(Party.Id)" Style="cursor: pointer">
+﻿<FluentCard Class="hover-effect" @onclick="() => NavigateToParty(Party.Id)" Style="cursor: pointer">
     <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Top">
         <h3>@Party.Name</h3>
 
@@ -8,3 +8,10 @@
         }
     </FluentStack>
 </FluentCard>
+
+<style>
+    .hover-effect:hover {
+        background-color: var(--accent-fill-hover);
+        color: var(--accent-foreground-hover);
+    }
+</style>
