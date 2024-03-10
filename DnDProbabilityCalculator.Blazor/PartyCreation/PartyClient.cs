@@ -46,6 +46,14 @@ public class PartyClient(HttpClient client, AuthenticationStateProvider authStat
         }
     }
 
+    public async Task<Result> Delete(string partyId)
+    {
+        var result = await client.DeleteAsync($"api/parties/{partyId}");
+        return result.IsSuccessStatusCode
+            ? Result.Ok()
+            : Result.Fail("Deletion of party failed");
+    }
+
     private static async Task<Result<string>> ParseSaveResult(HttpResponseMessage result)
     {
         var parsedResult = await result.Content.ReadFromJsonAsync<SavePartyResponse>();

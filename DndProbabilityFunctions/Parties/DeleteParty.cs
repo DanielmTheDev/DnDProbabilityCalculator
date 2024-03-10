@@ -11,7 +11,7 @@ namespace DndProbabilityFunctions.Parties;
 public class DeleteParty(ILogger<DeleteParty> logger, CosmosClient cosmosClient)
 {
     [Function("DeleteParty")]
-    public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "party/delete/{id}")] HttpRequestData req,
+    public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "parties/{id}")] HttpRequestData req,
         FunctionContext executionContext, string id)
     {
         logger.LogDebug("Attempting to delete party with id {PartyId}", id);

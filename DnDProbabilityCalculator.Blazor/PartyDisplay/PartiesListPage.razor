@@ -10,6 +10,8 @@
         @foreach (var party in _parties)
         {
             <FluentGridItem lg="3">
+                <FluentButton IconEnd="@(new Icons.Regular.Size16.Dismiss())"
+                              OnClick="@(() => DeleteParty(party))"/>
                 <PartyCard Party="@party"></PartyCard>
             </FluentGridItem>
         }
