@@ -10,10 +10,17 @@
         @foreach (var party in _parties)
         {
             <FluentGridItem lg="3">
-                <FluentButton IconEnd="@(new Icons.Regular.Size16.Dismiss())"
-                              OnClick="@(() => DeleteParty(party))"/>
+                <FluentStack HorizontalAlignment="HorizontalAlignment.End">
+                    <FluentButton Class="button-hover-effect" IconEnd="@(new Icons.Filled.Size12.Dismiss())" Appearance="Appearance.Lightweight" OnClick="@(() => DeleteParty(party))"/>
+                </FluentStack>
                 <PartyCard Party="@party"></PartyCard>
             </FluentGridItem>
         }
     </FluentGrid>
 </FluentStack>
+
+<style>
+    .button-hover-effect:hover {
+        background-color: var(--accent-fill-hover);
+    }
+</style>
