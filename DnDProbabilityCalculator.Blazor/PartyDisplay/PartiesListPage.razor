@@ -1,4 +1,6 @@
-﻿@page "/parties"
+﻿@using DnDProbabilityCalculator.Blazor.Placeholder
+
+@page "/parties"
 
 <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
     <h1>Your Parties</h1>
@@ -7,20 +9,23 @@
 
 <FluentStack Orientation="Orientation.Vertical" VerticalAlignment="VerticalAlignment.Center" HorizontalAlignment="HorizontalAlignment.Center">
     <FluentGrid Style="width: 80%" Spacing="10" Justify="JustifyContent.Center">
-        @foreach (var party in _parties)
+        @if (_parties.Any())
+        {
+            @foreach (var party in _parties)
+            {
+                <FluentGridItem lg="3">
+                    <FluentStack HorizontalAlignment="HorizontalAlignment.End">
+                        <FluentButton IconEnd="@(new Icons.Filled.Size12.Dismiss())" Appearance="Appearance.Lightweight" OnClick="@(() => DeleteParty(party))"/>
+                    </FluentStack>
+                    <PartyCard Party="@party"></PartyCard>
+                </FluentGridItem>
+            }
+        }
+        else
         {
             <FluentGridItem lg="3">
-                <FluentStack HorizontalAlignment="HorizontalAlignment.End">
-                    <FluentButton Class="button-hover-effect" IconEnd="@(new Icons.Filled.Size12.Dismiss())" Appearance="Appearance.Lightweight" OnClick="@(() => DeleteParty(party))"/>
-                </FluentStack>
-                <PartyCard Party="@party"></PartyCard>
+                <SkeletonCard/>
             </FluentGridItem>
         }
     </FluentGrid>
 </FluentStack>
-
-<style>
-    .hover-effect:hover {
-        background-color: var(--accent-fill-hover);
-    }
-</style>

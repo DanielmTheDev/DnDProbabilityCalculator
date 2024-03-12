@@ -27,7 +27,9 @@ public record InputVariables
         => this with { NumberOfAttacks = NumberOfAttacks + 1 };
 
     public InputVariables WithDecrementedNumberOfAttacks()
-        => this with { NumberOfAttacks = NumberOfAttacks - 1 };
+        => NumberOfAttacks == 1
+            ? this
+            : this with { NumberOfAttacks = NumberOfAttacks - 1 };
 
     public InputVariables WithAdvantage()
         => this with { Advantage = AdvantageType.Advantage };

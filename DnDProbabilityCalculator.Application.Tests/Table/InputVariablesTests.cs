@@ -77,16 +77,29 @@ public class InputVariablesTests
     public void WithIncrementedDcsAndModifiers_WhenCalled_ShiftsThemToTheRight()
     {
         // Arrange
-        var originalInputVariables = new InputVariables(new[] { 1, 2 }, new[] { 1, 2 }, new[] { 1, 2 }, 3, AdvantageType.None);
+        var originalInputVariables = new InputVariables([1, 2], [1, 2], [1, 2], 3, AdvantageType.None);
 
         // Act
         var actual = originalInputVariables.WithIncrementedColumns();
 
         // Assert
-        var expected = new InputVariables(new[] { 2, 3 }, new[] { 2, 3 },new[] { 2, 3 }, 3, AdvantageType.None);
+        var expected = new InputVariables([2, 3], [2, 3], [2, 3], 3, AdvantageType.None);
         Assert.AreEqual(expected.NumberOfAttacks, actual.NumberOfAttacks);
         CollectionAssert.AreEquivalent(expected.AttackModifiers, actual.AttackModifiers);
         CollectionAssert.AreEquivalent(expected.ArmorClasses, actual.ArmorClasses);
         CollectionAssert.AreEquivalent(expected.Dcs, actual.Dcs);
+    }
+
+    [TestMethod]
+    public void WithDecrementedAttack_WhenCalled_DoesNotGoBelow1()
+    {
+        // Arrange
+        var originalInputVariables = new InputVariables([1, 2], [1, 2], [1, 2], 1, AdvantageType.None);
+
+        // Act
+        var result = originalInputVariables.WithDecrementedNumberOfAttacks();
+
+        // Assert
+        Assert.AreEqual(1, result.NumberOfAttacks);
     }
 }

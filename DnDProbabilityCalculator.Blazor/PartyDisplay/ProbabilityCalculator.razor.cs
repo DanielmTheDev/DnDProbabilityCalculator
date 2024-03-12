@@ -20,6 +20,9 @@ public partial class ProbabilityCalculator
     [Inject]
     private HotKeys HotKeys { get; set; } = null!;
 
+    [Inject]
+    private ILogger<ProbabilityCalculator> Logger { get; set; } = null!;
+
     private ButtonBar _buttonBar = null!;
     private HotKeysContext HotKeysContext { get; set; } = null!;
     private IEnumerable<TableContext> _tableContexts = new List<TableContext>();
@@ -39,7 +42,7 @@ public partial class ProbabilityCalculator
         }
         else
         {
-            await Console.Out.WriteLineAsync(result.Errors.First().Message);
+            Logger.LogError("Error while getting party: {@Error}", result.Errors);
         }
     }
 

@@ -3,6 +3,7 @@
 @using DnDProbabilityCalculator.Application.Table.SavingThrow
 @using DnDProbabilityCalculator.Application.Table.ReceiveHit
 @using DnDProbabilityCalculator.Application.Table.DeliverHit
+@using DnDProbabilityCalculator.Blazor.Placeholder
 <PageTitle>Probability Calculator</PageTitle>
 
 @if (_party is not null)
@@ -76,6 +77,15 @@
             }
         </FluentGrid>
     }
+}
+
+else
+{
+    <FluentStack Orientation="Orientation.Horizontal" HorizontalAlignment="HorizontalAlignment.Center">
+        <div style="width: 30%">
+            <SkeletonCard></SkeletonCard>
+        </div>
+    </FluentStack>
 }
 
 <style>
