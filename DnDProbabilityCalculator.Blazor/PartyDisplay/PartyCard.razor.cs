@@ -11,9 +11,18 @@ public partial class PartyCard
     [Parameter]
     public EventCallback OnDelete { get; set; }
 
+    [Parameter]
+    public bool IsBusy { get; set; } = false;
+
     [Inject]
     public NavigationManager NavigationManager { get; set; } = null!;
 
     private void NavigateToParty(string partyId)
         => NavigationManager.NavigateTo($"/probability-calculator/{partyId}");
+
+    private Task Delete()
+    {
+        IsBusy = true;
+        return OnDelete.InvokeAsync();
+    }
 }

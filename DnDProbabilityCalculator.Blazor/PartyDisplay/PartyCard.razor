@@ -1,17 +1,26 @@
-﻿<FluentCard Class="hover-effect" @onclick="() => NavigateToParty(Party.Id)" Style="cursor: pointer">
-    <FluentStack HorizontalAlignment="HorizontalAlignment.End">
-        <div @onclick:stopPropagation="true">
-            <FluentButton IconEnd="@(new Icons.Filled.Size12.Dismiss())" Appearance="Appearance.Stealth" OnClick="@(() => OnDelete.InvokeAsync())"/>
-        </div>
-    </FluentStack>
-    <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Top">
-        <h3>@Party.Name</h3>
+﻿<FluentCard Class="hover-effect" Style="cursor: pointer; position: relative;" @onclick="() => NavigateToParty(Party.Id)">
+    <div style="opacity: @(IsBusy ? 0.3 : 1);">
+        <FluentStack HorizontalAlignment="HorizontalAlignment.End">
+            <div @onclick:stopPropagation="true">
+                <FluentButton Disabled="IsBusy" IconEnd="@(new Icons.Filled.Size12.Dismiss())" Appearance="Appearance.Stealth" OnClick="@(() => Delete())"/>
+            </div>
+        </FluentStack>
+        <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Top">
+            <h3>@Party.Name</h3>
 
-        @foreach (var character in Party.Characters)
-        {
-            <p>@character.Name</p>
-        }
-    </FluentStack>
+            @foreach (var character in Party.Characters)
+            {
+                <p>@character.Name</p>
+            }
+        </FluentStack>
+    </div>
+
+    @if (IsBusy)
+    {
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;">
+            <FluentProgressRing></FluentProgressRing>
+        </div>
+    }
 </FluentCard>
 
 <style>
