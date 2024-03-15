@@ -13,6 +13,9 @@ public partial class CreatePartyPage
     [Inject]
     public IToastService ToastService { get; set; } = null!;
 
+    [Inject]
+    public NavigationManager NavigationManager { get; set; } = null!;
+
     private bool _isFormDisabled;
     private CreatePartyDto _party = new() { Characters = [new()] };
 
@@ -22,7 +25,7 @@ public partial class CreatePartyPage
         var result = await PartyClient.Save(_party);
         if (result.IsSuccess)
         {
-            ShowSuccessToast(_party.Name!);
+            ShowSuccessToast(result.Value, _party.Name!);
             ResetForm();
             _isFormDisabled = false;
         }
@@ -39,6 +42,7 @@ public partial class CreatePartyPage
     private void ResetForm()
         => _party = new() { Characters = [new()] };
 
-    private void ShowSuccessToast(string partyName)
-        => ToastService.ShowToast(ToastIntent.Success, $"Party \"{partyName}\" successfully created");
+    private void ShowSuccessToast(string partyId, string partyName)
+        => ToastService.ShowToast(ToastIntent.Success, $"\"{partyName}\" successfully created",
+            topAction: "Go", callback: new EventCallback<ToastResult>(this, () => NavigationManager.NavigateTo($"/probability-calculator/{partyId}")));
 }
