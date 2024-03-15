@@ -1,4 +1,9 @@
 ﻿<FluentCard Class="hover-effect" @onclick="() => NavigateToParty(Party.Id)" Style="cursor: pointer">
+    <FluentStack HorizontalAlignment="HorizontalAlignment.End">
+        <div @onclick:stopPropagation="true">
+            <FluentButton IconEnd="@(new Icons.Filled.Size12.Dismiss())" Appearance="Appearance.Stealth" OnClick="@(() => OnDelete.InvokeAsync())"/>
+        </div>
+    </FluentStack>
     <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Top">
         <h3>@Party.Name</h3>
 

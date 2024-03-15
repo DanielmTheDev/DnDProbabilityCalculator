@@ -7,7 +7,7 @@ namespace DnDProbabilityCalculator.Blazor.PartyDisplay;
 
 public partial class PartiesListPage
 {
-    private Party[] _parties = [];
+    private Party[]? _parties;
 
     [Inject]
     public IPartyClient PartyClient { get; set; } = null!;
@@ -29,7 +29,7 @@ public partial class PartiesListPage
 
         if (result.IsSuccess)
         {
-            _parties = _parties
+            _parties = _parties?
                 .Where(p => p.Id != party.Id)
                 .ToArray();
             ToastService.ShowToast(ToastIntent.Success, "Party deleted");

@@ -8,6 +8,9 @@ public partial class PartyCard
     [Parameter]
     public Party Party { get; set; } = null!;
 
+    [Parameter]
+    public EventCallback OnDelete { get; set; }
+
     [Inject]
     public NavigationManager NavigationManager { get; set; } = null!;
 

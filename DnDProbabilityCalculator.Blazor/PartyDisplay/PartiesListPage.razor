@@ -9,22 +9,25 @@
 
 <FluentStack Orientation="Orientation.Vertical" VerticalAlignment="VerticalAlignment.Center" HorizontalAlignment="HorizontalAlignment.Center">
     <FluentGrid Style="width: 80%" Spacing="10" Justify="JustifyContent.Center">
-        @if (_parties.Any())
+        @if (_parties != null && _parties.Any())
         {
             @foreach (var party in _parties)
             {
                 <FluentGridItem lg="3">
-                    <FluentStack HorizontalAlignment="HorizontalAlignment.End">
-                        <FluentButton IconEnd="@(new Icons.Filled.Size12.Dismiss())" Appearance="Appearance.Lightweight" OnClick="@(() => DeleteParty(party))"/>
-                    </FluentStack>
-                    <PartyCard Party="@party"></PartyCard>
+                    <PartyCard Party="@party" OnDelete="@(() => DeleteParty(party))"></PartyCard>
                 </FluentGridItem>
             }
         }
-        else
+        else if(_parties is null)
         {
             <FluentGridItem lg="3">
                 <SkeletonCard/>
+            </FluentGridItem>
+        }
+        else if (_parties.Length == 0)
+        {
+            <FluentGridItem lg="3">
+                <p>You seem to have no parties. Why don't you create one <NavLink Href="/create-party">here</NavLink>?</p>
             </FluentGridItem>
         }
     </FluentGrid>
