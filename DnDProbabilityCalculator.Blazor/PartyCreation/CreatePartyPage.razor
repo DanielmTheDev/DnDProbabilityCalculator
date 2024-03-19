@@ -1,18 +1,19 @@
-﻿@page "/create-party"
+﻿@using DnDProbabilityCalculator.Blazor.Validation
+
+@page "/create-party"
 
 <EditForm Model="@_party" OnValidSubmit="@Submit">
     <FluentValidationValidator/>
-    <FluentValidationSummary/>
 
-    <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Center">
+    <FluentStack Class="content" Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Center">
         <h4>Add Party</h4>
         <FluentTextField Label="Party name" @bind-Value="_party.Name" Placeholder="Name"/>
-        <FluentDivider Class="divider"></FluentDivider>
+        <ValidationForInput For="() => _party.Name"></ValidationForInput>
         <FluentButton OnClick="@(() => _party.Characters.Add(new()))" Appearance="Appearance.Outline" IconEnd="@(new Icons.Filled.Size16.Add())"/>
         <FluentGrid Justify="JustifyContent.Center" Spacing="2">
             @foreach (var character in _party.Characters)
             {
-                <FluentGridItem lg="4">
+                <FluentGridItem lg="6">
                     <CreateCharacterCard AreInputsDisabled="_isFormDisabled" Remove="() => _party.Characters.Remove(character)" Character="character"></CreateCharacterCard>
                 </FluentGridItem>
             }
@@ -28,5 +29,9 @@
     .divider {
         margin-top: 2rem;
         margin-bottom: 2rem;
+    }
+
+    .content {
+        margin-top: 2rem;
     }
 </style>

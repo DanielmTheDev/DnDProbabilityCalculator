@@ -1,4 +1,5 @@
-﻿<FluentCard>
+﻿@using DnDProbabilityCalculator.Blazor.Validation
+<FluentCard>
     <FluentStack VerticalAlignment="VerticalAlignment.Center">
         <h5>Add Character</h5>
         <FluentButton Class="remove-button" OnClick="@(async () => await Remove.InvokeAsync())" Appearance="Appearance.Lightweight" IconEnd="@(new Icons.Filled.Size12.Subtract())"/>
@@ -6,52 +7,67 @@
     <FluentGrid Justify="JustifyContent.SpaceAround" Spacing="2">
         <FluentGridItem lg="4">
             <FluentTextField Disabled="AreInputsDisabled" Class="card-input" Label="Name" @bind-Value="Character.Name" Placeholder="Name"/>
+            <ValidationForInput For="() => Character.Name"></ValidationForInput>
         </FluentGridItem>
 
         <FluentGridItem lg="4">
             <FluentNumberField Disabled="AreInputsDisabled" Class="card-input" Label="Armor Class" @bind-Value="Character.ArmorClass" Placeholder="Armor Class"/>
+            <ValidationForInput For="() => Character.ArmorClass"></ValidationForInput>
         </FluentGridItem>
         <FluentGridItem lg="4">
             <FluentNumberField Disabled="AreInputsDisabled" Class="card-input" Label="Proficiency Bonus" @bind-Value="Character.ProficiencyBonus" Placeholder="Proficiency Bonus"/>
+            <ValidationForInput For="() => Character.ProficiencyBonus"></ValidationForInput>
         </FluentGridItem>
 
         <FluentGridItem lg="4">
             <FluentNumberField Disabled="AreInputsDisabled" Class="card-input" Label="Number of Attacks" @bind-Value="Character.NumberOfAttacks" Placeholder="Number of Attacks"/>
+            <ValidationForInput For="() => Character.NumberOfAttacks"></ValidationForInput>
         </FluentGridItem>
         <FluentGridItem lg="4">
             <FluentNumberField Disabled="AreInputsDisabled" Class="card-input" Label="# of Damage Dice" @bind-Value="Character.NumberOfDamageDice" Placeholder="Number of Damage Dice"/>
+            <ValidationForInput For="() => Character.NumberOfDamageDice"></ValidationForInput>
         </FluentGridItem>
         <FluentGridItem lg="4">
             <FluentNumberField Disabled="AreInputsDisabled" Class="card-input" Label="Damage Die Sides" @bind-Value="Character.DiceSides" Placeholder="Damage Die Sides"/>
+            <ValidationForInput For="() => Character.DiceSides"></ValidationForInput>
         </FluentGridItem>
 
         <FluentGridItem lg="4">
-            <FluentNumberField Disabled="AreInputsDisabled" Class="card-input" Label="Damage/Attack Bonus" @bind-Value="Character.Bonus" Placeholder="Bonus"/>
+            <FluentNumberField Disabled="AreInputsDisabled" Class="card-input" Label="Bonus" @bind-Value="Character.Bonus" Placeholder="Bonus"/>
+            <ValidationForInput For="() => Character.Bonus"></ValidationForInput>
         </FluentGridItem>
         <FluentGridItem lg="4">
             <FluentNumberField Disabled="AreInputsDisabled" Class="card-input" Label="Misc Damage Bonus" @bind-Value="Character.MiscDamageBonus" Placeholder="Misc Damage Bonus"/>
+            <ValidationForInput For="() => Character.MiscDamageBonus"></ValidationForInput>
         </FluentGridItem>
         <FluentGridItem lg="4">
             <FluentSelect Width="90%" Label="Attack Ability" bind-SelectedOption="Character.AttackAbility" OptionText="option => option.Value.ToString()" Items="@GetAbilityTypeOptions()"/>
+            <ValidationForInput For="() => Character.AttackAbility"></ValidationForInput>
         </FluentGridItem>
 
         <FluentGridItem lg="4">
             <FluentNumberField Disabled="AreInputsDisabled" Class="card-input" Label="Strength" @bind-Value="Character.Strength" Placeholder="Strength"/>
+            <ValidationForInput For="() => Character.Strength"></ValidationForInput>
         </FluentGridItem>
         <FluentGridItem lg="4">
             <FluentNumberField Disabled="AreInputsDisabled" Class="card-input" Label="Dexterity" @bind-Value="Character.Dexterity" Placeholder="Dexterity"/>
+            <ValidationForInput For="() => Character.Dexterity"></ValidationForInput>
         </FluentGridItem>
         <FluentGridItem lg="4">
             <FluentNumberField Disabled="AreInputsDisabled" Class="card-input" Label="Constitution" @bind-Value="Character.Constitution" Placeholder="Constitution"/>
+            <ValidationForInput For="() => Character.Constitution"></ValidationForInput>
         </FluentGridItem>
         <FluentGridItem lg="4">
             <FluentNumberField Disabled="AreInputsDisabled" Class="card-input" Label="Intelligence" @bind-Value="Character.Intelligence" Placeholder="Intelligence"/>
+            <ValidationForInput For="() => Character.Intelligence"></ValidationForInput>
         </FluentGridItem>
         <FluentGridItem lg="4">
             <FluentNumberField Disabled="AreInputsDisabled" Class="card-input" Label="Wisdom" @bind-Value="Character.Wisdom" Placeholder="Wisdom"/>
+            <ValidationForInput For="() => Character.Wisdom"></ValidationForInput>
         </FluentGridItem>
         <FluentGridItem lg="4">
             <FluentNumberField Disabled="AreInputsDisabled" Class="card-input" Label="Charisma" @bind-Value="Character.Charisma" Placeholder="Charisma"/>
+            <ValidationForInput For="() => Character.Charisma"></ValidationForInput>
         </FluentGridItem>
     </FluentGrid>
 </FluentCard>
