@@ -1,4 +1,3 @@
-﻿@using DnDProbabilityCalculator.Blazor.Validation
+﻿@page "/create-party"
 
-@page "/create-party/{partyId}"
-
+<PartyForm Party="_party" SubmitCallback="@Submit" IsFormDisabled="_isFormDisabled"></PartyForm>

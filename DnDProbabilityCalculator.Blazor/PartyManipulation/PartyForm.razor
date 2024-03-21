@@ -1,0 +1,33 @@
+﻿<EditForm Model="@Party" OnValidSubmit="() => SubmitCallback.InvokeAsync(Party)">
+    <FluentValidationValidator/>
+
+    <FluentStack Class="content" Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Center">
+        <h4>Add Party</h4>
+        <FluentTextField Label="Party name" @bind-Value="Party.Name" Placeholder="Name"/>
+        <ValidationForInput For="() => _party.Name"></ValidationForInput>
+        <FluentButton OnClick="@(() => Party.Characters.Add(new()))" Appearance="Appearance.Outline" IconEnd="@(new Icons.Filled.Size16.Add())"/>
+        <FluentGrid Justify="JustifyContent.Center" Spacing="2">
+            @foreach (var character in Party.Characters)
+            {
+                <FluentGridItem lg="6">
+                    <CreateCharacterCard AreInputsDisabled="IsFormDisabled" Remove="() => Party.Characters.Remove(character)" Character="character"></CreateCharacterCard>
+                </FluentGridItem>
+            }
+        </FluentGrid>
+    </FluentStack>
+    <FluentDivider Class="divider"></FluentDivider>
+    <FluentStack Orientation="Orientation.Horizontal" HorizontalAlignment="HorizontalAlignment.Center">
+        <FluentButton Disabled="IsFormDisabled" Appearance="Appearance.Accent" Type="ButtonType.Submit">Save</FluentButton>
+    </FluentStack>
+</EditForm>
+
+<style>
+    .divider {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .content {
+        margin-top: 2rem;
+    }
+</style>
