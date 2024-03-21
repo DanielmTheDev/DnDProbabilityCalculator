@@ -19,6 +19,12 @@ public class PartyClient(HttpClient client) : IPartyClient
         //     : Result.Fail("Creation of party failed");
     }
 
+    public async Task<Result<Party>> Update(Guid partyId, CreatePartyDto party)
+    {
+        await Task.Delay(5000);
+        return party.ToParty(partyId.ToString());
+    }
+
     public async Task<Result<Party[]>> GetAll()
     {
         await Task.Delay(3000);

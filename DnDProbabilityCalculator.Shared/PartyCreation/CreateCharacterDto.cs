@@ -10,7 +10,6 @@ public class CreateCharacterDto
     public int ProficiencyBonus { get; set; } = 2;
     public int ArmorClass { get; set; } = 10;
     public AbilityScoreType AttackAbility { get; set; }
-
     public int NumberOfDamageDice { get; set; } = 2;
     public int DiceSides { get; set; } = 6;
     public int Bonus { get; set; } = 1;

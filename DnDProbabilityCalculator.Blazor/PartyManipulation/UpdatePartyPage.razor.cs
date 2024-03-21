@@ -1,11 +1,12 @@
-﻿using DnDProbabilityCalculator.Shared.PartyCreation;
+﻿using DnDProbabilityCalculator.Core.Adventuring;
+using DnDProbabilityCalculator.Shared.PartyCreation;
 using FluentResults;
 using Microsoft.AspNetCore.Components;
 using Microsoft.FluentUI.AspNetCore.Components;
 
 namespace DnDProbabilityCalculator.Blazor.PartyManipulation;
 
-public partial class CreatePartyPage
+public partial class UpdatePartyPage
 {
     [Inject]
     public IPartyClient PartyClient { get; set; } = null!;
@@ -16,14 +17,31 @@ public partial class CreatePartyPage
     [Inject]
     public NavigationManager NavigationManager { get; set; } = null!;
 
+    [Parameter]
+    public string PartyId { get; set; } = string.Empty;
+
     private bool _isFormDisabled;
     private CreatePartyDto _party = new() { Characters = [new()] };
 
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(PartyId) )
+        {
+            // todo: add skeleton while loading
+            var result = await PartyClient.Get(PartyId);
+            if (result.IsFailed)
+            {
+                ToastService.ShowToast(ToastIntent.Error, result.Errors.First().Message);
+            }
+
+            _party = new(result.Value);
+        }
+    }
 
     private async Task Submit(CreatePartyDto createPartyDto)
     {
         _isFormDisabled = true;
-        var result = await PartyClient.Save(createPartyDto);
+        var result = await PartyClient.Update(Guid.Parse(PartyId), createPartyDto);
         if (result.IsSuccess)
         {
             ShowSuccessToast(result.Value, createPartyDto.Name!);
@@ -40,9 +58,9 @@ public partial class CreatePartyPage
     private void ResetForm()
         => _party = new() { Characters = [new()] };
 
-    private void ShowSuccessToast(string partyId, string partyName)
-        => ToastService.ShowToast(ToastIntent.Success, $"\"{partyName}\" successfully created",
-            topAction: "Go", callback: new EventCallback<ToastResult>(this, () => NavigationManager.NavigateTo($"/probability-calculator/{partyId}")));
+    private void ShowSuccessToast(Party party, string partyName)
+        => ToastService.ShowToast(ToastIntent.Success, $"\"{partyName}\" successfully updated",
+            topAction: "Go", callback: new EventCallback<ToastResult>(this, () => NavigationManager.NavigateTo($"/probability-calculator/{party.Id}")));
 
     private void ShowErrorToast(IError result)
         => ToastService.ShowToast(ToastIntent.Error, $"Error: {result.Message}");
