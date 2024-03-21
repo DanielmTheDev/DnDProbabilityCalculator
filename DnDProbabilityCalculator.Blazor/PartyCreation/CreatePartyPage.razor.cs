@@ -16,8 +16,26 @@ public partial class CreatePartyPage
     [Inject]
     public NavigationManager NavigationManager { get; set; } = null!;
 
+    [Parameter]
+    public string PartyId { get; set; } = string.Empty;
+
     private bool _isFormDisabled;
     private CreatePartyDto _party = new() { Characters = [new()] };
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(PartyId) )
+        {
+            // todo: add skeleton while loading
+            var result = await PartyClient.Get(PartyId);
+            if (result.IsFailed)
+            {
+                ToastService.ShowToast(ToastIntent.Error, result.Errors.First().Message);
+            }
+
+            _party = new(result.Value);
+        }
+    }
 
     private async Task Submit()
     {

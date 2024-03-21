@@ -1,6 +1,6 @@
 ﻿@using DnDProbabilityCalculator.Blazor.Validation
 
-@page "/create-party"
+@page "/create-party/{partyId}"
 
 <EditForm Model="@_party" OnValidSubmit="@Submit">
     <FluentValidationValidator/>

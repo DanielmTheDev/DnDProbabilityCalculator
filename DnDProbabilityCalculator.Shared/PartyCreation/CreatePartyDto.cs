@@ -8,6 +8,16 @@ public class CreatePartyDto
 
     public List<CreateCharacterDto> Characters { get; set; } = [];
 
+    public CreatePartyDto()
+    {
+    }
+
+    public CreatePartyDto(Party party)
+    {
+        Name = party.Name;
+        Characters = party.Characters.Select(actor => new CreateCharacterDto(actor)).ToList();
+    }
+
     public Party ToParty(string userId)
         => new()
         {
