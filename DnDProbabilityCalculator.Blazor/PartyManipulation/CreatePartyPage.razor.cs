@@ -3,7 +3,7 @@ using FluentResults;
 using Microsoft.AspNetCore.Components;
 using Microsoft.FluentUI.AspNetCore.Components;
 
-namespace DnDProbabilityCalculator.Blazor.PartyCreation;
+namespace DnDProbabilityCalculator.Blazor.PartyManipulation;
 
 public partial class CreatePartyPage
 {

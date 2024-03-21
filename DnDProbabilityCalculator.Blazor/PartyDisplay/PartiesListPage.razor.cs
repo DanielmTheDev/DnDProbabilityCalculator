@@ -1,4 +1,4 @@
-﻿using DnDProbabilityCalculator.Blazor.PartyCreation;
+﻿using DnDProbabilityCalculator.Blazor.PartyManipulation;
 using DnDProbabilityCalculator.Core.Adventuring;
 using Microsoft.AspNetCore.Components;
 using Microsoft.FluentUI.AspNetCore.Components;

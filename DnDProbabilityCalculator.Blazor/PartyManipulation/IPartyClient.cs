@@ -2,7 +2,7 @@
 using DnDProbabilityCalculator.Shared.PartyCreation;
 using FluentResults;
 
-namespace DnDProbabilityCalculator.Blazor.PartyCreation;
+namespace DnDProbabilityCalculator.Blazor.PartyManipulation;
 
 public interface IPartyClient
 {

@@ -1,7 +1,7 @@
 using DnDProbabilityCalculator.Application.Table;
 using DnDProbabilityCalculator.Blazor;
 using DnDProbabilityCalculator.Blazor.Configuration;
-using DnDProbabilityCalculator.Blazor.PartyCreation;
+using DnDProbabilityCalculator.Blazor.PartyManipulation;
 using DnDProbabilityCalculator.Core;
 using DnDProbabilityCalculator.Infrastructure.Actors;
 using DnDProbabilityCalculator.Infrastructure.FileSystem;

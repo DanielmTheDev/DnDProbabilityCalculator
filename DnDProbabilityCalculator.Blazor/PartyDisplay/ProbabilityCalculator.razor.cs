@@ -1,5 +1,5 @@
 ﻿using DnDProbabilityCalculator.Application.Table;
-using DnDProbabilityCalculator.Blazor.PartyCreation;
+using DnDProbabilityCalculator.Blazor.PartyManipulation;
 using DnDProbabilityCalculator.Core.Adventuring;
 using Microsoft.AspNetCore.Components;
 using Toolbelt.Blazor.HotKeys2;
