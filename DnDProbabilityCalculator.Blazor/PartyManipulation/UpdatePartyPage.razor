@@ -1,3 +1,23 @@
-﻿@page "/update-party/{partyId}"
+﻿@using DnDProbabilityCalculator.Blazor.Placeholder
 
-<PartyForm Party="_party" SubmitCallback="@Submit" IsFormDisabled="_isFormDisabled"/>
+@page "/update-party/{partyId}"
+
+@if (_isFormLoading)
+{
+    <FluentStack Orientation="Orientation.Horizontal" HorizontalAlignment="HorizontalAlignment.Center">
+        <div class="narrow-card">
+            <SkeletonCard/>
+        </div>
+    </FluentStack>
+}
+else
+{
+    <PartyForm Party="_party" SubmitCallback="@Submit" IsFormDisabled="_isFormDisabled"/>
+}
+
+<style>
+.narrow-card {
+    width: 30%;
+    margin-top: 2rem;
+}
+</style>

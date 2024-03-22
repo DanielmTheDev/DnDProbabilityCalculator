@@ -21,13 +21,14 @@ public partial class UpdatePartyPage
     public string PartyId { get; set; } = string.Empty;
 
     private bool _isFormDisabled;
+    private bool _isFormLoading;
     private CreatePartyDto _party = new() { Characters = [new()] };
 
     protected override async Task OnInitializedAsync()
     {
-        if (!string.IsNullOrEmpty(PartyId) )
+        if (!string.IsNullOrEmpty(PartyId))
         {
-            // todo: add skeleton while loading
+            _isFormLoading = true;
             var result = await PartyClient.Get(PartyId);
             if (result.IsFailed)
             {
@@ -35,6 +36,7 @@ public partial class UpdatePartyPage
             }
 
             _party = new(result.Value);
+            _isFormLoading = false;
         }
     }
 

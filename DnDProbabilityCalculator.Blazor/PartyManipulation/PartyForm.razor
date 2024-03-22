@@ -1,10 +1,12 @@
-﻿<EditForm Model="@Party" OnValidSubmit="() => SubmitCallback.InvokeAsync(Party)">
+﻿@using DnDProbabilityCalculator.Blazor.Validation
+
+<EditForm Model="@Party" OnValidSubmit="() => SubmitCallback.InvokeAsync(Party)">
     <FluentValidationValidator/>
 
     <FluentStack Class="content" Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Center">
         <h4>Add Party</h4>
         <FluentTextField Label="Party name" @bind-Value="Party.Name" Placeholder="Name"/>
-        <ValidationForInput For="() => _party.Name"></ValidationForInput>
+        <ValidationForInput For="() => Party.Name"></ValidationForInput>
         <FluentButton OnClick="@(() => Party.Characters.Add(new()))" Appearance="Appearance.Outline" IconEnd="@(new Icons.Filled.Size16.Add())"/>
         <FluentGrid Justify="JustifyContent.Center" Spacing="2">
             @foreach (var character in Party.Characters)
