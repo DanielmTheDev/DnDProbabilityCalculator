@@ -12,7 +12,7 @@ public partial class PartyCard
     public EventCallback OnDelete { get; set; }
 
     [Parameter]
-    public bool IsBusy { get; set; } = false;
+    public bool IsBusy { get; set; }
 
     [Inject]
     public NavigationManager NavigationManager { get; set; } = null!;

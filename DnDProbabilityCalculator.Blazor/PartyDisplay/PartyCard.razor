@@ -1,4 +1,4 @@
-﻿<FluentCard Class="hover-effect" Style="cursor: pointer; position: relative;" @onclick="() => NavigateToParty(Party.Id)">
+﻿<FluentCard Class="card" @onclick="() => NavigateToParty(Party.Id)">
     <div style="opacity: @(IsBusy ? 0.3 : 1);">
         <FluentStack HorizontalAlignment="HorizontalAlignment.End">
             <div @onclick:stopPropagation="true">
@@ -17,15 +17,28 @@
 
     @if (IsBusy)
     {
-        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; align-items: center;">
+        <div class="progress-ring">
             <FluentProgressRing></FluentProgressRing>
         </div>
     }
 </FluentCard>
 
 <style>
-    .hover-effect:hover {
-        background-color: var(--accent-fill-hover);
-        color: var(--accent-foreground-hover);
-    }
+
+.card {
+    cursor: pointer;
+    position: relative;
+}
+
+.card:hover {
+    background-color: var(--accent-fill-hover);
+    color: var(--accent-foreground-hover);
+}
+div.progress-ring {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
