@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using DnDProbabilityCalculator.Core.Adventuring;
-using DndProbabilityFunctions.Auth;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;

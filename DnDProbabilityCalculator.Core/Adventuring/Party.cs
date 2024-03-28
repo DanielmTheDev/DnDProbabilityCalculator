@@ -1,6 +1,6 @@
 ﻿namespace DnDProbabilityCalculator.Core.Adventuring;
 
-public class Party
+public record Party
 {
     public required string Id { get; init; }
     public required string Name { get; init; }
