@@ -25,26 +25,9 @@ public class SaveParty(ILogger<SaveParty> logger)
         {
             var (partyDto, userId) = await ParseRequest(req);
 
-            if (partyDto is null || userId is null)
-            {
-                return new()
-                {
-                    Party = null,
-                    HttpResponse = req.CreateResponse(HttpStatusCode.BadRequest)
-                };
-            }
-
-            var partyEntity = partyDto.ToParty(userId);
-
-            logger.LogDebug("Attempting to save party with id {PartyId} for user {UserId}", partyEntity.Id, partyEntity.UserId);
-
-            var response = await CreateResponse(req, partyEntity);
-
-            return new()
-            {
-                Party = partyEntity,
-                HttpResponse = response
-            };
+            return partyDto is null || userId is null
+                ? CreateErrorResponse(req)
+                : await CreateSuccessResponse(req, partyDto, userId);
         }
         catch (Exception e)
         {
@@ -57,6 +40,28 @@ public class SaveParty(ILogger<SaveParty> logger)
     {
         var partyDto = await JsonSerializer.DeserializeAsync<CreatePartyDto>(req.Body, _jsonSerializerOptions);
         return (partyDto, req.GetUserId().Value);
+    }
+
+    private static PartyMultiResponse CreateErrorResponse(HttpRequestData req)
+        => new()
+        {
+            Party = null,
+            HttpResponse = req.CreateResponse(HttpStatusCode.BadRequest)
+        };
+
+    private async Task<PartyMultiResponse> CreateSuccessResponse(HttpRequestData req, CreatePartyDto partyDto, string userId)
+    {
+        var partyEntity = partyDto.ToParty(userId);
+
+        logger.LogDebug("Attempting to save party with id {PartyId} for user {UserId}", partyEntity.Id, partyEntity.UserId);
+
+        var response = await CreateResponse(req, partyEntity);
+
+        return new()
+        {
+            Party = partyEntity,
+            HttpResponse = response
+        };
     }
 
     private static async Task<HttpResponseData> CreateResponse(HttpRequestData req, Party partyEntity)
