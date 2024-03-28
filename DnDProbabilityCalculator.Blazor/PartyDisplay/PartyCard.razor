@@ -1,5 +1,5 @@
 ﻿<FluentCard Class="card" @onclick="() => NavigateToParty(Party.Id)">
-    <div style="opacity: @(IsBusy ? 0.3 : 1);">
+    <div class="@(IsBusy ? "busy" : "")">
         <FluentStack HorizontalAlignment="HorizontalAlignment.End">
             <div @onclick:stopPropagation="true">
                 <FluentButton Disabled="IsBusy" IconEnd="@(new Icons.Filled.Size12.Dismiss())" Appearance="Appearance.Stealth" OnClick="@(() => Delete())"/>
@@ -36,6 +36,10 @@
 .card:hover {
     background-color: var(--neutral-fill-hover);
     color: var(--neutral-foreground-hover);
+}
+
+.busy {
+    opacity: 0.3;
 }
 
 div.progress-ring {
