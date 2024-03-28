@@ -5,10 +5,10 @@
 <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center">
     <h1>Your Parties</h1>
 </FluentStack>
-<FluentDivider Style="margin: 1rem 0 5rem 0"></FluentDivider>
+<FluentDivider class="divider"></FluentDivider>
 
 <FluentStack Orientation="Orientation.Vertical" VerticalAlignment="VerticalAlignment.Center" HorizontalAlignment="HorizontalAlignment.Center">
-    <FluentGrid Style="width: 80%" Spacing="10" Justify="JustifyContent.Center">
+    <FluentGrid Spacing="10" Justify="JustifyContent.Center" class="parties-grid">
         @if (_parties != null && _parties.Any())
         {
             @foreach (var party in _parties)
@@ -32,3 +32,13 @@
         }
     </FluentGrid>
 </FluentStack>
+
+<style>
+.parties-grid {
+  width: 80%;
+}
+
+.divider {
+  margin: 1rem 0 5rem 0;
+}
+</style>
