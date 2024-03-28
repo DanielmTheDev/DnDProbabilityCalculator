@@ -4,6 +4,9 @@
             <div @onclick:stopPropagation="true">
                 <FluentButton Disabled="IsBusy" IconEnd="@(new Icons.Filled.Size12.Dismiss())" Appearance="Appearance.Stealth" OnClick="@(() => Delete())"/>
             </div>
+            <div @onclick:stopPropagation="true">
+                <FluentButton Disabled="IsBusy" IconEnd="@(new Icons.Regular.Size12.Edit())" Appearance="Appearance.Stealth" OnClick="@(() => NavigateToUpdate(Party.Id))"/>
+            </div>
         </FluentStack>
         <FluentStack Orientation="Orientation.Vertical" HorizontalAlignment="HorizontalAlignment.Center" VerticalAlignment="VerticalAlignment.Top">
             <h3>@Party.Name</h3>

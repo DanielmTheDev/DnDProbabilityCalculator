@@ -25,4 +25,7 @@ public partial class PartyCard
         IsBusy = true;
         return OnDelete.InvokeAsync();
     }
+
+    private void NavigateToUpdate(string partyId)
+        => NavigationManager.NavigateTo($"/update-party/{partyId}");
 }
